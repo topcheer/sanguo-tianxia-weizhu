@@ -356,6 +356,9 @@ struct RootView: View {
       // 截图/验收: ggcode-weizhu -ggcodeDebugBattle=0.6 (参数为战书自动确认延迟秒数)
       let args = ProcessInfo.processInfo.arguments
       print("[debug] args=\(args)")
+      #if DEBUG
+      game.debugAutoAct = args.contains { $0.hasPrefix("-ggcodeAutoAct") }
+      #endif
       if let arg = args.first(where: { $0.hasPrefix("-ggcodeDebugResult") }) {
         game.debugShowBattleResult(win: !arg.lowercased().contains("loss"))
       } else if let arg = args.first(where: { $0.hasPrefix("-ggcodeDebugBattle") }) {

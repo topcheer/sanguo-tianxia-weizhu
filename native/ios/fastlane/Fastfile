@@ -1,0 +1,38 @@
+# iOS Fastfile for 三国：天下为注 (dev.ggcode.san)
+default_platform(:ios)
+
+platform :ios do
+  def api_key
+    app_store_connect_api_key(
+      key_id: "8KNYUZ47F2",
+      issuer_id: "69a6de7d-3567-47e3-e053-5b8c7c11a4d1",
+      key_filepath: "/Volumes/new/ggai/LumenStudy/ios/fastlane/AuthKey_8KNYUZ47F2.p8",
+      in_house: false
+    )
+  end
+
+  desc "Upload metadata + screenshots (no binary)"
+  lane :upload_metadata do
+    deliver(
+      api_key: api_key,
+      app_identifier: "dev.ggcode.san",
+      skip_binary_upload: true,
+      skip_screenshots: false,
+      submit_for_review: false,
+      force: true,
+      precheck_include_in_app_purchases: false,
+      overwrite_screenshots: true,
+      run_precheck_before_submit: false
+    )
+  end
+
+  desc "Upload IPA to TestFlight"
+  lane :upload_testflight do |options|
+    pilot(
+      api_key: api_key,
+      ipa: options[:ipa],
+      skip_waiting_for_build_processing: true,
+      skip_submission: true
+    )
+  end
+end

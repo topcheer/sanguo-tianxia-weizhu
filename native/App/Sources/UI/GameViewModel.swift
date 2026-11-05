@@ -97,6 +97,8 @@ final class GameViewModel: ObservableObject {
   @Published var eventPick: ((String) -> Void)? = nil
   @Published var storyChoicePick: ((Dyn?) -> Void)? = nil
   @Published var activeBattle: BattleEngine? = nil
+  /// 截图调试:自动跟注/过牌(仅 DEBUG,由 -ggcodeAutoAct=1 开启)
+  var debugAutoAct = false
   /// 玩家行动提示:由引擎侧 provider 直接驱动,不依赖视图 onAppear 时序
   @Published var actionPrompt: (view: ActionView, presets: [BattleEngine.BetPreset])? = nil
   private var actionContinuation: ResumeOnce<AIDecision>? = nil
@@ -106,6 +108,16 @@ final class GameViewModel: ObservableObject {
     await withCheckedContinuation { cont in
       let once = ResumeOnce(cont)
       Task { @MainActor in
+        #if DEBUG
+        if self.debugAutoAct {
+          try? await Task.sleep(nanoseconds: 900_000_000)
+          let d = view.toCall > 0 ? AIDecision(type: "call") : AIDecision(type: "check")
+          self.actionPrompt = nil
+          self.actionContinuation = nil
+          once.resume(d)
+          return
+        }
+        #endif
         self.actionContinuation = once
         self.actionPrompt = (view, presets)
       }

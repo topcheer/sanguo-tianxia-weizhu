@@ -59,11 +59,19 @@ targets:
       - path: App/Assets.xcassets
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.topcheer.sanguo-weizhu
+        PRODUCT_BUNDLE_IDENTIFIER: dev.ggcode.san
         PRODUCT_NAME: sanguo-weizhu
         PRODUCT_MODULE_NAME: SanguoWeizhu
+        TARGETED_DEVICE_FAMILY: "1"
+        CURRENT_PROJECT_VERSION: "2026110601"
         CODE_SIGN_STYLE: Automatic
         CODE_SIGNING_ALLOWED: "NO"
+        DEVELOPMENT_TEAM: EGZFS7M525
+      configs:
+        Release:
+          CODE_SIGNING_ALLOWED: "YES"
+          CODE_SIGN_STYLE: Automatic
+          DEVELOPMENT_TEAM: EGZFS7M525
     info:
       path: App/Info-iOS.plist
       properties:
@@ -76,6 +84,7 @@ targets:
           - UIInterfaceOrientationLandscapeLeft
           - UIInterfaceOrientationLandscapeRight
         UIRequiresFullScreen: true
+        ITSAppUsesNonExemptEncryption: false
   Tests_macOS:
     type: bundle.unit-test
     platform: macOS
