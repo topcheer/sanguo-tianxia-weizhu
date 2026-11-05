@@ -9,6 +9,10 @@ struct MarchNode: Identifiable {
   let type: String  // battle|rest|shop|chest|boss
   let name: String
   var done = false
+  // 原版 map.js 的行军线坐标(1000×420 坐标系)与后继节点
+  var x: Double = 500
+  var y: Double = 210
+  var next: [String] = []
 }
 
 enum Screen {
@@ -128,7 +132,10 @@ final class GameViewModel: ObservableObject {
       MarchNode(
         id: "m\(i)", col: i,
         type: n == 1 ? "boss" : (i == n - 1 ? "boss" : (i == 0 ? "battle" : midTypes[(i - 1) % midTypes.count])),
-        name: nm
+        name: nm,
+        x: n == 1 ? 500 : 90 + Double(i) * (820 / Double(max(1, n - 1))),
+        y: 210 + sin(Double(i) * 1.7) * 60,
+        next: i < n - 1 ? ["m\(i + 1)"] : []
       )
     }
   }

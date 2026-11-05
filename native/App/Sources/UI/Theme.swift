@@ -19,12 +19,17 @@ enum Theme {
   static let felt = Color(hex: 0x35523f)
   static let feltDark = Color(hex: 0x243b2e)
 
+  /// 原版字体栈:STKaiti → Kaiti SC → Songti SC → 系统衬线。
+  private static let kaiCandidates = ["STKaiti", "Kaiti SC", "KaiTi", "Songti SC", "STSong"]
+
   static func serif(_ size: CGFloat, bold: Bool = false) -> Font {
-    #if os(macOS)
-    Font.system(size: size, weight: bold ? .semibold : .regular, design: .serif)
-    #else
-    Font.system(size: size, weight: bold ? .semibold : .regular, design: .serif)
+    #if canImport(AppKit)
+    for name in kaiCandidates where NSFont(name: name, size: size) != nil {
+      let font = Font.custom(name, size: size)
+      return bold ? font.weight(.semibold) : font
+    }
     #endif
+    return .system(size: size, weight: bold ? .semibold : .regular, design: .serif)
   }
 }
 
