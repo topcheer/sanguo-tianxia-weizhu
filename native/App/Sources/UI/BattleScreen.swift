@@ -66,7 +66,10 @@ struct SeatPlate: View {
         PortraitView(skin: seat.skin, size: 44)
         VStack(alignment: .leading, spacing: 2) {
           HStack(spacing: 5) {
-            Text(seat.name).font(Theme.serif(13, bold: true)).foregroundColor(Theme.paperLight).lineLimit(1)
+            Text(seat.name).font(Theme.serif(13, bold: true)).foregroundColor(Theme.paperLight)
+              .lineLimit(1).truncationMode(.tail).minimumScaleFactor(0.75)
+              .frame(maxWidth: 132, alignment: .leading)
+              .layoutPriority(1)
             if seat.stack <= 0 {
               Text(L("battle.eliminated")).font(Theme.serif(9)).foregroundColor(Theme.cinnabarLight)
             } else if seat.folded {
@@ -117,7 +120,10 @@ struct BattleScreen: View {
 
   var body: some View {
     GeometryReader { geo in
-      let w = geo.size.width, h = geo.size.height
+      // 小屏(横屏手机)按桌面设计画布缩放整张牌桌,保证席位/底池/行动栏都在屏内
+      let realW = geo.size.width, realH = geo.size.height
+      let w = max(realW, 1180), h = max(realH, 780)
+      let scale = min(1, min(realW / w, realH / h))
       ZStack {
         // 背景与桌面
         LinearGradient(colors: [Color(hex: 0x0d110d), Color(hex: 0x141a12), Color(hex: 0x0d110d)], startPoint: .top, endPoint: .bottom)
@@ -140,6 +146,9 @@ struct BattleScreen: View {
           playField(engine: engine, w: w, h: h)
         }
       }
+      .frame(width: w, height: h)
+      .scaleEffect(scale)
+      .frame(width: realW, height: realH)
     }
     .ignoresSafeArea(edges: .bottom)
     .sheet(isPresented: $verifyOpen) {
@@ -210,7 +219,7 @@ struct BattleScreen: View {
                 .strokeBorder(engine.selectedSeat == seat.id && opps.count > 1 ? Theme.goldLight : .clear, lineWidth: 1.5)
             )
         }
-        .position(x: w * spot.x / 100, y: playH * spot.y / 100 + h * 0.03)
+        .position(x: w * spot.x / 100, y: playH * spot.y / 100 - 46 + h * 0.03)
       }
 
       // 牌堆(左)与种子
@@ -229,7 +238,7 @@ struct BattleScreen: View {
         ChipStack(count: engine.H.map { potTotal($0.seats) } ?? 0, tone: "pot")
         Text("\(engine.H.map { potTotal($0.seats) } ?? 0)").font(Theme.serif(15, bold: true)).foregroundColor(Theme.goldLight)
       }
-      .position(x: w * 0.5, y: playH * 0.30 + h * 0.03)
+      .position(x: w * 0.5, y: playH * 0.40 + h * 0.03)
 
       // 公共牌(中央 45%)
       HStack(spacing: 10) {
@@ -242,7 +251,7 @@ struct BattleScreen: View {
             .frame(width: 48, height: 68)
         }
       }
-      .position(x: w * 0.5, y: playH * 0.45 + h * 0.03)
+      .position(x: w * 0.5, y: playH * 0.50 + h * 0.03)
 
       // 各席位当街下注(置于各自席位与公共牌之间)
       ForEach(Array(engine.seats.enumerated()), id: \.element.id) { index, seat in
@@ -253,7 +262,7 @@ struct BattleScreen: View {
             ChipStack(count: seat.bet, tone: isHero ? "ivory" : "ebony")
             Text("\(seat.bet)").font(Theme.serif(11)).foregroundColor(Theme.paperDim)
           }
-          .position(x: w * spot.x / 100, y: playH * (isHero ? 0.72 : spot.y + 8) / 100 + h * 0.03)
+          .position(x: w * spot.x / 100, y: playH * (isHero ? 0.72 : spot.y + 4) / 100 + h * 0.03)
         }
       }
 
