@@ -1,0 +1,3786 @@
+[
+ {
+  "tag": "hu-default",
+  "seed": "GVHU42",
+  "stacks": [
+   1000,
+   1000
+  ],
+  "config": {
+   "blinds0": [
+    10,
+    20
+   ],
+   "escalateEvery": 4,
+   "rule": {},
+   "traitsIdx": [
+    0,
+    0
+   ],
+   "traitSets": [
+    {},
+    {
+     "武勇": 92,
+     "智谋": 78,
+     "诈术": 30,
+     "胆识": 95,
+     "耐性": 40,
+     "心性": 70
+    },
+    {
+     "武勇": 96,
+     "智谋": 40,
+     "诈术": 20,
+     "胆识": 90,
+     "耐性": 20,
+     "心性": 25
+    },
+    {
+     "武勇": 40,
+     "智谋": 96,
+     "诈术": 80,
+     "胆识": 55,
+     "耐性": 85,
+     "心性": 80
+    },
+    {
+     "武勇": 60,
+     "智谋": 90,
+     "诈术": 90,
+     "胆识": 70,
+     "耐性": 95,
+     "心性": 90
+    }
+   ]
+  },
+  "finalStacks": [
+   "player:0",
+   "opponent:2000"
+  ],
+  "hands": [
+   [
+    {
+     "h": "#1",
+     "blinds": [
+      10,
+      20
+     ],
+     "button": 0,
+     "hole": {
+      "player": [
+       21,
+       0
+      ],
+      "opponent": [
+       46,
+       34
+      ]
+     },
+     "level": 0
+    },
+    {
+     "s": "player",
+     "st": 0,
+     "d": {
+      "type": "call"
+     },
+     "r": {
+      "type": "call",
+      "amount": 10,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "opponent",
+     "st": 0,
+     "d": {
+      "type": "check"
+     },
+     "r": {
+      "type": "check",
+      "amount": 0,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "board": [
+      2,
+      30,
+      11
+     ]
+    },
+    {
+     "s": "opponent",
+     "st": 1,
+     "d": {
+      "type": "check"
+     },
+     "r": {
+      "type": "check",
+      "amount": 0,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "player",
+     "st": 1,
+     "d": {
+      "type": "bet",
+      "amount": 27,
+      "bluff": false
+     },
+     "r": {
+      "type": "bet",
+      "amount": 27,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "opponent",
+     "st": 1,
+     "d": {
+      "type": "call"
+     },
+     "r": {
+      "type": "call",
+      "amount": 27,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "board": [
+      2,
+      30,
+      11,
+      8
+     ]
+    },
+    {
+     "s": "opponent",
+     "st": 2,
+     "d": {
+      "type": "bet",
+      "amount": 81,
+      "bluff": false
+     },
+     "r": {
+      "type": "bet",
+      "amount": 81,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "player",
+     "st": 2,
+     "d": {
+      "type": "call"
+     },
+     "r": {
+      "type": "call",
+      "amount": 81,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "board": [
+      2,
+      30,
+      11,
+      8,
+      26
+     ]
+    },
+    {
+     "s": "opponent",
+     "st": 3,
+     "d": {
+      "type": "bet",
+      "amount": 222,
+      "bluff": false
+     },
+     "r": {
+      "type": "bet",
+      "amount": 222,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "player",
+     "st": 3,
+     "d": {
+      "type": "call"
+     },
+     "r": {
+      "type": "call",
+      "amount": 222,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "scores": {
+      "player": [
+       2,
+       2,
+       0,
+       7
+      ],
+      "opponent": [
+       5,
+       11,
+       8,
+       7,
+       6,
+       0
+      ]
+     }
+    },
+    {
+     "settle": {
+      "awards": {
+       "player": 0,
+       "opponent": 700
+      },
+      "pots": [
+       {
+        "amount": 700,
+        "eligible": [
+         "player",
+         "opponent"
+        ],
+        "winners": [
+         "opponent"
+        ]
+       }
+      ],
+      "before": 2000,
+      "after": 2000
+     }
+    },
+    {
+     "morale": [
+      {
+       "s": "player",
+       "from": 0,
+       "to": -2
+      },
+      {
+       "s": "opponent",
+       "from": 0,
+       "to": 1
+      }
+     ]
+    }
+   ],
+   [
+    {
+     "h": "#2",
+     "blinds": [
+      10,
+      20
+     ],
+     "button": 1,
+     "hole": {
+      "player": [
+       0,
+       8
+      ],
+      "opponent": [
+       17,
+       35
+      ]
+     },
+     "level": 0
+    },
+    {
+     "s": "opponent",
+     "st": 0,
+     "d": {
+      "type": "call"
+     },
+     "r": {
+      "type": "call",
+      "amount": 10,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "player",
+     "st": 0,
+     "d": {
+      "type": "bet",
+      "amount": 23,
+      "bluff": false
+     },
+     "r": {
+      "type": "bet",
+      "amount": 23,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "opponent",
+     "st": 0,
+     "d": {
+      "type": "call"
+     },
+     "r": {
+      "type": "call",
+      "amount": 23,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "board": [
+      30,
+      1,
+      44
+     ]
+    },
+    {
+     "s": "player",
+     "st": 1,
+     "d": {
+      "type": "bet",
+      "amount": 45,
+      "bluff": false
+     },
+     "r": {
+      "type": "bet",
+      "amount": 45,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "opponent",
+     "st": 1,
+     "d": {
+      "type": "call"
+     },
+     "r": {
+      "type": "call",
+      "amount": 45,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "board": [
+      30,
+      1,
+      44,
+      41
+     ]
+    },
+    {
+     "s": "player",
+     "st": 2,
+     "d": {
+      "type": "bet",
+      "amount": 139,
+      "bluff": false
+     },
+     "r": {
+      "type": "bet",
+      "amount": 139,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "opponent",
+     "st": 2,
+     "d": {
+      "type": "call"
+     },
+     "r": {
+      "type": "call",
+      "amount": 139,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "board": [
+      30,
+      1,
+      44,
+      41,
+      40
+     ]
+    },
+    {
+     "s": "player",
+     "st": 3,
+     "d": {
+      "type": "bet",
+      "amount": 252,
+      "bluff": false
+     },
+     "r": {
+      "type": "bet",
+      "amount": 252,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "opponent",
+     "st": 3,
+     "d": {
+      "type": "raise",
+      "amount": 975,
+      "bluff": true
+     },
+     "r": {
+      "type": "raise",
+      "amount": 975,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "player",
+     "st": 3,
+     "d": {
+      "type": "call"
+     },
+     "r": {
+      "type": "call",
+      "amount": 171,
+      "allin": true,
+      "folded": false
+     }
+    },
+    {
+     "scores": {
+      "player": [
+       2,
+       10,
+       0,
+       11
+      ],
+      "opponent": [
+       1,
+       10,
+       11,
+       8,
+       7
+      ]
+     }
+    },
+    {
+     "settle": {
+      "awards": {
+       "player": 1300,
+       "opponent": 552
+      },
+      "pots": [
+       {
+        "id": "opponent",
+        "amount": 552,
+        "refund": true,
+        "winners": [
+         "opponent"
+        ]
+       },
+       {
+        "amount": 1300,
+        "eligible": [
+         "player",
+         "opponent"
+        ],
+        "winners": [
+         "player"
+        ]
+       }
+      ],
+      "before": 2000,
+      "after": 2000
+     }
+    },
+    {
+     "morale": [
+      {
+       "s": "player",
+       "from": -2,
+       "to": -1
+      },
+      {
+       "s": "opponent",
+       "from": 1,
+       "to": -1
+      }
+     ]
+    }
+   ],
+   [
+    {
+     "h": "#3",
+     "blinds": [
+      10,
+      20
+     ],
+     "button": 0,
+     "hole": {
+      "player": [
+       41,
+       48
+      ],
+      "opponent": [
+       49,
+       13
+      ]
+     },
+     "level": 0
+    },
+    {
+     "s": "player",
+     "st": 0,
+     "d": {
+      "type": "call"
+     },
+     "r": {
+      "type": "call",
+      "amount": 10,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "opponent",
+     "st": 0,
+     "d": {
+      "type": "bet",
+      "amount": 27,
+      "bluff": false
+     },
+     "r": {
+      "type": "bet",
+      "amount": 27,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "player",
+     "st": 0,
+     "d": {
+      "type": "call"
+     },
+     "r": {
+      "type": "call",
+      "amount": 27,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "board": [
+      35,
+      26,
+      12
+     ]
+    },
+    {
+     "s": "opponent",
+     "st": 1,
+     "d": {
+      "type": "bet",
+      "amount": 70,
+      "bluff": false
+     },
+     "r": {
+      "type": "bet",
+      "amount": 70,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "player",
+     "st": 1,
+     "d": {
+      "type": "call"
+     },
+     "r": {
+      "type": "call",
+      "amount": 70,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "board": [
+      35,
+      26,
+      12,
+      16
+     ]
+    },
+    {
+     "s": "opponent",
+     "st": 2,
+     "d": {
+      "type": "check"
+     },
+     "r": {
+      "type": "check",
+      "amount": 0,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "player",
+     "st": 2,
+     "d": {
+      "type": "bet",
+      "amount": 114,
+      "bluff": false
+     },
+     "r": {
+      "type": "bet",
+      "amount": 114,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "opponent",
+     "st": 2,
+     "d": {
+      "type": "call"
+     },
+     "r": {
+      "type": "call",
+      "amount": 114,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "board": [
+      35,
+      26,
+      12,
+      16,
+      7
+     ]
+    },
+    {
+     "s": "opponent",
+     "st": 3,
+     "d": {
+      "type": "bet",
+      "amount": 251,
+      "bluff": false
+     },
+     "r": {
+      "type": "bet",
+      "amount": 251,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "player",
+     "st": 3,
+     "d": {
+      "type": "call"
+     },
+     "r": {
+      "type": "call",
+      "amount": 251,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "scores": {
+      "player": [
+       0,
+       12,
+       10,
+       8,
+       6,
+       4
+      ],
+      "opponent": [
+       1,
+       3,
+       12,
+       8,
+       6
+      ]
+     }
+    },
+    {
+     "settle": {
+      "awards": {
+       "player": 0,
+       "opponent": 964
+      },
+      "pots": [
+       {
+        "amount": 964,
+        "eligible": [
+         "player",
+         "opponent"
+        ],
+        "winners": [
+         "opponent"
+        ]
+       }
+      ],
+      "before": 2000,
+      "after": 2000
+     }
+    },
+    {
+     "morale": [
+      {
+       "s": "player",
+       "from": -1,
+       "to": -3
+      },
+      {
+       "s": "opponent",
+       "from": -1,
+       "to": 0
+      }
+     ]
+    }
+   ],
+   [
+    {
+     "h": "#4",
+     "blinds": [
+      10,
+      20
+     ],
+     "button": 1,
+     "hole": {
+      "player": [
+       44,
+       0
+      ],
+      "opponent": [
+       35,
+       26
+      ]
+     },
+     "level": 0
+    },
+    {
+     "s": "opponent",
+     "st": 0,
+     "d": {
+      "type": "call"
+     },
+     "r": {
+      "type": "call",
+      "amount": 10,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "player",
+     "st": 0,
+     "d": {
+      "type": "bet",
+      "amount": 39,
+      "bluff": false
+     },
+     "r": {
+      "type": "bet",
+      "amount": 39,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "opponent",
+     "st": 0,
+     "d": {
+      "type": "call"
+     },
+     "r": {
+      "type": "call",
+      "amount": 39,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "board": [
+      13,
+      17,
+      28
+     ]
+    },
+    {
+     "s": "player",
+     "st": 1,
+     "d": {
+      "type": "bet",
+      "amount": 109,
+      "bluff": true
+     },
+     "r": {
+      "type": "bet",
+      "amount": 109,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "opponent",
+     "st": 1,
+     "d": {
+      "type": "call"
+     },
+     "r": {
+      "type": "call",
+      "amount": 109,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "board": [
+      13,
+      17,
+      28,
+      38
+     ]
+    },
+    {
+     "s": "player",
+     "st": 2,
+     "d": {
+      "type": "bet",
+      "amount": 272,
+      "bluff": true
+     },
+     "r": {
+      "type": "bet",
+      "amount": 272,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "opponent",
+     "st": 2,
+     "d": {
+      "type": "call"
+     },
+     "r": {
+      "type": "call",
+      "amount": 272,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "board": [
+      13,
+      17,
+      28,
+      38,
+      33
+     ]
+    },
+    {
+     "s": "player",
+     "st": 3,
+     "d": {
+      "type": "bet",
+      "amount": 378,
+      "bluff": true
+     },
+     "r": {
+      "type": "bet",
+      "amount": 378,
+      "allin": true,
+      "folded": false
+     }
+    },
+    {
+     "s": "opponent",
+     "st": 3,
+     "d": {
+      "type": "call"
+     },
+     "r": {
+      "type": "call",
+      "amount": 378,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "scores": {
+      "player": [
+       0,
+       11,
+       9,
+       8,
+       7,
+       4
+      ],
+      "opponent": [
+       1,
+       8,
+       9,
+       7,
+       6
+      ]
+     }
+    },
+    {
+     "settle": {
+      "awards": {
+       "player": 0,
+       "opponent": 1636
+      },
+      "pots": [
+       {
+        "amount": 1636,
+        "eligible": [
+         "player",
+         "opponent"
+        ],
+        "winners": [
+         "opponent"
+        ]
+       }
+      ],
+      "before": 2000,
+      "after": 2000
+     }
+    },
+    {
+     "morale": [
+      {
+       "s": "opponent",
+       "from": 0,
+       "to": 1
+      }
+     ]
+    },
+    {
+     "eliminated": [
+      "player"
+     ]
+    }
+   ]
+  ]
+ },
+ {
+  "tag": "hu-personas",
+  "seed": "GVHU7",
+  "stacks": [
+   1000,
+   1000
+  ],
+  "config": {
+   "blinds0": [
+    10,
+    20
+   ],
+   "escalateEvery": 4,
+   "rule": {},
+   "traitsIdx": [
+    1,
+    4
+   ],
+   "traitSets": [
+    {},
+    {
+     "武勇": 92,
+     "智谋": 78,
+     "诈术": 30,
+     "胆识": 95,
+     "耐性": 40,
+     "心性": 70
+    },
+    {
+     "武勇": 96,
+     "智谋": 40,
+     "诈术": 20,
+     "胆识": 90,
+     "耐性": 20,
+     "心性": 25
+    },
+    {
+     "武勇": 40,
+     "智谋": 96,
+     "诈术": 80,
+     "胆识": 55,
+     "耐性": 85,
+     "心性": 80
+    },
+    {
+     "武勇": 60,
+     "智谋": 90,
+     "诈术": 90,
+     "胆识": 70,
+     "耐性": 95,
+     "心性": 90
+    }
+   ]
+  },
+  "finalStacks": [
+   "player:2000",
+   "opponent:0"
+  ],
+  "hands": [
+   [
+    {
+     "h": "#1",
+     "blinds": [
+      10,
+      20
+     ],
+     "button": 0,
+     "hole": {
+      "player": [
+       48,
+       32
+      ],
+      "opponent": [
+       49,
+       31
+      ]
+     },
+     "level": 0
+    },
+    {
+     "s": "player",
+     "st": 0,
+     "d": {
+      "type": "call"
+     },
+     "r": {
+      "type": "call",
+      "amount": 10,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "opponent",
+     "st": 0,
+     "d": {
+      "type": "bet",
+      "amount": 38,
+      "bluff": false
+     },
+     "r": {
+      "type": "bet",
+      "amount": 38,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "player",
+     "st": 0,
+     "d": {
+      "type": "call"
+     },
+     "r": {
+      "type": "call",
+      "amount": 38,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "board": [
+      39,
+      12,
+      36
+     ]
+    },
+    {
+     "s": "opponent",
+     "st": 1,
+     "d": {
+      "type": "bet",
+      "amount": 86,
+      "bluff": false
+     },
+     "r": {
+      "type": "bet",
+      "amount": 86,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "player",
+     "st": 1,
+     "d": {
+      "type": "raise",
+      "amount": 258,
+      "bluff": true
+     },
+     "r": {
+      "type": "raise",
+      "amount": 258,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "opponent",
+     "st": 1,
+     "d": {
+      "type": "call"
+     },
+     "r": {
+      "type": "call",
+      "amount": 172,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "board": [
+      39,
+      12,
+      36,
+      5
+     ]
+    },
+    {
+     "s": "opponent",
+     "st": 2,
+     "d": {
+      "type": "check"
+     },
+     "r": {
+      "type": "check",
+      "amount": 0,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "player",
+     "st": 2,
+     "d": {
+      "type": "bet",
+      "amount": 295,
+      "bluff": false
+     },
+     "r": {
+      "type": "bet",
+      "amount": 295,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "opponent",
+     "st": 2,
+     "d": {
+      "type": "call"
+     },
+     "r": {
+      "type": "call",
+      "amount": 295,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "board": [
+      39,
+      12,
+      36,
+      5,
+      41
+     ]
+    },
+    {
+     "s": "opponent",
+     "st": 3,
+     "d": {
+      "type": "bet",
+      "amount": 389,
+      "bluff": false
+     },
+     "r": {
+      "type": "bet",
+      "amount": 389,
+      "allin": true,
+      "folded": false
+     }
+    },
+    {
+     "s": "player",
+     "st": 3,
+     "d": {
+      "type": "call"
+     },
+     "r": {
+      "type": "call",
+      "amount": 389,
+      "allin": true,
+      "folded": false
+     }
+    },
+    {
+     "scores": {
+      "player": [
+       1,
+       9,
+       12,
+       10,
+       8
+      ],
+      "opponent": [
+       1,
+       9,
+       12,
+       10,
+       7
+      ]
+     }
+    },
+    {
+     "settle": {
+      "awards": {
+       "player": 2000,
+       "opponent": 0
+      },
+      "pots": [
+       {
+        "amount": 2000,
+        "eligible": [
+         "player",
+         "opponent"
+        ],
+        "winners": [
+         "player"
+        ]
+       }
+      ],
+      "before": 2000,
+      "after": 2000
+     }
+    },
+    {
+     "morale": [
+      {
+       "s": "player",
+       "from": 0,
+       "to": 1
+      }
+     ]
+    },
+    {
+     "eliminated": [
+      "opponent"
+     ]
+    }
+   ]
+  ]
+ },
+ {
+  "tag": "3way",
+  "seed": "GV3W7",
+  "stacks": [
+   1000,
+   1000,
+   1000
+  ],
+  "config": {
+   "blinds0": [
+    10,
+    20
+   ],
+   "escalateEvery": 4,
+   "rule": {},
+   "traitsIdx": [
+    0,
+    1,
+    2
+   ],
+   "traitSets": [
+    {},
+    {
+     "武勇": 92,
+     "智谋": 78,
+     "诈术": 30,
+     "胆识": 95,
+     "耐性": 40,
+     "心性": 70
+    },
+    {
+     "武勇": 96,
+     "智谋": 40,
+     "诈术": 20,
+     "胆识": 90,
+     "耐性": 20,
+     "心性": 25
+    },
+    {
+     "武勇": 40,
+     "智谋": 96,
+     "诈术": 80,
+     "胆识": 55,
+     "耐性": 85,
+     "心性": 80
+    },
+    {
+     "武勇": 60,
+     "智谋": 90,
+     "诈术": 90,
+     "胆识": 70,
+     "耐性": 95,
+     "心性": 90
+    }
+   ]
+  },
+  "finalStacks": [
+   "player:0",
+   "opponent:3000",
+   "opponent-3:0"
+  ],
+  "hands": [
+   [
+    {
+     "h": "#1",
+     "blinds": [
+      10,
+      20
+     ],
+     "button": 0,
+     "hole": {
+      "player": [
+       32,
+       15
+      ],
+      "opponent": [
+       16,
+       8
+      ],
+      "opponent-3": [
+       2,
+       17
+      ]
+     },
+     "level": 0
+    },
+    {
+     "s": "player",
+     "st": 0,
+     "d": {
+      "type": "fold"
+     },
+     "r": {
+      "type": "fold",
+      "amount": 0,
+      "allin": false,
+      "folded": true
+     }
+    },
+    {
+     "s": "opponent",
+     "st": 0,
+     "d": {
+      "type": "call"
+     },
+     "r": {
+      "type": "call",
+      "amount": 10,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "opponent-3",
+     "st": 0,
+     "d": {
+      "type": "bet",
+      "amount": 26,
+      "bluff": false
+     },
+     "r": {
+      "type": "bet",
+      "amount": 26,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "opponent",
+     "st": 0,
+     "d": {
+      "type": "call"
+     },
+     "r": {
+      "type": "call",
+      "amount": 26,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "board": [
+      43,
+      47,
+      49
+     ]
+    },
+    {
+     "s": "opponent",
+     "st": 1,
+     "d": {
+      "type": "bet",
+      "amount": 59,
+      "bluff": false
+     },
+     "r": {
+      "type": "bet",
+      "amount": 59,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "opponent-3",
+     "st": 1,
+     "d": {
+      "type": "fold"
+     },
+     "r": {
+      "type": "fold",
+      "amount": 0,
+      "allin": false,
+      "folded": true
+     }
+    },
+    {
+     "settle": {
+      "awards": {
+       "player": 0,
+       "opponent": 151,
+       "opponent-3": 0
+      },
+      "pots": [
+       {
+        "id": "opponent",
+        "amount": 59,
+        "refund": true,
+        "winners": [
+         "opponent"
+        ]
+       },
+       {
+        "amount": 92,
+        "eligible": [
+         "opponent"
+        ],
+        "winners": [
+         "opponent"
+        ]
+       }
+      ],
+      "before": 3000,
+      "after": 3000
+     }
+    }
+   ],
+   [
+    {
+     "h": "#2",
+     "blinds": [
+      10,
+      20
+     ],
+     "button": 1,
+     "hole": {
+      "player": [
+       40,
+       16
+      ],
+      "opponent": [
+       41,
+       47
+      ],
+      "opponent-3": [
+       29,
+       12
+      ]
+     },
+     "level": 0
+    },
+    {
+     "s": "opponent",
+     "st": 0,
+     "d": {
+      "type": "call"
+     },
+     "r": {
+      "type": "call",
+      "amount": 20,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "opponent-3",
+     "st": 0,
+     "d": {
+      "type": "call"
+     },
+     "r": {
+      "type": "call",
+      "amount": 10,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "player",
+     "st": 0,
+     "d": {
+      "type": "check"
+     },
+     "r": {
+      "type": "check",
+      "amount": 0,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "board": [
+      42,
+      7,
+      13
+     ]
+    },
+    {
+     "s": "opponent-3",
+     "st": 1,
+     "d": {
+      "type": "bet",
+      "amount": 32,
+      "bluff": false
+     },
+     "r": {
+      "type": "bet",
+      "amount": 32,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "player",
+     "st": 1,
+     "d": {
+      "type": "call"
+     },
+     "r": {
+      "type": "call",
+      "amount": 32,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "opponent",
+     "st": 1,
+     "d": {
+      "type": "call"
+     },
+     "r": {
+      "type": "call",
+      "amount": 32,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "board": [
+      42,
+      7,
+      13,
+      36
+     ]
+    },
+    {
+     "s": "opponent-3",
+     "st": 2,
+     "d": {
+      "type": "bet",
+      "amount": 81,
+      "bluff": false
+     },
+     "r": {
+      "type": "bet",
+      "amount": 81,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "player",
+     "st": 2,
+     "d": {
+      "type": "call"
+     },
+     "r": {
+      "type": "call",
+      "amount": 81,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "opponent",
+     "st": 2,
+     "d": {
+      "type": "raise",
+      "amount": 413
+     },
+     "r": {
+      "type": "raise",
+      "amount": 413,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "opponent-3",
+     "st": 2,
+     "d": {
+      "type": "call"
+     },
+     "r": {
+      "type": "call",
+      "amount": 332,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "player",
+     "st": 2,
+     "d": {
+      "type": "raise",
+      "amount": 867,
+      "bluff": true
+     },
+     "r": {
+      "type": "raise",
+      "amount": 867,
+      "allin": true,
+      "folded": false
+     }
+    },
+    {
+     "s": "opponent",
+     "st": 2,
+     "d": {
+      "type": "call"
+     },
+     "r": {
+      "type": "call",
+      "amount": 535,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "opponent-3",
+     "st": 2,
+     "d": {
+      "type": "call"
+     },
+     "r": {
+      "type": "call",
+      "amount": 489,
+      "allin": true,
+      "folded": false
+     }
+    },
+    {
+     "board": [
+      42,
+      7,
+      13,
+      36,
+      32
+     ]
+    },
+    {
+     "scores": {
+      "player": [
+       1,
+       10,
+       9,
+       8,
+       4
+      ],
+      "opponent": [
+       1,
+       10,
+       11,
+       9,
+       8
+      ],
+      "opponent-3": [
+       1,
+       3,
+       10,
+       9,
+       8
+      ]
+     }
+    },
+    {
+     "settle": {
+      "awards": {
+       "player": 0,
+       "opponent": 2954,
+       "opponent-3": 0
+      },
+      "pots": [
+       {
+        "amount": 2862,
+        "eligible": [
+         "player",
+         "opponent",
+         "opponent-3"
+        ],
+        "winners": [
+         "opponent"
+        ]
+       },
+       {
+        "amount": 92,
+        "eligible": [
+         "player",
+         "opponent"
+        ],
+        "winners": [
+         "opponent"
+        ]
+       }
+      ],
+      "before": 3000,
+      "after": 3000
+     }
+    },
+    {
+     "morale": [
+      {
+       "s": "opponent",
+       "from": 0,
+       "to": 1
+      }
+     ]
+    },
+    {
+     "eliminated": [
+      "player",
+      "opponent-3"
+     ]
+    }
+   ]
+  ]
+ },
+ {
+  "tag": "4way-uneven",
+  "seed": "GV4U9",
+  "stacks": [
+   1000,
+   300,
+   700,
+   1500
+  ],
+  "config": {
+   "blinds0": [
+    10,
+    20
+   ],
+   "escalateEvery": 4,
+   "rule": {},
+   "traitsIdx": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "traitSets": [
+    {},
+    {
+     "武勇": 92,
+     "智谋": 78,
+     "诈术": 30,
+     "胆识": 95,
+     "耐性": 40,
+     "心性": 70
+    },
+    {
+     "武勇": 96,
+     "智谋": 40,
+     "诈术": 20,
+     "胆识": 90,
+     "耐性": 20,
+     "心性": 25
+    },
+    {
+     "武勇": 40,
+     "智谋": 96,
+     "诈术": 80,
+     "胆识": 55,
+     "耐性": 85,
+     "心性": 80
+    },
+    {
+     "武勇": 60,
+     "智谋": 90,
+     "诈术": 90,
+     "胆识": 70,
+     "耐性": 95,
+     "心性": 90
+    }
+   ]
+  },
+  "finalStacks": [
+   "player:870",
+   "opponent:0",
+   "opponent-3:473",
+   "opponent-4:2157"
+  ],
+  "hands": [
+   [
+    {
+     "h": "#1",
+     "blinds": [
+      10,
+      20
+     ],
+     "button": 0,
+     "hole": {
+      "player": [
+       44,
+       35
+      ],
+      "opponent": [
+       13,
+       11
+      ],
+      "opponent-3": [
+       24,
+       10
+      ],
+      "opponent-4": [
+       3,
+       30
+      ]
+     },
+     "level": 0
+    },
+    {
+     "s": "opponent-4",
+     "st": 0,
+     "d": {
+      "type": "fold"
+     },
+     "r": {
+      "type": "fold",
+      "amount": 0,
+      "allin": false,
+      "folded": true
+     }
+    },
+    {
+     "s": "player",
+     "st": 0,
+     "d": {
+      "type": "call"
+     },
+     "r": {
+      "type": "call",
+      "amount": 20,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "opponent",
+     "st": 0,
+     "d": {
+      "type": "call"
+     },
+     "r": {
+      "type": "call",
+      "amount": 10,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "opponent-3",
+     "st": 0,
+     "d": {
+      "type": "check"
+     },
+     "r": {
+      "type": "check",
+      "amount": 0,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "board": [
+      6,
+      25,
+      16
+     ]
+    },
+    {
+     "s": "opponent",
+     "st": 1,
+     "d": {
+      "type": "bet",
+      "amount": 55,
+      "bluff": true
+     },
+     "r": {
+      "type": "bet",
+      "amount": 55,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "opponent-3",
+     "st": 1,
+     "d": {
+      "type": "call"
+     },
+     "r": {
+      "type": "call",
+      "amount": 55,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "player",
+     "st": 1,
+     "d": {
+      "type": "call"
+     },
+     "r": {
+      "type": "call",
+      "amount": 55,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "board": [
+      6,
+      25,
+      16,
+      36
+     ]
+    },
+    {
+     "s": "opponent",
+     "st": 2,
+     "d": {
+      "type": "bet",
+      "amount": 211,
+      "bluff": false
+     },
+     "r": {
+      "type": "bet",
+      "amount": 211,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "opponent-3",
+     "st": 2,
+     "d": {
+      "type": "call"
+     },
+     "r": {
+      "type": "call",
+      "amount": 211,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "player",
+     "st": 2,
+     "d": {
+      "type": "fold"
+     },
+     "r": {
+      "type": "fold",
+      "amount": 0,
+      "allin": false,
+      "folded": true
+     }
+    },
+    {
+     "board": [
+      6,
+      25,
+      16,
+      36,
+      18
+     ]
+    },
+    {
+     "s": "opponent",
+     "st": 3,
+     "d": {
+      "type": "check"
+     },
+     "r": {
+      "type": "check",
+      "amount": 0,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "opponent-3",
+     "st": 3,
+     "d": {
+      "type": "check"
+     },
+     "r": {
+      "type": "check",
+      "amount": 0,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "scores": {
+      "opponent": [
+       1,
+       4,
+       9,
+       6,
+       3
+      ],
+      "opponent-3": [
+       2,
+       6,
+       4,
+       9
+      ]
+     }
+    },
+    {
+     "settle": {
+      "awards": {
+       "player": 0,
+       "opponent": 0,
+       "opponent-3": 647,
+       "opponent-4": 0
+      },
+      "pots": [
+       {
+        "amount": 225,
+        "eligible": [
+         "opponent",
+         "opponent-3"
+        ],
+        "winners": [
+         "opponent-3"
+        ]
+       },
+       {
+        "amount": 422,
+        "eligible": [
+         "opponent",
+         "opponent-3"
+        ],
+        "winners": [
+         "opponent-3"
+        ]
+       }
+      ],
+      "before": 3500,
+      "after": 3500
+     }
+    },
+    {
+     "morale": [
+      {
+       "s": "opponent",
+       "from": 0,
+       "to": -2
+      },
+      {
+       "s": "opponent-3",
+       "from": 0,
+       "to": 1
+      }
+     ]
+    }
+   ],
+   [
+    {
+     "h": "#2",
+     "blinds": [
+      10,
+      20
+     ],
+     "button": 1,
+     "hole": {
+      "player": [
+       7,
+       42
+      ],
+      "opponent": [
+       25,
+       51
+      ],
+      "opponent-3": [
+       38,
+       10
+      ],
+      "opponent-4": [
+       5,
+       31
+      ]
+     },
+     "level": 0
+    },
+    {
+     "s": "player",
+     "st": 0,
+     "d": {
+      "type": "fold"
+     },
+     "r": {
+      "type": "fold",
+      "amount": 0,
+      "allin": false,
+      "folded": true
+     }
+    },
+    {
+     "s": "opponent",
+     "st": 0,
+     "d": {
+      "type": "fold"
+     },
+     "r": {
+      "type": "fold",
+      "amount": 0,
+      "allin": false,
+      "folded": true
+     }
+    },
+    {
+     "s": "opponent-3",
+     "st": 0,
+     "d": {
+      "type": "call"
+     },
+     "r": {
+      "type": "call",
+      "amount": 10,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "opponent-4",
+     "st": 0,
+     "d": {
+      "type": "bet",
+      "amount": 20,
+      "bluff": false
+     },
+     "r": {
+      "type": "bet",
+      "amount": 20,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "opponent-3",
+     "st": 0,
+     "d": {
+      "type": "call"
+     },
+     "r": {
+      "type": "call",
+      "amount": 20,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "board": [
+      13,
+      27,
+      35
+     ]
+    },
+    {
+     "s": "opponent-3",
+     "st": 1,
+     "d": {
+      "type": "check"
+     },
+     "r": {
+      "type": "check",
+      "amount": 0,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "opponent-4",
+     "st": 1,
+     "d": {
+      "type": "check"
+     },
+     "r": {
+      "type": "check",
+      "amount": 0,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "board": [
+      13,
+      27,
+      35,
+      41
+     ]
+    },
+    {
+     "s": "opponent-3",
+     "st": 2,
+     "d": {
+      "type": "bet",
+      "amount": 49,
+      "bluff": true
+     },
+     "r": {
+      "type": "bet",
+      "amount": 49,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "opponent-4",
+     "st": 2,
+     "d": {
+      "type": "call"
+     },
+     "r": {
+      "type": "call",
+      "amount": 49,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "board": [
+      13,
+      27,
+      35,
+      41,
+      36
+     ]
+    },
+    {
+     "s": "opponent-3",
+     "st": 3,
+     "d": {
+      "type": "bet",
+      "amount": 174,
+      "bluff": true
+     },
+     "r": {
+      "type": "bet",
+      "amount": 174,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "opponent-4",
+     "st": 3,
+     "d": {
+      "type": "raise",
+      "amount": 499
+     },
+     "r": {
+      "type": "raise",
+      "amount": 499,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "opponent-3",
+     "st": 3,
+     "d": {
+      "type": "call"
+     },
+     "r": {
+      "type": "call",
+      "amount": 325,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "scores": {
+      "opponent-3": [
+       1,
+       9,
+       10,
+       8,
+       6
+      ],
+      "opponent-4": [
+       4,
+       10
+      ]
+     }
+    },
+    {
+     "settle": {
+      "awards": {
+       "player": 0,
+       "opponent": 0,
+       "opponent-3": 0,
+       "opponent-4": 1176
+      },
+      "pots": [
+       {
+        "amount": 1176,
+        "eligible": [
+         "opponent-3",
+         "opponent-4"
+        ],
+        "winners": [
+         "opponent-4"
+        ]
+       }
+      ],
+      "before": 3500,
+      "after": 3500
+     }
+    },
+    {
+     "morale": [
+      {
+       "s": "opponent-3",
+       "from": 1,
+       "to": -1
+      },
+      {
+       "s": "opponent-4",
+       "from": 0,
+       "to": 1
+      }
+     ]
+    }
+   ],
+   [
+    {
+     "h": "#3",
+     "blinds": [
+      10,
+      20
+     ],
+     "button": 2,
+     "hole": {
+      "player": [
+       12,
+       10
+      ],
+      "opponent": [
+       32,
+       48
+      ],
+      "opponent-3": [
+       13,
+       35
+      ],
+      "opponent-4": [
+       50,
+       0
+      ]
+     },
+     "level": 0
+    },
+    {
+     "s": "opponent",
+     "st": 0,
+     "d": {
+      "type": "call"
+     },
+     "r": {
+      "type": "call",
+      "amount": 14,
+      "allin": true,
+      "folded": false
+     }
+    },
+    {
+     "s": "opponent-3",
+     "st": 0,
+     "d": {
+      "type": "fold"
+     },
+     "r": {
+      "type": "fold",
+      "amount": 0,
+      "allin": false,
+      "folded": true
+     }
+    },
+    {
+     "s": "opponent-4",
+     "st": 0,
+     "d": {
+      "type": "call"
+     },
+     "r": {
+      "type": "call",
+      "amount": 10,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "player",
+     "st": 0,
+     "d": {
+      "type": "check"
+     },
+     "r": {
+      "type": "check",
+      "amount": 0,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "board": [
+      42,
+      9,
+      15
+     ]
+    },
+    {
+     "s": "opponent-4",
+     "st": 1,
+     "d": {
+      "type": "bet",
+      "amount": 35,
+      "bluff": false
+     },
+     "r": {
+      "type": "bet",
+      "amount": 35,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "player",
+     "st": 1,
+     "d": {
+      "type": "call"
+     },
+     "r": {
+      "type": "call",
+      "amount": 35,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "board": [
+      42,
+      9,
+      15,
+      47
+     ]
+    },
+    {
+     "s": "opponent-4",
+     "st": 2,
+     "d": {
+      "type": "bet",
+      "amount": 68,
+      "bluff": false
+     },
+     "r": {
+      "type": "bet",
+      "amount": 68,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "player",
+     "st": 2,
+     "d": {
+      "type": "call"
+     },
+     "r": {
+      "type": "call",
+      "amount": 68,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "board": [
+      42,
+      9,
+      15,
+      47,
+      39
+     ]
+    },
+    {
+     "s": "opponent-4",
+     "st": 3,
+     "d": {
+      "type": "check"
+     },
+     "r": {
+      "type": "check",
+      "amount": 0,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "player",
+     "st": 3,
+     "d": {
+      "type": "bet",
+      "amount": 224,
+      "bluff": false
+     },
+     "r": {
+      "type": "bet",
+      "amount": 224,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "opponent-4",
+     "st": 3,
+     "d": {
+      "type": "fold"
+     },
+     "r": {
+      "type": "fold",
+      "amount": 0,
+      "allin": false,
+      "folded": true
+     }
+    },
+    {
+     "scores": {
+      "player": [
+       2,
+       3,
+       2,
+       11
+      ],
+      "opponent": [
+       4,
+       12
+      ]
+     }
+    },
+    {
+     "settle": {
+      "awards": {
+       "player": 442,
+       "opponent": 42,
+       "opponent-3": 0,
+       "opponent-4": 0
+      },
+      "pots": [
+       {
+        "id": "player",
+        "amount": 224,
+        "refund": true,
+        "winners": [
+         "player"
+        ]
+       },
+       {
+        "amount": 42,
+        "eligible": [
+         "player",
+         "opponent"
+        ],
+        "winners": [
+         "opponent"
+        ]
+       },
+       {
+        "amount": 218,
+        "eligible": [
+         "player"
+        ],
+        "winners": [
+         "player"
+        ]
+       }
+      ],
+      "before": 3500,
+      "after": 3500
+     }
+    },
+    {
+     "morale": [
+      {
+       "s": "opponent-4",
+       "from": 1,
+       "to": 0
+      }
+     ]
+    }
+   ],
+   [
+    {
+     "h": "#4",
+     "blinds": [
+      10,
+      20
+     ],
+     "button": 3,
+     "hole": {
+      "player": [
+       26,
+       7
+      ],
+      "opponent": [
+       24,
+       20
+      ],
+      "opponent-3": [
+       27,
+       35
+      ],
+      "opponent-4": [
+       41,
+       49
+      ]
+     },
+     "level": 0
+    },
+    {
+     "s": "opponent-3",
+     "st": 0,
+     "d": {
+      "type": "fold"
+     },
+     "r": {
+      "type": "fold",
+      "amount": 0,
+      "allin": false,
+      "folded": true
+     }
+    },
+    {
+     "s": "opponent-4",
+     "st": 0,
+     "d": {
+      "type": "call"
+     },
+     "r": {
+      "type": "call",
+      "amount": 20,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "player",
+     "st": 0,
+     "d": {
+      "type": "call"
+     },
+     "r": {
+      "type": "call",
+      "amount": 10,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "opponent",
+     "st": 0,
+     "d": {
+      "type": "bet",
+      "amount": 22,
+      "bluff": false
+     },
+     "r": {
+      "type": "bet",
+      "amount": 22,
+      "allin": true,
+      "folded": false
+     }
+    },
+    {
+     "s": "opponent-4",
+     "st": 0,
+     "d": {
+      "type": "call"
+     },
+     "r": {
+      "type": "call",
+      "amount": 22,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "player",
+     "st": 0,
+     "d": {
+      "type": "call"
+     },
+     "r": {
+      "type": "call",
+      "amount": 22,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "board": [
+      42,
+      40,
+      44
+     ]
+    },
+    {
+     "s": "player",
+     "st": 1,
+     "d": {
+      "type": "bet",
+      "amount": 108,
+      "bluff": true
+     },
+     "r": {
+      "type": "bet",
+      "amount": 108,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "opponent-4",
+     "st": 1,
+     "d": {
+      "type": "raise",
+      "amount": 301,
+      "bluff": true
+     },
+     "r": {
+      "type": "raise",
+      "amount": 301,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "player",
+     "st": 1,
+     "d": {
+      "type": "fold"
+     },
+     "r": {
+      "type": "fold",
+      "amount": 0,
+      "allin": false,
+      "folded": true
+     }
+    },
+    {
+     "board": [
+      42,
+      40,
+      44,
+      5
+     ]
+    },
+    {
+     "board": [
+      42,
+      40,
+      44,
+      5,
+      39
+     ]
+    },
+    {
+     "scores": {
+      "opponent": [
+       1,
+       10,
+       11,
+       9,
+       6
+      ],
+      "opponent-4": [
+       3,
+       10,
+       12,
+       11
+      ]
+     }
+    },
+    {
+     "settle": {
+      "awards": {
+       "player": 0,
+       "opponent": 0,
+       "opponent-3": 0,
+       "opponent-4": 535
+      },
+      "pots": [
+       {
+        "id": "opponent-4",
+        "amount": 193,
+        "refund": true,
+        "winners": [
+         "opponent-4"
+        ]
+       },
+       {
+        "amount": 126,
+        "eligible": [
+         "opponent",
+         "opponent-4"
+        ],
+        "winners": [
+         "opponent-4"
+        ]
+       },
+       {
+        "amount": 216,
+        "eligible": [
+         "opponent-4"
+        ],
+        "winners": [
+         "opponent-4"
+        ]
+       }
+      ],
+      "before": 3500,
+      "after": 3500
+     }
+    },
+    {
+     "morale": [
+      {
+       "s": "player",
+       "from": 0,
+       "to": -1
+      },
+      {
+       "s": "opponent-4",
+       "from": 0,
+       "to": 1
+      }
+     ]
+    },
+    {
+     "eliminated": [
+      "opponent"
+     ]
+    }
+   ]
+  ]
+ },
+ {
+  "tag": "cornered-rule",
+  "seed": "GVCN1",
+  "stacks": [
+   1000,
+   1000
+  ],
+  "config": {
+   "blinds0": [
+    10,
+    20
+   ],
+   "escalateEvery": 4,
+   "rule": {
+    "cornered": true
+   },
+   "traitsIdx": [
+    1,
+    1
+   ],
+   "traitSets": [
+    {},
+    {
+     "武勇": 92,
+     "智谋": 78,
+     "诈术": 30,
+     "胆识": 95,
+     "耐性": 40,
+     "心性": 70
+    },
+    {
+     "武勇": 96,
+     "智谋": 40,
+     "诈术": 20,
+     "胆识": 90,
+     "耐性": 20,
+     "心性": 25
+    },
+    {
+     "武勇": 40,
+     "智谋": 96,
+     "诈术": 80,
+     "胆识": 55,
+     "耐性": 85,
+     "心性": 80
+    },
+    {
+     "武勇": 60,
+     "智谋": 90,
+     "诈术": 90,
+     "胆识": 70,
+     "耐性": 95,
+     "心性": 90
+    }
+   ]
+  },
+  "finalStacks": [
+   "player:0",
+   "opponent:2000"
+  ],
+  "hands": [
+   [
+    {
+     "h": "#1",
+     "blinds": [
+      10,
+      20
+     ],
+     "button": 0,
+     "hole": {
+      "player": [
+       44,
+       8
+      ],
+      "opponent": [
+       26,
+       1
+      ]
+     },
+     "level": 0
+    },
+    {
+     "s": "player",
+     "st": 0,
+     "d": {
+      "type": "call"
+     },
+     "r": {
+      "type": "call",
+      "amount": 10,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "opponent",
+     "st": 0,
+     "d": {
+      "type": "bet",
+      "amount": 20,
+      "bluff": false
+     },
+     "r": {
+      "type": "bet",
+      "amount": 20,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "player",
+     "st": 0,
+     "d": {
+      "type": "call"
+     },
+     "r": {
+      "type": "call",
+      "amount": 20,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "board": [
+      12,
+      2,
+      31
+     ]
+    },
+    {
+     "s": "opponent",
+     "st": 1,
+     "d": {
+      "type": "bet",
+      "amount": 39,
+      "bluff": false
+     },
+     "r": {
+      "type": "bet",
+      "amount": 39,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "player",
+     "st": 1,
+     "d": {
+      "type": "call"
+     },
+     "r": {
+      "type": "call",
+      "amount": 39,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "board": [
+      12,
+      2,
+      31,
+      37
+     ]
+    },
+    {
+     "s": "opponent",
+     "st": 2,
+     "d": {
+      "type": "bet",
+      "amount": 133,
+      "bluff": false
+     },
+     "r": {
+      "type": "bet",
+      "amount": 133,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "player",
+     "st": 2,
+     "d": {
+      "type": "call"
+     },
+     "r": {
+      "type": "call",
+      "amount": 133,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "board": [
+      12,
+      2,
+      31,
+      37,
+      23
+     ]
+    },
+    {
+     "s": "opponent",
+     "st": 3,
+     "d": {
+      "type": "bet",
+      "amount": 293,
+      "bluff": false
+     },
+     "r": {
+      "type": "bet",
+      "amount": 293,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "player",
+     "st": 3,
+     "d": {
+      "type": "fold"
+     },
+     "r": {
+      "type": "fold",
+      "amount": 0,
+      "allin": false,
+      "folded": true
+     }
+    },
+    {
+     "settle": {
+      "awards": {
+       "player": 0,
+       "opponent": 717
+      },
+      "pots": [
+       {
+        "id": "opponent",
+        "amount": 293,
+        "refund": true,
+        "winners": [
+         "opponent"
+        ]
+       },
+       {
+        "amount": 424,
+        "eligible": [
+         "opponent"
+        ],
+        "winners": [
+         "opponent"
+        ]
+       }
+      ],
+      "before": 2000,
+      "after": 2000
+     }
+    },
+    {
+     "morale": [
+      {
+       "s": "player",
+       "from": 0,
+       "to": -2
+      },
+      {
+       "s": "opponent",
+       "from": 0,
+       "to": 1
+      }
+     ]
+    }
+   ],
+   [
+    {
+     "h": "#2",
+     "blinds": [
+      10,
+      20
+     ],
+     "button": 1,
+     "hole": {
+      "player": [
+       5,
+       14
+      ],
+      "opponent": [
+       8,
+       39
+      ]
+     },
+     "level": 0
+    },
+    {
+     "s": "opponent",
+     "st": 0,
+     "d": {
+      "type": "call"
+     },
+     "r": {
+      "type": "call",
+      "amount": 10,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "player",
+     "st": 0,
+     "d": {
+      "type": "bet",
+      "amount": 35,
+      "bluff": false
+     },
+     "r": {
+      "type": "bet",
+      "amount": 35,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "opponent",
+     "st": 0,
+     "d": {
+      "type": "call"
+     },
+     "r": {
+      "type": "call",
+      "amount": 35,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "board": [
+      10,
+      35,
+      38
+     ]
+    },
+    {
+     "s": "player",
+     "st": 1,
+     "d": {
+      "type": "check"
+     },
+     "r": {
+      "type": "check",
+      "amount": 0,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "opponent",
+     "st": 1,
+     "d": {
+      "type": "bet",
+      "amount": 105,
+      "bluff": false
+     },
+     "r": {
+      "type": "bet",
+      "amount": 105,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "player",
+     "st": 1,
+     "d": {
+      "type": "fold"
+     },
+     "r": {
+      "type": "fold",
+      "amount": 0,
+      "allin": false,
+      "folded": true
+     }
+    },
+    {
+     "settle": {
+      "awards": {
+       "player": 0,
+       "opponent": 215
+      },
+      "pots": [
+       {
+        "id": "opponent",
+        "amount": 105,
+        "refund": true,
+        "winners": [
+         "opponent"
+        ]
+       },
+       {
+        "amount": 110,
+        "eligible": [
+         "opponent"
+        ],
+        "winners": [
+         "opponent"
+        ]
+       }
+      ],
+      "before": 2000,
+      "after": 2000
+     }
+    }
+   ],
+   [
+    {
+     "h": "#3",
+     "blinds": [
+      10,
+      20
+     ],
+     "button": 0,
+     "hole": {
+      "player": [
+       35,
+       46
+      ],
+      "opponent": [
+       31,
+       38
+      ]
+     },
+     "level": 0
+    },
+    {
+     "s": "player",
+     "st": 0,
+     "d": {
+      "type": "call"
+     },
+     "r": {
+      "type": "call",
+      "amount": 10,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "opponent",
+     "st": 0,
+     "d": {
+      "type": "check"
+     },
+     "r": {
+      "type": "check",
+      "amount": 0,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "board": [
+      28,
+      40,
+      11
+     ]
+    },
+    {
+     "s": "opponent",
+     "st": 1,
+     "d": {
+      "type": "bet",
+      "amount": 39,
+      "bluff": false
+     },
+     "r": {
+      "type": "bet",
+      "amount": 39,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "player",
+     "st": 1,
+     "d": {
+      "type": "call"
+     },
+     "r": {
+      "type": "call",
+      "amount": 39,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "board": [
+      28,
+      40,
+      11,
+      17
+     ]
+    },
+    {
+     "s": "opponent",
+     "st": 2,
+     "d": {
+      "type": "bet",
+      "amount": 56,
+      "bluff": false
+     },
+     "r": {
+      "type": "bet",
+      "amount": 56,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "player",
+     "st": 2,
+     "d": {
+      "type": "call"
+     },
+     "r": {
+      "type": "call",
+      "amount": 56,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "board": [
+      28,
+      40,
+      11,
+      17,
+      24
+     ]
+    },
+    {
+     "s": "opponent",
+     "st": 3,
+     "d": {
+      "type": "bet",
+      "amount": 115,
+      "bluff": false
+     },
+     "r": {
+      "type": "bet",
+      "amount": 115,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "player",
+     "st": 3,
+     "d": {
+      "type": "call"
+     },
+     "r": {
+      "type": "call",
+      "amount": 115,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "scores": {
+      "player": [
+       0,
+       11,
+       10,
+       8,
+       7,
+       6
+      ],
+      "opponent": [
+       1,
+       7,
+       10,
+       9,
+       6
+      ]
+     }
+    },
+    {
+     "settle": {
+      "awards": {
+       "player": 0,
+       "opponent": 460
+      },
+      "pots": [
+       {
+        "amount": 460,
+        "eligible": [
+         "player",
+         "opponent"
+        ],
+        "winners": [
+         "opponent"
+        ]
+       }
+      ],
+      "before": 2000,
+      "after": 2000
+     }
+    },
+    {
+     "morale": [
+      {
+       "s": "player",
+       "from": -2,
+       "to": -3
+      },
+      {
+       "s": "opponent",
+       "from": 1,
+       "to": 2
+      }
+     ]
+    }
+   ],
+   [
+    {
+     "h": "#4",
+     "blinds": [
+      10,
+      20
+     ],
+     "button": 1,
+     "hole": {
+      "player": [
+       46,
+       35
+      ],
+      "opponent": [
+       26,
+       31
+      ]
+     },
+     "level": 0
+    },
+    {
+     "s": "opponent",
+     "st": 0,
+     "d": {
+      "type": "call"
+     },
+     "r": {
+      "type": "call",
+      "amount": 10,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "player",
+     "st": 0,
+     "d": {
+      "type": "bet",
+      "amount": 23,
+      "bluff": false
+     },
+     "r": {
+      "type": "bet",
+      "amount": 23,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "opponent",
+     "st": 0,
+     "d": {
+      "type": "call"
+     },
+     "r": {
+      "type": "call",
+      "amount": 23,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "board": [
+      5,
+      24,
+      7
+     ]
+    },
+    {
+     "s": "player",
+     "st": 1,
+     "d": {
+      "type": "bet",
+      "amount": 64,
+      "bluff": false
+     },
+     "r": {
+      "type": "bet",
+      "amount": 64,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "opponent",
+     "st": 1,
+     "d": {
+      "type": "call"
+     },
+     "r": {
+      "type": "call",
+      "amount": 64,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "board": [
+      5,
+      24,
+      7,
+      42
+     ]
+    },
+    {
+     "s": "player",
+     "st": 2,
+     "d": {
+      "type": "bet",
+      "amount": 140,
+      "bluff": false
+     },
+     "r": {
+      "type": "bet",
+      "amount": 140,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "s": "opponent",
+     "st": 2,
+     "d": {
+      "type": "call"
+     },
+     "r": {
+      "type": "call",
+      "amount": 140,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "board": [
+      5,
+      24,
+      7,
+      42,
+      14
+     ]
+    },
+    {
+     "s": "player",
+     "st": 3,
+     "d": {
+      "type": "bet",
+      "amount": 256,
+      "bluff": false
+     },
+     "r": {
+      "type": "bet",
+      "amount": 256,
+      "allin": true,
+      "folded": false
+     }
+    },
+    {
+     "s": "opponent",
+     "st": 3,
+     "d": {
+      "type": "call"
+     },
+     "r": {
+      "type": "call",
+      "amount": 256,
+      "allin": false,
+      "folded": false
+     }
+    },
+    {
+     "scores": {
+      "player": [
+       1,
+       1,
+       11,
+       10,
+       8
+      ],
+      "opponent": [
+       2,
+       6,
+       1,
+       10
+      ]
+     }
+    },
+    {
+     "settle": {
+      "awards": {
+       "player": 0,
+       "opponent": 1006
+      },
+      "pots": [
+       {
+        "amount": 1006,
+        "eligible": [
+         "player",
+         "opponent"
+        ],
+        "winners": [
+         "opponent"
+        ]
+       }
+      ],
+      "before": 2000,
+      "after": 2000
+     }
+    },
+    {
+     "eliminated": [
+      "player"
+     ]
+    }
+   ]
+  ]
+ }
+]

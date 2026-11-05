@@ -1,0 +1,733 @@
+[
+ {
+  "name": "bet-strong-default",
+  "input": {
+   "street": 1,
+   "hole": [
+    12,
+    11
+   ],
+   "board": [
+    10,
+    9,
+    8
+   ],
+   "toCall": 0,
+   "pot": 100,
+   "stack": 1000,
+   "minRaise": 20,
+   "raisesLeft": 3,
+   "seed": 1
+  },
+  "out": {
+   "type": "bet",
+   "amount": 74,
+   "bluff": false
+  }
+ },
+ {
+  "name": "bet-strong-pairAI",
+  "input": {
+   "street": 1,
+   "hole": [
+    12,
+    11
+   ],
+   "board": [
+    10,
+    9,
+    8
+   ],
+   "toCall": 0,
+   "pot": 100,
+   "stack": 1000,
+   "minRaise": 20,
+   "raisesLeft": 3,
+   "seed": 2
+  },
+  "out": {
+   "type": "bet",
+   "amount": 61,
+   "bluff": false
+  }
+ },
+ {
+  "name": "trap-nai",
+  "input": {
+   "street": 1,
+   "hole": [
+    12,
+    11
+   ],
+   "board": [
+    10,
+    9,
+    8
+   ],
+   "toCall": 0,
+   "pot": 100,
+   "stack": 1000,
+   "minRaise": 20,
+   "raisesLeft": 3,
+   "personality": {
+    "aggr": 0.7999999999999999,
+    "bluff": 0.16999999999999998,
+    "semi": 0.62,
+    "trap": 0.74,
+    "read": 0.8,
+    "callBias": 0.07150000000000001,
+    "courage": 0.55,
+    "plan": 0.51,
+    "scare": 0.5,
+    "valueMin": 0.82,
+    "moraleSens": 0.5,
+    "moraleStyle": "sulk"
+   },
+   "seed": 3
+  },
+  "out": {
+   "type": "check",
+   "trapped": true
+  }
+ },
+ {
+  "name": "bluff-zha",
+  "input": {
+   "street": 1,
+   "hole": [
+    2,
+    6
+   ],
+   "board": [
+    10,
+    9,
+    8
+   ],
+   "toCall": 0,
+   "pot": 100,
+   "stack": 1000,
+   "minRaise": 20,
+   "raisesLeft": 3,
+   "personality": {
+    "aggr": 0.7999999999999999,
+    "bluff": 0.30500000000000005,
+    "semi": 0.81,
+    "trap": 0.18,
+    "read": 0.6,
+    "callBias": 0.039999999999999994,
+    "courage": 0.55,
+    "plan": 0.4972500000000001,
+    "scare": 0.43,
+    "valueMin": 0.8109999999999999,
+    "moraleSens": 0.5,
+    "moraleStyle": "sulk"
+   },
+   "seed": 4
+  },
+  "out": {
+   "type": "check"
+  }
+ },
+ {
+  "name": "planBluff-line",
+  "input": {
+   "street": 1,
+   "hole": [
+    3,
+    7
+   ],
+   "board": [
+    22,
+    26,
+    30
+   ],
+   "toCall": 0,
+   "pot": 100,
+   "stack": 1000,
+   "minRaise": 20,
+   "raisesLeft": 3,
+   "personality": {
+    "aggr": 0.8,
+    "bluff": 0.16,
+    "semi": 0,
+    "trap": 0,
+    "read": 0,
+    "callBias": 0.04,
+    "courage": 1,
+    "plan": 0.9,
+    "scare": 0,
+    "valueMin": 0.9,
+    "moraleSens": 0.5,
+    "moraleStyle": "rage",
+    "tilt": 0,
+    "morale": 0
+   },
+   "bluffLine": true,
+   "seed": 5
+  },
+  "out": {
+   "type": "bet",
+   "amount": 79,
+   "bluff": true
+  }
+ },
+ {
+  "name": "check-air",
+  "input": {
+   "street": 1,
+   "hole": [
+    2,
+    3
+   ],
+   "board": [
+    40,
+    44,
+    48
+   ],
+   "toCall": 0,
+   "pot": 100,
+   "stack": 1000,
+   "minRaise": 20,
+   "raisesLeft": 3,
+   "seed": 6
+  },
+  "out": {
+   "type": "bet",
+   "amount": 81,
+   "bluff": false
+  }
+ },
+ {
+  "name": "call-odds",
+  "input": {
+   "street": 1,
+   "hole": [
+    12,
+    11
+   ],
+   "board": [
+    10,
+    9,
+    8
+   ],
+   "toCall": 30,
+   "pot": 100,
+   "stack": 1000,
+   "minRaise": 20,
+   "raisesLeft": 3,
+   "seed": 7
+  },
+  "out": {
+   "type": "raise",
+   "amount": 94,
+   "bluff": true
+  }
+ },
+ {
+  "name": "raise-value",
+  "input": {
+   "street": 1,
+   "hole": [
+    48,
+    49
+   ],
+   "board": [
+    50,
+    51,
+    20
+   ],
+   "toCall": 30,
+   "pot": 100,
+   "stack": 1000,
+   "minRaise": 20,
+   "raisesLeft": 3,
+   "seed": 8
+  },
+  "out": {
+   "type": "raise",
+   "amount": 144
+  }
+ },
+ {
+  "name": "fold-weak",
+  "input": {
+   "street": 1,
+   "hole": [
+    2,
+    6
+   ],
+   "board": [
+    12,
+    24,
+    36
+   ],
+   "toCall": 200,
+   "pot": 100,
+   "stack": 1000,
+   "minRaise": 20,
+   "raisesLeft": 3,
+   "seed": 9
+  },
+  "out": {
+   "type": "fold"
+  }
+ },
+ {
+  "name": "bluff-raise-zha",
+  "input": {
+   "street": 1,
+   "hole": [
+    5,
+    13
+   ],
+   "board": [
+    10,
+    9,
+    8
+   ],
+   "toCall": 40,
+   "pot": 100,
+   "stack": 1000,
+   "minRaise": 20,
+   "raisesLeft": 3,
+   "personality": {
+    "aggr": 0.7999999999999999,
+    "bluff": 0.29000000000000004,
+    "semi": 0.74,
+    "trap": 0.16999999999999998,
+    "read": 0.5,
+    "callBias": 0.039999999999999994,
+    "courage": 0.55,
+    "plan": 0.40375,
+    "scare": 0.33999999999999997,
+    "valueMin": 0.8119999999999999,
+    "moraleSens": 0.5,
+    "moraleStyle": "rage"
+   },
+   "seed": 10
+  },
+  "out": {
+   "type": "call"
+  }
+ },
+ {
+  "name": "trap-call-monster",
+  "input": {
+   "street": 1,
+   "hole": [
+    0,
+    1
+   ],
+   "board": [
+    12,
+    11,
+    10
+   ],
+   "toCall": 50,
+   "pot": 100,
+   "stack": 1000,
+   "minRaise": 20,
+   "raisesLeft": 3,
+   "personality": {
+    "aggr": 0.7999999999999999,
+    "bluff": 0.16999999999999998,
+    "semi": 0.5800000000000001,
+    "trap": 0.6699999999999999,
+    "read": 0.7,
+    "callBias": 0.068,
+    "courage": 0.55,
+    "plan": 0.44625,
+    "scare": 0.42000000000000004,
+    "valueMin": 0.82,
+    "moraleSens": 0.5,
+    "moraleStyle": "sulk"
+   },
+   "seed": 11
+  },
+  "out": {
+   "type": "call"
+  }
+ },
+ {
+  "name": "sprung-slowplay",
+  "input": {
+   "street": 1,
+   "hole": [
+    0,
+    1
+   ],
+   "board": [
+    12,
+    11,
+    10
+   ],
+   "toCall": 50,
+   "pot": 100,
+   "stack": 1000,
+   "minRaise": 20,
+   "raisesLeft": 3,
+   "slowplayed": true,
+   "seed": 12
+  },
+  "out": {
+   "type": "call"
+  }
+ },
+ {
+  "name": "courage-fold-edge",
+  "input": {
+   "street": 1,
+   "hole": [
+    6,
+    14
+   ],
+   "board": [
+    12,
+    11,
+    10
+   ],
+   "toCall": 120,
+   "pot": 100,
+   "stack": 1000,
+   "minRaise": 20,
+   "raisesLeft": 3,
+   "personality": {
+    "aggr": 0.7999999999999999,
+    "bluff": 0.16999999999999998,
+    "semi": 0.5,
+    "trap": 0.16999999999999998,
+    "read": 0.5,
+    "callBias": 0.039999999999999994,
+    "courage": 0.22999999999999998,
+    "plan": 0.31875,
+    "scare": 0.26,
+    "valueMin": 0.82,
+    "moraleSens": 0.5,
+    "moraleStyle": "rage"
+   },
+   "seed": 13
+  },
+  "out": {
+   "type": "call"
+  }
+ },
+ {
+  "name": "preflop-hu-call20",
+  "input": {
+   "street": 0,
+   "hole": [
+    12,
+    8
+   ],
+   "board": [],
+   "toCall": 20,
+   "pot": 30,
+   "stack": 980,
+   "minRaise": 20,
+   "raisesLeft": 3,
+   "seed": 14
+  },
+  "out": {
+   "type": "call"
+  }
+ },
+ {
+  "name": "preflop-hu-raise",
+  "input": {
+   "street": 0,
+   "hole": [
+    0,
+    1
+   ],
+   "board": [],
+   "toCall": 20,
+   "pot": 30,
+   "stack": 980,
+   "minRaise": 20,
+   "raisesLeft": 3,
+   "personality": {
+    "aggr": 1.16,
+    "bluff": 0.16999999999999998,
+    "semi": 0.5,
+    "trap": 0.16999999999999998,
+    "read": 0.5,
+    "callBias": 0.039999999999999994,
+    "courage": 0.55,
+    "plan": 0.31875,
+    "scare": 0.26,
+    "valueMin": 0.796,
+    "moraleSens": 0.5,
+    "moraleStyle": "rage"
+   },
+   "seed": 15
+  },
+  "out": {
+   "type": "fold"
+  }
+ },
+ {
+  "name": "multiway-3opp",
+  "input": {
+   "street": 1,
+   "hole": [
+    12,
+    11
+   ],
+   "board": [
+    10,
+    9,
+    8
+   ],
+   "toCall": 0,
+   "pot": 100,
+   "stack": 1000,
+   "minRaise": 20,
+   "raisesLeft": 3,
+   "opponents": 3,
+   "seed": 16
+  },
+  "out": {
+   "type": "bet",
+   "amount": 86,
+   "bluff": false
+  }
+ },
+ {
+  "name": "tilt-rage-aggro",
+  "input": {
+   "street": 1,
+   "hole": [
+    4,
+    5
+   ],
+   "board": [
+    10,
+    9,
+    8
+   ],
+   "toCall": 0,
+   "pot": 100,
+   "stack": 1000,
+   "minRaise": 20,
+   "raisesLeft": 3,
+   "personality": {
+    "aggr": 0.8,
+    "bluff": 0.16,
+    "semi": 0,
+    "trap": 0,
+    "read": 0,
+    "callBias": 0.04,
+    "courage": 1,
+    "plan": 0,
+    "scare": 0,
+    "valueMin": 0.82,
+    "moraleSens": 1,
+    "moraleStyle": "rage",
+    "tilt": 3,
+    "morale": -3
+   },
+   "seed": 17
+  },
+  "out": {
+   "type": "bet",
+   "amount": 74,
+   "bluff": false
+  }
+ },
+ {
+  "name": "morale-sulk",
+  "input": {
+   "street": 1,
+   "hole": [
+    12,
+    11
+   ],
+   "board": [
+    10,
+    9,
+    8
+   ],
+   "toCall": 60,
+   "pot": 100,
+   "stack": 1000,
+   "minRaise": 20,
+   "raisesLeft": 3,
+   "personality": {
+    "aggr": 0.8,
+    "bluff": 0.16,
+    "semi": 0,
+    "trap": 0,
+    "read": 0,
+    "callBias": 0.04,
+    "courage": 1,
+    "plan": 0,
+    "scare": 0,
+    "valueMin": 0.82,
+    "moraleSens": 1,
+    "moraleStyle": "sulk",
+    "tilt": 0,
+    "morale": -2
+   },
+   "seed": 18
+  },
+  "out": {
+   "type": "raise",
+   "amount": 172
+  }
+ },
+ {
+  "name": "read-exploit-folder",
+  "input": {
+   "street": 1,
+   "hole": [
+    12,
+    11
+   ],
+   "board": [
+    10,
+    9,
+    8
+   ],
+   "toCall": 30,
+   "pot": 100,
+   "stack": 1000,
+   "minRaise": 20,
+   "raisesLeft": 3,
+   "personality": {
+    "aggr": 0.7999999999999999,
+    "bluff": 0.16999999999999998,
+    "semi": 0.6599999999999999,
+    "trap": 0.21,
+    "read": 0.9,
+    "callBias": 0.039999999999999994,
+    "courage": 0.55,
+    "plan": 0.57375,
+    "scare": 0.58,
+    "valueMin": 0.82,
+    "moraleSens": 0.5,
+    "moraleStyle": "sulk"
+   },
+   "villain": {
+    "hands": 5,
+    "foldToBet": 0.8,
+    "callRate": 0.15,
+    "aggro": 0.2
+   },
+   "seed": 19
+  },
+  "out": {
+   "type": "raise",
+   "amount": 117,
+   "bluff": true
+  }
+ },
+ {
+  "name": "read-vs-callingstation",
+  "input": {
+   "street": 1,
+   "hole": [
+    12,
+    11
+   ],
+   "board": [
+    10,
+    9,
+    8
+   ],
+   "toCall": 30,
+   "pot": 100,
+   "stack": 1000,
+   "minRaise": 20,
+   "raisesLeft": 3,
+   "personality": {
+    "aggr": 0.7999999999999999,
+    "bluff": 0.16999999999999998,
+    "semi": 0.64,
+    "trap": 0.20500000000000002,
+    "read": 0.85,
+    "callBias": 0.039999999999999994,
+    "courage": 0.55,
+    "plan": 0.5418749999999999,
+    "scare": 0.54,
+    "valueMin": 0.82,
+    "moraleSens": 0.5,
+    "moraleStyle": "sulk"
+   },
+   "villain": {
+    "hands": 6,
+    "foldToBet": 0.1,
+    "callRate": 0.8,
+    "aggro": 0.5
+   },
+   "seed": 20
+  },
+  "out": {
+   "type": "raise",
+   "amount": 142
+  }
+ },
+ {
+  "name": "scary-board",
+  "input": {
+   "street": 1,
+   "hole": [
+    2,
+    6
+   ],
+   "board": [
+    0,
+    4,
+    8
+   ],
+   "toCall": 0,
+   "pot": 100,
+   "stack": 1000,
+   "minRaise": 20,
+   "raisesLeft": 3,
+   "personality": {
+    "aggr": 0.7999999999999999,
+    "bluff": 0.22999999999999998,
+    "semi": 0.7,
+    "trap": 0.19,
+    "read": 0.7,
+    "callBias": 0.039999999999999994,
+    "courage": 0.55,
+    "plan": 0.50575,
+    "scare": 0.46,
+    "valueMin": 0.816,
+    "moraleSens": 0.5,
+    "moraleStyle": "sulk"
+   },
+   "seed": 21
+  },
+  "out": {
+   "type": "bet",
+   "amount": 66,
+   "bluff": false
+  }
+ },
+ {
+  "name": "shortstack-allinable",
+  "input": {
+   "street": 1,
+   "hole": [
+    12,
+    11
+   ],
+   "board": [
+    10,
+    9,
+    8
+   ],
+   "toCall": 250,
+   "pot": 400,
+   "stack": 260,
+   "minRaise": 20,
+   "raisesLeft": 3,
+   "seed": 22
+  },
+  "out": {
+   "type": "call"
+  }
+ }
+]

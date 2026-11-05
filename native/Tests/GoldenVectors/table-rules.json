@@ -1,0 +1,432 @@
+{
+ "synth": [
+  {
+   "name": "hu-split-pot",
+   "spec": [
+    {
+     "id": "a",
+     "committed": 100,
+     "folded": false
+    },
+    {
+     "id": "b",
+     "committed": 100,
+     "folded": false
+    }
+   ],
+   "scores": {
+    "a": [
+     2,
+     9
+    ],
+    "b": [
+     2,
+     9
+    ]
+   },
+   "pots": [
+    {
+     "amount": 200,
+     "eligible": [
+      "a",
+      "b"
+     ]
+    }
+   ],
+   "refunds": [],
+   "awards": {
+    "a": 100,
+    "b": 100
+   },
+   "results": [
+    {
+     "amount": 200,
+     "eligible": [
+      "a",
+      "b"
+     ],
+     "winners": [
+      "a",
+      "b"
+     ]
+    }
+   ],
+   "before": 200,
+   "after": 200
+  },
+  {
+   "name": "three-way-odd-chip",
+   "spec": [
+    {
+     "id": "a",
+     "committed": 100,
+     "folded": false
+    },
+    {
+     "id": "b",
+     "committed": 100,
+     "folded": false
+    },
+    {
+     "id": "c",
+     "committed": 100,
+     "folded": false
+    }
+   ],
+   "scores": {
+    "a": [
+     5
+    ],
+    "b": [
+     5
+    ],
+    "c": [
+     5
+    ]
+   },
+   "pots": [
+    {
+     "amount": 300,
+     "eligible": [
+      "a",
+      "b",
+      "c"
+     ]
+    }
+   ],
+   "refunds": [],
+   "awards": {
+    "a": 100,
+    "b": 100,
+    "c": 100
+   },
+   "results": [
+    {
+     "amount": 300,
+     "eligible": [
+      "a",
+      "b",
+      "c"
+     ],
+     "winners": [
+      "a",
+      "b",
+      "c"
+     ]
+    }
+   ],
+   "before": 300,
+   "after": 300
+  },
+  {
+   "name": "side-pots-unequal",
+   "spec": [
+    {
+     "id": "short",
+     "committed": 100,
+     "folded": false
+    },
+    {
+     "id": "mid",
+     "committed": 300,
+     "folded": true
+    },
+    {
+     "id": "big",
+     "committed": 400,
+     "folded": false
+    }
+   ],
+   "scores": {
+    "short": [
+     7,
+     12
+    ],
+    "big": [
+     3
+    ]
+   },
+   "pots": [
+    {
+     "amount": 300,
+     "eligible": [
+      "short",
+      "big"
+     ]
+    },
+    {
+     "amount": 400,
+     "eligible": [
+      "big"
+     ]
+    }
+   ],
+   "refunds": [
+    {
+     "id": "big",
+     "amount": 100
+    }
+   ],
+   "awards": {
+    "short": 300,
+    "mid": 0,
+    "big": 500
+   },
+   "results": [
+    {
+     "id": "big",
+     "amount": 100,
+     "refund": true,
+     "winners": [
+      "big"
+     ]
+    },
+    {
+     "amount": 300,
+     "eligible": [
+      "short",
+      "big"
+     ],
+     "winners": [
+      "short"
+     ]
+    },
+    {
+     "amount": 400,
+     "eligible": [
+      "big"
+     ],
+     "winners": [
+      "big"
+     ]
+    }
+   ],
+   "before": 800,
+   "after": 800
+  },
+  {
+   "name": "refund-uncalled",
+   "spec": [
+    {
+     "id": "a",
+     "committed": 500,
+     "folded": false
+    },
+    {
+     "id": "b",
+     "committed": 200,
+     "folded": true
+    }
+   ],
+   "scores": null,
+   "pots": [
+    {
+     "amount": 400,
+     "eligible": [
+      "a"
+     ]
+    }
+   ],
+   "refunds": [
+    {
+     "id": "a",
+     "amount": 300
+    }
+   ],
+   "awards": {
+    "a": 700,
+    "b": 0
+   },
+   "results": [
+    {
+     "id": "a",
+     "amount": 300,
+     "refund": true,
+     "winners": [
+      "a"
+     ]
+    },
+    {
+     "amount": 400,
+     "eligible": [
+      "a"
+     ],
+     "winners": [
+      "a"
+     ]
+    }
+   ],
+   "before": 700,
+   "after": 700
+  },
+  {
+   "name": "all-fold-one-left",
+   "spec": [
+    {
+     "id": "a",
+     "committed": 60,
+     "folded": true
+    },
+    {
+     "id": "b",
+     "committed": 20,
+     "folded": false
+    },
+    {
+     "id": "c",
+     "committed": 0,
+     "folded": true
+    }
+   ],
+   "scores": null,
+   "pots": [
+    {
+     "amount": 80,
+     "eligible": [
+      "b"
+     ]
+    }
+   ],
+   "refunds": [],
+   "awards": {
+    "a": 0,
+    "b": 80,
+    "c": 0
+   },
+   "results": [
+    {
+     "amount": 80,
+     "eligible": [
+      "b"
+     ],
+     "winners": [
+      "b"
+     ]
+    }
+   ],
+   "before": 80,
+   "after": 80
+  },
+  {
+   "name": "two-side-pots-live",
+   "spec": [
+    {
+     "id": "a",
+     "committed": 150,
+     "folded": false
+    },
+    {
+     "id": "b",
+     "committed": 150,
+     "folded": false
+    },
+    {
+     "id": "c",
+     "committed": 80,
+     "folded": true
+    },
+    {
+     "id": "d",
+     "committed": 40,
+     "folded": true
+    }
+   ],
+   "scores": {
+    "a": [
+     4,
+     9
+    ],
+    "b": [
+     4,
+     8
+    ]
+   },
+   "pots": [
+    {
+     "amount": 160,
+     "eligible": [
+      "a",
+      "b"
+     ]
+    },
+    {
+     "amount": 120,
+     "eligible": [
+      "a",
+      "b"
+     ]
+    },
+    {
+     "amount": 140,
+     "eligible": [
+      "a",
+      "b"
+     ]
+    }
+   ],
+   "refunds": [],
+   "awards": {
+    "a": 420,
+    "b": 0,
+    "c": 0,
+    "d": 0
+   },
+   "results": [
+    {
+     "amount": 160,
+     "eligible": [
+      "a",
+      "b"
+     ],
+     "winners": [
+      "a"
+     ]
+    },
+    {
+     "amount": 120,
+     "eligible": [
+      "a",
+      "b"
+     ],
+     "winners": [
+      "a"
+     ]
+    },
+    {
+     "amount": 140,
+     "eligible": [
+      "a",
+      "b"
+     ],
+     "winners": [
+      "a"
+     ]
+    }
+   ],
+   "before": 420,
+   "after": 420
+  }
+ ],
+ "errs": [
+  {
+   "name": "fold-no-toCall",
+   "error": null
+  },
+  {
+   "name": "check-when-toCall? street1 first actor",
+   "error": null
+  },
+  {
+   "name": "wrong-actor",
+   "error": "未到 b 行动"
+  },
+  {
+   "name": "raise-below-min",
+   "error": "加注低于最小加注额"
+  },
+  {
+   "name": "raise-over-stack",
+   "error": null
+  }
+ ]
+}

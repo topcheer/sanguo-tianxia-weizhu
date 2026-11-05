@@ -1,0 +1,1762 @@
+{
+ "you": {
+  "zh": "你",
+  "ja": "あなた",
+  "ko": "당신",
+  "en": "You",
+  "es": "Tú",
+  "de": "Du"
+ },
+ "common.back": {
+  "zh": "返回",
+  "ja": "戻る",
+  "ko": "돌아가기",
+  "en": "Back",
+  "es": "Volver",
+  "de": "Zurück"
+ },
+ "common.close": {
+  "zh": "合卷",
+  "ja": "閉じる",
+  "ko": "닫기",
+  "en": "Close",
+  "es": "Cerrar",
+  "de": "Schließen"
+ },
+ "term.chips": {
+  "zh": "军资",
+  "ja": "軍資金",
+  "ko": "군자금",
+  "en": "War chest",
+  "es": "Arca",
+  "de": "Kriegskasse"
+ },
+ "term.pot": {
+  "zh": "底池",
+  "ja": "ポット",
+  "ko": "팟",
+  "en": "pot",
+  "es": "bote",
+  "de": "Pot"
+ },
+ "title.era": {
+  "zh": "中平元年 · 黄巾乱世",
+  "ja": "中平元年・黄巾の乱世",
+  "ko": "중평 원년 · 황건의 난세",
+  "en": "First Year of Zhongping · The Yellow Turban Chaos",
+  "es": "Primer año de Zhongping · El caos del Turbante Amarillo",
+  "de": "Erstes Jahr Zhongping · Das Chaos der Gelbtürbinder"
+ },
+ "title.name": {
+  "zh": "三国：天下为注",
+  "ja": "三國：天下を賭けて",
+  "ko": "삼국: 천하를 걸고",
+  "en": "Three Kingdoms: All In",
+  "es": "Tres Reinos: Todo al Palo",
+  "de": "Drei Reiche: Alles auf alles"
+ },
+ "title.sub": {
+  "zh": "史书只写了沙场，没写牌桌",
+  "ja": "史書は戦場だけを記し、卓上を記さなかった",
+  "ko": "사서는 전장만 적었고, 판은 적지 않았다",
+  "en": "The histories record the battlefield, never the card table",
+  "es": "Las historias cuentan el campo de batalla, jamás la mesa de cartas",
+  "de": "Die Chroniken berichten vom Schlachtfeld, nie vom Kartentisch"
+ },
+ "title.story": {
+  "zh": "你捡到一部残卷《英雄记》，记的是另一部三国——乱世英雄，白天争天下，夜里赌江山。每翻一页，乱世就重来一次；赢下牌局，就改写一段遗憾。",
+  "ja": "手にした残巻『英雄記』は、もうひとつの三國を記す——乱世の英雄たち、昼は天下を争い、夜は江山を賭ける。頁をめくるたび乱世はやり直され、卓を制すれば悔いがひとつ書き換わる。",
+  "ko": "손에 넣은 잔권 『영웅기』에는 또 다른 삼국이 적혀 있다 — 난세의 영웅들은 낮에는 천하를 다투고 밤에는 강산을 건다. 페이지를 넘길 때마다 난세는 다시 시작되고, 판에서 이기면 한 가지 아쉬움이 다시 쓰인다.",
+  "en": "You found a tattered scroll, the Records of Heroes, telling of another Three Kingdoms — heroes who fought for the realm by day and gambled for it by night. Each page turned, the chaos begins anew; win the table, and one regret is rewritten.",
+  "es": "Has hallado un rollo dañado, las «Memorias de héroes»: cuentan otros Tres Reinos, donde los héroes peleaban el imperio de día y lo apostaban de noche. Cada página vuelta, el caos empieza de nuevo; gana la mesa y un pesar queda reescrito.",
+  "de": "Du hast eine zerfledderte Rolle gefunden, die „Aufzeichnungen der Helden“: Sie erzählen von anderen Drei Reichen — Helden, die tags um das Reich stritten und es nachts verspielten. Mit jeder umgeblätterten Seite beginnt das Chaos von Neuem; gewinn den Tisch, und ein Bedauern wird neu geschrieben."
+ },
+ "title.start": {
+  "zh": "开 卷",
+  "ja": "巻を開く",
+  "ko": "권을 펼치다",
+  "en": "Open the Scroll",
+  "es": "Abrir el rollo",
+  "de": "Die Rolle öffnen"
+ },
+ "title.startSub": {
+  "zh": "史籍与演义之间，另有牌局",
+  "ja": "正史と演義のあいだに、もうひとつの卓がある",
+  "ko": "정사와 연의 사이에, 또 하나의 판이 있다",
+  "en": "Between the records and the romance, there is a card table",
+  "es": "Entre la historia y la novela, hay una mesa de cartas",
+  "de": "Zwischen Chronik und Roman gibt es einen Kartentisch"
+ },
+ "title.hint": {
+  "zh": "残卷五十回 · 集齐三十枚野史朱印，最后一页自现",
+  "ja": "残巻五十話・野史の朱印三十を集めれば、最後の頁が現れる",
+  "ko": "잔권 오십 회 · 야사 주인 서른을 모으면 마지막 장이 나타난다",
+  "en": "Fifty pages in the tattered scroll · gather thirty seals of the apocrypha and the last page appears",
+  "es": "Cincuenta páginas del rollo roto · reúne treinta sellos no oficiales y aparecerá la última página",
+  "de": "Fünfzig Seiten der zerfledderten Rolle · sammele dreißig Siegel der inoffiziellen Geschichte, und die letzte Seite erscheint"
+ },
+ "codex.title": {
+  "zh": "残 卷",
+  "ja": "残巻",
+  "ko": "잔권",
+  "en": "The Tattered Scroll",
+  "es": "El rollo dañado",
+  "de": "Die zerfledderte Rolle"
+ },
+ "codex.progress": {
+  "zh": "已改写",
+  "ja": "書き換えた頁",
+  "ko": "고쳐 쓴 장",
+  "en": "Rewritten",
+  "es": "Reescritas",
+  "de": "Umgeschrieben"
+ },
+ "codex.finaleUnlocked": {
+  "zh": "最后一页已现",
+  "ja": "最後の頁、現る",
+  "ko": "마지막 장이 나타났다",
+  "en": "The last page has appeared",
+  "es": "La última página ha aparecido",
+  "de": "Die letzte Seite ist erschienen"
+ },
+ "codex.annals": {
+  "zh": "观阵录",
+  "ja": "観陣録",
+  "ko": "관진록",
+  "en": "Annals",
+  "es": "Anales",
+  "de": "Annalen"
+ },
+ "codex.save": {
+  "zh": "存档",
+  "ja": "保存",
+  "ko": "저장",
+  "en": "Save",
+  "es": "Guardar",
+  "de": "Speichern"
+ },
+ "codex.settings": {
+  "zh": "设置",
+  "ja": "設定",
+  "ko": "설정",
+  "en": "Settings",
+  "es": "Ajustes",
+  "de": "Einstellungen"
+ },
+ "scroll.frag": {
+  "zh": "残卷深处",
+  "ja": "残巻の奥",
+  "ko": "잔권 깊은 곳",
+  "en": "deep in the tattered scroll",
+  "es": "en lo hondo del rollo",
+  "de": "tief in der Rolle"
+ },
+ "scroll.volume": {
+  "zh": "卷",
+  "ja": "巻",
+  "ko": "권",
+  "en": "Scroll ",
+  "es": "Rollo ",
+  "de": "Rolle "
+ },
+ "scroll.lastPage": {
+  "zh": "最后一页",
+  "ja": "最後の頁",
+  "ko": "마지막 장",
+  "en": "The Last Page",
+  "es": "La última página",
+  "de": "Die letzte Seite"
+ },
+ "mark.history": {
+  "zh": "原",
+  "ja": "原",
+  "ko": "원",
+  "en": "H",
+  "es": "H",
+  "de": "U"
+ },
+ "mark.yeshi": {
+  "zh": "野",
+  "ja": "野",
+  "ko": "야",
+  "en": "A",
+  "es": "A",
+  "de": "A"
+ },
+ "mark.both": {
+  "zh": "全",
+  "ja": "全",
+  "ko": "전",
+  "en": "*",
+  "es": "*",
+  "de": "*"
+ },
+ "apoc.entry": {
+  "zh": "残卷无终稿",
+  "ja": "残巻・終稿なし",
+  "ko": "잔권, 종고 없다",
+  "en": "The Unfinished Scroll",
+  "es": "El rollo sin final",
+  "de": "Die Rolle ohne Endfassung"
+ },
+ "apoc.won": {
+  "zh": "已胜",
+  "ja": "勝利",
+  "ko": "승",
+  "en": "won",
+  "es": "ganadas",
+  "de": "gewonnen"
+ },
+ "practice.entry": {
+  "zh": "野卷 · 沙场点兵",
+  "ja": "野巻・沙場の点兵",
+  "ko": "야권 · 사장 점병",
+  "en": "The Wild Scroll · Muster Grounds",
+  "es": "El rollo salvaje · Campo de leva",
+  "de": "Die wilde Rolle · Appellplatz"
+ },
+ "practice.entrySub": {
+  "zh": "33 处三国典故牌桌 · 2 至 8 人 · 只记练习簿，不动正卷",
+  "ja": "三國由来の卓33ヶ所・2～8人・手習帳のみに記し、正巻は動かさない",
+  "ko": "삼국 고사 판 33곳 · 2~8인 · 연습장에만 기록, 정권은 건드리지 않는다",
+  "en": "33 tables from Three Kingdoms lore · 2–8 players · practice book only, the canon stays untouched",
+  "es": "33 mesas del folclore de los Tres Reinos · 2–8 jugadores · solo libreta de práctica, el canon queda intacto",
+  "de": "33 Tische aus der Drei-Reiche-Überlieferung · 2–8 Spieler · nur ins Übungsbuch, der Kanon bleibt unberührt"
+ },
+ "practice.tables": {
+  "zh": "处牌桌",
+  "ja": "の卓",
+  "ko": "개 판",
+  "en": "tables",
+  "es": "mesas",
+  "de": "Tische"
+ },
+ "practice.title": {
+  "zh": "沙场点兵台",
+  "ja": "点兵台",
+  "ko": "점병대",
+  "en": "The Muster Grounds",
+  "es": "El campo de leva",
+  "de": "Der Appellplatz"
+ },
+ "practice.recordTotal": {
+  "zh": "练习簿",
+  "ja": "手習帳",
+  "ko": "연습장",
+  "en": "Practice book",
+  "es": "Libreta",
+  "de": "Übungsbuch"
+ },
+ "practice.record": {
+  "zh": "战绩",
+  "ja": "戦績",
+  "ko": "전적",
+  "en": "Record",
+  "es": "Marcador",
+  "de": "Bilanz"
+ },
+ "practice.broken": {
+  "zh": "破阵",
+  "ja": "撃破",
+  "ko": "파진",
+  "en": "Tables beaten",
+  "es": "Mesas vencidas",
+  "de": "Tische geschlagen"
+ },
+ "practice.w": {
+  "zh": "胜",
+  "ja": "勝",
+  "ko": "승",
+  "en": "W",
+  "es": "V",
+  "de": "S"
+ },
+ "practice.l": {
+  "zh": "负",
+  "ja": "負",
+  "ko": "패",
+  "en": "L",
+  "es": "D",
+  "de": "N"
+ },
+ "practice.winToast": {
+  "zh": "野史练笔 · 此局你赢",
+  "ja": "野史の練習・この局は勝ち",
+  "ko": "야사 연필 · 이 판은 이겼다",
+  "en": "Practice won",
+  "es": "Práctica ganada",
+  "de": "Übung gewonnen"
+ },
+ "practice.lossToast": {
+  "zh": "野史练笔 · 此局你输",
+  "ja": "野史の練習・この局は負け",
+  "ko": "야사 연필 · 이 판은 졌다",
+  "en": "Practice lost",
+  "es": "Práctica perdida",
+  "de": "Übung verloren"
+ },
+ "practice.sizeN": {
+  "zh": "人桌",
+  "ja": "人卓",
+  "ko": "인 탁",
+  "en": "-player",
+  "es": " jugadores",
+  "de": "-Spieler"
+ },
+ "practice.tier.duel": {
+  "zh": "单挑",
+  "ja": "一騎打ち",
+  "ko": "일기토",
+  "en": "Duels",
+  "es": "Duelos",
+  "de": "Duelle"
+ },
+ "practice.tier.trio": {
+  "zh": "鼎足",
+  "ja": "鼎足",
+  "ko": "정족",
+  "en": "Tripods",
+  "es": "Tríos",
+  "de": "Trios"
+ },
+ "practice.tier.four": {
+  "zh": "四战",
+  "ja": "四戦",
+  "ko": "사전",
+  "en": "Four Corners",
+  "es": "Cuatro frentes",
+  "de": "Vier Gefechte"
+ },
+ "practice.tier.five": {
+  "zh": "五虎",
+  "ja": "五虎",
+  "ko": "오호",
+  "en": "Five Tigers",
+  "es": "Cinco tigres",
+  "de": "Fünf Tiger"
+ },
+ "practice.tier.six": {
+  "zh": "六合",
+  "ja": "六合",
+  "ko": "육합",
+  "en": "Six Realms",
+  "es": "Seis rumbos",
+  "de": "Sechs Richtungen"
+ },
+ "practice.tier.seven": {
+  "zh": "七星",
+  "ja": "七星",
+  "ko": "칠성",
+  "en": "Seven Stars",
+  "es": "Siete estrellas",
+  "de": "Sieben Sterne"
+ },
+ "practice.tier.eight": {
+  "zh": "八荒",
+  "ja": "八荒",
+  "ko": "팔황",
+  "en": "Eight Wastes",
+  "es": "Ocho confines",
+  "de": "Acht Öden"
+ },
+ "page.start": {
+  "zh": "入 局",
+  "ja": "局に入る",
+  "ko": "판에 들다",
+  "en": "Take Your Seat",
+  "es": "Tomar asiento",
+  "de": "Platz nehmen"
+ },
+ "page.zhizishou": {
+  "zh": "执子之手",
+  "ja": "執子の手",
+  "ko": "집자지수",
+  "en": "Hand in Hand",
+  "es": "De su mano",
+  "de": "Seine Hand führen"
+ },
+ "page.apocFolio": {
+  "zh": "无终稿 · 随机外传",
+  "ja": "終稿なし・外伝",
+  "ko": "종고 없음 · 외전",
+  "en": "No final draft · a stray tale",
+  "es": "Sin borrador final · relato suelto",
+  "de": "Keine Endfassung · ein loster Bericht"
+ },
+ "page.finaleFolio": {
+  "zh": "最后一页 · 写卷人",
+  "ja": "最後の頁・写し手",
+  "ko": "마지막 장 · 두루마리 필자",
+  "en": "The Last Page · The Writer",
+  "es": "La última página · el Escriba",
+  "de": "Die letzte Seite · der Schreiber"
+ },
+ "page.chapterNo": {
+  "zh": "第",
+  "ja": "第",
+  "ko": "제",
+  "en": "Ch. ",
+  "es": "Cap. ",
+  "de": "Kap. "
+ },
+ "page.briefKicker": {
+  "zh": "史 实 底 稿",
+  "ja": "史実の底本",
+  "ko": "사실 원고",
+  "en": "The Historical Record",
+  "es": "El registro histórico",
+  "de": "Der historische Befund"
+ },
+ "page.era": {
+  "zh": "纪年",
+  "ja": "紀年",
+  "ko": "기년",
+  "en": "Year",
+  "es": "Fecha",
+  "de": "Jahr"
+ },
+ "page.source": {
+  "zh": "出处",
+  "ja": "出典",
+  "ko": "출전",
+  "en": "Source",
+  "es": "Fuente",
+  "de": "Quelle"
+ },
+ "page.record": {
+  "zh": "史载",
+  "ja": "史載",
+  "ko": "사기",
+  "en": "Record",
+  "es": "Crónica",
+  "de": "Bericht"
+ },
+ "page.adaptation": {
+  "zh": "改编",
+  "ja": "脚色",
+  "ko": "각색",
+  "en": "Adaptation",
+  "es": "Adaptación",
+  "de": "Bearbeitung"
+ },
+ "page.lead": {
+  "zh": "引子",
+  "ja": "導き",
+  "ko": "들이밀",
+  "en": "Lead",
+  "es": "Introducción",
+  "de": "Einstieg"
+ },
+ "page.regret": {
+  "zh": "史书之憾:",
+  "ja": "史書の憾い：",
+  "ko": "사서의 유감:",
+  "en": "The record's regret: ",
+  "es": "El pesar de la crónica: ",
+  "de": "Das Bedauern der Chronik: "
+ },
+ "page.objective": {
+  "zh": "本回目标:",
+  "ja": "本話の目的：",
+  "ko": "이 회의 목표:",
+  "en": "This page's goal: ",
+  "es": "Meta de esta página: ",
+  "de": "Ziel dieser Seite: "
+ },
+ "omen.title": {
+  "zh": "天 时",
+  "ja": "天 時",
+  "ko": "천 시",
+  "en": "The Omen",
+  "es": "El presagio",
+  "de": "Das Omen"
+ },
+ "omen.pick": {
+  "zh": "临行前，择一天时。",
+  "ja": "旅立ち前に、天時をひとつ選べ。",
+  "ko": "길 떠나기 전, 천시를 하나 고른다.",
+  "en": "Before you march, choose one omen.",
+  "es": "Antes de marchar, elige un presagio.",
+  "de": "Vor dem Marsch wähle ein Omen."
+ },
+ "map.title": {
+  "zh": "行 军 图",
+  "ja": "行軍図",
+  "ko": "행군도",
+  "en": "March Map",
+  "es": "Mapa de marcha",
+  "de": "Marschkarte"
+ },
+ "map.youHere": {
+  "zh": "你在这里",
+  "ja": "ここにいる",
+  "ko": "여기 있다",
+  "en": "You are here",
+  "es": "Estás aquí",
+  "de": "Du bist hier"
+ },
+ "map.battle": {
+  "zh": "遭遇战",
+  "ja": "遭遇戦",
+  "ko": "조우전",
+  "en": "Skirmish",
+  "es": "Escaramuza",
+  "de": "Gefecht"
+ },
+ "map.rest": {
+  "zh": "营帐",
+  "ja": "陣営",
+  "ko": "영채",
+  "en": "Camp",
+  "es": "Campamento",
+  "de": "Lager"
+ },
+ "map.shop": {
+  "zh": "军市",
+  "ja": "軍市",
+  "ko": "군시",
+  "en": "Market",
+  "es": "Mercado",
+  "de": "Markt"
+ },
+ "map.chest": {
+  "zh": "辎重",
+  "ja": "輜重",
+  "ko": "치중",
+  "en": "Supplies",
+  "es": "Aprovisionamiento",
+  "de": "Nachschub"
+ },
+ "map.boss": {
+  "zh": "关卡",
+  "ja": "関門",
+  "ko": "관문",
+  "en": "Checkpoint",
+  "es": "Paso",
+  "de": "Pass"
+ },
+ "event.rest.title": {
+  "zh": "营 帐",
+  "ja": "陣 営",
+  "ko": "영 채",
+  "en": "The Camp",
+  "es": "El campamento",
+  "de": "Das Lager"
+ },
+ "event.rest.story": {
+  "zh": "夜入营帐，更鼓三声。你把今日的牌局又复盘了一遍，然后枕着刀睡了。",
+  "ja": "夜の陣営、更の鼓三つ。今日の局を頭の中でもう一度並べ直し、刀を枕に眠る。",
+  "ko": "밤의 영채, 경쇠 세 번. 오늘 판을 머릿속으로 다시 짚고는, 칼을 베고 잠든다.",
+  "en": "Night in camp, the third watch sounds. You replay today's hands in your head, then sleep on your blade.",
+  "es": "Noche en el campamento, tercera guardia. Repites las manos del día en la cabeza y duermes sobre tu espada.",
+  "de": "Nacht im Lager, die dritte Wache. Du gehst die Hände des Tages noch einmal durch und schläfst auf deinem Schwert."
+ },
+ "event.rest.heal": {
+  "zh": "歇息片刻 +80 筹码",
+  "ja": "ひと休み +80",
+  "ko": "잠시 쉬다 +80",
+  "en": "Rest a while +80",
+  "es": "Descansar un rato +80",
+  "de": "Kurz rasten +80"
+ },
+ "event.rest.calm": {
+  "zh": "凝神静气 下一场破绽假动作更少",
+  "ja": "気を静める 次戦のテルの偽装が減る",
+  "ko": "마음을 가라앉히다 다음 판 텔 위장 감소",
+  "en": "Steady your mind — fewer fake tells next table",
+  "es": "Serena la mente — menos tells falsos en la próxima mesa",
+  "de": "Den Geist sammeln — weniger falsche Tells beim nächsten Tisch"
+ },
+ "event.shop.title": {
+  "zh": "军 市",
+  "ja": "軍 市",
+  "ko": "군 시",
+  "en": "The Market",
+  "es": "El mercado",
+  "de": "Der Markt"
+ },
+ "event.shop.story": {
+  "zh": "随军的商贾掀开布帘：「军爷，前线的东西便宜。挑一样，就当交个朋友。」",
+  "ja": "従軍の商人が簾を上げる。「殿、前線の品はお安く。ひとつどうぞ、世間のよしみに。」",
+  "ko": "종군 상인이 포장을 걷는다. \"나리, 전방 물건은 싸습니다. 하나 고르시죠, 정분을 쌓는 셈치고.\"",
+  "en": "A camp merchant lifts the canvas flap: \"For you, sir, front-line prices. Pick one — call it a friendship.\"",
+  "es": "Un mercader del ejército levanta la lona: «Para usted, señor, precios de frente. Escoja uno, por la amistad.»",
+  "de": "Ein Marketender hebt die Plane: «Für Sie, Herr, Frontpreise. Nehmen Sie eins, als Freundschaftsbeweis.»"
+ },
+ "event.shop.money": {
+  "zh": "一袋军资 +150 筹码",
+  "ja": "軍資一袋 +150",
+  "ko": "군자금 한 자루 +150",
+  "en": "A pouch of coin +150",
+  "es": "Una bolsa de fondos +150",
+  "de": "Ein Beutel Münzen +150"
+ },
+ "event.shop.bribe": {
+  "zh": "打点守将 下一场对方起手 -250",
+  "ja": "守将に袖振り 次戦の相手の持ち高 -250",
+  "ko": "수장에게 뇌물 다음 판 상대 시작 -250",
+  "en": "Grease the guard — foe starts -250 next table",
+  "es": "Untar al guardia — el rival empieza con -250",
+  "de": "Den Wachen schmieren — der Gegner startet mit -250"
+ },
+ "event.shop.eye": {
+  "zh": "军中密报 破绽假动作大幅减少",
+  "ja": "軍中の密偵 テルの偽装が大きく減る",
+  "ko": "군중 밀보 텔 위장 크게 감소",
+  "en": "A spy's report — far fewer fake tells",
+  "es": "Informe de un espía — muchos menos tells falsos",
+  "de": "Ein Spitzelbericht — deutlich weniger falsche Tells"
+ },
+ "event.chest.title": {
+  "zh": "辎 重",
+  "ja": "輜 重",
+  "ko": "치 중",
+  "en": "The Supply Wagon",
+  "es": "El carro de suministros",
+  "de": "Der Nachschubwagen"
+ },
+ "event.chest.story": {
+  "zh": "缴获的辎重车里，整整齐齐码着前主人的军资。",
+  "ja": "鹵獲した輜重車に、先の持ち主の軍資が几帳面に積まれている。",
+  "ko": "노획한 치중 수레에, 전 주인의 군자금이 반듯하게 쌓여 있다.",
+  "en": "In the captured wagon, the late owner's coin sits stacked in tidy rows.",
+  "es": "En el carro capturado, la moneda del difunto dueño está apilada con esmero.",
+  "de": "Im erbeuteten Wagen liegt das Geld des vorigen Besitzers ordentlich gestapelt."
+ },
+ "event.chest.loot": {
+  "zh": "收下 +150 筹码",
+  "ja": "受け取る +150",
+  "ko": "거둔다 +150",
+  "en": "Take it +150",
+  "es": "Tomarla +150",
+  "de": "Mitnehmen +150"
+ },
+ "scene.kicker": {
+  "zh": "残 卷 见 闻",
+  "ja": "残巻見聞",
+  "ko": "잔권 견문",
+  "en": "Glimpses of the Scroll",
+  "es": "Vislumbres del rollo",
+  "de": "Blicke in die Rolle"
+ },
+ "scene.memory": {
+  "zh": "残卷记得你的旧策；这次仍可改选，效果只计入本次行程。",
+  "ja": "残巻は前の策を覚えている。今回も選び直せるが、効き目はこの行軍のみ。",
+  "ko": "잔권은 지난 계책을 기억한다. 이번에도 다시 고를 수 있으나, 효과는 이번 행군에만 적용된다.",
+  "en": "The scroll remembers your last choice; you may pick again — it counts for this march only.",
+  "es": "El rollo recuerda tu elección previa; puedes cambiarla — solo cuenta para esta marcha.",
+  "de": "Die Rolle erinnert deine letzte Wahl; du darfst neu wählen — sie gilt nur für diesen Marsch."
+ },
+ "scene.oldChoice": {
+  "zh": "旧策 · ",
+  "ja": "旧策・",
+  "ko": "구책 · ",
+  "en": "Old pick · ",
+  "es": "Vieja elección · ",
+  "de": "Alte Wahl · "
+ },
+ "scene.skip": {
+  "zh": "略过这段见闻",
+  "ja": "この見聞を読み飛ばす",
+  "ko": "이 견문을 건너뛰다",
+  "en": "Skip this scene",
+  "es": "Saltar esta escena",
+  "de": "Diese Szene überspringen"
+ },
+ "brief.kicker": {
+  "zh": "战 书",
+  "ja": "挑戦状",
+  "ko": "도전장",
+  "en": "The Challenge",
+  "es": "El desafío",
+  "de": "Die Herausforderung"
+ },
+ "brief.accept": {
+  "zh": "应 战",
+  "ja": "応戦",
+  "ko": "응전",
+  "en": "Accept",
+  "es": "Aceptar",
+  "de": "Annehmen"
+ },
+ "brief.back": {
+  "zh": "暂 缓",
+  "ja": "見合わせ",
+  "ko": "보류",
+  "en": "Not Yet",
+  "es": "Todavía no",
+  "de": "Später"
+ },
+ "intro.gateKicker": {
+  "zh": "大 关",
+  "ja": "大 関",
+  "ko": "대 관",
+  "en": "The Great Gate",
+  "es": "La gran puerta",
+  "de": "Das grosse Tor"
+ },
+ "intro.bossKicker": {
+  "zh": "敌 将 亮 相",
+  "ja": "敵将、見参",
+  "ko": "적장 등장",
+  "en": "The Rival Appears",
+  "es": "Aparece el rival",
+  "de": "Der Gegner erscheint"
+ },
+ "intro.skirmishKicker": {
+  "zh": "遭 遇",
+  "ja": "遭 遇",
+  "ko": "조 우",
+  "en": "Skirmish",
+  "es": "Escaramuza",
+  "de": "Gefecht"
+ },
+ "intro.next": {
+  "zh": "下 一 位",
+  "ja": "次 の 者",
+  "ko": "다 음",
+  "en": "Next",
+  "es": "Siguiente",
+  "de": "Weiter"
+ },
+ "intro.fight": {
+  "zh": "应 战",
+  "ja": "応戦",
+  "ko": "응전",
+  "en": "To the Table",
+  "es": "A la mesa",
+  "de": "An den Tisch"
+ },
+ "intro.bossBio": {
+  "zh": "乱世群雄，各有一局。",
+  "ja": "乱世の群雄、それぞれ一局を抱えている。",
+  "ko": "난세의 군웅, 저마다 한 판을 안고 있다.",
+  "en": "A warlord of the chaos, with a game of his own.",
+  "es": "Un señor de la guerra, con partida propia.",
+  "de": "Ein Fürst des Chaos, mit eigenem Spiel."
+ },
+ "intro.skirmishBio": {
+  "zh": "无名之辈，也守着不肯退的一步。",
+  "ja": "名もなき者にも、退けぬ一手がある。",
+  "ko": "이름 없는 자도 물러서지 않는 한 수를 지킨다.",
+  "en": "A nobody, guarding the one step he will not yield.",
+  "es": "Un don nadie que custodia el paso que no cede.",
+  "de": "Ein Niemand, der den einen Schritt verteidigt, den er nicht abtritt."
+ },
+ "intro.bossQuote": {
+  "zh": "此路，先问过我的牌。",
+  "ja": "この道、まず我が札に聞け。",
+  "ko": "이 길을 지나려면 먼저 내 패에게 물어라.",
+  "en": "This road answers to my cards first.",
+  "es": "Este camino responde primero a mis cartas.",
+  "de": "Dieser Weg antwortet zuerst auf meine Karten."
+ },
+ "intro.skirmishQuote": {
+  "zh": "前路遭遇，胜负手上见。",
+  "ja": "行く手の遭遇、勝負はこの手で。",
+  "ko": "가는 길 마주침, 승부는 손에서 갈린다.",
+  "en": "A chance meeting on the road — let the hands decide.",
+  "es": "Un encuentro en el camino — que las cartas decidan.",
+  "de": "Eine Begegnung auf dem Weg — die Hände sollen entscheiden."
+ },
+ "battle.hand": {
+  "zh": "第",
+  "ja": "第",
+  "ko": "제",
+  "en": "Hand ",
+  "es": "Mano ",
+  "de": "Hand "
+ },
+ "battle.blinds": {
+  "zh": "盲注",
+  "ja": "ブラインド",
+  "ko": "블라인드",
+  "en": "Blinds",
+  "es": "Ciegas",
+  "de": "Blinds"
+ },
+ "battle.gongxin": {
+  "zh": "攻 心",
+  "ja": "攻 心",
+  "ko": "공 심",
+  "en": "Goading",
+  "es": "Provocar",
+  "de": "Anstacheln"
+ },
+ "battle.zhiZi": {
+  "zh": "观 星",
+  "ja": "観 星",
+  "ko": "관 성",
+  "en": "Reading Stars",
+  "es": "Leer estrellas",
+  "de": "Sterne deuten"
+ },
+ "battle.verify": {
+  "zh": "验 牌",
+  "ja": "検 牌",
+  "ko": "검 패",
+  "en": "Verify",
+  "es": "Verificar",
+  "de": "Prüfen"
+ },
+ "battle.folded": {
+  "zh": "已弃牌",
+  "ja": "フォールド済み",
+  "ko": "폴드함",
+  "en": "Folded",
+  "es": "Retirado",
+  "de": "Gepasst"
+ },
+ "battle.eliminated": {
+  "zh": "离席",
+  "ja": "離席",
+  "ko": "퇴장",
+  "en": "Out",
+  "es": "Fuera",
+  "de": "Raus"
+ },
+ "battle.youFolded": {
+  "zh": "你已弃牌，本手观战",
+  "ja": "フォールド済み・この手は観戦",
+  "ko": "폴드함, 이 번은 관전",
+  "en": "You folded — spectating this hand",
+  "es": "Te has retirado — espectando esta mano",
+  "de": "Du hast gepasst — du schaust zu"
+ },
+ "battle.round": {
+  "zh": "第 X 阵",
+  "ja": "第X陣",
+  "ko": "제 X 진",
+  "en": "Round",
+  "es": "Ronda",
+  "de": "Runde"
+ },
+ "battle.qiqinSub": {
+  "zh": "擒他，也放他。",
+  "ja": "捕らえ、かつ放つ。",
+  "ko": "사로잡고, 또 놓아준다.",
+  "en": "Catch him, and let him go.",
+  "es": "Atrápalo, y déjalo ir.",
+  "de": "Fang ihn, und lass ihn gehen."
+ },
+ "battle.oppDefault": {
+  "zh": "无名敌将",
+  "ja": "名もなき敵将",
+  "ko": "이름 없는 적장",
+  "en": "A nameless officer",
+  "es": "Un oficial sin nombre",
+  "de": "Ein namenloser Offizier"
+ },
+ "role.button": {
+  "zh": "庄",
+  "ja": "親",
+  "ko": "딜러",
+  "en": "D",
+  "es": "B",
+  "de": "D"
+ },
+ "role.sb": {
+  "zh": "小盲",
+  "ja": "SB",
+  "ko": "SB",
+  "en": "SB",
+  "es": "CP",
+  "de": "SB"
+ },
+ "role.bb": {
+  "zh": "大盲",
+  "ja": "BB",
+  "ko": "BB",
+  "en": "BB",
+  "es": "CG",
+  "de": "BB"
+ },
+ "action.fold": {
+  "zh": "弃 牌",
+  "ja": "フォールド",
+  "ko": "폴드",
+  "en": "Fold",
+  "es": "Retirarse",
+  "de": "Passen"
+ },
+ "action.check": {
+  "zh": "过 牌",
+  "ja": "チェック",
+  "ko": "체크",
+  "en": "Check",
+  "es": "Pasar",
+  "de": "Schieben"
+ },
+ "action.call": {
+  "zh": "跟 注",
+  "ja": "コール",
+  "ko": "콜",
+  "en": "Call",
+  "es": "Igualar",
+  "de": "Mitgehen"
+ },
+ "action.bet": {
+  "zh": "下 注",
+  "ja": "ベット",
+  "ko": "벳",
+  "en": "Bet",
+  "es": "Apostar",
+  "de": "Setzen"
+ },
+ "action.raise": {
+  "zh": "加 注",
+  "ja": "レイズ",
+  "ko": "레이즈",
+  "en": "Raise",
+  "es": "Subir",
+  "de": "Erhöhen"
+ },
+ "action.allin": {
+  "zh": "全 压",
+  "ja": "オールイン",
+  "ko": "올인",
+  "en": "All-in",
+  "es": "All-in",
+  "de": "All-In"
+ },
+ "action.allinCall": {
+  "zh": "全压跟注",
+  "ja": "オールインコール",
+  "ko": "올인 콜",
+  "en": "All-in call",
+  "es": "Igualar all-in",
+  "de": "All-In mitgehen"
+ },
+ "odds.equity": {
+  "zh": "胜率",
+  "ja": "勝率",
+  "ko": "승률",
+  "en": "Equity",
+  "es": "Equity",
+  "de": "Equity"
+ },
+ "odds.tie": {
+  "zh": "平分",
+  "ja": "分け",
+  "ko": "무승부",
+  "en": "Tie",
+  "es": "Empate",
+  "de": "Split"
+ },
+ "odds.current": {
+  "zh": "当前",
+  "ja": "現在手",
+  "ko": "현재",
+  "en": "Holding",
+  "es": "Mano",
+  "de": "Blatt"
+ },
+ "odds.currentHand": {
+  "zh": "当前牌型",
+  "ja": "現在の役",
+  "ko": "현재 패",
+  "en": "Your hand",
+  "es": "Tu mano",
+  "de": "Dein Blatt"
+ },
+ "odds.hand": {
+  "zh": "第 X 手",
+  "ja": "第X手",
+  "ko": "제 X 수",
+  "en": "Hand",
+  "es": "Mano",
+  "de": "Hand"
+ },
+ "odds.outs": {
+  "zh": "outs",
+  "ja": "アウツ",
+  "ko": "아웃",
+  "en": "outs",
+  "es": "outs",
+  "de": "Outs"
+ },
+ "odds.pending": {
+  "zh": "推演中……",
+  "ja": "推演中……",
+  "ko": "계산 중…",
+  "en": "Working…",
+  "es": "Calculando…",
+  "de": "Rechnet…"
+ },
+ "banner.blindsUp": {
+  "zh": "盲注升级",
+  "ja": "ブラインド上昇",
+  "ko": "블라인드 상승",
+  "en": "Blinds Up",
+  "es": "Suben las ciegas",
+  "de": "Blinds steigen"
+ },
+ "banner.autumnWind": {
+  "zh": "秋风起",
+  "ja": "秋風立ちぬ",
+  "ko": "가을 바람 인다",
+  "en": "The Autumn Wind Rises",
+  "es": "Se alza el viento otoñal",
+  "de": "Der Herbstwind erhebt sich"
+ },
+ "banner.autumnWind.sub": {
+  "zh": "他等到了他要等的。",
+  "ja": "彼は、待っていたものを得た。",
+  "ko": "그는 기다리던 것을 얻었다.",
+  "en": "He has waited for this, and it has come.",
+  "es": "Esperaba esto, y ha llegado.",
+  "de": "Er hat darauf gewartet, und es ist gekommen."
+ },
+ "banner.heFolded": {
+  "zh": "他弃牌了",
+  "ja": "彼はフォールドした",
+  "ko": "그가 폴드했다",
+  "en": "He folds",
+  "es": "Se retira",
+  "de": "Er passt"
+ },
+ "banner.takesPot": {
+  "zh": "收池",
+  "ja": "ポット獲得",
+  "ko": "팟 가져감",
+  "en": "takes the pot",
+  "es": "se lleva el bote",
+  "de": "nimmt den Pot"
+ },
+ "banner.youWinPot": {
+  "zh": "你赢下底池",
+  "ja": "ポットを獲得",
+  "ko": "팟을 가져갔다",
+  "en": "You win the pot:",
+  "es": "Ganas el bote:",
+  "de": "Du gewinnst den Pot:"
+ },
+ "banner.heWinsPot": {
+  "zh": "他赢下底池",
+  "ja": "彼がポット獲得",
+  "ko": "그가 팟을 가져갔다",
+  "en": "He wins the pot:",
+  "es": "Él gana el bote:",
+  "de": "Er gewinnt den Pot:"
+ },
+ "banner.splitPot": {
+  "zh": "平分底池",
+  "ja": "ポット分割",
+  "ko": "팟 분할",
+  "en": "Split Pot",
+  "es": "Bote dividido",
+  "de": "Split Pot"
+ },
+ "banner.sameHand": {
+  "zh": "同为相同牌型",
+  "ja": "同じ役で分け合う",
+  "ko": "같은 패로 나눈다",
+  "en": "Same hand, shared",
+  "es": "Misma mano, repartida",
+  "de": "Gleiches Blatt, geteilt"
+ },
+ "banner.showdown": {
+  "zh": "群英摊牌",
+  "ja": "群英のショウダウン",
+  "ko": "군영 쇼다운",
+  "en": "The Showdown",
+  "es": "El desenlace",
+  "de": "Das Showdown"
+ },
+ "banner.refundTitle": {
+  "zh": "未跟注退回",
+  "ja": "未コール分の返還",
+  "ko": "미콜 반환",
+  "en": "Uncalled chips returned",
+  "es": "Fichas no igualadas devueltas",
+  "de": "Nicht mitgegangene Chips zurück"
+ },
+ "banner.refundOf": {
+  "zh": "其中",
+  "ja": "うち",
+  "ko": "이 중",
+  "en": "of which",
+  "es": "de los cuales",
+  "de": "wovon"
+ },
+ "banner.gateBroken": {
+  "zh": "关隘已破",
+  "ja": "関門、破れたり",
+  "ko": "관문이 깨졌다",
+  "en": "The Gate Is Broken",
+  "es": "La puerta ha caído",
+  "de": "Das Tor ist gefallen"
+ },
+ "banner.gateBroken.sub": {
+  "zh": "这一页，等你改写",
+  "ja": "この頁は、君が書き換えるのを待っている",
+  "ko": "이 장은 네가 다시 쓰기를 기다린다",
+  "en": "This page awaits your rewrite",
+  "es": "Esta página espera tu reescritura",
+  "de": "Diese Seite wartet auf deine Umschrift"
+ },
+ "banner.heBusted": {
+  "zh": "他被清台了",
+  "ja": "彼は持ち枚を失った",
+  "ko": "그가 탈락했다",
+  "en": "He is busted",
+  "es": "Está eliminado",
+  "de": "Er ist raus"
+ },
+ "banner.allLeft": {
+  "zh": "群英尽数离席",
+  "ja": "群英、みな離席",
+  "ko": "군영 모두 퇴장",
+  "en": "The heroes have all left the table",
+  "es": "Los héroes han dejado la mesa",
+  "de": "Die Helden haben alle den Tisch verlassen"
+ },
+ "banner.allLeft.sub": {
+  "zh": "他掷杖离席",
+  "ja": "杖を投じて席を立つ",
+  "ko": "지팡이를 던지고 자리를 뜬다",
+  "en": "He throws down his staff and goes",
+  "es": "Arroja su bastón y se va",
+  "de": "Er wirft den Stab hin und geht"
+ },
+ "banner.loseButContinue": {
+  "zh": "输了，也要再来",
+  "ja": "負けても、なお征く",
+  "ko": "졌어도, 다시 간다",
+  "en": "Lose, and march again",
+  "es": "Pierde, y avanza",
+  "de": "Verlieren und weiter"
+ },
+ "banner.loseButContinue.sub": {
+  "zh": "考的不是上一阵输赢。",
+  "ja": "問われるのは前陣の勝負ではない。",
+  "ko": "물으는 것은 지난 진의 승부가 아니다.",
+  "en": "This round was never about the last one.",
+  "es": "Esta ronda nunca fue sobre la anterior.",
+  "de": "Diese Runde ging es nie um die vorige."
+ },
+ "tell.he": {
+  "zh": "他",
+  "ja": "彼",
+  "ko": "그",
+  "en": "He",
+  "es": "Él",
+  "de": "Er"
+ },
+ "tell.read": {
+  "zh": "识破",
+  "ja": "見抜き",
+  "ko": "간파",
+  "en": "read",
+  "es": "leídos",
+  "de": "erkannt"
+ },
+ "tell.seen": {
+  "zh": "见过",
+  "ja": "見た数",
+  "ko": "본 횟수",
+  "en": "Seen",
+  "es": "Vistos",
+  "de": "Gesehen"
+ },
+ "tell.lies": {
+  "zh": "诓",
+  "ja": "誑かし",
+  "ko": "속임",
+  "en": "fooled you",
+  "es": "te engañó",
+  "de": "getäuscht"
+ },
+ "tell.shows": {
+  "zh": "亮出",
+  "ja": "晒した役：",
+  "ko": "보인 패:",
+  "en": " shows ",
+  "es": " muestra ",
+  "de": " zeigt "
+ },
+ "tell.strongHand": {
+  "zh": "强牌",
+  "ja": "強手",
+  "ko": "강한 패",
+  "en": "a strong hand",
+  "es": "una mano fuerte",
+  "de": "ein starkes Blatt"
+ },
+ "tell.weakHand": {
+  "zh": "弱牌",
+  "ja": "弱手",
+  "ko": "약한 패",
+  "en": "a weak hand",
+  "es": "una mano débil",
+  "de": "ein schwaches Blatt"
+ },
+ "tell.midHand": {
+  "zh": "中牌",
+  "ja": "中手",
+  "ko": "중간 패",
+  "en": "a middling hand",
+  "es": "una mano media",
+  "de": "ein mittleres Blatt"
+ },
+ "tell.hit": {
+  "zh": "命中",
+  "ja": "的中",
+  "ko": "적중",
+  "en": "read right",
+  "es": "acertado",
+  "de": "richtig"
+ },
+ "tell.fake": {
+  "zh": "是假动作",
+  "ja": "偽りの仕草",
+  "ko": "위장 동작이다",
+  "en": "it was an act",
+  "es": "era un farol",
+  "de": "es war gespielt"
+ },
+ "tell.acting": {
+  "zh": "果然在演",
+  "ja": "やはり演じていた",
+  "ko": "과연 연기였다",
+  "en": "he was acting",
+  "es": "estaba actuando",
+  "de": "er hat gespielt"
+ },
+ "tell.wasActing": {
+  "zh": "他方才在演",
+  "ja": "さきほど演じていた",
+  "ko": "방금 연기하고 있었다",
+  "en": "He was acting",
+  "es": "Estaba actuando",
+  "de": "Er hat gespielt"
+ },
+ "tell.exposed": {
+  "zh": "……被你看了去。",
+  "ja": "……見抜かれたか。",
+  "ko": "… 들켰군.",
+  "en": "...You saw through me.",
+  "es": "...Me has calado.",
+  "de": "...Du hast mich durchschaut."
+ },
+ "tell.readRight": {
+  "zh": "被你看穿了。",
+  "ja": "見抜かれた。",
+  "ko": "간파당했다.",
+  "en": "You read me right.",
+  "es": "Has leído bien.",
+  "de": "Du hast mich richtig gelesen."
+ },
+ "tell.fooled": {
+  "zh": "你上当了。",
+  "ja": "引っかかったな。",
+  "ko": "속아 넘어갔다.",
+  "en": "I fooled you.",
+  "es": "Te he engañado.",
+  "de": "Ich habe dich getäuscht."
+ },
+ "tell.fooledYou": {
+  "zh": "他骗了你",
+  "ja": "彼が君を誑かした",
+  "ko": "그가 당신을 속였다",
+  "en": "He fooled you",
+  "es": "Te engañó",
+  "de": "Er hat dich getäuscht"
+ },
+ "tell.readRightDot": {
+  "zh": "你读对了",
+  "ja": "読み勝った",
+  "ko": "읽어 이겼다",
+  "en": "You read right",
+  "es": "Buena lectura",
+  "de": "Richtig gelesen"
+ },
+ "tell.youReadRight": {
+  "zh": "你读对了",
+  "ja": "君の読みは正しい",
+  "ko": "당신의 읽기가 맞다",
+  "en": "you read him right",
+  "es": "lo leíste bien",
+  "de": "du hast ihn richtig gelesen"
+ },
+ "tell.isFake": {
+  "zh": "是假动作",
+  "ja": "偽りだった",
+  "ko": "위장이었다",
+  "en": "it was an act",
+  "es": "era un farol",
+  "de": "es war gespielt"
+ },
+ "line.tauntDefault": {
+  "zh": "……口舌之快。",
+  "ja": "……口先だけのこと。",
+  "ko": "…빈말일 뿐.",
+  "en": "...Words, nothing more.",
+  "es": "...Palabras, nada más.",
+  "de": "...Nur Worte."
+ },
+ "line.tauntImmune": {
+  "zh": "(他不动声色，仿佛没听见。)",
+  "ja": "（彼は顔色ひとつ変えない。聞こえなかったかのように。）",
+  "ko": "(그는 표정 하나 변하지 않는다. 못 들은 듯이.)",
+  "en": "(He doesn't blink, as if he never heard.)",
+  "es": "(No parpadea, como si no hubiera oído.)",
+  "de": "(Er zuckt nicht, als hätte er nichts gehört.)"
+ },
+ "line.tiltDefault": {
+  "zh": "放肆！",
+  "ja": "無礼者！",
+  "ko": "건방진!",
+  "en": "Insolence!",
+  "es": "¡Insolencia!",
+  "de": "Frechheit!"
+ },
+ "zhiZi.prefix": {
+  "zh": "观星 · 其势实为",
+  "ja": "観星・その勢は",
+  "ko": "관성 · 그 세는 실로",
+  "en": "Star-reading: his strength is ",
+  "es": "Lectura de estrellas: su fuerza es ",
+  "de": "Sternelesen: Seine Stärke ist "
+ },
+ "zhiZi.strong": {
+  "zh": "强",
+  "ja": "強",
+  "ko": "강함",
+  "en": "strong",
+  "es": "fuerte",
+  "de": "stark"
+ },
+ "zhiZi.weak": {
+  "zh": "弱",
+  "ja": "弱",
+  "ko": "약함",
+  "en": "weak",
+  "es": "débil",
+  "de": "schwach"
+ },
+ "zhiZi.mid": {
+  "zh": "中",
+  "ja": "中",
+  "ko": "중간",
+  "en": "middling",
+  "es": "media",
+  "de": "mittel"
+ },
+ "zhiZi.unknown": {
+  "zh": "观星 · 星象未明",
+  "ja": "観星・星象まだ不明",
+  "ko": "관성 · 별자리 아직 불분명",
+  "en": "Star-reading: the stars are unclear",
+  "es": "Lectura de estrellas: aún poco claras",
+  "de": "Sternelesen: Die Sterne sind unklar"
+ },
+ "verify.title": {
+  "zh": "验 牌",
+  "ja": "検 牌",
+  "ko": "검 패",
+  "en": "Verify the Deck",
+  "es": "Verificar la baraja",
+  "de": "Das Deck prüfen"
+ },
+ "verify.empty": {
+  "zh": "第一手尚未发出。",
+  "ja": "第一手はまだ配られていない。",
+  "ko": "첫 패가 아직 나가지 않았다.",
+  "en": "The first hand has not been dealt.",
+  "es": "La primera mano aún no se ha repartido.",
+  "de": "Die erste Hand wurde noch nicht gegeben."
+ },
+ "verify.note": {
+  "zh": "写卷人规矩一：牌可验。每手牌由种子洗牌，此处为完整牌序。",
+  "ja": "写し手の掟その一：札は検証できる。各手はシードでシャッフルされ、ここに全牌順が示される。",
+  "ko": "두루마리 필자의 규칙 하나: 패는 검증할 수 있다. 매 수는 시드로 섞이며, 여기에 전체 순서가 있다.",
+  "en": "The Writer's first rule: the deck can be verified. Every hand is shuffled from a seed; this is the full order.",
+  "es": "Primera regla del Escriba: la baraja se puede verificar. Cada mano se baraja desde una semilla; este es el orden completo.",
+  "de": "Erste Regel des Schreibers: Das Deck ist prüfbar. Jede Hand wird aus einem Seed gemischt; dies ist die volle Reihenfolge."
+ },
+ "settle.stampWin": {
+  "zh": "改",
+  "ja": "改",
+  "ko": "개",
+  "en": "R",
+  "es": "R",
+  "de": "R"
+ },
+ "settle.stampLoss": {
+  "zh": "史",
+  "ja": "史",
+  "ko": "사",
+  "en": "H",
+  "es": "H",
+  "de": "G"
+ },
+ "settle.titleWin": {
+  "zh": "你改写了这一页",
+  "ja": "この頁を書き換えた",
+  "ko": "이 장을 고쳐 썼다",
+  "en": "You Rewrote This Page",
+  "es": "Has reescrito esta página",
+  "de": "Du hast diese Seite umgeschrieben"
+ },
+ "settle.titleLoss": {
+  "zh": "这一页，兵败",
+  "ja": "この頁、敗北",
+  "ko": "이 장, 패배",
+  "en": "This Page, Lost",
+  "es": "Esta página, perdida",
+  "de": "Diese Seite, verloren"
+ },
+ "settle.original": {
+  "zh": "原卷：",
+  "ja": "原巻：",
+  "ko": "원권:",
+  "en": "The record: ",
+  "es": "El registro: ",
+  "de": "Die Aufzeichnung: "
+ },
+ "settle.yeshi": {
+  "zh": "野史：",
+  "ja": "野史：",
+  "ko": "야사:",
+  "en": "The apocrypha: ",
+  "es": "La historia no oficial: ",
+  "de": "Die inoffizielle Geschichte: "
+ },
+ "settle.chooseYeshi": {
+  "zh": "这一页怎么写，由你落笔：",
+  "ja": "この頁をどう記すか、君の筆による：",
+  "ko": "이 장을 어떻게 쓸지, 당신의 붓끝에 달렸다:",
+  "en": "How this page ends is yours to write:",
+  "es": "Cómo acaba esta página lo escribes tú:",
+  "de": "Wie diese Seite endet, schreibst du:"
+ },
+ "settle.retry": {
+  "zh": "翻页重开",
+  "ja": "頁をめくり直す",
+  "ko": "장을 다시 펼치다",
+  "en": "Turn the Page Again",
+  "es": "Pasar la página de nuevo",
+  "de": "Die Seite neu wenden"
+ },
+ "settle.next": {
+  "zh": "续读",
+  "ja": "続けて読む",
+  "ko": "이어 읽기",
+  "en": "Read On",
+  "es": "Seguir leyendo",
+  "de": "Weiterlesen"
+ },
+ "settle.home": {
+  "zh": "回 目 录",
+  "ja": "目次へ",
+  "ko": "목차로",
+  "en": "Back to Contents",
+  "es": "Volver al índice",
+  "de": "Zum Inhaltsverzeichnis"
+ },
+ "finale.kicker": {
+  "zh": "最 后 一 页",
+  "ja": "最後の頁",
+  "ko": "마지막 장",
+  "en": "The Last Page",
+  "es": "La última página",
+  "de": "Die letzte Seite"
+ },
+ "finale.title": {
+  "zh": "写卷人在等你",
+  "ja": "写し手が待っている",
+  "ko": "두루마리 필자가 기다린다",
+  "en": "The Writer Is Waiting",
+  "es": "El Escriba espera",
+  "de": "Der Schreiber wartet"
+ },
+ "finale.seal.q": {
+  "zh": "封卷 · 留下你改写的三国",
+  "ja": "封巻・書き換えた三國を残す",
+  "ko": "봉권 · 고쳐 쓴 삼국을 남기다",
+  "en": "Seal it — keep the Three Kingdoms you rewrote",
+  "es": "Sellarlo — conservar los Tres Reinos que reescribiste",
+  "de": "Versiegeln — die Drei Reiche behalten, die du umschriebst"
+ },
+ "finale.seal.a": {
+  "zh": "你把笔搁在最后一页。有人活了下来，也有人替这份圆满付了账。写卷人合上封面：「这一次，别再说你不知道代价。」",
+  "ja": "筆を最後の頁に置く。生き延びた者もいれば、この円満の代価を払った者もいる。写し手は表紙を閉じた。「今度は、代価を知らぬとは言わせない。」",
+  "ko": "붓을 마지막 장에 내려놓는다. 살아남은 자도 있고, 이 원만함의 대가를 치른 자도 있다. 필자는 표지를 덮는다. \"이번에는 대가를 몰랐다고 말하지 마라.\"",
+  "en": "You lay the pen down on the last page. Some lived; others paid the bill for that happy ending. The Writer closes the cover: \"This time, don't say you didn't know the price.\"",
+  "es": "Dejas la pluma en la última página. Algunos vivieron; otros pagaron la cuenta de ese final feliz. El Escriba cierra la tapa: «Esta vez, no digas que no sabías el precio.»",
+  "de": "Du legst den Federhalter auf die letzte Seite. Manche überlebten; andere zahlten die Rechnung für dieses Ende. Der Schreiber schließt den Deckel: «Sag diesmal nicht, du habest den Preis nicht gekannt.»"
+ },
+ "finale.restore.q": {
+  "zh": "还史 · 让该发生的仍发生",
+  "ja": "還史・起こるべきことを起こさせる",
+  "ko": "환사 · 일어나야 할 일을 일어나게 하다",
+  "en": "Restore it — let what happened, happen",
+  "es": "Restaurarlo — que lo que pasó, pase",
+  "de": "Zurückgeben — geschehen lassen, was geschah"
+ },
+ "finale.restore.a": {
+  "zh": "你把野史一页页撕下，原卷重新显露。故人们没有忘记你。麦城的雪里、五丈原的秋风里，总有人忽然想起：曾有读者替他们不甘过。",
+  "ja": "野史を頁ごとに引き裂くと、原巻がふたび現れる。故人たちは君を忘れない。麦城の雪の中、五丈原の秋風の中、誰かがふと思い出す——読者だった誰かが、彼らの無念を代わりに抱いてくれたことを。",
+  "ko": "야사를 장마다 찢어내자 원권이 다시 드러난다. 옛 이들은 당신을 잊지 않는다. 맥성의 눈 속에서, 오장원의 가을 바람 속에서, 누군가 문득 떠올린다 — 독자였던 누군가가 그들의 억울함을 대신 안아주었다는 것을.",
+  "en": "You tear the apocrypha out page by page, and the record shows through again. They have not forgotten you. In the snow of Maicheng, in the autumn wind of Wuzhang, someone will suddenly remember: a reader once grieved on their behalf.",
+  "es": "Arrancas la historia no oficial página a página, y el registro vuelve a asomar. No te han olvidado. En la nieve de Maicheng, en el viento otoñal de Wuzhang, alguien recordará de pronto: un lector se dolió una vez por ellos.",
+  "de": "Du reißt die inoffizielle Geschichte Seite für Seite heraus, und die Originalaufzeichnung kommt wieder zum Vorschein. Sie haben dich nicht vergessen. Im Schnee von Maicheng, im Herbstwind von Wuzhang wird jemand plötzlich erinnern: Ein Leser trug einst ihren Kummer mit."
+ },
+ "finale.unwritten.q": {
+  "zh": "撕卷 · 三国不许有终稿",
+  "ja": "撕巻・三國に終稿を許さぬ",
+  "ko": "사권 · 삼국은 종고를 허락하지 않는다",
+  "en": "Tear it — the Three Kingdoms shall have no final draft",
+  "es": "Rasgarlo — los Tres Reinos no tendrán borrador final",
+  "de": "Zerreißen — die Drei Reiche bekommen keine Endfassung"
+ },
+ "finale.unwritten.a": {
+  "zh": "你撕掉最后一页，碎纸却化成更多空白。写卷人笑了：「好。那就让后人每一次不甘，都长出一个新的三国。」无终稿由此展开。",
+  "ja": "最後の頁を破ると、紙屑はさらに多くの白紙へと変わる。写し手は笑う。「よろしい。ならば後世の悔いのたびに、新しい三國が生えるがいい。」終稿なき巻が、ここに開かれる。",
+  "ko": "마지막 장을 찢자 부스러기가 더 많은 백지로 변한다. 필자는 웃는다. \"좋다. 그럼 후세의 억울함마다 새로운 삼국이 자라나라.\" 종고 없는 권이 여기서 펼쳐진다.",
+  "en": "You tear out the last page, and the scraps become more blank pages. The Writer laughs: \"Good. Then let every future heartbreak grow a new Three Kingdoms.\" The unfinished scroll opens here.",
+  "es": "Arrancas la última página, y los trozos se convierten en más páginas en blanco. El Escriba se ríe: «Bien. Que cada despecho futuro engendre unos Tres Reinos nuevos.» El rollo sin final se abre aquí.",
+  "de": "Du reißt die letzte Seite heraus, und die Schnipsel werden zu mehr leeren Seiten. Der Schreiber lacht: «Gut. Dann lasse jede künftige Empörung neue Drei Reiche wachsen.» Die Rolle ohne Ende öffnet sich hier."
+ },
+ "finale.memoryHuarong": {
+  "zh": "他先提起华容：「你放过曹操，是因为义，还是因为不愿看他死？」",
+  "ja": "彼はまず華容に触れる。「曹操を逃したのは、義のためか。それとも死に目を見たくはなかったのか。」",
+  "ko": "그가 먼저 화용을 꺼낸다. \"조조를 놓아준 것은 의 때문인가, 죽는 모습을 보고 싶지 않아서인가?\"",
+  "en": "He brings up Huarong first: \"You spared Cao Cao — for honor, or because you couldn't watch him die?\"",
+  "es": "Menciona primero Huarong: «Perdonaste a Cao Cao por honor, ¿o porque no querías verlo morir?»",
+  "de": "Er spricht zuerst über Huarong: «Du hast Cao Cao verschont — aus Ehre, oder weil du seinen Tod nicht mitansehen wolltest?»"
+ },
+ "finale.memoryMaicheng": {
+  "zh": "又翻到麦城：「这一页，你终于看懂吕蒙让你看的是哪只手了。」",
+  "ja": "それから麦城を開く。「この頁で、呂蒙がどちらの手を見せたかったのか、ようやく分かったろう。」",
+  "ko": "이어 맥성을 넘긴다. \"이 장에서야 여몽이 어느 손을 보이라 했는지 드디어 알았겠지.\"",
+  "en": "Then he turns to Maicheng: \"On this page, you finally saw which hand Lü Meng was showing you.\"",
+  "es": "Luego pasa a Maicheng: «En esta página por fin viste qué mano te mostraba Lü Meng.»",
+  "de": "Dann blättert er zu Maicheng: «Auf dieser Seite hast du endlich gesehen, welche Hand Lü Meng dir zeigte.»"
+ },
+ "finale.memoryDefault": {
+  "zh": "他翻着你留下的页码：「现在，告诉我哪一部才算真的三国。」",
+  "ja": "彼は君が残した頁をめくる。「さあ、どちらが本当の三國か、教えてもらおう。」",
+  "ko": "그가 당신이 남긴 장을 넘긴다. \"자, 어느 쪽이 진짜 삼국인지 말해 보라.\"",
+  "en": "He leafs through the pages you left behind: \"Now tell me — which of these is the true Three Kingdoms?\"",
+  "es": "Hojea las páginas que dejaste: «Ahora dime: ¿cuál de estos es el verdadero Tres Reinos?»",
+  "de": "Er blättert durch die Seiten, die du zurückließest: «Nun sag mir — welches davon sind die wahren Drei Reiche?»"
+ },
+ "annals.title": {
+  "zh": "观 阵 录",
+  "ja": "観 陣 録",
+  "ko": "관 진 록",
+  "en": "Annals of the Table",
+  "es": "Anales de la mesa",
+  "de": "Annalen des Tisches"
+ },
+ "annals.empty": {
+  "zh": "尚无列传 —— 先去会一会他们。",
+  "ja": "いまだ列伝なし——まず会いに行こう。",
+  "ko": "아직 열전이 없다 — 먼저 만나러 가라.",
+  "en": "No annals yet — go meet them first.",
+  "es": "Aún no hay anales — ve a conocerlos primero.",
+  "de": "Noch keine Annalen — geh sie erst treffen."
+ },
+ "annals.appearances": {
+  "zh": "出场：",
+  "ja": "登場：",
+  "ko": "등장:",
+  "en": "Appears in: ",
+  "es": "Aparece en: ",
+  "de": "Auftritte: "
+ },
+ "annals.noTell": {
+  "zh": "破绽尚未识破 —— 盯住他的手。",
+  "ja": "まだテルを見抜いていない——彼の手元を凝視せよ。",
+  "ko": "아직 텔을 간파하지 못했다 — 그의 손을 주시하라.",
+  "en": "No tell read yet — watch his hands.",
+  "es": "Ningún tell leído aún — mira sus manos.",
+  "de": "Noch kein Tell erkannt — achte auf seine Hände."
+ },
+ "settings.title": {
+  "zh": "设 置",
+  "ja": "設 定",
+  "ko": "설 정",
+  "en": "Settings",
+  "es": "Ajustes",
+  "de": "Einstellungen"
+ },
+ "settings.equityAssist": {
+  "zh": "局势分析",
+  "ja": "局势分析",
+  "ko": "국세 분석",
+  "en": "Table Analysis",
+  "es": "Análisis de mesa",
+  "de": "Tischanalyse"
+ },
+ "settings.equityAssistDesc": {
+  "zh": "按手牌、公共牌与未弃牌对手数显示胜率、平分率与听牌 outs；不读取暗牌。",
+  "ja": "手札・公共牌・未フォールドの相手数から勝率・分け率・ドローのアウツを表示。伏せ札は読まない。",
+  "ko": "패, 공용패, 남은 상대 수로 승률·분할률·아웃을 표시. 상대의 패는 읽지 않는다.",
+  "en": "Shows win rate, split rate and draw outs from your cards, the board and live opponents; never reads hidden cards.",
+  "es": "Muestra tasa de victoria, empate y outs con tus cartas, el tablero y los rivales vivos; nunca lee cartas ocultas.",
+  "de": "Zeigt Gewinnquote, Splitquote und Draw-Outs aus deinen Karten, dem Board und aktiven Gegnern; liest nie verdeckte Karten."
+ },
+ "settings.language": {
+  "zh": "语言 / Language",
+  "ja": "言語 / Language",
+  "ko": "언어 / Language",
+  "en": "Language",
+  "es": "Idioma",
+  "de": "Sprache"
+ },
+ "settings.languageNote": {
+  "zh": "章节文学文本以中文为准，其余语言陆续补全。",
+  "ja": "章の文学本文は中国語が正、他言語は順次追加される。",
+  "ko": "장의 문학 텍스트는 중국어가 원본이며, 다른 언어는 순차 보강된다.",
+  "en": "The literary chapter text is Chinese-original; other languages fill in as they are completed.",
+  "es": "El texto literario de los capítulos es el chino original; otros idiomas se completan progresivamente.",
+  "de": "Der literarische Kapiteltext ist im Chinesischen verfasst; andere Sprachen folgen, sobald fertig."
+ },
+ "save.title": {
+  "zh": "存 档",
+  "ja": "保 存",
+  "ko": "저 장",
+  "en": "Save Data",
+  "es": "Partida guardada",
+  "de": "Spielstand"
+ },
+ "save.summary": {
+  "zh": "当前进度：",
+  "ja": "現在の進捗：",
+  "ko": "현재 진행:",
+  "en": "Current progress:",
+  "es": "Progreso actual:",
+  "de": "Aktueller Fortschritt:"
+ },
+ "save.pages": {
+  "zh": "页",
+  "ja": "頁",
+  "ko": "장",
+  "en": "pages",
+  "es": "páginas",
+  "de": "Seiten"
+ },
+ "save.generals": {
+  "zh": "将",
+  "ja": "将",
+  "ko": "장",
+  "en": "officers",
+  "es": "oficiales",
+  "de": "Generäle"
+ },
+ "save.endings": {
+  "zh": "终局",
+  "ja": "結末",
+  "ko": "결말",
+  "en": "endings",
+  "es": "finales",
+  "de": "Enden"
+ },
+ "save.practice": {
+  "zh": "野战",
+  "ja": "野戦",
+  "ko": "야전",
+  "en": "skirmishes",
+  "es": "escaramuzas",
+  "de": "Gefechte"
+ },
+ "save.export": {
+  "zh": "导出存档",
+  "ja": "書き出す",
+  "ko": "내보내기",
+  "en": "Export",
+  "es": "Exportar",
+  "de": "Exportieren"
+ },
+ "save.import": {
+  "zh": "导入存档",
+  "ja": "読み込む",
+  "ko": "가져오기",
+  "en": "Import",
+  "es": "Importar",
+  "de": "Importieren"
+ },
+ "save.exported": {
+  "zh": "已导出",
+  "ja": "書き出した",
+  "ko": "내보냈다",
+  "en": "Exported",
+  "es": "Exportado",
+  "de": "Exportiert"
+ },
+ "save.exportedAt": {
+  "zh": "导出时间：",
+  "ja": "書き出し日時：",
+  "ko": "내보낸 시각:",
+  "en": "Exported at:",
+  "es": "Exportado el:",
+  "de": "Exportiert am:"
+ },
+ "save.importSummary": {
+  "zh": "该存档包含：",
+  "ja": "この保存データ：",
+  "ko": "이 저장 데이터:",
+  "en": "This save contains:",
+  "es": "Esta partida contiene:",
+  "de": "Dieser Spielstand enthält:"
+ },
+ "save.confirmOverwrite": {
+  "zh": "覆盖当前进度",
+  "ja": "現在の進捗を上書き",
+  "ko": "현재 진행 덮어쓰기",
+  "en": "Overwrite current progress",
+  "es": "Sobrescribir el progreso",
+  "de": "Fortschritt überschreiben"
+ },
+ "save.invalid": {
+  "zh": "无法识别这个存档文件，请选择本游戏导出的 JSON 存档。",
+  "ja": "この保存ファイルは識別できない。本作が書き出したJSONを選んでほしい。",
+  "ko": "이 저장 파일을 인식할 수 없다. 이 게임이 내보낸 JSON을 선택하라.",
+  "en": "Unrecognized save file — choose a JSON exported by this game.",
+  "es": "Archivo de partida no reconocido: elige un JSON exportado por este juego.",
+  "de": "Unbekannte Spielstandsdatei — wähle ein von diesem Spiel exportiertes JSON."
+ },
+ "save.note": {
+  "zh": "存档与网页版《三国：天下为注》格式互通；未结算的行军和牌局不在其中。",
+  "ja": "保存データはWeb版『三國：天下を賭けて』と互換。未決着の行軍・局は含まれない。",
+  "ko": "저장 데이터는 웹판 《삼국: 천하를 걸고》와 호환된다. 미결 행군과 판은 포함되지 않는다.",
+  "en": "Save files interoperate with the web edition; unfinished marches and hands are not included.",
+  "es": "Los archivos son compatibles con la edición web; marchas y manos sin resolver no se incluyen.",
+  "de": "Spielstände sind mit der Web-Ausgabe kompatibel; laufende Märsche und Hände sind nicht enthalten."
+ },
+ "clue.active": {
+  "zh": "史鉴生效",
+  "ja": "史鑑、効いている",
+  "ko": "사감 유효",
+  "en": "a lesson in effect",
+  "es": "una lección en vigor",
+  "de": "eine Lehre wirkt"
+ },
+ "battle.handLabel": {
+  "zh": "第 X 手",
+  "ja": "第X手",
+  "ko": "제 X 수",
+  "en": "Hand",
+  "es": "Mano",
+  "de": "Hand"
+ },
+ "battle.spectating": {
+  "zh": "观战中……",
+  "ja": "観戦中……",
+  "ko": "관전 중…",
+  "en": "Spectating…",
+  "es": "Espectando…",
+  "de": "Zuschauen…"
+ },
+ "tell.codexTitle": {
+  "zh": "破 绽 簿",
+  "ja": "テル手帳",
+  "ko": "텔 수첩",
+  "en": "The Tell Book",
+  "es": "Libro de tells",
+  "de": "Das Tell-Buch"
+ }
+}

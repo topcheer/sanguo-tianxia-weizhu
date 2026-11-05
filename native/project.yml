@@ -1,0 +1,131 @@
+name: SanguoWeizhu
+options:
+  bundleIdPrefix: com.topcheer
+  createIntermediateGroups: true
+  deploymentTarget:
+    iOS: "17.0"
+    macOS: "14.0"
+settings:
+  base:
+    MARKETING_VERSION: "1.0.0"
+    CURRENT_PROJECT_VERSION: "1"
+    SWIFT_VERSION: "5.10"
+    GENERATE_INFOPLIST_FILE: true
+    ENABLE_USER_SCRIPT_SANDBOXING: false
+targets:
+  App_macOS:
+    type: application
+    platform: macOS
+    deploymentTarget: "14.0"
+    sources:
+      - path: App/Sources
+      - path: App/Resources/GameData
+        type: folder
+        buildPhase: resources
+      - path: App/Resources/Localizations
+        type: folder
+        buildPhase: resources
+      - path: App/Resources/Portraits
+        type: folder
+        buildPhase: resources
+      - path: App/Assets.xcassets
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.topcheer.sanguo-weizhu
+        PRODUCT_NAME: sanguo-weizhu
+        PRODUCT_MODULE_NAME: SanguoWeizhu
+        CODE_SIGN_IDENTITY: "-"
+        SUPPORTS_MACCATALYST: false
+    info:
+      path: App/Info-macOS.plist
+      properties:
+        CFBundleDisplayName: 三国·天下为注
+        NSHighResolutionCapable: true
+  App_iOS:
+    type: application
+    platform: iOS
+    deploymentTarget: "17.0"
+    sources:
+      - path: App/Sources
+      - path: App/Resources/GameData
+        type: folder
+        buildPhase: resources
+      - path: App/Resources/Localizations
+        type: folder
+        buildPhase: resources
+      - path: App/Resources/Portraits
+        type: folder
+        buildPhase: resources
+      - path: App/Assets.xcassets
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.topcheer.sanguo-weizhu
+        PRODUCT_NAME: sanguo-weizhu
+        PRODUCT_MODULE_NAME: SanguoWeizhu
+        CODE_SIGN_STYLE: Automatic
+        CODE_SIGNING_ALLOWED: "NO"
+    info:
+      path: App/Info-iOS.plist
+      properties:
+        CFBundleDisplayName: 三国·天下为注
+        UILaunchScreen: {}
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+        UISupportedInterfaceOrientations~ipad:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationPortraitUpsideDown
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+  Tests_macOS:
+    type: bundle.unit-test
+    platform: macOS
+    deploymentTarget: "14.0"
+    sources:
+      - path: Tests/Sources
+      - path: Tests/GoldenVectors
+        type: folder
+        buildPhase: resources
+    dependencies:
+      - target: App_macOS
+    settings:
+      base:
+        TEST_HOST: "$(BUILT_PRODUCTS_DIR)/sanguo-weizhu.app/Contents/MacOS/sanguo-weizhu"
+        BUNDLE_LOADER: "$(TEST_HOST)"
+  Tests_iOS:
+    type: bundle.unit-test
+    platform: iOS
+    deploymentTarget: "17.0"
+    sources:
+      - path: Tests/Sources
+      - path: Tests/GoldenVectors
+        type: folder
+        buildPhase: resources
+    dependencies:
+      - target: App_iOS
+    settings:
+      base:
+        TEST_HOST: "$(BUILT_PRODUCTS_DIR)/sanguo-weizhu.app/sanguo-weizhu"
+        BUNDLE_LOADER: "$(TEST_HOST)"
+schemes:
+  SanguoWeizhu_macOS:
+    build:
+      targets:
+        App_macOS: all
+    run:
+      config: Debug
+    test:
+      config: Debug
+      targets:
+        - Tests_macOS
+  SanguoWeizhu_iOS:
+    build:
+      targets:
+        App_iOS: all
+    run:
+      config: Debug
+    test:
+      config: Debug
+      targets:
+        - Tests_iOS

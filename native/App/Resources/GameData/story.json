@@ -1,0 +1,8066 @@
+{
+ "stories": {
+  "taoyuan": {
+   "cast": [
+    "liubei",
+    "guanyu",
+    "zhangfei"
+   ],
+   "objective": "在黄巾乱兵中护住乡勇，也让三个陌生人的誓约经得住第一场败仗。",
+   "coldOpen": [
+    {
+     "speaker": "narrator",
+     "text": "涿郡的桃花落在告示上，黄巾二字被雨浸开。三个人同时伸手去揭，指尖碰在一处。"
+    },
+    {
+     "speaker": "liubei",
+     "text": "备只有一双草鞋、一腔热血。二位若愿同行，先把这条命借给乡亲。"
+    },
+    {
+     "speaker": "zhangfei",
+     "text": "俺有酒，有矛，最不怕把命押上！只是输了以后，谁来替俺们收尸？"
+    },
+    {
+     "speaker": "guanyu",
+     "text": "所以今日不求同胜，先约一件事：无论谁退，另外两人都要接他回来。"
+    }
+   ],
+   "map": [
+    {
+     "id": "peach-oath",
+     "node": 1,
+     "title": "桃林 · 先约退路",
+     "lines": [
+      {
+       "speaker": "zhangfei",
+       "text": "结义还不先喝酒？俺连今后埋在哪座山头都不怕！"
+      },
+      {
+       "speaker": "guanyu",
+       "text": "不怕死容易。难的是看见兄弟败了，肯放下自己的胜名去接。"
+      },
+      {
+       "speaker": "liubei",
+       "text": "那便把这一条放在同年同月之前。能回来，才有下一次同行。"
+      }
+     ],
+     "choices": [
+      {
+       "id": "mutual-cover",
+       "text": "把“接回彼此”写进誓约",
+       "detail": "敌军起手士气 -1，记住互救之约",
+       "effects": {
+        "sow": 1,
+        "fact": "taoyuan_cover"
+       }
+      },
+      {
+       "id": "village-rearguard",
+       "text": "先教乡勇辨认退路",
+       "detail": "本回看破提升，记住乡勇退路",
+       "effects": {
+        "keenEye": true,
+        "fact": "taoyuan_rearguard"
+       }
+      }
+     ]
+    }
+   ],
+   "battle": [
+    {
+     "id": "taoyuan-open",
+     "at": "start",
+     "speaker": "zhangfei",
+     "text": "俺先冲！你们可别跟得太慢，叫黄巾看了笑话！"
+    },
+    {
+     "id": "taoyuan-cover",
+     "at": "hand:2",
+     "speaker": "guanyu",
+     "text": "益德逼阵，玄德护住乡勇。别三人同时向前，把退路空给敌人。"
+    },
+    {
+     "id": "taoyuan-low-oath",
+     "at": "low",
+     "speaker": "liubei",
+     "text": "翼德，回来！你答应过，败了也有人接，不许把誓约只用在别人身上。",
+     "when": "fact:taoyuan_cover"
+    },
+    {
+     "id": "taoyuan-low",
+     "at": "low",
+     "speaker": "liubei",
+     "text": "别盯着倒下的旗。先看清谁还在等同伴伸手。"
+    }
+   ],
+   "win": {
+    "text": "桃花落在三只碗里，刘备把第四只推给你，却没有请你改口叫兄长。“今日你看见我们如何开始；他日若有人走散，替我们记得回来。”",
+    "hook": "桃园酒未醒，酸枣诸侯已会盟。下一杯，要在一个叫华雄的人面前保持温热。"
+   },
+   "loss": {
+    "text": "酒还温着，三人却各自被困在一处。你终于明白，同生共死若只是同时向前，便只是三场互不相见的孤战。",
+    "clue": "史鉴 · 互救不是三人一起全押：有人逼阵，便要有人留后。重开军资 +150，先给同伴留退路。",
+    "clueFx": "supply"
+   }
+  },
+  "sishui": {
+   "cast": [
+    "liubei",
+    "guanyu",
+    "zhangfei",
+    "caocao",
+    "huaxiong"
+   ],
+   "objective": "在诸侯的轻视与华雄的连胜里，替关羽争到一杯仍未凉的出战机会。",
+   "coldOpen": [
+    {
+     "speaker": "narrator",
+     "text": "诸侯帐中摆着十九路酒杯，关外华雄连斩两将。第三杯酒斟好了，却没人肯起身。"
+    },
+    {
+     "speaker": "caocao",
+     "text": "这酒我斟。谁能取华雄首级，回来便还是温的。"
+    },
+    {
+     "speaker": "guanyu",
+     "text": "桃园之约，不是叫兄弟替我去死。此杯请留，关某自己回来喝。",
+     "when": "page:taoyuan:yeshi"
+    },
+    {
+     "speaker": "zhangfei",
+     "text": "二哥，俺替你擂鼓。你若不回来，酒再热俺也不饮！"
+    }
+   ],
+   "intros": {
+    "huaxiong": [
+     {
+      "when": "seen:huaxiong",
+      "bio": "他记得上次那杯没有凉的酒，更记得是谁没有急。",
+      "quote": "又斟酒？这次，我让它开席便冷。"
+     },
+     {
+      "bio": "连胜让他相信，每一个挑战者都会比上一个更急。",
+      "quote": "酒温正好。你的首级，也正好。"
+     }
+    ]
+   },
+   "map": [
+    {
+     "id": "warm-cup",
+     "node": 1,
+     "title": "汜水关 · 杯酒为凭",
+     "lines": [
+      {
+       "speaker": "caocao",
+       "text": "满帐都在数华雄杀了几人，只有云长在看他杀完以后往哪里回头。"
+      },
+      {
+       "speaker": "guanyu",
+       "text": "他靠下一阵连胜压住诸侯。若我不替自己急，他便要替我急。"
+      }
+     ],
+     "choices": [
+      {
+       "id": "leave-wine",
+       "text": "把酒留在帐中，不发豪言",
+       "detail": "华雄起手士气 -1，记住这杯归约",
+       "effects": {
+        "sow": 1,
+        "fact": "sishui_return_cup"
+       }
+      },
+      {
+       "id": "watch-reins",
+       "text": "先看华雄如何勒马回头",
+       "detail": "本回看破提升，记住他的回望",
+       "effects": {
+        "keenEye": true,
+        "fact": "sishui_horse_reins"
+       }
+      }
+     ]
+    }
+   ],
+   "battle": [
+    {
+     "id": "sishui-open",
+     "at": "start",
+     "speaker": "huaxiong",
+     "text": "又来一个借酒出名的。酒冷之前，够你败三次。"
+    },
+    {
+     "id": "sishui-cup",
+     "at": "hand:2",
+     "speaker": "caocao",
+     "text": "酒面还静。云长，满帐催的是鼓，不是你的刀。"
+    },
+    {
+     "id": "sishui-low",
+     "at": "low",
+     "speaker": "guanyu",
+     "text": "关某不急。他若只敢在连胜时挥刀，酒凉之前，急的一定是他。"
+    }
+   ],
+   "win": {
+    "text": "关羽把酒杯递回曹操手中，酒面仍暖。刘备替他解下染尘的披风，张飞的鼓直到此刻才停。曹操却看向你：“方才满帐都急，只有你肯等他。”",
+    "hook": "华雄已退，虎牢关门却开了。吕布只问一句：方才温酒的人，敢不敢再来？"
+   },
+   "loss": {
+    "text": "酒彻底冷了，帐内无人再提第二杯。你不是败给华雄的快刀，是把“回来喝酒”误听成了“必须立刻赢”。",
+    "clue": "史鉴 · 温酒不是催你速胜，而是相信能回来。华雄靠连胜逼人抢攻；让他先急，重开时其起手士气 -1。",
+    "clueFx": "sow"
+   }
+  },
+  "hulao": {
+   "cast": [
+    "lvbu",
+    "liubei",
+    "guanyu",
+    "zhangfei"
+   ],
+   "objective": "看清吕布的进退，在虎牢关前赢下第一场“不可能”。",
+   "coldOpen": [
+    {
+     "speaker": "narrator",
+     "text": "关上画戟一指，诸侯的旗号便矮了半截。你刚到，刘备却把一杯酒推到你面前。"
+    },
+    {
+     "speaker": "liubei",
+     "text": "我二弟的酒曾斩华雄。今日这一杯，你敢不敢接？"
+    },
+    {
+     "speaker": "writer",
+     "text": "这一页人人知道结局。可没有人知道，你为何也在场。",
+     "when": "!seen:lvbu"
+    },
+    {
+     "speaker": "lvbu",
+     "text": "又是你。上次没打完的，今日一并算。",
+     "when": "seen:lvbu"
+    }
+   ],
+   "intros": {
+    "lvbu": [
+     {
+      "when": "seen:lvbu",
+      "bio": "他记得你上一次坐在对面，也记得你怎样赢下底池。",
+      "quote": "别拿诸侯吓唬我。你，一个人上来。"
+     },
+     {
+      "bio": "虎牢关前，他把“天下无双”当作最短的战书。",
+      "quote": "三英一起来，或你一个人来。别让我等。"
+     }
+    ]
+   },
+   "map": [
+    {
+     "id": "three-heroes",
+     "node": 1,
+     "title": "汜水 · 三英旧约",
+     "lines": [
+      {
+       "speaker": "guanyu",
+       "text": "他的强，不在每一手都进；在你怕了以后，他不必再有牌。"
+      },
+      {
+       "speaker": "zhangfei",
+       "text": "说这些作甚！俺先替你掀他一阵！"
+      }
+     ],
+     "choices": [
+      {
+       "id": "allies",
+       "text": "请三英掠阵",
+       "detail": "军资 +100，吕布起手士气 -1",
+       "effects": {
+        "chips": 100,
+        "sow": 1,
+        "fact": "hulao_allies"
+       }
+      },
+      {
+       "id": "watch",
+       "text": "独自看他打完一手",
+       "detail": "本回假破绽减少",
+       "effects": {
+        "keenEye": true,
+        "fact": "hulao_watch"
+       }
+      }
+     ]
+    }
+   ],
+   "battle": [
+    {
+     "id": "hulao-open",
+     "at": "start",
+     "speaker": "lvbu",
+     "text": "你的筹码像诸侯的胆子——看着不少。"
+    },
+    {
+     "id": "hulao-read",
+     "at": "hand:2",
+     "speaker": "guanyu",
+     "text": "他越顺，越会把强牌写在眉上。别急着替他怕。"
+    },
+    {
+     "id": "hulao-low",
+     "at": "low",
+     "speaker": "lvbu",
+     "text": "好！这才配叫虎牢！",
+     "when": "!fact:hulao_watch"
+    },
+    {
+     "id": "hulao-low-watch",
+     "at": "low",
+     "speaker": "you",
+     "text": "原来“只进不退”不是勇，是他只会这一种赢法。",
+     "when": "fact:hulao_watch"
+    }
+   ],
+   "win": {
+    "text": "画戟坠地，诸侯却没有欢呼。刘备先扶住你，关羽拾起了那杯始终未动的酒。",
+    "hook": "吕布败走前记住了你的名字。下一次相见，不会还在虎牢。"
+   },
+   "loss": {
+    "text": "你跟着诸侯一起退了。直到离开虎牢，你才懂：他一直在逼你把“天下第一”当成第五张公共牌。",
+    "clue": "史鉴 · 吕布靠连续施压放大恐惧；重开时，他的假破绽会减少。",
+    "clueFx": "keenEye"
+   }
+  },
+  "fengyiting": {
+   "cast": [
+    "diaochan",
+    "dongzhuo",
+    "lvbu"
+   ],
+   "objective": "让董卓与吕布在同一张桌上互相猜疑，替貂蝉把连环计走完最后一步。",
+   "coldOpen": [
+    {
+     "speaker": "narrator",
+     "text": "凤仪亭的荷花开得极静。董卓在亭外等美人，吕布在假山后等一个解释，貂蝉却只等他们同席。"
+    },
+    {
+     "speaker": "diaochan",
+     "text": "太师要我的归顺，将军要我的誓言。今日我不答，我要他们听见彼此的答案。"
+    },
+    {
+     "speaker": "lvbu",
+     "text": "虎牢你逼我退一步，今日若叫我再退，走的便不是我，是这整座郿坞。",
+     "when": "page:hulao:yeshi"
+    },
+    {
+     "speaker": "dongzhuo",
+     "text": "奉先，咱家待你不薄。连你也要隔着珠帘看她么？"
+    }
+   ],
+   "intros": {
+    "dongzhuo": [
+     {
+      "when": "seen:dongzhuo",
+      "bio": "郿坞的门换过锁，他仍以为所有真心都能收入库中。",
+      "quote": "又来挑唆？咱家这次先看你，再看奉先。"
+     },
+     {
+      "bio": "他把恩情写成账簿，也要吕布用顺从逐笔偿还。",
+      "quote": "父子同席，有什么话不能明着说？"
+     }
+    ],
+    "lvbu": [
+     {
+      "when": "page:hulao:yeshi",
+      "bio": "虎牢之后他肯退一次，却不肯再让任何人替他决定去处。",
+      "quote": "上次你赢我的戟。这次，别替她选。"
+     },
+     {
+      "when": "seen:lvbu",
+      "bio": "旧败没有磨去锋芒，只让他更难忍受被当作他人之物。",
+      "quote": "我认得你。也认得你眼里那种“为我好”。"
+     },
+     {
+      "bio": "方天画戟立在亭外，他最怕的却是亭内一句含糊的话。",
+      "quote": "让她说清楚。你也一样。"
+     }
+    ]
+   },
+   "map": [
+    {
+     "id": "two-listeners",
+     "node": 1,
+     "title": "凤仪亭 · 一句话两人听",
+     "lines": [
+      {
+       "speaker": "diaochan",
+       "text": "他们若各自来问，我只能各答一半。同席以后，太师加注要看奉先脸色，奉先弃牌也要听太师笑声。"
+      },
+      {
+       "speaker": "you",
+       "text": "所以你不必骗两个人，只要让同一句真话有两种听法。"
+      },
+      {
+       "speaker": "diaochan",
+       "text": "不。我还要他们终于明白，我不是那句真话里的酬劳。"
+      }
+     ],
+     "choices": [
+      {
+       "id": "tell-dong",
+       "text": "让董卓先看见吕布的迟疑",
+       "detail": "本回看破提升，记住太师的疑",
+       "effects": {
+        "keenEye": true,
+        "fact": "fengyi_dong_doubt"
+       }
+      },
+      {
+       "id": "tell-lvbu",
+       "text": "让吕布听见董卓的占有",
+       "detail": "敌军起手士气 -1，记住奉先的怒",
+       "effects": {
+        "sow": 1,
+        "fact": "fengyi_lvbu_rage"
+       }
+      }
+     ]
+    }
+   ],
+   "battle": [
+    {
+     "id": "fengyi-open-multi",
+     "at": "start",
+     "speaker": "diaochan",
+     "text": "今日没有两张底牌，只有一道父子名分。谁先把对方当敌人，谁便替我开了局。",
+     "when": "multi"
+    },
+    {
+     "id": "fengyi-dong",
+     "at": "hand:2",
+     "speaker": "dongzhuo",
+     "text": "奉先，你跟她走，还是跟咱家走？想清楚再下注。",
+     "when": "multi"
+    },
+    {
+     "id": "fengyi-lvbu",
+     "at": "hand:3",
+     "speaker": "lvbu",
+     "text": "义父口口声声待我不薄，原来我的一切，都记得这么清楚。",
+     "when": "multi"
+    },
+    {
+     "id": "fengyi-low",
+     "at": "low",
+     "speaker": "diaochan",
+     "text": "别看我。看你们自己：一个怕失去权，一个怕从来不是自己。",
+     "when": "multi"
+    }
+   ],
+   "win": {
+    "text": "貂蝉推开亭门，第一次不必借谁的眼色说话。董卓与吕布仍盯着彼此，直到父子之名只剩一张撕开的请帖。她没有奔向任何一人，只把自己的路走出了郿坞。",
+    "hook": "凤仪亭一别，吕布与貂蝉都离开了郿坞。小沛来的使者却在路上——下回，他要替两家解仇。"
+   },
+   "loss": {
+    "text": "董卓只当你争宠，吕布只当你欺瞒。貂蝉摘下耳珰，没有哭：你想替她赢下两个男人，却忘了她真正要赢的是不再属于任何人的一句话。",
+    "clue": "史鉴 · 别分头猜董卓与吕布的牌；要看一人下注时另一人先望向谁。连环计的缝隙在两人之间，重开后假破绽减少。",
+    "clueFx": "keenEye"
+   }
+  },
+  "yuanshemen": {
+   "cast": [
+    "lvbu",
+    "jiling",
+    "yuanshu",
+    "liubei",
+    "guanyu",
+    "zhangfei"
+   ],
+   "objective": "让纪灵与刘备都保住退路，也逼吕布证明那一箭不是另一种恃强。",
+   "coldOpen": [
+    {
+     "speaker": "narrator",
+     "text": "辕门外的画戟只有小枝可中，辕门内却坐着两支随时会厮杀的大军。吕布把弓放在桌上，先请你发牌。"
+    },
+    {
+     "speaker": "lvbu",
+     "text": "虎牢你说我只知进。今日两家都在，看我如何用一支箭叫他们退。",
+     "when": "page:hulao:yeshi"
+    },
+    {
+     "speaker": "yuanshu",
+     "text": "纪灵听令:小沛若不下,休回淮南!孤的玉玺要配的是天下,不是一个吕布的情面。",
+     "when": "!seen:yuanshu"
+    },
+    {
+     "speaker": "jiling",
+     "text": "纪某奉主公之命，不因一箭退兵。除非满座都承认，这一箭赌得起。"
+    },
+    {
+     "speaker": "liubei",
+     "text": "备不愿拿小沛百姓的命，替任何人证明箭术。"
+    }
+   ],
+   "intros": {
+    "jiling": [
+     {
+      "when": "seen:jiling",
+      "bio": "他仍不服那一箭，却开始认真衡量箭下的另一条命。",
+      "quote": "再赌可以。先把两家的条件一字不改地说清。"
+     },
+     {
+      "bio": "三尖刀压着军令，他不能退得像一个被神箭吓走的人。",
+      "quote": "吕将军有神射，纪某也有军令。"
+     }
+    ]
+   },
+   "map": [
+    {
+     "id": "shared-wager",
+     "node": 1,
+     "title": "辕门 · 共认一注",
+     "lines": [
+      {
+       "speaker": "zhangfei",
+       "text": "一箭便叫俺大哥免于刀兵？若射不中，俺先掀了他的弓！"
+      },
+      {
+       "speaker": "guanyu",
+       "text": "所以最难不在射中，在射失以后两家也认这笔账。"
+      },
+      {
+       "speaker": "lvbu",
+       "text": "那就把不中怎么办也说清。吕某今日不靠别人替我自信。"
+      }
+     ],
+     "choices": [
+      {
+       "id": "name-the-miss",
+       "text": "先说箭若不中，两家如何收兵",
+       "detail": "本回看破提升，记住共同的赌注",
+       "effects": {
+        "keenEye": true,
+        "fact": "yuanshemen_named_miss"
+       }
+      },
+      {
+       "id": "seat-the-rivals",
+       "text": "请玄德与纪灵同坐一侧",
+       "detail": "纪灵起手士气 -1，记住同席之义",
+       "effects": {
+        "sow": 1,
+        "fact": "yuanshemen_shared_seat"
+       }
+      }
+     ]
+    }
+   ],
+   "battle": [
+    {
+     "id": "yuanmen-open",
+     "at": "start",
+     "speaker": "jiling",
+     "text": "先别谈神射。我若赢了这一手，你敢不敢也让玄德出城一战？"
+    },
+    {
+     "id": "yuanmen-arrow",
+     "at": "hand:2",
+     "speaker": "lvbu",
+     "text": "我若射不中，自然依你。可你若只想看我出丑，便没听懂这局。"
+    },
+    {
+     "id": "yuanmen-low",
+     "at": "low",
+     "speaker": "liubei",
+     "text": "纪将军，今日要赢的不是你的军令，是你回去以后仍能向士卒交代。"
+    }
+   ],
+   "win": {
+    "text": "箭离弦时，纪灵没有看小枝，先看刘备。刘备把面前的刀推远一寸，他才终于收兵。吕布大笑，只有你看见他掌心也有汗：这一箭若只是神技，救不了任何人。",
+    "hook": "辕门保住了小沛，却保不住吕布自己的下邳；而许都来的曹操，已先一步走向宛城。"
+   },
+   "loss": {
+    "text": "箭还未离弦，纪灵与刘备已经各自起身。你忙着替吕布保证必中，忘了问另外两人是否愿意把军令与百姓押在同一句话上。",
+    "clue": "史鉴 · 和事不是两边都不得罪，而是先让两边承认同一个赌注。箭未离弦前别说满；重开后假破绽减少。",
+    "clueFx": "keenEye"
+   }
+  },
+  "wancheng": {
+   "cast": [
+    "caocao",
+    "dianwei",
+    "zhangxiu"
+   ],
+   "objective": "在张绣降而复叛的一夜，先看住典韦的双戟，再替曹操留住最后一条退路。",
+   "coldOpen": [
+    {
+     "speaker": "narrator",
+     "text": "宛城降旗尚未收起，曹营的宴席已经唱到深夜。典韦抱着双戟坐在帐外，只有你看见墙影里多了一双脚。"
+    },
+    {
+     "speaker": "caocao",
+     "text": "汜水那杯温酒，孤至今记得。可惜今夜人心比酒凉得快，孤竟没尝出来。",
+     "when": "page:sishui:yeshi"
+    },
+    {
+     "speaker": "dianwei",
+     "text": "主公安睡。典某不懂牌，只懂这扇门：人在，戟在，门便在。"
+    },
+    {
+     "speaker": "zhangxiu",
+     "text": "降将的酒，是不是总要低头才配喝？曹公，你也来算算这一夜谁欠谁。"
+    }
+   ],
+   "intros": {
+    "zhangxiu": [
+     {
+      "when": "seen:zhangxiu",
+      "bio": "降旗可以再次升起，被当作无声的屈辱却再难收回。",
+      "quote": "这次莫问双戟。先问你还肯不肯听我说完。"
+     },
+     {
+      "bio": "北地枪王已经降过一次，再出手时便不会留第二次犹豫。",
+      "quote": "白日受降，夜里听枪。曹公请坐。"
+     }
+    ]
+   },
+   "map": [
+    {
+     "id": "twin-halberds",
+     "node": 1,
+     "title": "宛城 · 双戟未失",
+     "lines": [
+      {
+       "speaker": "dianwei",
+       "text": "胡车儿今夜敬了我三碗酒，眼睛却总落在戟上。兵器若失，我拿什么替主公争一条退路？"
+      },
+      {
+       "speaker": "caocao",
+       "text": "张绣既降，为何还像坐在针毡？孤是不是把“归顺”误听成了“无话可说”。"
+      }
+     ],
+     "choices": [
+      {
+       "id": "guard-arms",
+       "text": "与典韦同守双戟和后营马道",
+       "detail": "本回看破提升，双戟与退路同守",
+       "effects": {
+        "keenEye": true,
+        "fact": "wancheng_arms_ready"
+       }
+      },
+      {
+       "id": "return-camps",
+       "text": "让降卒各归旧营，不夺其械",
+       "detail": "张绣起手士气 -1，记住降卒之心",
+       "effects": {
+        "sow": 1,
+        "fact": "wancheng_respect"
+       }
+      }
+     ]
+    }
+   ],
+   "battle": [
+    {
+     "id": "wancheng-open",
+     "at": "start",
+     "speaker": "zhangxiu",
+     "text": "白日你受我的降，夜里却当我无话可说。张绣这一枪，现在才递出去。"
+    },
+    {
+     "id": "wancheng-regret",
+     "at": "hand:2",
+     "speaker": "caocao",
+     "text": "孤错算了张绣，还是错算了自己？典韦，先莫让任何人进帐。"
+    },
+    {
+     "id": "wancheng-low-ready",
+     "at": "low",
+     "speaker": "dianwei",
+     "text": "主公先走！双戟还在，今夜便没有人能叫典某空手守门。",
+     "when": "fact:wancheng_arms_ready"
+    },
+    {
+     "id": "wancheng-low",
+     "at": "low",
+     "speaker": "dianwei",
+     "text": "主公先走！莫问典某还能站多久，只问马是否备好。"
+    }
+   ],
+   "win": {
+    "text": "双戟仍在典韦手中，张绣的火没能封住营门。曹操走出很远才回头，第一次没有问损失多少兵马，只问：“典韦可还站在原处？”身后的壮汉举了举戟，算是回答。",
+    "hook": "宛城的门守住了，曹操却来不及学乖。他已兵临下邳；这一次，被围的是吕布。"
+   },
+   "loss": {
+    "text": "双戟被盗那刻，你才懂张绣等的不是曹操熟睡，是他把别人的屈辱当作安全。营门还亮着火，典韦没有再退。",
+    "clue": "史鉴 · 张绣决意，在他不再看曹操时便已写下。别只盯枪尖，先守营门与双戟；重开后假破绽减少。",
+    "clueFx": "keenEye"
+   }
+  },
+  "baimenlou": {
+   "cast": [
+    "lvbu",
+    "chengong",
+    "caocao",
+    "liubei"
+   ],
+   "objective": "在吕布与陈宫之间找出真正的死局，决定下邳还有没有明天。",
+   "coldOpen": [
+    {
+     "speaker": "chengong",
+     "text": "城外是曹军，城内是渴了三日的兵。温侯仍说，只要他肯出战，便没有输。"
+    },
+    {
+     "speaker": "lvbu",
+     "text": "虎牢那次，你赢的是牌。今日敢拿命再赌一次？",
+     "when": "page:hulao:yeshi"
+    },
+    {
+     "speaker": "chengong",
+     "text": "你来了。虎牢那页我读过——可这一回，要救的不是他的胜名。",
+     "when": "page:hulao:yeshi"
+    },
+    {
+     "speaker": "writer",
+     "text": "白门楼的绳子悬在页外。你每赢一手，它便清楚一分。"
+    }
+   ],
+   "intros": {
+    "lvbu": [
+     {
+      "when": "page:hulao:yeshi",
+      "bio": "虎牢败过一次的吕布，更不肯承认自己已被困死。",
+      "quote": "你能让我败，能不能让我活？"
+     },
+     {
+      "bio": "泗水淹城，天下第一仍在等一个可以冲锋的方向。",
+      "quote": "让开。我再去杀一条路。"
+     }
+    ],
+    "chengong": [
+     {
+      "bio": "他不是来替吕布求胜，是来替下邳求一条退路。",
+      "quote": "若只会赢牌，你救不了他。"
+     }
+    ]
+   },
+   "map": [
+    {
+     "id": "last-counsel",
+     "node": 1,
+     "title": "泗水 · 最后一策",
+     "lines": [
+      {
+       "speaker": "chengong",
+       "text": "我劝他出城，他问我出城以后还是不是吕布。你看，这才是他的牢。"
+      },
+      {
+       "speaker": "caocao",
+       "text": "玄德也在楼上。你若救下奉先，他日谁来制他？"
+      }
+     ],
+     "choices": [
+      {
+       "id": "chen-plan",
+       "text": "替陈宫说完那一条退路",
+       "detail": "看破提升，记住陈宫之谋",
+       "effects": {
+        "keenEye": true,
+        "fact": "chen_plan"
+       }
+      },
+      {
+       "id": "lvbu-oath",
+       "text": "让吕布亲口许诺不再轻进",
+       "detail": "敌军起手士气 -1",
+       "effects": {
+        "sow": 1,
+        "fact": "lvbu_oath"
+       }
+      }
+     ]
+    }
+   ],
+   "battle": [
+    {
+     "id": "baimen-open",
+     "at": "start",
+     "speaker": "chengong",
+     "text": "看他筹码少于三成时。困兽会把最后一丝理智也压上去。"
+    },
+    {
+     "id": "baimen-low",
+     "at": "low",
+     "speaker": "lvbu",
+     "text": "陈宫！若我这次听了你的，世人会不会笑我？"
+    },
+    {
+     "id": "baimen-answer",
+     "at": "low",
+     "speaker": "chengong",
+     "text": "会。可活着的人，才轮得到被笑话。"
+    }
+   ],
+   "win": {
+    "text": "吕布终于没有冲向城门。他摘下束发金冠，第一次问陈宫：“往哪里退？”下邳的哭声停了一夜。",
+    "hook": "许都青梅将熟。曹操已经听说：天下第一没有死，而你就在那张桌边。",
+    "choiceFact": "lvbu_lives"
+   },
+   "loss": {
+    "text": "绳索收紧时，你才发现自己一直在回答“怎样赢吕布”，却从没回答“吕布怎样才肯活”。",
+    "clue": "史鉴 · 陈宫看穿了困兽的节奏；重开时假破绽减少。",
+    "clueFx": "keenEye"
+   }
+  },
+  "xianshan": {
+   "cast": [
+    "sunjian",
+    "huanggai",
+    "chengpu",
+    "handang",
+    "liubiao"
+   ],
+   "objective": "在岘山的竹影里替孙坚读出那一箭,让江东的火种不灭在起笔。",
+   "coldOpen": [
+    {
+     "speaker": "narrator",
+     "text": "洛阳的余烬未冷,传国玉玺贴着孙坚的胸口发烫。襄阳城头,刘表的第二支箭已经搭上弦。"
+    },
+    {
+     "speaker": "sunjian",
+     "text": "孤从长沙杀到洛阳,没输过一阵。刘景升凭一座城、几支箭,就想留下江东的虎?"
+    },
+    {
+     "speaker": "chengpu",
+     "text": "主公,岘山竹密,追兵不宜尽出。不如先遣人探路,老臣压阵。"
+    },
+    {
+     "speaker": "huanggai",
+     "text": "德谋谨慎过了头。那「吕公」跑得连盔都歪了,再不追,刘表就真寻着援军了!"
+    },
+    {
+     "speaker": "writer",
+     "text": "野史里,猛虎常死于最信任自己爪牙的那一天。",
+     "when": "!seen:sunjian"
+    }
+   ],
+   "intros": {
+    "huangzu": [
+     {
+      "when": "seen:huangzu",
+      "bio": "他记得孙坚的刀有多快,这次把伏兵埋得更深。",
+      "quote": "又来一只孙家的虎。岘山的箭,管够。"
+     },
+     {
+      "bio": "他打不过孙坚,但他认得孙坚的性子——猛虎从不绕路。",
+      "quote": "江夏的箭,等这一天等了两年。"
+     }
+    ],
+    "caimao": [
+     {
+      "when": "seen:caimao",
+      "bio": "水军布好了退路,他只剩一件事:别让蔡家陪葬。",
+      "quote": "这次我守水路。山里的事,黄将军请自便。"
+     },
+     {
+      "bio": "他把姐姐的枕风与姐夫的兵符都换成了筹码。",
+      "quote": "荆州的水养不了虎。将军,别白费箭。"
+     }
+    ]
+   },
+   "map": [
+    {
+     "id": "bamboo-veil",
+     "node": 1,
+     "title": "邓塞 · 竹影疑兵",
+     "lines": [
+      {
+       "speaker": "handang",
+       "text": "竹影里有人影,数不清。末将愿带义从先探,主公压后。"
+      },
+      {
+       "speaker": "sunjian",
+       "text": "义公的话,孤听见了。可若孤压后,将士便会替孤慢半拍。"
+      },
+      {
+       "speaker": "you",
+       "text": "虎的胆气在阵前,虎的活路却常常在回头的那一眼。"
+      }
+     ],
+     "choices": [
+      {
+       "id": "scout-first",
+       "text": "先遣韩当探竹,全军缓进",
+       "detail": "本回看破提升,记住竹影之疑",
+       "effects": {
+        "keenEye": true,
+        "fact": "xianshan_scout"
+       }
+      },
+      {
+       "id": "tiger-charge",
+       "text": "随猛虎直接凿穿竹阵",
+       "detail": "军资 +100,敌军起手士气 -1",
+       "effects": {
+        "chips": 100,
+        "sow": 1,
+        "fact": "xianshan_charge"
+       }
+      }
+     ]
+    }
+   ],
+   "battle": [
+    {
+     "id": "xianshan-open",
+     "at": "start",
+     "speaker": "huangzu",
+     "text": "孙坚!你追了两天,箭也追了你两天!"
+    },
+    {
+     "id": "xianshan-slow",
+     "at": "hand:2",
+     "speaker": "chengpu",
+     "text": "别急着回应每一声鼓。竹子会响,响的不都是人。",
+     "when": "fact:xianshan_scout"
+    },
+    {
+     "id": "xianshan-rain",
+     "at": "hand:2",
+     "speaker": "sunjian",
+     "text": "箭雨将至。看旗不看他——旗倒的方向,才是伏兵真处。",
+     "when": "!fact:xianshan_scout"
+    },
+    {
+     "id": "xianshan-low",
+     "at": "low",
+     "speaker": "huanggai",
+     "text": "主公,换马!公覆的背,还挡得住一轮!"
+    }
+   ],
+   "win": {
+    "text": "竹影里的箭一一落空,黄祖被按在马下时还在喊\"不可能\"。孙坚没有杀他,只折断了他两支箭:\"回去告诉刘景升,襄阳的城门,孤明年再来敲。\"江东的火种,就这样越过了岘山。",
+    "hook": "猛虎既全,江东的故事有了下一个名字——界桥的白马,正朝幽州奔去。"
+   },
+   "loss": {
+    "text": "箭入竹影的那一刻,你才看清那阵\"溃逃\"有多整齐。猛虎死于追击,而江东还要等一个少年接住这个名字。",
+    "clue": "史鉴 · 黄祖的伏兵靠「乱」诱你全押:竹响时先看旗。重开后他的假破绽会减少。",
+    "clueFx": "keenEye"
+   }
+  },
+  "jieqiao": {
+   "cast": [
+    "gongsunzan",
+    "zhaoyun",
+    "quyi",
+    "wenchou"
+   ],
+   "objective": "在界桥替白马义从挡下先登的弩,也替赵云挣到第一次被看清的出手。",
+   "coldOpen": [
+    {
+     "speaker": "narrator",
+     "text": "幽州的白马义从号称天下第一骑,直到界桥对岸,八百先登营沉默地张开了弩。"
+    },
+    {
+     "speaker": "gongsunzan",
+     "text": "白马义从,冲一次,河北就安静十年。伯圭在幽州见过最强的是狼,没见过会等人的狼。"
+    },
+    {
+     "speaker": "zhaoyun",
+     "text": "云自常山来,投的是守土之军,不是送死之军。将军,敌阵不齐,必有后变。"
+    },
+    {
+     "speaker": "quyi",
+     "text": "骑兵?过了河,就是一排排会喘气的靶子。",
+     "when": "seen:quyi"
+    },
+    {
+     "speaker": "wenchou",
+     "text": "袁公说,河北的枪,今日要教幽州人怎么用。",
+     "when": "!seen:wenchou"
+    }
+   ],
+   "intros": {
+    "quyi": [
+     {
+      "when": "seen:quyi",
+      "bio": "他记得上一次你的白马怎样绕开弩阵,这次把盾压得更低。",
+      "quote": "又想绕?我的弩,不止一排。"
+     },
+     {
+      "bio": "他麾下八百人,人人见过血,个个不怕骑。",
+      "quote": "过河吧。我的弩等你很久了。"
+     }
+    ],
+    "wenchou": [
+     {
+      "when": "page:baima:yeshi",
+      "bio": "颜良的名字是他的伤疤,也是他的火——他听说那阵输得不明不白。",
+      "quote": "河北双壁,少了一壁。今日我来补上。"
+     },
+     {
+      "when": "seen:wenchou",
+      "bio": "他仍不服上一阵,枪却收起了三分轻敌。",
+      "quote": "这次,我先等你过河。"
+     },
+     {
+      "bio": "他与颜良并称河北双壁,唯一胜过颜良的,是耐心。",
+      "quote": "我不急。枪比你长,我等得起。"
+     }
+    ]
+   },
+   "map": [
+    {
+     "id": "river-read",
+     "node": 1,
+     "title": "界桥 · 半渡之机",
+     "lines": [
+      {
+       "speaker": "zhaoyun",
+       "text": "桥窄,马密。若先登趁我半渡放弩,白马再多也挤不成阵。"
+      },
+      {
+       "speaker": "gongsunzan",
+       "text": "子龙太谨慎。当年孤带着几十骑,就敢凿穿鲜卑的狼群。"
+      },
+      {
+       "speaker": "you",
+       "text": "凿穿靠的是出其不意。今日对岸的人,专等你们冲。"
+      }
+     ],
+     "choices": [
+      {
+       "id": "dismount-line",
+       "text": "令前锋下马结盾,牵马过桥",
+       "detail": "本回看破提升,记住半渡之险",
+       "effects": {
+        "keenEye": true,
+        "fact": "jieqiao_dismount"
+       }
+      },
+      {
+       "id": "white-storm",
+       "text": "白马全速,直扑先登",
+       "detail": "军资 +100,先登起手士气 -1",
+       "effects": {
+        "chips": 100,
+        "sow": 1,
+        "fact": "jieqiao_storm"
+       }
+      }
+     ]
+    }
+   ],
+   "battle": [
+    {
+     "id": "jieqiao-open",
+     "at": "start",
+     "speaker": "quyi",
+     "text": "盾——起!弩——抬!让幽州人见识什么叫先登!"
+    },
+    {
+     "id": "jieqiao-shield",
+     "at": "hand:2",
+     "speaker": "zhaoyun",
+     "text": "他的盾每落一次,弩就要重上一弦。数他的节拍,别数他的箭。",
+     "when": "fact:jieqiao_dismount"
+    },
+    {
+     "id": "jieqiao-wen",
+     "at": "hand:3",
+     "speaker": "wenchou",
+     "text": "白马乱了!河北的枪,收账!"
+    },
+    {
+     "id": "jieqiao-low",
+     "at": "low",
+     "speaker": "gongsunzan",
+     "text": "义从折损过半……子龙,你说得对,是伯圭急了。"
+    }
+   ],
+   "win": {
+    "text": "弩阵的节拍被你数尽,白马分三队轮冲,先登的盾墙终于裂开一角。文丑挺枪来救时,赵云一枪逼住他:\"将军的枪很稳,可惜为骄人而用。\"袁绍的中军退回河北,界桥两岸,从此都知道了常山赵子龙的名字。",
+    "hook": "公孙瓒胜了这一阵,却败给了自己的高墙。而在郿坞的凤仪亭,另一场父子裂痕正待花开。"
+   },
+   "loss": {
+    "text": "半渡时弩声齐响,白马成排倒在河里。赵云断后救回公孙瓒,回头看你一眼,没有说话。",
+    "clue": "史鉴 · 麹义的弩阵赢在「等你冲」。重开后他的假破绽减少;别在半渡时把义从全部推上。",
+    "clueFx": "keenEye"
+   }
+  },
+  "shenting": {
+   "cast": [
+    "sunce",
+    "taishici",
+    "zhouyu",
+    "chengpu"
+   ],
+   "objective": "在神亭岭让两件兵器打完整场,替孙策与太史慈都留下体面。",
+   "coldOpen": [
+    {
+     "speaker": "narrator",
+     "text": "曲阿城外,斥候来报:孙策只带十二骑,去探刘繇大营。太史慈提枪上马,身后只跟了一个会打鼓的小卒。"
+    },
+    {
+     "speaker": "sunce",
+     "text": "人人都叫我小霸王。今日岭上无阵无鼓,正好看看,名号底下还剩什么。"
+    },
+    {
+     "speaker": "taishici",
+     "text": "东莱太史慈,饭都吃不饱的人,偏偏枪不输人。战便战,谁怕谁!"
+    },
+    {
+     "speaker": "zhouyu",
+     "text": "伯符,神亭岭的风向不对。这一仗打到一半,必来第三拨人。"
+    }
+   ],
+   "intros": {
+    "taishici": [
+     {
+      "when": "seen:taishici",
+      "bio": "上一次的戟与甲让他记住了你的名字,也记住了你的公平。",
+      "quote": "又是你。这次,借你的眼看谁更配赢。"
+     },
+     {
+      "when": "page:jieqiao:yeshi",
+      "bio": "他听说过界桥那个数节拍的读卷人,枪下便多了三分敬。",
+      "quote": "数得清弩阵的人,应该也数得清我的枪。"
+     },
+     {
+      "bio": "他一生只认两个东西:母亲的教诲,和打得赢的对手。",
+      "quote": "神亭岭的风大。兵器拿稳了!"
+     }
+    ]
+   },
+   "map": [
+    {
+     "id": "no-flags",
+     "node": 2,
+     "title": "神亭岭 · 无鼓之阵",
+     "lines": [
+      {
+       "speaker": "taishici",
+       "text": "此间没有军令,没有阵图。你若替谁出谋,这一架便不干净了。"
+      },
+      {
+       "speaker": "sunce",
+       "text": "好!那便让开战场。公瑾退后三十步——今日单挑,谁插手我跟谁急!"
+      },
+      {
+       "speaker": "you",
+       "text": "那我押在一旁看。看谁先露出真本事,也看谁先露出真性情。"
+      }
+     ],
+     "choices": [
+      {
+       "id": "fair-watch",
+       "text": "袖手旁观,记下二人枪路",
+       "detail": "本回看破提升,记住神亭枪路",
+       "effects": {
+        "keenEye": true,
+        "fact": "shenting_watch"
+       }
+      },
+      {
+       "id": "drink-bet",
+       "text": "在岭头摆酒,赌谁先脱力",
+       "detail": "军资 +120,二人战意更盛",
+       "effects": {
+        "chips": 120,
+        "sow": 1,
+        "fact": "shenting_bet"
+       }
+      }
+     ]
+    }
+   ],
+   "battle": [
+    {
+     "id": "shenting-open",
+     "at": "start",
+     "speaker": "taishici",
+     "text": "小霸王,接枪!别叫旁人小看了你我!"
+    },
+    {
+     "id": "shenting-halberd",
+     "at": "hand:2",
+     "speaker": "sunce",
+     "text": "好戟法!枪再快些——我孙家的手,还没抖!"
+    },
+    {
+     "id": "shenting-armor",
+     "at": "hand:3",
+     "speaker": "taishici",
+     "text": "盔给你扯了,甲也快了。还想打?我陪到底!"
+    },
+    {
+     "id": "shenting-low",
+     "at": "low",
+     "speaker": "zhouyu",
+     "text": "两虎相争,必有一伤——而伤的那个,明日还要守城。"
+    }
+   ],
+   "win": {
+    "text": "戟折了,甲裂了,两人抱着兵器躺在岭上喘气,忽然同时大笑。太史慈翻身坐起:\"孙郎,明日阵前再见,我可不让你。\"孙策把断戟扔给他:\"留着。修好了,再来。\"你把岭头的酒分作两碗,一碗给了赢家,一碗给了没输的人。",
+    "hook": "神亭的笑声未落,江东的版图正待铺开。而在小沛,一支画戟又要替两家人说和。"
+   },
+   "loss": {
+    "text": "你的插手让单挑变了味,两件兵器同时指住了你。太史慈失望地收枪:\"原来读卷人,也会掀桌。\"",
+    "clue": "史鉴 · 这一页要的不是速胜,是让二人打满全场。重开时,先看谁先脱力再落注。",
+    "clueFx": "keenEye"
+   }
+  },
+  "zhujiu": {
+   "cast": [
+    "caocao",
+    "liubei",
+    "lvbu"
+   ],
+   "objective": "藏住自己的答案，也听清曹操没有说出口的那一句。",
+   "coldOpen": [
+    {
+     "speaker": "caocao",
+     "text": "白门楼上你替他选了一条活路。今日这杯酒，我想知道你替自己选什么。",
+     "when": "page:baimenlou:yeshi"
+    },
+    {
+     "speaker": "liubei",
+     "text": "他若提起奉先，别急着答。先听他把天下说到第几个人。",
+     "when": "page:baimenlou:yeshi"
+    },
+    {
+     "speaker": "caocao",
+     "text": "白门楼一别，玄德愈发谨慎了。谨慎的人，最适合对酌。",
+     "when": "page:baimenlou:history"
+    },
+    {
+     "speaker": "narrator",
+     "text": "青梅过小盏，远处一声雷。你忽然明白，这桌酒没有一题是问天下。"
+    }
+   ],
+   "intros": {
+    "caocao": [
+     {
+      "when": "page:baimenlou:yeshi",
+      "bio": "他记得白门楼的每一个选择，尤其记得你让谁活了下来。",
+      "quote": "奉先未死，玄德在座。今日英雄，恐怕不止两个。"
+     },
+     {
+      "bio": "青梅煮酒，他把每个人的野心都当作可以试出的底牌。",
+      "quote": "莫怕雷。怕我接下来这句。"
+     }
+    ]
+   },
+   "map": [
+    {
+     "id": "green-plum",
+     "node": 1,
+     "title": "青梅亭 · 未问先答",
+     "lines": [
+      {
+       "speaker": "liubei",
+       "text": "他说你是英雄时，你若只谦虚，他便知道你听懂了。"
+      },
+      {
+       "speaker": "you",
+       "text": "那我该装作不懂？"
+      },
+      {
+       "speaker": "liubei",
+       "text": "不。让他以为你只懂牌。"
+      }
+     ],
+     "choices": [
+      {
+       "id": "thunder",
+       "text": "借雷声藏住神情",
+       "detail": "曹操起手士气 -1",
+       "effects": {
+        "sow": 1,
+        "fact": "thunder_mask"
+       }
+      },
+      {
+       "id": "watch-cao",
+       "text": "反问他白门楼最怕什么",
+       "detail": "本回看破提升",
+       "effects": {
+        "keenEye": true,
+        "fact": "watch_cao"
+       }
+      }
+     ]
+    }
+   ],
+   "battle": [
+    {
+     "id": "zhujiu-open",
+     "at": "start",
+     "speaker": "caocao",
+     "text": "牌如人。先看，莫急着认。"
+    },
+    {
+     "id": "zhujiu-mid",
+     "at": "hand:2",
+     "speaker": "caocao",
+     "text": "今天下英雄——你觉得，我会先说谁？"
+    },
+    {
+     "id": "zhujiu-low",
+     "at": "low",
+     "speaker": "liubei",
+     "text": "雷要来了。你该落筷了。"
+    }
+   ],
+   "win": {
+    "text": "筷落，雷止。曹操笑着替你斟酒，没有再问第二遍。刘备知道，方才有一瞬，你们三人都看见了彼此的底牌。",
+    "hook": "关羽即将挂印封金。许都这一局，曹操记住了你的藏锋。"
+   },
+   "loss": {
+    "text": "你回答了“谁是英雄”，却没听出他真正问的是“你愿不愿与我为敌”。酒未毒，话已经把你围住。",
+    "clue": "史鉴 · 曹操会在第二手开始读你的下注；重开时他的假破绽减少。",
+    "clueFx": "keenEye"
+   }
+  },
+  "qianli": {
+   "cast": [
+    "guanyu",
+    "liubei",
+    "zhangfei",
+    "caocao",
+    "kongxiu",
+    "hanfu",
+    "bianxi",
+    "wangzhi",
+    "qinqi"
+   ],
+   "objective": "护送车仗穿过五关，辨认孔秀、韩福、卞喜、王植、秦琪各自的拦法，把最后一点气力留给古城重逢。",
+   "coldOpen": [
+    {
+     "speaker": "narrator",
+     "text": "许都城门在身后，印绶高悬，金帛未动。关羽只带车仗与一柄不愿再受人情的刀。"
+    },
+    {
+     "speaker": "caocao",
+     "text": "那日煮酒，玄德借雷藏锋；今日云长要去寻他，孤该放行，还是再留一顿酒？",
+     "when": "page:zhujiu:yeshi"
+    },
+    {
+     "speaker": "guanyu",
+     "text": "丞相之义，关某记在心里；兄长之约，却在前面等我。"
+    },
+    {
+     "speaker": "liubei",
+     "text": "云长，见字如面。莫以我为念，亦莫以我为负。能来便来，古城有人等你。"
+    }
+   ],
+   "intros": {
+    "kongxiu": [
+     {
+      "bio": "东岭关的锁只认文书，他把职责守得比性命更窄。",
+      "quote": "没有丞相文凭，关云长也不能过。"
+     }
+    ],
+    "hanfu": [
+     {
+      "bio": "他把敬重藏在弓弦后，放箭之前仍想保住一份旧情。",
+      "quote": "关将军，韩某敬你，却不能弃关。"
+     }
+    ],
+    "bianxi": [
+     {
+      "bio": "镇国寺的香火压不住杀气，他的平安路只通向埋伏。",
+      "quote": "刀留佛前，酒入口中，将军便可安睡。"
+     }
+    ],
+    "wangzhi": [
+     {
+      "bio": "荥阳的馆舍过于齐整，每一扇门都已想好何时上锁。",
+      "quote": "夜长路远，何不住到火起——住到天明？"
+     }
+    ],
+    "qinqi": [
+     {
+      "bio": "黄河渡口的最后一道军令，他把旧交与风浪都挡在岸上。",
+      "quote": "过了四关又如何？黄河只认秦某这一面旗。"
+     }
+    ]
+   },
+   "map": [
+    {
+     "id": "two-kinds-of-gates",
+     "node": 2,
+     "title": "洛阳 · 明暗两关",
+     "lines": [
+      {
+       "speaker": "guanyu",
+       "text": "孔秀要文凭，韩福藏冷箭，卞喜却把酒摆到佛前。关隘不同，拦人的理由也不同。"
+      },
+      {
+       "speaker": "narrator",
+       "text": "车仗里没有催促。关羽回望来路，把刀从右手换到左手，只为让赶车的人安心。"
+      }
+     ],
+     "choices": [
+      {
+       "id": "share-rations",
+       "text": "以干粮换百姓口述五关地形",
+       "detail": "本回看破提升，记住沿途人心",
+       "effects": {
+        "keenEye": true,
+        "fact": "qianli_guides"
+       }
+      },
+      {
+       "id": "guard-the-rear",
+       "text": "亲自断后，让车仗先行",
+       "detail": "守将起手士气 -1，记住断后之诺",
+       "effects": {
+        "sow": 1,
+        "fact": "qianli_rearguard"
+       }
+      }
+     ]
+    }
+   ],
+   "battle": [
+    {
+     "id": "qianli-kongxiu",
+     "at": "start",
+     "speaker": "kongxiu",
+     "text": "东岭关只认丞相文凭，不认你的旧名。没有文书，青龙刀也得留下。",
+     "when": "round:1"
+    },
+    {
+     "id": "qianli-hanfu",
+     "at": "start",
+     "speaker": "hanfu",
+     "text": "关将军，韩某敬你之名，却不能弃守关之责。这一箭之后，莫怪我。",
+     "when": "round:2"
+    },
+    {
+     "id": "qianli-bianxi",
+     "at": "start",
+     "speaker": "bianxi",
+     "text": "镇国寺酒已温。将军把刀留在佛前，卞某便让你看一条平安路。",
+     "when": "round:3"
+    },
+    {
+     "id": "qianli-wangzhi",
+     "at": "start",
+     "speaker": "wangzhi",
+     "text": "荥阳馆舍洁净，夜色也长。将军何不住下，等我把各处的门都替你关好？",
+     "when": "round:4"
+    },
+    {
+     "id": "qianli-qinqi",
+     "at": "start",
+     "speaker": "qinqi",
+     "text": "黄河在此。四关的人情到这里用尽；秦琪只认夏侯将军的军令。",
+     "when": "round:5"
+    },
+    {
+     "id": "qianli-no-sixth-grave",
+     "at": "hand:2",
+     "speaker": "guanyu",
+     "text": "五关各有锁，人心却未必都是锁。能绕过的杀念，便别把它变成第六座坟。"
+    },
+    {
+     "id": "qianli-drums",
+     "at": "low",
+     "speaker": "zhangfei",
+     "text": "二哥，听见鼓没有？五关不必再替谁守了，回来与俺击这一面！",
+     "when": "round:5"
+    }
+   ],
+   "win": {
+    "text": "秦琪倒下时，黄河浪声盖过了刀声。关羽没有数第五颗首级，只回身扶稳车仗。古城门下，张飞扔了鼓槌便来抱马；刘备赶到时，关羽只说“来迟了”。三双眼睛都在回答：回来便好。",
+    "hook": "古城鼓声未歇，北方的袁曹已经相持。下一场不再是一人过五关，而是两军争一口气。"
+   },
+   "loss": {
+    "text": "你在某一关赢得了刀光，却把车仗、筹码与归期都留在身后。千里最难的从不是杀出一条直路，是到古城时仍有资格说一句“都平安”。",
+    "clue": "史鉴 · 孔秀耗令、韩福冷箭、卞喜设宴、王植借火、秦琪守渡。五关共用一条命，莫为一关押尽路费；重开军资 +150。",
+    "clueFx": "supply"
+   }
+  },
+  "guandu": {
+   "cast": [
+    "caocao",
+    "yuanshao",
+    "guojia",
+    "xuyou",
+    "tianfeng",
+    "jushou"
+   ],
+   "objective": "让袁绍的雄厚军资变成迟疑，在盲注吞尽曹军之前找到乌巢真正的软肋。",
+   "coldOpen": [
+    {
+     "speaker": "narrator",
+     "text": "官渡的粮簿比战报更薄。曹操每划掉一日，袁绍帐中便多一位自称有策的谋士。"
+    },
+    {
+     "speaker": "yuanshao",
+     "text": "孟德，你我自幼相识。你的脾气我清楚，你的粮草，我更清楚。"
+    },
+    {
+     "speaker": "caocao",
+     "text": "云长终究还是去找玄德了。孤留得住赤兔，留不住人心；本初，你却连人心都未看清。",
+     "when": "page:qianli:yeshi"
+    },
+    {
+     "speaker": "guojia",
+     "text": "明公，袁氏十胜十败之说，嘉只敢保证前九。最后一胜，要你亲自去赢。"
+    },
+    {
+     "speaker": "tianfeng",
+     "text": "主公若胜，丰必死；若败，丰亦死。冀州的牢里，元皓已替你们把话写好了。",
+     "when": "!seen:tianfeng"
+    },
+    {
+     "speaker": "caocao",
+     "text": "许攸来了便请他坐。孤可以只穿一只鞋迎他，却不能让全军看见孤只剩三日粮。"
+    }
+   ],
+   "intros": {
+    "yuanshao": [
+     {
+      "when": "page:zhujiu:yeshi",
+      "bio": "他听说青梅亭只论了刘曹，偏要把旧友局变成天下的答辩。",
+      "quote": "孟德，今日再数一次英雄，可还有袁本初？"
+     },
+     {
+      "when": "seen:yuanshao",
+      "bio": "他仍带千军与满腹计策归来，仍缺一个肯为决定署名的人。",
+      "quote": "上次众议未决。这次，你听谁？"
+     },
+     {
+      "bio": "四世三公给了他太多谋士，也给了他永远不必先认错的位置。",
+      "quote": "河北兵精粮足。孟德，你拿什么拖？"
+     }
+    ]
+   },
+   "map": [
+    {
+     "id": "true-ledger",
+     "node": 2,
+     "title": "官渡 · 真账假账",
+     "lines": [
+      {
+       "speaker": "caocao",
+       "text": "许攸问孤还有几粮。孤若说实话，他或许给乌巢；若说假话，他今夜便会走。"
+      },
+      {
+       "speaker": "narrator",
+       "text": "帐外袁绍的催战鼓一声近过一声。曹操把真账推给你：这回要烧的不是粮，是他让别人替自己作主的习惯。"
+      }
+     ],
+     "choices": [
+      {
+       "id": "true-account",
+       "text": "以真实粮数换许攸一句真话",
+       "detail": "本回看破提升，记住赤足相迎",
+       "effects": {
+        "keenEye": true,
+        "fact": "guandu_true_account"
+       }
+      },
+      {
+       "id": "feint-wuchao",
+       "text": "分兵佯攻，只留乌巢一路实棋",
+       "detail": "袁绍起手军资 -200，记住乌巢奇袭",
+       "effects": {
+        "raid": true,
+        "fact": "guandu_feint"
+       }
+      }
+     ]
+    }
+   ],
+   "battle": [
+    {
+     "id": "guandu-open",
+     "at": "start",
+     "speaker": "yuanshao",
+     "text": "你每一手都在算还能活几日，我只需等。河北最不怕的，就是多开一次军议。"
+    },
+    {
+     "id": "guandu-old-friend",
+     "at": "hand:2",
+     "speaker": "caocao",
+     "text": "本初，你不是不知该听谁，是只怕听错以后无人可怪。"
+    },
+    {
+     "id": "guandu-unsigned",
+     "at": "hand:3",
+     "speaker": "narrator",
+     "text": "乌巢未燃，河北诸将却都在等别人先改口。千条计策，忽然没有一条肯署名。"
+    },
+    {
+     "id": "guandu-low",
+     "at": "low",
+     "speaker": "yuanshao",
+     "text": "田丰、沮授、许攸……究竟是谁误我？孟德，你先说！"
+    }
+   ],
+   "win": {
+    "text": "乌巢没有火，袁绍帐中的灯却一盏盏灭了。曹操没有趁胜追骂旧友，只把写满虚假余粮的账簿合上：“本初，你输在人人都在等别人先认。”",
+    "hook": "北方将定，刘备却在新野等一场雪。曹操已有谋士满帐，他连一个肯开门的人还未寻到。"
+   },
+   "loss": {
+    "text": "乌巢的火终究没有烧起来。袁绍仍坐在成堆军报之后，每一份都有道理，每一份都不必由他负责。你的粮却真的一日日尽了。",
+    "clue": "史鉴 · 袁绍的筹码多不是弱点，怕独自担责才是。逼他在盲注升高前自己选；重开先劫乌巢，敌军军资 -200。",
+    "clueFx": "raid"
+   }
+  },
+  "sangu": {
+   "cast": [
+    "liubei",
+    "guanyu",
+    "zhangfei",
+    "zhuge"
+   ],
+   "objective": "让三次敲门各有来意：前两次无论胜败都肯再访，第三次才听懂卧龙真正要问的天下。",
+   "coldOpen": [
+    {
+     "speaker": "narrator",
+     "text": "新野到隆中的路，刘备已经走过两遍。张飞把第三次风雪叫作折腾，关羽却替兄长又掸了一遍名刺。"
+    },
+    {
+     "speaker": "zhangfei",
+     "text": "二哥千里回来，俺才懂路远不怕。可一个先生，凭什么叫俺们走三回？",
+     "when": "page:qianli:yeshi"
+    },
+    {
+     "speaker": "liubei",
+     "text": "因为他若肯为百姓出山，备多走几次，又算得了什么。"
+    },
+    {
+     "speaker": "guanyu",
+     "text": "胜败可以催，开门不能催。翼德，把火折子收起来。"
+    }
+   ],
+   "intros": {
+    "zhuge": [
+     {
+      "when": "page:bowang:yeshi",
+      "bio": "博望之后，他不再只看你有没有耐心，也看你能否容别人立功。",
+      "quote": "草堂一别，你已会退。今日可还肯等？"
+     },
+     {
+      "when": "seen:zhuge",
+      "bio": "前两顾的输赢他都记得，唯独不拿它们当开门的钥匙。",
+      "quote": "胜败我看见了。今日，你为何还来？"
+     },
+     {
+      "bio": "他在门后听了两次风雪，第三次才把天下摆上桌。",
+      "quote": "将军请进。先莫问天下，可还坐得住？"
+     }
+    ]
+   },
+   "map": [
+    {
+     "id": "leave-the-door-unforced",
+     "node": 1,
+     "title": "隆中 · 门不可催",
+     "lines": [
+      {
+       "speaker": "liubei",
+       "text": "今日若仍不见，备便把名刺留下。求贤不是叫天下人都按刘备的时辰起身。"
+      },
+      {
+       "speaker": "zhangfei",
+       "text": "那俺在外面等！若等得不耐烦，便数雪，不数他的过错。"
+      },
+      {
+       "speaker": "guanyu",
+       "text": "你能这样等，大哥这一趟便已没有白来。"
+      }
+     ],
+     "choices": [
+      {
+       "id": "disarm-and-wait",
+       "text": "命全军解甲，只在门外静候",
+       "detail": "卧龙起手士气 -1，记住解甲之礼",
+       "effects": {
+        "sow": 1,
+        "fact": "sangu_disarmed_wait"
+       }
+      },
+      {
+       "id": "ask-the-sleep",
+       "text": "不问天下，先问先生睡得可安稳",
+       "detail": "本回看破提升，记住不催之问",
+       "effects": {
+        "keenEye": true,
+        "fact": "sangu_gentle_question"
+       }
+      }
+     ]
+    }
+   ],
+   "battle": [
+    {
+     "id": "sangu-first-door",
+     "at": "start",
+     "speaker": "unknown",
+     "text": "第一顾，先生不在。你可以赢这一局，却不能替他答应相见。",
+     "when": "round:1"
+    },
+    {
+     "id": "sangu-first-return",
+     "at": "hand:2",
+     "speaker": "zhangfei",
+     "text": "输了便输了，大哥，俺们明日再来。总比在这里替他守门强！",
+     "when": "round:1"
+    },
+    {
+     "id": "sangu-second-snow",
+     "at": "start",
+     "speaker": "unknown",
+     "text": "第二顾，雪满草庐。你昨日又来了——这一次，你为求胜，还是为求人？",
+     "when": "round:2"
+    },
+    {
+     "id": "sangu-second-intent",
+     "at": "hand:2",
+     "speaker": "liubei",
+     "text": "云长，翼德，雪大便靠近些。先生可以不见，我们不可失了来意。",
+     "when": "round:2"
+    },
+    {
+     "id": "sangu-third-reveal",
+     "at": "start",
+     "speaker": "zhuge",
+     "text": "前两局的书童与冷遇，都是亮借来问你的：胜后会不会狂，败后还肯不肯来。你来了三次，门便该开了。",
+     "when": "round:3"
+    },
+    {
+     "id": "sangu-third-world",
+     "at": "hand:2",
+     "speaker": "zhuge",
+     "text": "现在莫问牌。将军要荆益二州，还是要一个让百姓不必再逃的天下？",
+     "when": "round:3"
+    },
+    {
+     "id": "sangu-third-answer",
+     "at": "hand:3",
+     "speaker": "liubei",
+     "text": "先生若不出山，备仍去；先生若肯同行，这条路便不只属于备。",
+     "when": "round:3"
+    }
+   ],
+   "win": {
+    "text": "诸葛亮把荆襄与益州写在同一盏灯下，却没有写下谁是主、谁是客。刘备起身长揖，关羽收刀，张飞替你搬来第四张凳子：这一局，终于不是为了请谁认输。",
+    "hook": "隆中对策已定，曹操的先锋也到了新野。卧龙出山第一把火，要先让最不服他的两个人心服。"
+   },
+   "loss": {
+    "text": "第三顾你终于见到隆中图，却还在翻前两局的旧账。诸葛亮收扇不语：耐心不是多走两趟，是见到答案以后仍肯听别人说完。",
+    "clue": "史鉴 · 前两顾输了也会再访，不必为每阵强撑；把气力留到第三顾。重开军资 +150。",
+    "clueFx": "supply"
+   }
+  },
+  "bowang": {
+   "cast": [
+    "liubei",
+    "guanyu",
+    "zhangfei",
+    "zhaoyun",
+    "zhuge",
+    "xiahoudun"
+   ],
+   "objective": "让关羽张飞心服用兵，让夏侯惇把每一次追击都当成自己的主意。",
+   "coldOpen": [
+    {
+     "speaker": "narrator",
+     "text": "博望坡的草干得正好。诸葛亮把火折子压在地图下，先给每个人派了一条必须败着走完的路。"
+    },
+    {
+     "speaker": "zhangfei",
+     "text": "三顾时俺服的是大哥的礼。今日你若只会叫俺退，俺可不服！",
+     "when": "page:sangu:yeshi"
+    },
+    {
+     "speaker": "zhuge",
+     "text": "益德，退到你能听见云长的金声便停。火攻之前，先莫把诱饵做成真败。"
+    },
+    {
+     "speaker": "liubei",
+     "text": "备请先生出山，不是请他替你们逞强，是请他教你们不必白白逞强。"
+    }
+   ],
+   "intros": {
+    "xiahoudun": [
+     {
+      "when": "seen:xiahoudun",
+      "bio": "他记得上一次的伏兵，却仍不愿承认追击也能被人牵着走。",
+      "quote": "同一道坡，我不会再替你看第二次。"
+     },
+     {
+      "bio": "独目只肯向前看，他把每一次后退都读成敌人的胆怯。",
+      "quote": "新野若只有火，便让它先烧刘备自己。"
+     }
+    ]
+   },
+   "map": [
+    {
+     "id": "planned-retreat",
+     "node": 1,
+     "title": "博望坡 · 退到何处",
+     "lines": [
+      {
+       "speaker": "guanyu",
+       "text": "军师要我们各退几步，却连停在哪一棵树后都写清了。看来这“败”字，比胜还难演。"
+      },
+      {
+       "speaker": "zhaoyun",
+       "text": "我的枪先露给夏侯惇。他若咬住我，云长与翼德才有真正的伏兵。"
+      },
+      {
+       "speaker": "zhangfei",
+       "text": "好！俺便输得像些。可谁先忍不住真逃，谁回来替全军洗矛！"
+      }
+     ],
+     "choices": [
+      {
+       "id": "brothers-ambush",
+       "text": "令云长益德互以金声为号",
+       "detail": "夏侯惇起手士气 -1，记住兄弟伏兵",
+       "effects": {
+        "sow": 1,
+        "fact": "bowang_brothers_ambush"
+       }
+      },
+      {
+       "id": "zhaoyun-route",
+       "text": "与子龙逐段走完诱敌退路",
+       "detail": "本回看破提升，记住每段伏兵",
+       "effects": {
+        "keenEye": true,
+        "fact": "bowang_zhaoyun_route"
+       }
+      }
+     ]
+    }
+   ],
+   "battle": [
+    {
+     "id": "bowang-open",
+     "at": "start",
+     "speaker": "xiahoudun",
+     "text": "刘玄德新得军师，便只会后退？那我便一路追到你们无坡可伏。"
+    },
+    {
+     "id": "bowang-bait",
+     "at": "hand:2",
+     "speaker": "zhaoyun",
+     "text": "夏侯惇已咬住我的枪。军师，火还未到吗？"
+    },
+    {
+     "id": "bowang-wait",
+     "at": "hand:3",
+     "speaker": "zhuge",
+     "text": "不急。他还在赢，才会继续追；火要烧的是他确信自己正确的这一刻。"
+    },
+    {
+     "id": "bowang-low",
+     "at": "low",
+     "speaker": "zhangfei",
+     "text": "俺懂了！这一退不是把路让给他，是把他的路越让越窄。"
+    }
+   ],
+   "win": {
+    "text": "张飞先收矛，关羽随后抱拳。诸葛亮没有受这一拜，只把烧弯的军旗交给子龙。刘备笑了：从今日起，他们争的不是谁先来，是谁肯最后一个退。",
+    "hook": "博望的火让曹军记住了新野。下一回来得更快：子龙将抱着阿斗，从熟悉的伏兵图里反向杀出。"
+   },
+   "loss": {
+    "text": "夏侯惇没有冲进火里，因为你的败退太像真的败退：伏兵急着救，诱兵忘了停。博望坡只剩烟，没有一个曹军走进计中。",
+    "clue": "史鉴 · 退不是逃；每次示弱都要保留下一段伏兵与回本的钱。重开军资 +150，别把诱敌变成真败。",
+    "clueFx": "supply"
+   }
+  },
+  "changban": {
+   "cast": [
+    "liubei",
+    "zhaoyun",
+    "zhangfei",
+    "caocao",
+    "xiahoudun",
+    "zhanghe",
+    "wenpin"
+   ],
+   "objective": "在曹操、夏侯惇、张郃同桌追剿下，让赵云带回阿斗、张飞守住当阳桥。",
+   "coldOpen": [
+    {
+     "speaker": "narrator",
+     "text": "长坂的尘土里，百姓、辎重和败兵挤成一条路。赵云逆向而行，张飞却勒马停在桥头。"
+    },
+    {
+     "speaker": "zhaoyun",
+     "text": "主公，夫人与阿斗还在后面。云去去便回——若不回，翼德替我守桥。"
+    },
+    {
+     "speaker": "zhangfei",
+     "text": "俺不要你替！回来，自己守！"
+    },
+    {
+     "speaker": "wenpin",
+     "text": "常山赵子龙……文聘奉命拦截，却不忍逼之过死。这一枪，聘自留三分。",
+     "when": "!seen:wenpin"
+    },
+    {
+     "speaker": "caocao",
+     "text": "传令，赵云要活的。至于桥上的黑脸将军——孤要亲自看看，他凭什么叫三军停下。"
+    }
+   ],
+   "intros": {
+    "wenpin": [
+     {
+      "when": "page:chibi:yeshi",
+      "bio": "赤壁之后他守着荆州旧地，深知追与不追都写进史笔。",
+      "quote": "当年长坂追与不追，聘如今仍未想明白。"
+     },
+     {
+      "when": "seen:wenpin",
+      "bio": "他还记得长坂那半式收回的枪，出手便不再留情面。",
+      "quote": "这次不让你过。对不住旧主的家眷。"
+     },
+     {
+      "bio": "新附曹营的荆州旧将，枪一寸寸都在尽忠与旧义之间。",
+      "quote": "聘奉命巡此。长坂的路，不通。"
+     }
+    ],
+    "caocao": [
+     {
+      "when": "page:zhujiu:yeshi",
+      "bio": "青梅亭后他仍记得那声雷，如今要用千军逼出藏住的答案。",
+      "quote": "那次让你借雷藏住了。今日，孤看千军替你开牌。"
+     },
+     {
+      "when": "page:bowang:yeshi",
+      "bio": "博望新败让他更谨慎，也更不肯给刘备第二次整军的机会。",
+      "quote": "一把火赢不了第二次。追。"
+     },
+     {
+      "bio": "他要的不只是玄德的败，还要看看什么人值得败军仍然回头。",
+      "quote": "赵云要活的。其余人，不必留。"
+     }
+    ],
+    "xiahoudun": [
+     {
+      "when": "page:bowang:yeshi",
+      "bio": "博望坡的火还留在独目里，他把子龙的回马看作同一道伏兵。",
+      "quote": "诸葛不在桥上。今日看谁还能救你。"
+     },
+     {
+      "when": "seen:xiahoudun",
+      "bio": "他与你重逢仍只肯向前，却开始防着每一条过分好走的退路。",
+      "quote": "这次你退，我先看你身后。"
+     },
+     {
+      "bio": "独目将军带着博望的旧怒，最先追上赵云，也最容易追过头。",
+      "quote": "长坂之前，先还博望一箭。"
+     }
+    ],
+    "zhanghe": [
+     {
+      "when": "seen:zhanghe",
+      "bio": "他记得你上次怎样找路，这次先把所有回路都标进阵图。",
+      "quote": "上次让你走脱的路，这次我亲自封。"
+     },
+     {
+      "bio": "他不与夏侯惇争先，只计算赵云和张飞之间还剩几步。",
+      "quote": "一个救人，一个守桥。分开他们。"
+     }
+    ]
+   },
+   "map": [
+    {
+     "id": "rescue-route",
+     "node": 1,
+     "title": "当阳 · 逆行人潮",
+     "lines": [
+      {
+       "speaker": "liubei",
+       "text": "子龙，备不能命你舍百姓而救我儿。若只带回阿斗，却把他们留在刀下，这仗仍是我败。"
+      },
+      {
+       "speaker": "zhaoyun",
+       "text": "云明白。七进七出不是七次逞勇，是每一次回来，都知道还有人等。"
+      }
+     ],
+     "choices": [
+      {
+       "id": "people-first",
+       "text": "先护百姓，再循哭声寻阿斗",
+       "detail": "本回看破提升，记住逆行之义",
+       "effects": {
+        "keenEye": true,
+        "fact": "changban_people_first"
+       }
+      },
+      {
+       "id": "bridge-mark",
+       "text": "与子龙约定只认翼德旗色回桥",
+       "detail": "追军起手士气 -1，记住回桥之约",
+       "effects": {
+        "sow": 1,
+        "fact": "changban_bridge_mark"
+       }
+      }
+     ]
+    },
+    {
+     "id": "bridge-signal",
+     "node": 2,
+     "title": "长坂坡 · 一桥三令",
+     "lines": [
+      {
+       "speaker": "zhangfei",
+       "text": "桥后尘土少了，曹操必疑；尘土多了，百姓又无路。子龙还没回来，俺连断桥都不能痛痛快快断！"
+      },
+      {
+       "speaker": "zhaoyun",
+       "text": "翼德，留一道只容单骑的缝。曹军若三人同追，便叫他们先争谁先过桥。"
+      }
+     ],
+     "choices": [
+      {
+       "id": "single-file-gap",
+       "text": "断桥之前先留一条单骑马道",
+       "detail": "本回看破提升，记住一线生机",
+       "effects": {
+        "keenEye": true,
+        "fact": "changban_single_file"
+       }
+      },
+      {
+       "id": "split-banners",
+       "text": "移动三面残旗，分开三路追兵",
+       "detail": "曹操起手军资 -150，记住分追之策",
+       "effects": {
+        "oppChips": -150,
+        "fact": "changban_split_pursuit"
+       }
+      }
+     ]
+    }
+   ],
+   "battle": [
+    {
+     "id": "changban-open",
+     "at": "start",
+     "speaker": "caocao",
+     "text": "元让追子龙，儁乂断归桥。孤只要玄德走投无路。",
+     "when": "multi"
+    },
+    {
+     "id": "changban-zhaoyun",
+     "at": "hand:2",
+     "speaker": "zhaoyun",
+     "text": "阿斗在怀，枪便不能只为取胜。翼德，桥还在吗？",
+     "when": "multi"
+    },
+    {
+     "id": "changban-zhanghe",
+     "at": "hand:3",
+     "speaker": "zhanghe",
+     "text": "他每次回马都在找同一个人。别追枪，追他要回的那座桥。",
+     "when": "multi"
+    },
+    {
+     "id": "changban-xiahoudun",
+     "at": "hand:4",
+     "speaker": "xiahoudun",
+     "text": "博望那把火，今日拿你的退路来还！",
+     "when": "multi"
+    },
+    {
+     "id": "changban-low",
+     "at": "low",
+     "speaker": "zhangfei",
+     "text": "俺只要还站在这里，他们的十万兵就得一个一个来！",
+     "when": "multi"
+    }
+   ],
+   "win": {
+    "text": "赵云把孩子递回刘备怀里，张飞才肯退下桥头。曹操没有责罚夏侯惇与张郃，只望着那道断桥：“他们一个敢回来，一个肯不走。我输的不是追兵。”",
+    "hook": "汉津舟楫已近，曹操也记住了这座桥。下一路要走江东：刘备需要一句能让孙权出兵的话。"
+   },
+   "loss": {
+    "text": "赵云找回了阿斗，却找不到回桥的路；张飞喝住了追兵，却喝不住三支军令同时分开。孤勇能赢一阵，救不了所有人。",
+    "clue": "史鉴 · 曹操要活口，元让要报仇，张郃要截桥。让他们争同一条追击线，别把三人各推向一条退路；重开敌军士气 -1。",
+    "clueFx": "sow"
+   }
+  },
+  "baima": {
+   "cast": [
+    "guanyu",
+    "caocao",
+    "guojia",
+    "xunyu",
+    "yanliang",
+    "wenchou"
+   ],
+   "objective": "在白马与延津两阵之间,替关羽把两场大功,赢成一条回家的路。",
+   "coldOpen": [
+    {
+     "speaker": "narrator",
+     "text": "白马坡前,颜良连斩宋宪魏续,二十合败徐晃,曹营诸将栗然。曹操把目光投向了那个始终背对着战报的人。"
+    },
+    {
+     "speaker": "caocao",
+     "text": "云长,孤知道你人在心不在。可颜良的刀,如今悬在孤所有将军的头上。"
+    },
+    {
+     "speaker": "guanyu",
+     "text": "关某答应过,立功便走。此阵之后,请丞相守信——备的下落,孤已听说了。"
+    },
+    {
+     "speaker": "guojia",
+     "text": "颜良之勇不可力敌,文丑之躁可以计取。奉孝只担心一件事:云长这两刀砍完,天下再无人留得住他。",
+     "when": "!seen:guojia"
+    },
+    {
+     "speaker": "yanliang",
+     "text": "曹营无人了吗?叫那个红脸的马弓手上来看看。",
+     "when": "!seen:yanliang"
+    }
+   ],
+   "intros": {
+    "yanliang": [
+     {
+      "when": "seen:yanliang",
+      "bio": "他记得那次快得看不清的刀光,这次把营垒扎得更深。",
+      "quote": "那口刀……这次,我要看清它来路。"
+     },
+     {
+      "bio": "河北第一刀,连胜让他相信天下没有第二口更快的刀。",
+      "quote": "连营十里,谁来谁死。"
+     }
+    ],
+    "wenchou": [
+     {
+      "when": "seen:wenchou",
+      "bio": "界桥之后他学会等,延津却又要他追——他最恨这种矛盾。",
+      "quote": "你教会我数节拍。那这次,换你数我的马蹄。"
+     },
+     {
+      "bio": "为颜良复仇的心比枪更重,辎重散落一地也拦不住他的冲锋。",
+      "quote": "白马的账,延津清。"
+     }
+    ],
+    "songxian": [
+     {
+      "bio": "他从吕布的旧梦里醒来,急着向新主证明自己。",
+      "quote": "温侯旧部,不是孬种!看我的!"
+     }
+    ]
+   },
+   "map": [
+    {
+     "id": "two-blades",
+     "node": 1,
+     "title": "黎阳 · 两阵之间",
+     "lines": [
+      {
+       "speaker": "xunyu",
+       "text": "颜良兵精而不识变,文丑勇而性躁。两阵之间,真正要读的是云长的心。"
+      },
+      {
+       "speaker": "guanyu",
+       "text": "荀令君放心。关某的刀只为丞相砍这一回,砍完,便去寻兄。"
+      },
+      {
+       "speaker": "you",
+       "text": "两阵两刀,刀刀都要干净。拖泥带水,走的路就长了。"
+      }
+     ],
+     "choices": [
+      {
+       "id": "feed-few",
+       "text": "以老弱为饵,佯弃辎重",
+       "detail": "文丑军起手军资 -200,记住饵兵之计",
+       "effects": {
+        "raid": true,
+        "fact": "baima_bait"
+       }
+      },
+      {
+       "id": "watch-blade",
+       "text": "陪关羽先看清颜良的麾盖",
+       "detail": "本回看破提升,记住麾盖之下",
+       "effects": {
+        "keenEye": true,
+        "fact": "baima_watch"
+       }
+      }
+     ]
+    }
+   ],
+   "battle": [
+    {
+     "id": "baima-open",
+     "at": "start",
+     "speaker": "yanliang",
+     "text": "又来?宋宪魏续的刀,还在我马上挂着!"
+    },
+    {
+     "id": "baima-ride",
+     "at": "hand:2",
+     "speaker": "narrator",
+     "text": "赤兔马从土山后转出,颜良的麾盖在阵前孤零零亮着——他想问来将何人,刀已经到了。",
+     "when": "fact:baima_watch"
+    },
+    {
+     "id": "baima-clash",
+     "at": "hand:2",
+     "speaker": "guanyu",
+     "text": "麾盖之下,便是他要护的军心。破了他的旗,这一阵就完了。",
+     "when": "!fact:baima_watch"
+    },
+    {
+     "id": "baima-wen",
+     "at": "hand:3",
+     "speaker": "wenchou",
+     "text": "马快!文丑的枪还没热,你跑什么?!"
+    },
+    {
+     "id": "baima-low",
+     "at": "low",
+     "speaker": "guojia",
+     "text": "两阵之间最忌恋战。云长,酒在这里,路也在这里。"
+    }
+   ],
+   "win": {
+    "text": "白马的麾盖倒下时,延津的文丑还在马蹄声里数你的节拍。两阵两刀,干净得像关羽的刀背。曹操亲斟的酒他没有喝,只拱了拱手:\"丞相,关某去也。\"袖中那封寻兄的书信,终于用上了。",
+    "hook": "两阵大功换来一纸放行。前方五关六将,没有一人读过这封信。"
+   },
+   "loss": {
+    "text": "第一阵的胜利让你贪了第二阵的快。文丑的铁骑漫过河滩时,你才想起郭嘉那句\"两阵之间,真正要读的是云长的心\"。",
+    "clue": "史鉴 · 颜良输给轻敌,文丑赢在等你急。重开时先弃辎重乱其军心:文丑起手军资 -200。",
+    "clueFx": "raid"
+   }
+  },
+  "shezhan": {
+   "cast": [
+    "zhangzhao",
+    "yufan",
+    "luji",
+    "zhuge",
+    "sunquan"
+   ],
+   "objective": "拆穿“降曹保江东”的退路，让孙权听见群臣没有说出口的恐惧。",
+   "coldOpen": [
+    {
+     "speaker": "narrator",
+     "text": "议事厅里摆着四张案，三张堆满经书，唯独你的案上只有一柄羽扇。张昭先问刘备几败，虞翻已替你把“丧家”二字写在唇边。"
+    },
+    {
+     "speaker": "zhangzhao",
+     "text": "曹公拥百万之众，先生以何御之？莫把隆中一对，当作救命符。"
+    },
+    {
+     "speaker": "sunquan",
+     "text": "先生，孤要听的不是谁的经熟，是谁敢担江东的明日。"
+    },
+    {
+     "speaker": "zhuge",
+     "text": "隆中你问的是天下，今日他们问的是输赢。别答反了。"
+    }
+   ],
+   "intros": {
+    "zhangzhao": [
+     {
+      "when": "seen:zhangzhao",
+      "bio": "他记得你上次怎样拆题，这次先把每部经典都摆成了盾。",
+      "quote": "典故可以重引。先生，败绩也能重答么？"
+     },
+     {
+      "bio": "江东文胆，以经典为城，以主和为最后一道门。",
+      "quote": "先不论兵。刘豫州屡败，可是事实？"
+     }
+    ],
+    "yufan": [
+     {
+      "bio": "他的话不绕弯，专挑对手最狼狈的地方落刃。",
+      "quote": "避难的人，也敢来谈救人？"
+     }
+    ],
+    "luji": [
+     {
+      "bio": "他把名分说得端正，袖中却藏着不敢独担的降书。",
+      "quote": "抗曹之前，先答我何谓汉臣。"
+     }
+    ]
+   },
+   "map": [
+    {
+     "id": "three-questions",
+     "node": 1,
+     "title": "馆驿 · 三问同锁",
+     "lines": [
+      {
+       "speaker": "yufan",
+       "text": "张公问强弱，陆公问名分。我只问你：败到夏口的人，凭什么谈救别人？"
+      },
+      {
+       "speaker": "luji",
+       "text": "曹丞相奉天子以令不臣。你要抗的，究竟是曹军，还是朝廷？"
+      },
+      {
+       "speaker": "you",
+       "text": "三道题共用一把锁：先让我承认，自己已经输了。"
+      }
+     ],
+     "choices": [
+      {
+       "id": "ask-burden",
+       "text": "追问“降后谁担江东”",
+       "detail": "看破提升，记住共同前提",
+       "effects": {
+        "keenEye": true,
+        "fact": "shezhan_common_fear"
+       }
+      },
+      {
+       "id": "sign-surrender",
+       "text": "请主和者各写一个降字",
+       "detail": "众儒起手士气 -1，记住署名",
+       "effects": {
+        "sow": 1,
+        "fact": "shezhan_signed"
+       }
+      }
+     ]
+    }
+   ],
+   "battle": [
+    {
+     "id": "shezhan-open-multi",
+     "at": "start",
+     "speaker": "zhangzhao",
+     "when": "multi",
+     "text": "我们三人依次问。先生若有一处语塞，便不必再谈抗曹。"
+    },
+    {
+     "id": "shezhan-open-single",
+     "at": "start",
+     "speaker": "zhangzhao",
+     "when": "single",
+     "text": "曹操之强，史书可查。先生要拿主公性命，替自己立名么？"
+    },
+    {
+     "id": "shezhan-defeats",
+     "at": "hand:2",
+     "speaker": "yufan",
+     "text": "你莫绕。刘豫州一败再败，难道不是事实？"
+    },
+    {
+     "id": "shezhan-name",
+     "at": "hand:3",
+     "speaker": "luji",
+     "text": "汉室倾颓，正需识时务者。你连名分都不顾，还谈什么兴复？"
+    },
+    {
+     "id": "shezhan-low-fear",
+     "at": "low",
+     "speaker": "you",
+     "when": "fact:shezhan_common_fear",
+     "text": "你们说江东不可赌，原来是怕自己的名字留在抗曹那一页。"
+    },
+    {
+     "id": "shezhan-low-sign",
+     "at": "low",
+     "speaker": "zhuge",
+     "when": "fact:shezhan_signed",
+     "text": "他们不肯独书一个降字，却敢替万民同写。子布，这算谁的江东？"
+    }
+   ],
+   "win": {
+    "text": "孙权将案上的“降”字翻扣，命人取来战图。张昭没有再问曹操有多少兵，只问江东还有多少可战之船。群臣仍有异议，却再不能把主和说成一个不必负责的答案。",
+    "hook": "鲁肃已在江边备船。诸葛亮尚需十万支箭，而曹操的箭，比江东的耐心多。"
+   },
+   "loss": {
+    "text": "你逐条答完了典故，却没让他们承认惧意。孙权只听见一场争吵，没听见谁愿意承担抗曹的后果。",
+    "clue": "史鉴 · 群儒会轮流转问，把争胜变成消耗；先拆共同前提，重开时看破提升。",
+    "clueFx": "keenEye"
+   }
+  },
+  "caochuan": {
+   "cast": [
+    "zhuge",
+    "lusu",
+    "caocao",
+    "caizhong"
+   ],
+   "objective": "在雾散前让曹军自己决定放箭，把曹操的多疑借成江东的军需。",
+   "coldOpen": [
+    {
+     "speaker": "narrator",
+     "text": "第三更，鲁肃摸着船上的稻草人，终于明白诸葛亮要借的不只是箭，还有曹操不敢出兵的那一颗心。"
+    },
+    {
+     "speaker": "lusu",
+     "text": "若雾突然散了呢？子敬可以陪你冒险，江东不能陪你陪葬。"
+    },
+    {
+     "speaker": "caizhong",
+     "text": "丞相放心,小人兄弟早把江东水路摸熟了——这雾夜里,他们绝不敢出船。",
+     "when": "!seen:caizhong"
+    },
+    {
+     "speaker": "zhuge",
+     "text": "堂上既已请江东主战，箭便不能只在账上。子敬，这一船是还愿，不是赌命。"
+    },
+    {
+     "speaker": "you",
+     "text": "雾只负责遮船。让曹操看见什么，还得由我们来说。"
+    }
+   ],
+   "intros": {
+    "caizhong": [
+     {
+      "when": "seen:caizhong",
+      "bio": "诈降的兄弟档又换了一套装束,口径却仍旧差半拍。",
+      "quote": "这、这次弟弟没来。情报,小人一个人包了。"
+     },
+     {
+      "bio": "蔡夫人族中小子,降书里的每一个字都商量好了,唯独彼此没商量。",
+      "quote": "降卒蔡中,愿为丞相效犬马!"
+     }
+    ],
+    "caocao": [
+     {
+      "when": "page:zhujiu:yeshi",
+      "bio": "他在青梅亭读过你的藏锋，如今更不信江上的每一次试探。",
+      "quote": "青梅旧友，也学会借雾藏锋了？"
+     },
+     {
+      "bio": "北岸水寨，他把每一声鼓都当成一句没说完的谎话。",
+      "quote": "雾夜来船，必有深意。先莫出击。"
+     }
+    ]
+   },
+   "map": [
+    {
+     "id": "fog-cadence",
+     "node": 1,
+     "title": "江雾 · 留白令敌",
+     "lines": [
+      {
+       "speaker": "lusu",
+       "text": "箭垛、船只、更次都齐了，只差曹操肯不肯。若他看出是草人呢？"
+      },
+      {
+       "speaker": "zhuge",
+       "text": "所以不能只让他看不清。要让他觉得，自己看得比我们更远。"
+      },
+      {
+       "speaker": "you",
+       "text": "雾遮住船，鼓声替他补出一支伏兵。"
+      }
+     ],
+     "choices": [
+      {
+       "id": "full-drums",
+       "text": "二十船同擂，假装主力",
+       "detail": "曹军起手士气 -1，记住鼓阵",
+       "effects": {
+        "sow": 1,
+        "fact": "caochuan_full_drums"
+       }
+      },
+      {
+       "id": "answering-drums",
+       "text": "首尾应鼓，留出空船",
+       "detail": "看破提升，记住雾中留白",
+       "effects": {
+        "keenEye": true,
+        "fact": "caochuan_empty_space"
+       }
+      }
+     ]
+    }
+   ],
+   "battle": [
+    {
+     "id": "caochuan-open",
+     "at": "start",
+     "speaker": "caocao",
+     "text": "水寨不出，弓弩向前。孤倒要看，雾里藏了多少人。"
+    },
+    {
+     "id": "caochuan-drums",
+     "at": "hand:2",
+     "speaker": "zhuge",
+     "when": "fact:caochuan_full_drums",
+     "text": "现在撤下一半鼓。曹操听见势弱，反会认定我们开始收网。"
+    },
+    {
+     "id": "caochuan-space",
+     "at": "hand:2",
+     "speaker": "lusu",
+     "when": "fact:caochuan_empty_space",
+     "text": "空船转到外舷了。曹操不看鼓声最密处，偏要猜最静的地方。"
+    },
+    {
+     "id": "caochuan-more-arrows",
+     "at": "hand:3",
+     "speaker": "caocao",
+     "text": "鼓声虚了。莫追，添箭——他们若退，便是有诈。"
+    },
+    {
+     "id": "caochuan-low",
+     "at": "low",
+     "speaker": "you",
+     "text": "箭不是骗来的，是他替自己心里的伏兵预备的。"
+    }
+   ],
+   "win": {
+    "text": "雾散时，各船草人都已满箭。鲁肃不再问若雾早退怎么办，只忙着催人报数；诸葛亮折下一枚簇尖收进袖中。箭已够用，下一页要借的是火。",
+    "hook": "箭已备，东风未至。周瑜在赤壁等你，也等诸葛亮露出一丝来不及。"
+   },
+   "loss": {
+    "text": "雾未散，曹操先停了箭。你把多疑当成一道不会更改的命令，忘了多疑的人最擅长改主意；鲁肃只好带你退回空船。",
+    "clue": "史鉴 · 曹操会根据鼓声重新判断虚实；别把同一种试探用到底，重开时看破提升。",
+    "clueFx": "keenEye"
+   }
+  },
+  "chibi": {
+   "cast": [
+    "caocao",
+    "zhouyu",
+    "zhuge"
+   ],
+   "objective": "在三方各怀胜负的牌局里，让火船、东南风与曹操的疑心同时到位。",
+   "coldOpen": [
+    {
+     "speaker": "narrator",
+     "text": "曹操的连舫在北，周瑜的火船在南，诸葛亮的七星坛夹在两者之间。三方同桌，却没有任何两人的胜利完全相同。"
+    },
+    {
+     "speaker": "caocao",
+     "text": "连舫稳如平地。孤倒要听听，东吴还能拿什么来烧。"
+    },
+    {
+     "speaker": "zhouyu",
+     "text": "孔明若借不来风，火攻便止；你若只赢他，曹操照样过江。"
+    },
+    {
+     "speaker": "zhuge",
+     "text": "所以这一局没有盟友。只有谁先看见，风已在谁的袖中。"
+    }
+   ],
+   "intros": {
+    "caocao": [
+     {
+      "when": "page:zhujiu:yeshi",
+      "bio": "从青梅到赤壁，他仍想逼你把藏住的答案押上桌面。",
+      "quote": "煮酒能藏雷，今日烈火往哪里藏？"
+     },
+     {
+      "bio": "八十万连舫，他要北方从此不必再懂水战。",
+      "quote": "船已相连，江上也是孤的中原。"
+     }
+    ],
+    "zhouyu": [
+     {
+      "when": "page:caochuan:yeshi",
+      "bio": "他看见十万支箭如约而至，更不肯让孔明独占赤壁。",
+      "quote": "箭你借到了。火，还得听我的。"
+     },
+     {
+      "bio": "他的火攻万事俱备，唯独不愿承认自己也在等风。",
+      "quote": "曲有误，周郎顾；风若误呢？"
+     }
+    ],
+    "zhuge": [
+     {
+      "when": "seen:zhuge",
+      "bio": "他记得隆中的天下，也记得你怎样把一场对话变成战局。",
+      "quote": "今日不论谁先胜，先论风何时起。"
+     },
+     {
+      "bio": "七星坛上，他把最难借的东西说得像已经入袖。",
+      "quote": "风会来。人未必肯等。"
+     }
+    ]
+   },
+   "map": [
+    {
+     "id": "three-fuses",
+     "node": 1,
+     "title": "乌林 · 三方引信",
+     "lines": [
+      {
+       "speaker": "zhouyu",
+       "text": "火船只能烧一次。孔明先离场，风未必来；孟德先离场，他会带走主力。"
+      },
+      {
+       "speaker": "caocao",
+       "text": "你们都等风。孤已把船锁在一起，风来，也不过多照几处灯火。"
+      },
+      {
+       "speaker": "you",
+       "text": "要赢的不是三份筹码，是让三个人都不能提前离席。"
+      }
+     ],
+     "choices": [
+      {
+       "id": "loose-chain",
+       "text": "暗解一节连环索",
+       "detail": "曹军起手军资 -200，记住暗索",
+       "effects": {
+        "raid": true,
+        "fact": "chibi_loose_chain"
+       }
+      },
+      {
+       "id": "empty-jars",
+       "text": "把火油换成空坛示弱",
+       "detail": "看破提升，记住空坛真火",
+       "effects": {
+        "keenEye": true,
+        "fact": "chibi_empty_jars"
+       }
+      }
+     ]
+    }
+   ],
+   "battle": [
+    {
+     "id": "chibi-open",
+     "at": "start",
+     "speaker": "caocao",
+     "when": "multi",
+     "text": "一个借风，一个纵火，一个无名之辈。很好，孤一桌收拾。"
+    },
+    {
+     "id": "chibi-read",
+     "at": "hand:2",
+     "speaker": "zhouyu",
+     "when": "multi",
+     "text": "先碰孔明，还是先碰我？你每赢一家，另一家都在读你的牌。"
+    },
+    {
+     "id": "chibi-chain",
+     "at": "hand:3",
+     "speaker": "zhuge",
+     "when": "fact:chibi_loose_chain",
+     "text": "断索让他以为船可散逃。可命令传到各舰之前，火已经替他做了决定。"
+    },
+    {
+     "id": "chibi-jars",
+     "at": "hand:3",
+     "speaker": "zhuge",
+     "when": "fact:chibi_empty_jars",
+     "text": "空坛不是无火，是让公瑾以为你没有后手。现在，把真火油推出来。"
+    },
+    {
+     "id": "chibi-low",
+     "at": "low",
+     "speaker": "you",
+     "when": "multi",
+     "text": "曹操怕埋伏，周瑜怕无功，孔明怕风失期。火起的空隙，就在三种恐惧之间。"
+    }
+   ],
+   "win": {
+    "text": "最后一名对手离席时，东南风才越过旗角。火船借风撞入连舫，周瑜没有看你，诸葛亮却已收扇——两人都明白，你方才留住的不是三份筹码，是同一刻。",
+    "hook": "曹操败向华容。关羽的刀已等在那里，而诸葛亮说，今夜还欠他一份人情。"
+   },
+   "loss": {
+    "text": "你先清掉周瑜，曹操便收船；你先压住曹操，诸葛亮便不再等风。赤壁没有败给某一张牌，败给三方从未同时入局。",
+    "clue": "史鉴 · 多方会彼此读取你的下注，先清一家会给另一家收帆的机会；重开时看破提升。",
+    "clueFx": "keenEye"
+   }
+  },
+  "huarong": {
+   "cast": [
+    "caocao",
+    "guanyu",
+    "zhuge"
+   ],
+   "objective": "赢下穷途之后仍要亲手选择：让旧账随刀落，还是让义成为麦城必须偿还的债。",
+   "coldOpen": [
+    {
+     "speaker": "narrator",
+     "text": "曹操的坐骑陷在泥里，身后只剩十几骑。关羽横刀立马，却没看你，也没看那条通往江陵的空路。"
+    },
+    {
+     "speaker": "caocao",
+     "text": "赤壁能烧连舫，烧不尽旧账。云长，今日这桌上只剩你我了吗？"
+    },
+    {
+     "speaker": "guanyu",
+     "text": "军令在此，旧恩也在此。关某只问一句：这一刀，你替谁看？"
+    },
+    {
+     "speaker": "zhuge",
+     "text": "别替他选。你赢下的，只是让选择真的发生。"
+    }
+   ],
+   "intros": {
+    "caocao": [
+     {
+      "when": "page:zhujiu:yeshi",
+      "bio": "从青梅到赤壁，他每次穷途都仍记得怎样与你谈旧情。",
+      "quote": "青梅酒、连舫火。你我又走到窄路了。"
+     },
+     {
+      "bio": "败军不足以护驾，他便把昔日恩情也编成了亲军。",
+      "quote": "孤今日不讲天下，只讲故人。"
+     }
+    ],
+    "guanyu": [
+     {
+      "when": "seen:guanyu",
+      "bio": "从虎牢到华容，他的一诺始终比刀更重，也更难放下。",
+      "quote": "你已知关某如何出刀。今日且看为何收刀。"
+     },
+     {
+      "bio": "军令状在怀，旧恩在心，他不肯让任何一笔由旁人代签。",
+      "quote": "关某在此。忠与义，都不许借名。"
+     }
+    ]
+   },
+   "map": [
+    {
+     "id": "two-debts",
+     "node": 1,
+     "title": "华容 · 刀下两账",
+     "lines": [
+      {
+       "speaker": "caocao",
+       "text": "云长杀我，是奉军令；放我，是还旧恩。可你要他替哪一笔担罪？"
+      },
+      {
+       "speaker": "guanyu",
+       "text": "他把活路说成了两笔债。你听着，像哪一笔？"
+      },
+      {
+       "speaker": "you",
+       "text": "都不是。刀在活人手里，就不该由死去的情分替今日决定。"
+      }
+     ],
+     "choices": [
+      {
+       "id": "weigh-oath",
+       "text": "展开军令状，先念军法",
+       "detail": "曹军起手士气 -1，记住军令",
+       "effects": {
+        "sow": 1,
+        "fact": "huarong_oath"
+       }
+      },
+      {
+       "id": "weigh-debt",
+       "text": "收起军令状，只听旧恩",
+       "detail": "看破提升，记住旧恩",
+       "effects": {
+        "keenEye": true,
+        "fact": "huarong_debt"
+       }
+      }
+     ]
+    }
+   ],
+   "battle": [
+    {
+     "id": "huarong-open",
+     "at": "start",
+     "speaker": "caocao",
+     "text": "赤壁你懂得让三家都不能先走。今日只剩你我，反倒难了吧？"
+    },
+    {
+     "id": "huarong-oath",
+     "at": "hand:2",
+     "speaker": "guanyu",
+     "when": "fact:huarong_oath",
+     "text": "军令我立，罪我领。你若只把军法推给我，仍是让旁人替你落刀。"
+    },
+    {
+     "id": "huarong-debt",
+     "at": "hand:2",
+     "speaker": "guanyu",
+     "when": "fact:huarong_debt",
+     "text": "恩是关某欠的，命是三军争来的。别拿一个义字，替所有人免单。"
+    },
+    {
+     "id": "huarong-unwritten",
+     "at": "hand:3",
+     "speaker": "zhuge",
+     "text": "我算到曹操命不该绝，却算不到你怎样选。这一页，终于轮到人胜天一着。"
+    },
+    {
+     "id": "huarong-low",
+     "at": "low",
+     "speaker": "you",
+     "text": "他已不谈天下，只谈旧情。穷途上的曹操，仍知道什么能当筹码。"
+    }
+   ],
+   "win": {
+    "text": "曹操的筹码尽散，泥路静得能听见刀环。关羽终于看向你。前方无人阻拦，后方军令犹在；赢牌没有替你写下结局，只把刀落与不落都留成了你的亲手之笔。",
+    "hook": "这一刀无论落未落，都会沿荆州传到麦城。冬天还远，账已经记下了。"
+   },
+   "loss": {
+    "text": "曹操仍从泥里走出。你忙着替关羽计算忠义，却忘了他最擅长让别人替他争一个活口。",
+    "clue": "史鉴 · 穷途曹操会把军令与旧恩轮流推上桌；重开时看破提升，终局选择仍由你作出。",
+    "clueFx": "keenEye"
+   }
+  },
+  "sanqi": {
+   "cast": [
+    "zhouyu",
+    "zhuge",
+    "lusu",
+    "liubei"
+   ],
+   "objective": "不再用第三激杀人，而让周瑜在最难堪的一手里看见自己的生路。",
+   "coldOpen": [
+    {
+     "speaker": "narrator",
+     "text": "巴丘的药已经煎黑，周瑜却把第三封战书压在琴下。前两气让他失血，第三气却先让他笑了。"
+    },
+    {
+     "speaker": "zhouyu",
+     "text": "赤壁同桌，你拿风作了引信。今日又想拿什么，点我的箭疮？"
+    },
+    {
+     "speaker": "lusu",
+     "text": "孔明来书只有四字：何必如此。公瑾看完，便把你的名字写了三遍。"
+    },
+    {
+     "speaker": "zhuge",
+     "text": "若只想赢他，再激一次就够。若想让他活，得先让他有一次不失态。"
+    }
+   ],
+   "intros": {
+    "zhouyu": [
+     {
+      "when": "page:chibi:yeshi",
+      "bio": "赤壁的火赢了曹操，也烧亮了他不肯居于人后的心。",
+      "quote": "江上你留住同一刻。巴丘呢，等我先乱？"
+     },
+     {
+      "bio": "箭疮未愈，他把每一次迟疑都听成了曲误。",
+      "quote": "第三封书来了？念。看我还能气几次。"
+     }
+    ]
+   },
+   "map": [
+    {
+     "id": "third-letter",
+     "node": 1,
+     "title": "柴桑 · 第三封书",
+     "lines": [
+      {
+       "speaker": "lusu",
+       "text": "他认定你每一步都在笑他。你送药，他先找毒；你退兵，他先找伏。"
+      },
+      {
+       "speaker": "zhuge",
+       "text": "所以第三封书里，我一句也没有辩解。只写了赤壁那一手，他本可怎样赢我。"
+      },
+      {
+       "speaker": "you",
+       "text": "把胜法还给对手，比把罪名塞给他更难。"
+      }
+     ],
+     "choices": [
+      {
+       "id": "write-way-out",
+       "text": "在信尾写清他的胜机",
+       "detail": "看破提升，记住第三解",
+       "effects": {
+        "keenEye": true,
+        "fact": "sanqi_way_out"
+       }
+      },
+      {
+       "id": "remove-taunts",
+       "text": "请鲁肃收走所有激将话",
+       "detail": "周瑜起手士气 -1，记住不激",
+       "effects": {
+        "sow": 1,
+        "fact": "sanqi_no_taunt"
+       }
+      }
+     ]
+    }
+   ],
+   "battle": [
+    {
+     "id": "sanqi-open",
+     "at": "start",
+     "speaker": "zhouyu",
+     "text": "你又带着孔明的信来。说罢，这次是哪座城、哪一句既生瑜？"
+    },
+    {
+     "id": "sanqi-way-out",
+     "at": "hand:2",
+     "speaker": "zhuge",
+     "when": "fact:sanqi_way_out",
+     "text": "看他弃掉好牌的那一手。他不是让你，是在逼自己承认还有下局。"
+    },
+    {
+     "id": "sanqi-no-taunt",
+     "at": "hand:2",
+     "speaker": "lusu",
+     "when": "fact:sanqi_no_taunt",
+     "text": "他等你讥讽，你便只报牌。没有人接怒，火便只能烧回他自己。"
+    },
+    {
+     "id": "sanqi-silence",
+     "at": "hand:3",
+     "speaker": "zhouyu",
+     "text": "你为何不笑？我若连怒都无处落，岂不成了你琴上一根断弦？"
+    },
+    {
+     "id": "sanqi-low",
+     "at": "low",
+     "speaker": "you",
+     "text": "第三气不必是一句话。让他发现，败也可以不成为笑话。"
+    }
+   ],
+   "win": {
+    "text": "周瑜没有再喊“既生瑜”。他把那封写着自己胜机的信压在琴上，慢慢弹错一音，又自己笑了一声。鲁肃听见笑声，才敢让医官进帐。",
+    "hook": "周郎暂离巴丘，入蜀的山路却正向庞统收拢。落凤坡这个地名，诸葛亮看了很久。"
+   },
+   "loss": {
+    "text": "你把他的失态当作唯一的胜门，第三激终于奏效，也永远关上了所有下局。琴没有断，听琴的人先散了。",
+    "clue": "史鉴 · 周瑜会等你先出讥讽再反扑；少接他的怒，重开时看破提升。",
+    "clueFx": "keenEye"
+   }
+  },
+  "luofengpo": {
+   "cast": [
+    "pangtong",
+    "liubei",
+    "zhangren",
+    "liuzhang"
+   ],
+   "objective": "利用的卢与张任对凤雏的执念，让伏兵射中一个错误的目标。",
+   "coldOpen": [
+    {
+     "speaker": "narrator",
+     "text": "落凤坡前，的卢不肯踏过白石道。庞统翻身下马，将缰绳递回刘备手里，忽然问张任要杀的究竟是马，还是人。"
+    },
+    {
+     "speaker": "pangtong",
+     "text": "孔明来信只说将帅多凶少吉。他连我也一并算了，却忘了伏兵也要先认人。"
+    },
+    {
+     "speaker": "liuzhang",
+     "text": "父兄守了三十年的蜀道,竟真有人打进来……任儿,成都的门,拜托你了。",
+     "when": "!seen:liuzhang"
+    },
+    {
+     "speaker": "liubei",
+     "text": "士元，换马本是好意。若这好意正好替你写了死籍呢？"
+    },
+    {
+     "speaker": "zhangren",
+     "text": "不见的卢，不许放箭。我要刘备，莫伤错了人。"
+    }
+   ],
+   "intros": {
+    "zhangren": [
+     {
+      "when": "seen:zhangren",
+      "bio": "他记得伏兵怎样扑空，这一次把每面旗号都问得更细。",
+      "quote": "旗号可以换。守土的心，你换不了。"
+     },
+     {
+      "bio": "西川第一忠勇，谨慎是他守城的墙，也是伏兵的号令。",
+      "quote": "白马未现，诸军不得擅发一箭。"
+     }
+    ]
+   },
+   "map": [
+    {
+     "id": "false-phoenix",
+     "node": 1,
+     "title": "落凤坡 · 反借伏眼",
+     "lines": [
+      {
+       "speaker": "zhangren",
+       "text": "林深，马快。可我伏兵的号令只有一个：白马入坡，万箭齐发。"
+      },
+      {
+       "speaker": "pangtong",
+       "text": "他要射的是刘备必骑的卢这个成见。地名未必克我，人名却会骗人。"
+      },
+      {
+       "speaker": "liubei",
+       "text": "那就让这成见，最后一次替我们带路。"
+      }
+     ],
+     "choices": [
+      {
+       "id": "horse-decoy",
+       "text": "空缰牵的卢走前队",
+       "detail": "看破伏兵，记住白马诱饵",
+       "effects": {
+        "keenEye": true,
+        "fact": "luofengpo_horse_decoy"
+       }
+      },
+      {
+       "id": "banner-decoy",
+       "text": "以凤翎旗引偏箭雨",
+       "detail": "伏兵起手军资 -200，记住假旗",
+       "effects": {
+        "raid": true,
+        "fact": "luofengpo_banner_decoy"
+       }
+      }
+     ]
+    }
+   ],
+   "battle": [
+    {
+     "id": "luofengpo-open",
+     "at": "start",
+     "speaker": "zhangren",
+     "text": "庞统，你若真懂趋吉避凶，便不该走进这座坡。"
+    },
+    {
+     "id": "luofengpo-horse",
+     "at": "hand:2",
+     "speaker": "pangtong",
+     "when": "fact:luofengpo_horse_decoy",
+     "text": "听，箭都追着的卢去了。张任守的是刘备必骑白马，不是落凤坡。"
+    },
+    {
+     "id": "luofengpo-banner",
+     "at": "hand:2",
+     "speaker": "pangtong",
+     "when": "fact:luofengpo_banner_decoy",
+     "text": "凤旗向东，伏兵便向东。所谓落凤，也可以由我指定落在哪处。"
+    },
+    {
+     "id": "luofengpo-turn",
+     "at": "hand:3",
+     "speaker": "zhangren",
+     "text": "白马是假，旗号也是假。你们拿我的谨慎，做了自己的弓。"
+    },
+    {
+     "id": "luofengpo-low",
+     "at": "low",
+     "speaker": "liubei",
+     "text": "士元，伏兵已乱。今日不换马，换一条他们没写过的路。"
+    }
+   ],
+   "win": {
+    "text": "箭雨落在空马与假旗之后，庞统从侧坡踏上高处。他没有庆幸地名失效，只在那封“多凶少吉”的信后添了四字：人心亦然。成都的关门，第一次为凤雏露出缝隙。",
+    "hook": "凤雏入蜀，汉中随之成为下一张必争之牌。定军山上，黄忠正在擦拭一把不肯老的刀。"
+   },
+   "loss": {
+    "text": "你只顾离开的卢，却仍沿张任预设的山道前行。避开了被认出的马，没有避开被算准的人；第二轮箭雨不再等候号令。",
+    "clue": "史鉴 · 张任先认旗号再下令，伏兵齐射前有一次错认；重开时看破提升。",
+    "clueFx": "keenEye"
+   }
+  },
+  "dingjunshan": {
+   "cast": [
+    "huangzhong",
+    "xiahouyuan",
+    "zhanghe",
+    "fazheng",
+    "yanyan"
+   ],
+   "objective": "借夏侯渊的快与张郃的变互相牵制，让老将一刀落在两人换防的半拍。",
+   "coldOpen": [
+    {
+     "speaker": "narrator",
+     "text": "定军山上下各有一面鼓。夏侯渊催人快攻，张郃却按兵测路；两面鼓总差半拍，黄忠听了三遍，解下了弓。"
+    },
+    {
+     "speaker": "huangzhong",
+     "text": "他们说老将只剩一刀。够是够，只怕有人快得撞上来，有人巧得不肯来。"
+    },
+    {
+     "speaker": "fazheng",
+     "text": "汉升,山上两将不和,便是天给你的第三条路。孝直在旌旗上,只写一个「待」字。",
+     "when": "!seen:fazheng"
+    },
+    {
+     "speaker": "yanyan",
+     "text": "老哥哥,当年蜀道上一声「断头将军」,今日原样奉还。你的侧翼,严颜包了。"
+    },
+    {
+     "speaker": "xiahouyuan",
+     "text": "年迈还敢居高？天明的鼓未响，我便先上山取你的刀。"
+    },
+    {
+     "speaker": "zhanghe",
+     "text": "妙才，居高者故意示弱。你若只会快，便正好替他省去诱敌。"
+    }
+   ],
+   "intros": {
+    "xiahouyuan": [
+     {
+      "bio": "兵贵神速是他的军令，也是别人最容易拨快的那面鼓。",
+      "quote": "张郃善变，夏侯善速。你先接哪一个？"
+     }
+    ],
+    "zhanghe": [
+     {
+      "bio": "巧变名将，最会改阵，却未必改得了同袍的急性。",
+      "quote": "兵无常势。可惜妙才只认一种快。"
+     }
+    ],
+    "huangzhong": [
+     {
+      "bio": "老将不与人争脚力，只争敌人迈入刀势的那一步。",
+      "quote": "老的是年岁，不是这一刀。"
+     }
+    ]
+   },
+   "map": [
+    {
+     "id": "half-beat",
+     "node": 1,
+     "title": "定军山 · 换防半拍",
+     "lines": [
+      {
+       "speaker": "zhanghe",
+       "text": "我若向左补防，妙才必从右路抢功。你站得越高，他越不肯等我的旗。"
+      },
+      {
+       "speaker": "xiahouyuan",
+       "text": "等你阵成，黄忠早跑了！速战便是最稳的阵。"
+      },
+      {
+       "speaker": "huangzhong",
+       "text": "不必盼他们和睦。一快一慢，正好替老朽数刀。"
+      }
+     ],
+     "choices": [
+      {
+       "id": "measure-beats",
+       "text": "先测两营更鼓，再布刀阵",
+       "detail": "看破提升，记住半拍",
+       "effects": {
+        "keenEye": true,
+        "fact": "dingjunshan_measured_beats"
+       }
+      },
+      {
+       "id": "leave-antlers",
+       "text": "留一段残破鹿角诱敌抢修",
+       "detail": "曹军起手军资 -200，记住假隙",
+       "effects": {
+        "raid": true,
+        "fact": "dingjunshan_repair_bait"
+       }
+      }
+     ]
+    }
+   ],
+   "battle": [
+    {
+     "id": "dingjunshan-open",
+     "at": "start",
+     "speaker": "xiahouyuan",
+     "when": "multi",
+     "text": "张郃你看住侧翼。至于你——接得住我三次快攻，再谈年迈不年迈。"
+    },
+    {
+     "id": "dingjunshan-change",
+     "at": "hand:2",
+     "speaker": "zhanghe",
+     "when": "multi",
+     "text": "他越催，你越该看我。妙才的刀从正面来，我的阵可从你背后合。"
+    },
+    {
+     "id": "dingjunshan-measured",
+     "at": "hand:3",
+     "speaker": "huangzhong",
+     "when": "fact:dingjunshan_measured_beats",
+     "text": "你量的不是山，是妙才听见快字以后，不肯回头的那半拍。"
+    },
+    {
+     "id": "dingjunshan-bait",
+     "at": "hand:3",
+     "speaker": "huangzhong",
+     "when": "fact:dingjunshan_repair_bait",
+     "text": "你补的不是鹿角，是给妙才一条非快不可的理由。现在，等他冲开门。"
+    },
+    {
+     "id": "dingjunshan-low",
+     "at": "low",
+     "speaker": "huangzhong",
+     "when": "multi",
+     "text": "一个要我快，一个要他慢。老朽只需站在两令之间。"
+    }
+   ],
+   "win": {
+    "text": "夏侯渊冲进那半拍时，张郃的新阵尚未转身。黄忠没有追第二刀，只把刀背在肩上一横，汉中各营便同时改旗。山上的两面鼓，终于只敲出一个更次。",
+    "hook": "汉中的胜利把关羽推上威震华夏的高处。沔水秋雨将至，盛名也会成为最醒目的一面旗。"
+   },
+   "loss": {
+    "text": "夏侯渊的快逼你仓促，张郃的变又封住退路。你等着他们相撞，却先被两种节奏轮流拖走；老将的刀始终没有出鞘。",
+    "clue": "史鉴 · 两人会交替抢速与变阵，等一方行动后再读另一方；重开时看破提升。",
+    "clueFx": "keenEye"
+   }
+  },
+  "shuiyan": {
+   "cast": [
+    "guanyu",
+    "yujin",
+    "pangde"
+   ],
+   "objective": "蓄水而不恃水，在七军改营前锁住高地与退路，把天时变成军令。",
+   "coldOpen": [
+    {
+     "speaker": "narrator",
+     "text": "沔水已经漫过旧界石，于禁仍把营垒排得一线不乱。庞德的棺木停在辕门外，漆色比乌云更沉。"
+    },
+    {
+     "speaker": "guanyu",
+     "text": "七军之稳，在令行禁止；七军之险，也在无人敢先违令移营。"
+    },
+    {
+     "speaker": "yujin",
+     "text": "关云长，天时未必助你。营中粮尚可支十日，你若久等，先乱的是樊城外。"
+    },
+    {
+     "speaker": "pangde",
+     "text": "于将军,庞某此来,榇已在营外。你我同守,守的不是魏土,是各自主帅的名字。",
+     "when": "!seen:pangde"
+    },
+    {
+     "speaker": "you",
+     "text": "他要等雨停。我不必让雨更早，只要让他舍不得先动。"
+    }
+   ],
+   "intros": {
+    "yujin": [
+     {
+      "when": "seen:yujin",
+      "bio": "他记得低洼怎样吞掉军阵，这次仍不肯让一次擅动毁去严名。",
+      "quote": "水涨可测。军心，不可先乱。"
+     },
+     {
+      "bio": "泰山之稳，最信军令，也最晚承认军令已经过时。",
+      "quote": "各营听令，无令不得移驻一步。"
+     }
+    ],
+    "pangde": [
+     {
+      "when": "seen:pangde",
+      "bio": "西凉旧部出身的他不信天命,只信手中刀与营外那口棺。",
+      "quote": "再战一场。棺未用,人未还。"
+     },
+     {
+      "when": "page:tongguan:yeshi",
+      "bio": "他记得西凉的散与聚,如今把不服换成了决死的忠。",
+      "quote": "马儿败在西凉。庞某,不会败在这里。"
+     },
+     {
+      "bio": "抬榇而来的降将,每一箭都在替自己的名节还债。",
+      "quote": "榇在此。关公,请全力。"
+     }
+    ]
+   },
+   "map": [
+    {
+     "id": "dry-order",
+     "node": 1,
+     "title": "罾口川 · 水未先攻",
+     "lines": [
+      {
+       "speaker": "yujin",
+       "text": "你若决堤，我军便上高处；你若久围，樊城先求援。雨再大，也不能替我下令。"
+      },
+      {
+       "speaker": "guanyu",
+       "text": "他最需要的不只是高地，还有一道仍允许他守住体面的军令。"
+      },
+      {
+       "speaker": "you",
+       "text": "那就给他一条看似不必移营的退路。"
+      }
+     ],
+     "choices": [
+      {
+       "id": "old-channel",
+       "text": "留出旧河道，示弱不封",
+       "detail": "看破退路，记住旧河道",
+       "effects": {
+        "keenEye": true,
+        "fact": "shuiyan_old_channel"
+       }
+      },
+      {
+       "id": "highland-stakes",
+       "text": "暗桩封住高地渡口",
+       "detail": "于禁起手军资 -200，记住暗桩",
+       "effects": {
+        "raid": true,
+        "fact": "shuiyan_highland_stakes"
+       }
+      }
+     ]
+    }
+   ],
+   "battle": [
+    {
+     "id": "shuiyan-open",
+     "at": "start",
+     "speaker": "yujin",
+     "text": "军阵未乱，水便只是水。关羽盛名在外，也不过要等天替他交战。"
+    },
+    {
+     "id": "shuiyan-channel",
+     "at": "hand:2",
+     "speaker": "guanyu",
+     "when": "fact:shuiyan_old_channel",
+     "text": "旧河道看似能退，其实最浅。于禁不肯弃营，你便把这条稳路走成绝路。"
+    },
+    {
+     "id": "shuiyan-stakes",
+     "at": "hand:2",
+     "speaker": "guanyu",
+     "when": "fact:shuiyan_highland_stakes",
+     "text": "暗桩已沉。他仍说高地可登，只因还没看见水下那道门已经关了。"
+    },
+    {
+     "id": "shuiyan-no-reply",
+     "at": "hand:3",
+     "speaker": "yujin",
+     "text": "水位过膝，各军仍不得擅动。等等——传令高地，为何不回报？"
+    },
+    {
+     "id": "shuiyan-low",
+     "at": "low",
+     "speaker": "guanyu",
+     "text": "水不是刀。令他不能退的是军令如山，水只负责把山淹了。"
+    }
+   ],
+   "win": {
+    "text": "七军旗帜一面面没入浑水，于禁放下剑时，关羽先命人递去一条干舟，而非绳索。威震华夏的呼声到夜里才起；他却独自回望上游，像已看见盛名之后那条更窄的雪路。",
+    "hook": "于禁已擒，许都震动。吕蒙却在江东脱下战袍、换上白衣，陆逊把一封极恭顺的信送往荆州。"
+   },
+   "loss": {
+    "text": "雨终于来了，你却把涨水当成已经获胜。于禁依令退上高地，七军虽湿未乱；关羽的楼船反而被堵在自己准备的河道里。",
+    "clue": "史鉴 · 水势只压低阵型，不等于封死退路；先夺高地，重开时看破提升。",
+    "clueFx": "keenEye"
+   }
+  },
+  "maicheng": {
+   "cast": [
+    "guanyu",
+    "lvmeng",
+    "luxun",
+    "guanping",
+    "zhoucang",
+    "panzhang"
+   ],
+   "objective": "拆穿白衣与卑辞共同织成的旧我之局，让关羽不以华容的旧账决定麦城的活路。",
+   "coldOpen": [
+    {
+     "speaker": "narrator",
+     "text": "麦城的雪盖住烽火台，吕蒙的白衣与陆逊的绶带一前一后入帐。关羽案上，摆着当年华容留下的一截刀穗。"
+    },
+    {
+     "speaker": "guanyu",
+     "when": "choice:huarong:yeshiB",
+     "text": "那日刀未落，曹军今日在北按兵。关某放下的义，原来会沿地图回来要账。"
+    },
+    {
+     "speaker": "guanyu",
+     "when": "choice:huarong:yeshi",
+     "text": "那日刀落，北方诸侯各怀心思，求援的信到临沮便没了下文。恩义清了，路却未宽。"
+    },
+    {
+     "speaker": "guanping",
+     "text": "父亲,平儿探过路了:北面小道可走,唯临沮一带林密,恐有吴人设网。"
+    },
+    {
+     "speaker": "zhoucang",
+     "text": "俺的腿快过他们的马!将军上马,俺扛刀开路——谁挡,俺踩谁!"
+    },
+    {
+     "speaker": "lvmeng",
+     "text": "云长，你最盛时水淹七军；可盟友与旧敌，都从那场水里学会了怎样对付你。"
+    }
+   ],
+   "intros": {
+    "panzhang": [
+     {
+      "when": "seen:panzhang",
+      "bio": "他惦记的从来不只是城,还有城里那口八十二斤的刀。",
+      "quote": "青龙刀……这次,该换个主人了。"
+     },
+     {
+      "bio": "设网的人先算的不是兵,是走投无路者的习惯。",
+      "quote": "雪夜赶路的人,总爱挑最近的那条。"
+     }
+    ],
+    "lvmeng": [
+     {
+      "when": "choice:huarong:yeshiB",
+      "bio": "他知道你曾放曹操北归，便把这段旧义也算进了求援路。",
+      "quote": "你能纵虎，能否走过我留给义气的路？"
+     },
+     {
+      "when": "choice:huarong:yeshi",
+      "bio": "他记得华容刀落，不再指望旧恩能拖住你的刀。",
+      "quote": "你既杀过曹操，便该知道我无旧恩可还。"
+     },
+     {
+      "bio": "白衣之下不是商贾，是一个把关羽读得太熟的人。",
+      "quote": "士别三日。云长，可还认得吕蒙？"
+     }
+    ],
+    "luxun": [
+     {
+      "when": "page:sanqi:yeshi",
+      "bio": "公瑾因你而活，他却要证明救命之恩改变不了荆州之争。",
+      "quote": "你救得公瑾，未必救得荆州。"
+     },
+     {
+      "bio": "他把恭顺写得越低，麦城四周的网便收得越慢、越紧。",
+      "quote": "后生陆逊，特来向威震华夏者请教。"
+     }
+    ]
+   },
+   "map": [
+    {
+     "id": "old-self-road",
+     "node": 1,
+     "title": "临沮 · 雪路旧账",
+     "lines": [
+      {
+       "speaker": "lvmeng",
+       "text": "我们不必猜关羽会不会降。只要算出他还相信谁，麦城便没有第二扇门。"
+      },
+      {
+       "speaker": "guanyu",
+       "text": "荆州之失，不在一城一将。是每个人都把旧日的我，当成了今日的路标。"
+      },
+      {
+       "speaker": "lvmeng",
+       "when": "choice:huarong:yeshiB",
+       "text": "华容刀未落，曹操便欠你一命。可他按兵，是要还情，还是要等吴蜀两伤？"
+      },
+      {
+       "speaker": "luxun",
+       "when": "choice:huarong:yeshi",
+       "text": "华容刀落，北方自顾不暇。你烧掉一条外援，也烧掉了敌人对你的旧判断。"
+      }
+     ],
+     "choices": [
+      {
+       "id": "split-letters",
+       "text": "把求援信分送北、西两路",
+       "detail": "军资 +150，吕蒙军资 +100，记住分信",
+       "effects": {
+        "chips": 150,
+        "oppChips": 100,
+        "fact": "maicheng_split_letters"
+       }
+      },
+      {
+       "id": "burn-letters",
+       "text": "烧掉旧信，只带精锐突围",
+       "detail": "看破提升，记住焚信",
+       "effects": {
+        "keenEye": true,
+        "fact": "maicheng_burn_letters"
+       }
+      },
+      {
+       "id": "false-beacons",
+       "text": "重燃烽燧，假作仍在坚守",
+       "detail": "吴军起手军资 -200，记住空烽",
+       "effects": {
+        "raid": true,
+        "fact": "maicheng_false_beacons"
+       }
+      }
+     ]
+    }
+   ],
+   "battle": [
+    {
+     "id": "maicheng-open",
+     "at": "start",
+     "speaker": "lvmeng",
+     "when": "multi",
+     "text": "陆逊让你以为还有时间，我负责让时间走完。云长，该换一种看法了。"
+    },
+    {
+     "id": "maicheng-letters",
+     "at": "hand:2",
+     "speaker": "luxun",
+     "when": "multi",
+     "text": "你每次求援，我都先替收信人想一遍。等你想通，路已成了我的阵。"
+    },
+    {
+     "id": "maicheng-spared",
+     "at": "hand:3",
+     "speaker": "guanyu",
+     "when": "choice:huarong:yeshiB",
+     "text": "华容那一放，不是叫曹操今日替我活。关某的义，从不向北国收利。"
+    },
+    {
+     "id": "maicheng-slain",
+     "at": "hand:3",
+     "speaker": "guanyu",
+     "when": "choice:huarong:yeshi",
+     "text": "华容那一落，关某未曾后悔。今日才懂，杀一人不能杀尽天下的算计。"
+    },
+    {
+     "id": "maicheng-zhouyu",
+     "at": "hand:4",
+     "speaker": "lvmeng",
+     "when": "page:sanqi:yeshi",
+     "text": "你让公瑾多活十年，却没让江东忘掉荆州。他欠你一命，我不能替他还一城。"
+    },
+    {
+     "id": "maicheng-low-split",
+     "at": "low",
+     "speaker": "you",
+     "when": "fact:maicheng_split_letters",
+     "text": "分信不是等谁来救，是让吴军不知该堵哪路。援书未至，疑兵已经出城。"
+    },
+    {
+     "id": "maicheng-low-burn",
+     "at": "low",
+     "speaker": "you",
+     "when": "fact:maicheng_burn_letters",
+     "text": "旧信烧尽，吕蒙只能猜今日的关羽。突围，也要先让旧我消失。"
+    },
+    {
+     "id": "maicheng-low-beacon",
+     "at": "low",
+     "speaker": "you",
+     "when": "fact:maicheng_false_beacons",
+     "text": "烽火仍亮，吕蒙回头望城的一瞬，雪下小路才不是他算好的那页。"
+    }
+   ],
+   "win": {
+    "text": "麦城西门在雪停前打开，关羽带残军突出临沮。华容那一刀，无论落过或未落，都没有替今日开门；他把旧刀穗留在雪中，活着的人不再拿旧账抵新命。荆州尚有来路，季汉也尚有一局。",
+    "hook": "荆州未失，复仇之名却未必会散。夷陵的营火与白帝城的托孤，都在下一卷等你改写。"
+   },
+   "loss": {
+    "text": "吕蒙算你的旧义，陆逊算你的新断。一个封住求援，一个等你犹豫；雪停时，麦城仍只记住了那个不肯改变的关羽。",
+    "clue": "史鉴 · 吕蒙与陆逊会分别利用旧恩与退路；重开时看破提升，华容的选择仍会留下不同劝谏。",
+    "clueFx": "keenEye"
+   }
+  },
+  "nanjun": {
+   "cast": [
+    "zhouyu",
+    "caoren",
+    "chengpu",
+    "ganning",
+    "lusu"
+   ],
+   "objective": "在江陵城下与曹仁对读,让周瑜的箭疮不必第二次裂开。",
+   "coldOpen": [
+    {
+     "speaker": "narrator",
+     "text": "赤壁的火光才熄,南郡的旗还在曹仁手里。周瑜披甲临江,箭疮尚未收口,曹仁却在城头摆开了嘲讽的鼓。"
+    },
+    {
+     "speaker": "zhouyu",
+     "text": "曹子孝守城,十年不倦。要取南郡,先要赢他不肯出城的那颗心。"
+    },
+    {
+     "speaker": "caoren",
+     "text": "都督箭疮未愈吧?本将这面鼓,专为你擂。你若动气,城门便为你开。",
+     "when": "!seen:caoren"
+    },
+    {
+     "speaker": "ganning",
+     "text": "都督,把夷陵交给兴霸。铃响之处,便是吴军又进一步。"
+    },
+    {
+     "speaker": "chengpu",
+     "text": "公瑾,老夫陪你压阵。箭疮这东西,最怕的不是箭,是气。"
+    }
+   ],
+   "intros": {
+    "caoren": [
+     {
+      "when": "seen:caoren",
+      "bio": "他记得你怎样替周瑜挡下怒气,这次连鼓都懒得擂了。",
+      "quote": "又来?这次我连激你的兴致都省了。"
+     },
+     {
+      "bio": "他把守城写成一门手艺:不赌气,不侥幸,不心疼一砖一瓦。",
+      "quote": "江陵的砖,一块一块都数过。来。"
+     }
+    ],
+    "caohong": [
+     {
+      "bio": "他替兄长守夷陵道,信奉的道理只有一条:主公的退路比自己的命长。",
+      "quote": "这道口,姓曹。想过?留下买路的东西。"
+     }
+    ]
+   },
+   "map": [
+    {
+     "id": "outside-mock",
+     "node": 1,
+     "title": "江陵 · 城下之鼓",
+     "lines": [
+      {
+       "speaker": "zhouyu",
+       "text": "他每日擂鼓骂我箭疮,要我拔营决战。我若应战,疮裂;我若不应,军心馁。"
+      },
+      {
+       "speaker": "lusu",
+       "text": "都督不如把他擂给你的每一面鼓,都记成他出城的日子。"
+      },
+      {
+       "speaker": "you",
+       "text": "鼓声是他的表,不是你的。让鼓替你数他的换防。"
+      }
+     ],
+     "choices": [
+      {
+       "id": "count-drums",
+       "text": "记录鼓点与垛口换防",
+       "detail": "本回看破提升,记住换防之隙",
+       "effects": {
+        "keenEye": true,
+        "fact": "nanjun_count"
+       }
+      },
+      {
+       "id": "yiling-feint",
+       "text": "佯攻夷陵,分其兵势",
+       "detail": "曹军起手军资 -200,记住分兵",
+       "effects": {
+        "raid": true,
+        "fact": "nanjun_feint"
+       }
+      }
+     ]
+    }
+   ],
+   "battle": [
+    {
+     "id": "nanjun-open",
+     "at": "start",
+     "speaker": "caoren",
+     "text": "周郎!箭疮好些了吗?本将的鼓,今日擂得更响!"
+    },
+    {
+     "id": "nanjun-anger",
+     "at": "hand:2",
+     "speaker": "zhouyu",
+     "text": "他把鼓擂给我,我便把怒气记在他账上。等他换了第三班守军——"
+    },
+    {
+     "id": "nanjun-gap",
+     "at": "hand:3",
+     "speaker": "ganning",
+     "text": "夷陵铃响了!曹洪分兵了,江陵的墙薄了一层!",
+     "when": "fact:nanjun_feint"
+    },
+    {
+     "id": "nanjun-low",
+     "at": "low",
+     "speaker": "chengpu",
+     "text": "都督的脸白了。老夫替你压住阵脚——这一阵,赢了再养伤!"
+    }
+   ],
+   "win": {
+    "text": "曹仁弃城西走的那夜,周瑜按着箭伤登上了江陵城头。他没有接受欢呼,只让人把城头那面嘲弄过他的鼓抬来,亲手敲了三下,又送还曹仁:\"替我谢谢它,守住了我的耐心。\"南郡,终于姓孙。",
+    "hook": "南郡到手,荆州的账才翻开了第一页。而北方的马蹄声,已带着一腔仇恨碾向潼关。"
+   },
+   "loss": {
+    "text": "鼓声第三次响起时,周瑜提枪上马,箭疮在甲缝里裂开。你扶住他的一瞬,江陵城门轰然大开——曹仁等的正是这一刻。",
+    "clue": "史鉴 · 曹仁的鼓是给你情绪上的枷。重开后他的假破绽减少;数他的换防,别数他的挑衅。",
+    "clueFx": "keenEye"
+   }
+  },
+  "tongguan": {
+   "cast": [
+    "machao",
+    "xuchu",
+    "caocao",
+    "jiaxu",
+    "xuhuang"
+   ],
+   "objective": "在西凉铁骑的怒火里护住曹操,也让马超的仇有一个说得出口的去处。",
+   "coldOpen": [
+    {
+     "speaker": "narrator",
+     "text": "潼关的风卷着沙,马超的白袍在阵前来回,像一杆不肯倒的旗。曹操的中军帐里,贾诩慢慢研着墨。"
+    },
+    {
+     "speaker": "machao",
+     "text": "曹瞒!杀父之仇,欺天之恨!今日不把你剁在潼关,马超誓不为人!"
+    },
+    {
+     "speaker": "caocao",
+     "text": "马儿不死,孤无葬地也。诸公,谁替孤挡住这阵风?"
+    },
+    {
+     "speaker": "xuchu",
+     "text": "主公下帐,退后!虎痴在此——马儿,过来!"
+    },
+    {
+     "speaker": "jiaxu",
+     "text": "明公莫慌。西凉人多,心却不齐。文和的墨,比虎痴的刀慢,却更毒。",
+     "when": "!seen:jiaxu"
+    }
+   ],
+   "intros": {
+    "machao": [
+     {
+      "when": "seen:machao",
+      "bio": "他记得渭水那夜的冰与火,恨意未减,枪却更沉了。",
+      "quote": "又来挡我?先问过我手里的枪!"
+     },
+     {
+      "when": "page:jiameng:yeshi",
+      "bio": "葭萌的火盆边他曾放下过枪,此刻枪尖却在微微发抖。",
+      "quote": "你见过我放下枪的样子……别再提!"
+     },
+     {
+      "bio": "锦袍银枪,半生都在替死去的父叔讨一个说法。",
+      "quote": "父债子偿,天经地义。让开!"
+     }
+    ],
+    "xuchu": [
+     {
+      "when": "seen:xuchu",
+      "bio": "渭水之战让他记住了你,这次把腰间的绳又紧了三圈。",
+      "quote": "再来!俺的力气还没用完!"
+     },
+     {
+      "bio": "他不懂什么离间计,只认一个理:主公在身后,就不能退。",
+      "quote": "马儿的枪快?俺的命更硬!"
+     }
+    ]
+   },
+   "map": [
+    {
+     "id": "weishui-ice",
+     "node": 1,
+     "title": "渭南 · 冰城疑云",
+     "lines": [
+      {
+       "speaker": "xuhuang",
+       "text": "一夜寒风,渭水结出了冰沙。若连夜筑城,天明便有一座冰营——马超的骑兵,冲不动冰。"
+      },
+      {
+       "speaker": "jiaxu",
+       "text": "冰城只能挡马,挡不住恨。要拆西凉,须先拆韩遂与马超的情分——一封信,够了。"
+      },
+      {
+       "speaker": "you",
+       "text": "让他先把怒气全押上来,再让他看见信上的墨点。"
+      }
+     ],
+     "choices": [
+      {
+       "id": "ice-wall",
+       "text": "连夜筑冰城,以静制动",
+       "detail": "本回看破提升,记住冰城之利",
+       "effects": {
+        "keenEye": true,
+        "fact": "tongguan_ice"
+       }
+      },
+      {
+       "id": "letter-smudge",
+       "text": "在离间信上留下涂改的墨点",
+       "detail": "西凉军起手士气 -1,记住墨点之疑",
+       "effects": {
+        "sow": 1,
+        "fact": "tongguan_smudge"
+       }
+      }
+     ]
+    }
+   ],
+   "battle": [
+    {
+     "id": "tongguan-open",
+     "at": "start",
+     "speaker": "machao",
+     "text": "曹瞒!你修的冰城,挡得住马,挡不住仇!"
+    },
+    {
+     "id": "tongguan-bare",
+     "at": "hand:2",
+     "speaker": "xuchu",
+     "text": "马儿,认得俺吗?虎侯今天,就站你面前!",
+     "when": "multi"
+    },
+    {
+     "id": "tongguan-letter",
+     "at": "hand:3",
+     "speaker": "narrator",
+     "text": "韩遂捧着那封信,手指停在墨点上。马超瞥见的那一眼,比曹操的千军更冷。",
+     "when": "fact:tongguan_smudge"
+    },
+    {
+     "id": "tongguan-low",
+     "at": "low",
+     "speaker": "caocao",
+     "text": "马儿,孤知你不服。可你父之死——你真敢把账全算在孤一人身上吗?"
+    }
+   ],
+   "win": {
+    "text": "渭南的风停时,西凉的营自己烧了起来——不是曹操的火,是那封信上的墨点。马超单骑立在残阵之前,枪指曹操,久久没有落下,最终调头向西。曹操抚着胡须轻声说:\"孤赢的不是他,是他终于开始想,那笔账到底该找谁算。\"",
+    "hook": "西凉散了,仇恨却还在寻找一个骑手。它会在葭萌关的火盆边,再等马超三年。"
+   },
+   "loss": {
+    "text": "马超的怒火没有等你的离间计生效。铁骑三冲,冰城四裂,曹操割须弃袍的那一刻,你在乱军中只看见了虎痴的背影。",
+    "clue": "史鉴 · 马超的强在于怒气换筹码。重开后他的假破绽减少;先用冰城耗,再用墨点疑。",
+    "clueFx": "keenEye"
+   }
+  },
+  "ruxu": {
+   "cast": [
+    "ganning",
+    "zhoutai",
+    "sunquan",
+    "lingtong",
+    "caocao"
+   ],
+   "objective": "护住百骑劫营的每一声铃响,让曹操的四十万大军自乱一夜。",
+   "coldOpen": [
+    {
+     "speaker": "narrator",
+     "text": "曹操四十万大军压向濡须,孙权帐中鸦雀无声。甘宁把一百枚铜铃摆上案,一枚一枚,摆成一条线。"
+    },
+    {
+     "speaker": "sunquan",
+     "text": "孟德有张辽,孤有兴霸。可一百骑进四十万人的营,兴霸,孤要你活着回来。"
+    },
+    {
+     "speaker": "ganning",
+     "text": "主公放心。铃响则进,铃停则回——兴霸带的不是一百个送死的,是一百个来记账的!"
+    },
+    {
+     "speaker": "lingtong",
+     "text": "甘宁!你又抢头阵!我父亲的旧部,还没死绝!",
+     "when": "!seen:ganning"
+    },
+    {
+     "speaker": "zhoutai",
+     "text": "都尉少说一句。这一百骑里,有公绩你父亲的老兄弟。"
+    }
+   ],
+   "intros": {
+    "caocao": [
+     {
+      "when": "page:caochuan:yeshi",
+      "bio": "草船的雾与今夜的铃,让他把江东的胆量重新记了一账。",
+      "quote": "借了孤的箭,又来借孤的营。好胆!"
+     },
+     {
+      "when": "seen:caocao",
+      "bio": "他记得你每次都借他的多疑,这次索性把疑心布满四十万营。",
+      "quote": "孤的营,今夜谁碰谁死——问题是谁来碰?"
+     },
+     {
+      "bio": "四十万人的营火,把江面照成了白昼,也把每一条影子都放大成敌。",
+      "quote": "江东鼠辈,只会借雾借火。正面,孤等他们。"
+     }
+    ],
+    "xuhuang": [
+     {
+      "bio": "他布的阵讲究一个「整」字,连劫营者都会被整阵逼回原路。",
+      "quote": "来劫营?先过我这排整齐的拒马。"
+     }
+    ],
+    "lejin": [
+     {
+      "bio": "文谦的名字取「进」,人也一样——前锋永远比军令快一步。",
+      "quote": "先锋营,先登!江东人,尝尝乐进的刀!"
+     }
+    ]
+   },
+   "map": [
+    {
+     "id": "hundred-bells",
+     "node": 1,
+     "title": "横江 · 铃响为号",
+     "lines": [
+      {
+       "speaker": "ganning",
+       "text": "每人一根白鹅翎,衔在嘴里。进营不杀人,只砍旗、放火、擂他们的鼓。"
+      },
+      {
+       "speaker": "zhoutai",
+       "text": "幼平守坞门。铃响第二遍,无论回来几个,坞门都开。"
+      },
+      {
+       "speaker": "you",
+       "text": "四十万人的营,最怕的不是一百骑,是「不知来了多少骑」。"
+      }
+     ],
+     "choices": [
+      {
+       "id": "feather-quiet",
+       "text": "衔枚裹铃,先静后炸",
+       "detail": "本回看破提升,记住静默之利",
+       "effects": {
+        "keenEye": true,
+        "fact": "ruxu_quiet"
+       }
+      },
+      {
+       "id": "three-fires",
+       "text": "三处举火,令其自相惊扰",
+       "detail": "曹军起手军资 -200,记住火号",
+       "effects": {
+        "raid": true,
+        "fact": "ruxu_fires"
+       }
+      }
+     ]
+    }
+   ],
+   "battle": [
+    {
+     "id": "ruxu-open",
+     "at": "start",
+     "speaker": "caocao",
+     "text": "江上静得反常。传令各营:今夜有警,先守,后动,别中了疑兵!"
+    },
+    {
+     "id": "ruxu-bells",
+     "at": "hand:2",
+     "speaker": "ganning",
+     "text": "铃——响!兄弟们,让曹营自己踩自己!"
+    },
+    {
+     "id": "ruxu-chaos",
+     "at": "hand:3",
+     "speaker": "narrator",
+     "text": "三处火起,四十万营帐的鼓互相擂响了。没有一支箭知道该射向哪里。",
+     "when": "fact:ruxu_fires"
+    },
+    {
+     "id": "ruxu-low",
+     "at": "low",
+     "speaker": "sunquan",
+     "text": "铃停了……数一数,回来几个?一个、两个……都在。都在就好。"
+    }
+   ],
+   "win": {
+    "text": "天明时清点,一百骑连人带铃,一枚不少。曹操望着一夜自相踩踏的营盘,对左右说:\"孙权治军如此,孤不可急图也。\"遂班师。孙权亲自替甘宁斟酒:\"孟德有张辽,孤有兴霸——足矣。\"",
+    "hook": "濡须的铃声让合肥的名字更加滚烫。张辽在那里等着,把「吴」字写成江东儿郎的梦魇。"
+   },
+   "loss": {
+    "text": "铃响得太早,四十万营从慌乱里醒过来。回来的铃,只有七十枚。甘宁把缺了三十枚的铃串收进怀里,从此再没提过这一夜。",
+    "clue": "史鉴 · 百骑劫营赢在「乱其耳目」而非「战其兵锋」。重开时先静后炸;曹操的多疑是你唯一的内应。",
+    "clueFx": "keenEye"
+   }
+  },
+  "jiameng": {
+   "cast": [
+    "zhangfei",
+    "machao",
+    "zhuge",
+    "weiyan"
+   ],
+   "objective": "在葭萌关的火盆边,让两杆天下最烈的枪打完,再谈谁跟谁走。",
+   "coldOpen": [
+    {
+     "speaker": "narrator",
+     "text": "渭南的败兵投了张鲁,马超领兵来到葭萌关下。关上的张飞听说来的是他,先大笑三声,再让人把戒酒的誓书压在案下。"
+    },
+    {
+     "speaker": "zhangfei",
+     "text": "马超!听说你在潼关追得曹操割须?好!俺老张遇强则喜——来来来,大战三百回合!"
+    },
+    {
+     "speaker": "machao",
+     "text": "燕人张飞?潼关之后,人人都说天下只有你的三弟配和我一战。放马过来!"
+    },
+    {
+     "speaker": "zhuge",
+     "text": "翼德,此人恨极而勇,不可力取。亮只要你记住:打满,别打死。",
+     "when": "!fact:jiameng_done"
+    },
+    {
+     "speaker": "weiyan",
+     "text": "军师,文长愿领一军绕后。若张将军有个闪失——",
+     "when": "seen:weiyan"
+    }
+   ],
+   "intros": {
+    "machao": [
+     {
+      "when": "page:tongguan:yeshi",
+      "bio": "渭南的墨点他至今没想透,这份恨意使他的枪少了三分方向。",
+      "quote": "离间计赢不了两次。这次,只论枪!"
+     },
+     {
+      "when": "seen:machao",
+      "bio": "他与张飞一战之后,枪里多了些说不清的东西。",
+      "quote": "又见面了。这次,先打完,再说话。"
+     },
+     {
+      "bio": "败军之将,把最后的体面都押在了这杆枪上。",
+      "quote": "西凉已失,家已无。我只有这场仗。"
+     }
+    ],
+    "madai": [
+     {
+      "when": "seen:madai",
+      "bio": "他护着堂兄的侧翼,也护着马家最后的人丁。",
+      "quote": "我兄长的事,便是我马岱的事。"
+     },
+     {
+      "bio": "话不多的西凉刀客,刀法与心事一样沉。",
+      "quote": "先过我这一关。"
+     }
+    ]
+   },
+   "map": [
+    {
+     "id": "lamp-duel",
+     "node": 1,
+     "title": "葭萌关 · 挑灯夜战",
+     "lines": [
+      {
+       "speaker": "zhangfei",
+       "text": "天黑了打不痛快!来人,点起火把,两百盏!俺们夜战!"
+      },
+      {
+       "speaker": "machao",
+       "text": "好气魄!张飞,你比我听闻的更像条汉子!"
+      },
+      {
+       "speaker": "you",
+       "text": "火把照得亮枪,也照得亮人心。打到后来,枪会说话。"
+      }
+     ],
+     "choices": [
+      {
+       "id": "keep-count",
+       "text": "替张飞数回合,严控体力",
+       "detail": "本回看破提升,记住二百回合",
+       "effects": {
+        "keenEye": true,
+        "fact": "jiameng_count"
+       }
+      },
+      {
+       "id": "warm-wine",
+       "text": "温两碗酒候在场边",
+       "detail": "军资 +120,二人愈战愈敬",
+       "effects": {
+        "chips": 120,
+        "sow": 1,
+        "fact": "jiameng_wine"
+       }
+      }
+     ]
+    }
+   ],
+   "battle": [
+    {
+     "id": "jiameng-open",
+     "at": "start",
+     "speaker": "zhangfei",
+     "text": "马超!接矛!今日不喝倒你,俺老张不姓张!"
+    },
+    {
+     "id": "jiameng-fire",
+     "at": "hand:2",
+     "speaker": "narrator",
+     "text": "两百盏火把把战场照成了白昼。两杆枪在光里绞了又绞,看台上的人渐渐忘了喝彩。"
+    },
+    {
+     "id": "jiameng-madai",
+     "at": "hand:3",
+     "speaker": "madai",
+     "text": "兄长,退吧!张鲁的援兵到不了,西凉的人也剩不多了!",
+     "when": "!fact:jiameng_wine"
+    },
+    {
+     "id": "jiameng-wine",
+     "at": "hand:3",
+     "speaker": "machao",
+     "text": "……场边那两碗酒,是给谁的?",
+     "when": "fact:jiameng_wine"
+    },
+    {
+     "id": "jiameng-low",
+     "at": "low",
+     "speaker": "zhuge",
+     "text": "翼德,收三分力。此人心中有事,枪再烈,也撑到头了。"
+    }
+   ],
+   "win": {
+    "text": "两百余合之后,火把烧短了半截。张飞把矛往地上一拄:\"马超,歇一夜,明日再打!\"马超在马上沉默良久,忽然问:\"张将军,刘皇叔……真能容下我这身仇?\"场边那两碗温酒,最终三个人分了——你,翼德,和一杆放平的枪。",
+    "hook": "葭萌的火盆边,西凉的枪找到了新的方向。而在荆州,鲁肃正为一张借据,请云长过江。"
+   },
+   "loss": {
+    "text": "你急着替张飞找胜机,反而打断了那杆枪想说的话。马超勒马回阵,从此闭门不出,谁也请不动。",
+    "clue": "史鉴 · 这一页的胜负在枪外。重开时让两人打满:数回合者得全局,温酒者得人心。",
+    "clueFx": "sow"
+   }
+  },
+  "daodan": {
+   "cast": [
+    "guanyu",
+    "lusu",
+    "guanping",
+    "zhoucang",
+    "zhuge"
+   ],
+   "objective": "在陆口的酒宴上,让鲁肃讨不到荆州,也让关羽不必拔刀。",
+   "coldOpen": [
+    {
+     "speaker": "narrator",
+     "text": "鲁肃的请帖写了三遍,措辞一遍比一遍客气。江心的船已备好,舱里坐着刀斧手,帖上却只写了一个「叙旧」。"
+    },
+    {
+     "speaker": "lusu",
+     "text": "云长,肃别无他意,只求把荆州的账,当面算清。"
+    },
+    {
+     "speaker": "guanyu",
+     "text": "子敬相邀,关某岂敢不来。平儿,随我赴宴;周仓,扛刀。"
+    },
+    {
+     "speaker": "guanping",
+     "text": "父亲,临行前军师嘱托:此宴在酒,不在荆州;在信,不在刀。"
+    },
+    {
+     "speaker": "zhoucang",
+     "text": "俺就把刀立在船头,让江东人看看分量!"
+    }
+   ],
+   "intros": {
+    "lusu": [
+     {
+      "when": "seen:lusu",
+      "bio": "他上次没能讨回荆州,这一次把道理磨得更圆,刀斧手埋得更深。",
+      "quote": "云长,这次肃要的仍不是降,是一个「还」字。"
+     },
+     {
+      "bio": "江东最厚道的人,也终于学会了在酒里设局。",
+      "quote": "借据在此。云长,请过目。"
+     }
+    ],
+    "dingfeng": [
+     {
+      "when": "seen:dingfeng",
+      "bio": "他埋伏的位置换了三次,却始终没等到那声摔杯。",
+      "quote": "再等等……主将的杯子,怎么还不落地?"
+     },
+     {
+      "bio": "雪中奋短兵的老将,此刻把短兵藏在了案几之下。",
+      "quote": "酒过三巡,听杯为号。"
+     }
+    ]
+   },
+   "map": [
+    {
+     "id": "river-feast",
+     "node": 1,
+     "title": "陆口 · 江心一宴",
+     "lines": [
+      {
+       "speaker": "lusu",
+       "text": "云长,席间只有你我旧谊,别无他事——肃先干为敬。"
+      },
+      {
+       "speaker": "guanyu",
+       "text": "子敬的酒,关某喝。荆州的账,醉后再说。"
+      },
+      {
+       "speaker": "you",
+       "text": "借据压在他袖底,刀斧手压在船板下。谁先急,谁先输。"
+      }
+     ],
+     "choices": [
+      {
+       "id": "count-cups",
+       "text": "数鲁肃斟酒的节奏与眼神",
+       "detail": "本回看破提升,记住斟酒之律",
+       "effects": {
+        "keenEye": true,
+        "fact": "daodan_count"
+       }
+      },
+      {
+       "id": "hold-scabbard",
+       "text": "按住周仓的刀鞘,先礼后兵",
+       "detail": "东吴伏兵起手士气 -1,记住按刀之义",
+       "effects": {
+        "sow": 1,
+        "fact": "daodan_hold"
+       }
+      }
+     ]
+    }
+   ],
+   "battle": [
+    {
+     "id": "daodan-open",
+     "at": "start",
+     "speaker": "lusu",
+     "text": "云长,今日只谈旧谊。来,满饮此杯——"
+    },
+    {
+     "id": "daodan-deed",
+     "at": "hand:2",
+     "speaker": "guanyu",
+     "text": "子敬,酒是好酒。只是这借据上的墨,关某记得比你清楚。"
+    },
+    {
+     "id": "daodan-blade",
+     "at": "hand:3",
+     "speaker": "zhoucang",
+     "text": "船板底下有脚步声!将军,俺的刀——",
+     "when": "!fact:daodan_hold"
+    },
+    {
+     "id": "daodan-hold",
+     "at": "hand:3",
+     "speaker": "guanyu",
+     "text": "周仓,退后。今日这把刀,只陪关某喝酒。",
+     "when": "fact:daodan_hold"
+    },
+    {
+     "id": "daodan-low",
+     "at": "low",
+     "speaker": "guanping",
+     "text": "父亲,鲁肃亲自送我们到船头了。他的手,一直在袖子里攥着那份借据。"
+    }
+   ],
+   "win": {
+    "text": "船离江心,鲁肃立在渡口,久久望着那口八十二斤的刀远去。他没有摔杯,因为关羽临走时说:\"子敬,荆州之约,关某记下了。你保的不是借据,是两家还没破裂的信。\"回营的船上汽笛无声,只有你知道,这杯酒替荆州又买了几年。",
+    "hook": "单刀会散,两家的账却没散。合肥的方向,一声更比一声紧的战鼓,正在等孙权。"
+   },
+   "loss": {
+    "text": "刀出鞘的那一瞬,宴席就输了。你没能按住那八十二斤的火气,也没能按住船板下的短兵。江水把「单刀赴会」冲成了「两败俱伤」。",
+    "clue": "史鉴 · 鲁肃要的是「信」不是「城」,伏兵等的是「刀」不是「理」。重开后看破提升,先按刀,再算账。",
+    "clueFx": "keenEye"
+   }
+  },
+  "xiaoyaojin": {
+   "cast": [
+    "sunquan",
+    "zhangliao",
+    "lingtong",
+    "ganning",
+    "zhoutai"
+   ],
+   "objective": "在逍遥津的窄桥边,让张辽的八百冲不散十万,也护住凌统的断后。",
+   "coldOpen": [
+    {
+     "speaker": "narrator",
+     "text": "合肥城头,张辽把八百死士列在门前,甲叶上一滴水都没有——他们已等了一夜。城外,吴军十万,刚拔完营。"
+    },
+    {
+     "speaker": "zhangliao",
+     "text": "吴人新至,营垒未立。此刻冲阵,八百人能当八万。随我——冲!"
+    },
+    {
+     "speaker": "sunquan",
+     "text": "张辽?!他怎么敢出城!各营勿慌,先稳住——甘宁,凌统,护住侧翼!"
+    },
+    {
+     "speaker": "lingtong",
+     "text": "主公先走!凌家三百亲兵,还够挡一阵!"
+    },
+    {
+     "speaker": "ganning",
+     "text": "公绩!别逞英雄!你的三百人,不是拿来换主公一程的!"
+    }
+   ],
+   "intros": {
+    "zhangliao": [
+     {
+      "when": "seen:zhangliao",
+      "bio": "他记得你的阵怎样在半渡时稳住,这次把冲锋的时机又提前了半刻。",
+      "quote": "又想稳住阵脚?我的刀,不给你列阵的时间。"
+     },
+     {
+      "bio": "八百人的胆,是他一夜一夜喂出来的。",
+      "quote": "辽来十年,只为今日这一冲!"
+     }
+    ],
+    "lejin": [
+     {
+      "bio": "他与张辽、李典共守合肥,三人面和心齐,刀却各自藏锋。",
+      "quote": "张将军冲前,乐某守后——合肥的门,进得来出不去。"
+     }
+    ],
+    "lidian": [
+     {
+      "bio": "他劝张辽「先折其盛气」时不带私怨,布阵最重「余地」二字。",
+      "quote": "李曼成不与你斗狠。我只封你要退的路。"
+     }
+    ]
+   },
+   "map": [
+    {
+     "id": "half-ford",
+     "node": 1,
+     "title": "逍遥津 · 半渡之桥",
+     "lines": [
+      {
+       "speaker": "zhoutai",
+       "text": "主公,津桥的板朽了两块,马不能疾驰。幼平先背主公过桥!"
+      },
+      {
+       "speaker": "lingtong",
+       "text": "幼平带主公走!我挡张辽!"
+      },
+      {
+       "speaker": "you",
+       "text": "张辽要的不是杀孙权,是「吴军自乱」四个字。别把十万人的心,输给八百人的胆。"
+      }
+     ],
+     "choices": [
+      {
+       "id": "hold-line",
+       "text": "教十万军先结阵,再渡桥",
+       "detail": "本回看破提升,记住结阵渡桥",
+       "effects": {
+        "keenEye": true,
+        "fact": "xiaoyaojin_line"
+       }
+      },
+      {
+       "id": "rear-guard",
+       "text": "亲领断后,换主公先渡",
+       "detail": "军资 +100,张辽军起手士气 -1",
+       "effects": {
+        "chips": 100,
+        "sow": 1,
+        "fact": "xiaoyaojin_rear"
+       }
+      }
+     ]
+    }
+   ],
+   "battle": [
+    {
+     "id": "xiaoyaojin-open",
+     "at": "start",
+     "speaker": "zhangliao",
+     "text": "张辽在此!吴军听着——今日,只取你们阵中最乱的一处!"
+    },
+    {
+     "id": "xiaoyaojin-charge",
+     "at": "hand:2",
+     "speaker": "narrator",
+     "text": "八百人凿进吴阵,像一柄锥子。所过之处,十万人的旗自己在倒。"
+    },
+    {
+     "id": "xiaoyaojin-ling",
+     "at": "hand:3",
+     "speaker": "lingtong",
+     "text": "主公过了桥!三百亲兵……还剩几十。够了,够再挡一阵!"
+    },
+    {
+     "id": "xiaoyaojin-low",
+     "at": "low",
+     "speaker": "sunquan",
+     "text": "公绩回来!凌统——回来!孤的江东,不能靠你们一个个用命换!"
+    }
+   ],
+   "win": {
+    "text": "津桥修复的那一瞬,吴军十万终于列成了阵。张辽在城头望见,收刀入鞘:\"吴人能稳住了,此城不可再出。\"凌统浑身是血地踏上桥板,孙权亲自下马扶住他。回建业的路上再无笑声,只有孙权的一句:\"孤记住了合肥,记住了张文远。\"",
+    "hook": "逍遥津的教训,让江东把目光彻底收回荆州。而刘备的汉中鼓声,已经敲到了定军山下。"
+   },
+   "loss": {
+    "text": "十万人的阵,终究没能挡住八百人的胆。津桥一断,凌统的三百亲兵留在了对岸,张辽的名字从此压在江东六岁孩童的哭声里。",
+    "clue": "史鉴 · 张辽赢在「趁乱」不在「兵多」。重开时先结阵再渡桥;他冲不乱你,就轮到他不敢单独出城。",
+    "clueFx": "keenEye"
+   }
+  },
+  "yiling": {
+   "cast": [
+    "liubei",
+    "luxun",
+    "guanyu",
+    "zhuge",
+    "huangquan",
+    "maliang",
+    "shamoke"
+   ],
+   "objective": "拆开七百里连营，在陆逊点火之前，让刘备看见复仇之外还有多少条命。",
+   "coldOpen": [
+    {
+     "speaker": "narrator",
+     "text": "猇亭的林叶密得透不过风。每一座营盘都挨着下一座，像有人把七百里怨气铺成了一根火绳。"
+    },
+    {
+     "speaker": "guanyu",
+     "text": "麦城那条命，是你替我夺回来的。今日若还要东征，便别再拿我当报仇的理由。",
+     "when": "page:maicheng:yeshi"
+    },
+    {
+     "speaker": "liubei",
+     "text": "云长的首级送到洛阳时，朕没有哭。如今每一座营里都有人喊他，朕便不能再退。",
+     "when": "!page:maicheng:yeshi"
+    },
+    {
+     "speaker": "huangquan",
+     "text": "陛下,水军当为前锋,沿江直下;若舍船就陆,连营林木之间,是把七百里的命交给天时。",
+     "when": "!seen:huangquan"
+    },
+    {
+     "speaker": "maliang",
+     "text": "五溪番王沙摩柯已到,夷陵道上的图,马良又核了一遍。陛下,只差您一句「移营」。"
+    },
+    {
+     "speaker": "shamoke",
+     "text": "汉家皇帝替俺们撑腰,这一仗,番王的骨朵不认吴人的水!"
+    },
+    {
+     "speaker": "luxun",
+     "text": "我不怕刘使君怒。他越怒，越会把山林、连营和人心，亲手摆成一堆柴。"
+    }
+   ],
+   "intros": {
+    "luxun": [
+     {
+      "when": "page:maicheng:yeshi",
+      "bio": "荆州无恙，他仍守着江东；这一战不再只是复仇，却仍可能毁于意气。",
+      "quote": "关将军尚在，这仗便不该只为一口气。"
+     },
+     {
+      "bio": "他把少年意气藏进儒生衣袖，等刘备自己把胜机连成火路。",
+      "quote": "你家主公要仇，我要江东。火该落在何处？"
+     }
+    ]
+   },
+   "map": [
+    {
+     "id": "move-camps",
+     "node": 1,
+     "title": "猇亭 · 火未到先移营",
+     "lines": [
+      {
+       "speaker": "liubei",
+       "text": "将士避暑入林，是朕的令。今日移营，便是叫他们以为朕怕了陆逊。"
+      },
+      {
+       "speaker": "zhuge",
+       "text": "陛下，陆逊固守不是怯，是在等我们自己把营盘摆成柴。可退一座孤营，不可退七百里人心。"
+      }
+     ],
+     "choices": [
+      {
+       "id": "high-ground",
+       "text": "弃林就高，拆开相连营垒",
+       "detail": "本回看破提升，记住移营之策",
+       "effects": {
+        "keenEye": true,
+        "fact": "yiling_high_camp"
+       }
+      },
+      {
+       "id": "fire-oil",
+       "text": "夜袭吴军火油队",
+       "detail": "陆逊军资 -200，记住火油所在",
+       "effects": {
+        "raid": true,
+        "fact": "yiling_fireoil"
+       }
+      }
+     ]
+    }
+   ],
+   "battle": [
+    {
+     "id": "yiling-open",
+     "at": "start",
+     "speaker": "luxun",
+     "text": "你催得越急，我越不必急。你押上的不是军资，是蜀营还能忍几日。"
+    },
+    {
+     "id": "yiling-anguish",
+     "at": "hand:2",
+     "speaker": "liubei",
+     "text": "我若在此退一步，是否便对不起那些随我入蜀、又随我东征的人？"
+    },
+    {
+     "id": "yiling-brother",
+     "at": "hand:3",
+     "speaker": "guanyu",
+     "text": "大哥，我的命尚在。别再拿别人的命祭我。",
+     "when": "page:maicheng:yeshi"
+    },
+    {
+     "id": "yiling-counsel",
+     "at": "hand:3",
+     "speaker": "zhuge",
+     "text": "亡者不会因多死几人便归来。先看火油，再看你的仇。",
+     "when": "!page:maicheng:yeshi"
+    },
+    {
+     "id": "yiling-low",
+     "at": "low",
+     "speaker": "luxun",
+     "text": "你终于肯看营外了。可惜火烧起来以后，再清醒的将令也会慢一步。"
+    }
+   ],
+   "win": {
+    "text": "第一支火箭落下时，旧营已经空了。陆逊隔江望着分散的高垒，终于收起那柄始终未点的火折。刘备没有乘胜追杀，只命人逐营清点归乡的姓名。",
+    "hook": "夷陵没有烧成灰烬，刘备却倒在了永安宫。下一页，对手连姓名也没有。",
+    "choiceFact": "yiling_fire_avoided"
+   },
+   "loss": {
+    "text": "火沿营盘奔去，比任何一道军令都快。你护着刘备退向白帝，才懂陆逊等的从来不是东风，而是你因愤怒而不肯改变的那一夜。",
+    "clue": "史鉴 · 陆逊以固守拖高盲注，再赌你急于求成；重开时假破绽减少，先拆连营之势。",
+    "clueFx": "keenEye"
+   }
+  },
+  "baidicheng": {
+   "cast": [
+    "liubei",
+    "zhuge",
+    "guanyu",
+    "caopi"
+   ],
+   "objective": "同沉疴争回刘备的时间，也让那句托孤从试探与重担，变回真正的信任。",
+   "coldOpen": [
+    {
+     "speaker": "narrator",
+     "text": "永安宫的药香压不住江潮。刘备枕边放着写了一半的遗诏，最后几个字迟迟不肯落下。"
+    },
+    {
+     "speaker": "narrator",
+     "text": "两年前，曹丕在受禅台上接过汉家玉玺。消息传到成都，满朝劝进——先主登基，为的是续汉，也为了一句「汉可不亡」。"
+    },
+    {
+     "speaker": "caopi",
+     "text": "舜禹之事,朕知之矣。汉四百年,终须有人替它合上书页——玄德,你不肯吗?",
+     "when": "!seen:caopi"
+    },
+    {
+     "speaker": "liubei",
+     "text": "云长还活着，夷陵也没烧起来。可我为何还是躺到了这里？原来人躲过自己的错，也躲不过岁月。",
+     "when": [
+      "page:maicheng:yeshi",
+      "page:yiling:yeshi"
+     ]
+    },
+    {
+     "speaker": "liubei",
+     "text": "云长还活着，夷陵的火却仍旧烧过。原来救下一个名字，并不会替我们免去下一场错。",
+     "when": [
+      "page:maicheng:yeshi",
+      "!page:yiling:yeshi"
+     ]
+    },
+    {
+     "speaker": "liubei",
+     "text": "二弟走后，我总觉得每一天都是借来的。今日连借也没处借了，只得把阿斗和孔明都叫来。",
+     "when": "!page:maicheng:yeshi"
+    },
+    {
+     "speaker": "zhuge",
+     "text": "陛下，病可医，话不可反着留。您今日想见的是臣，还是一个能替您背完蜀汉的人？"
+    }
+   ],
+   "intros": {
+    "天命 · 沉疴": [
+     {
+      "when": "page:yiling:yeshi",
+      "bio": "夷陵的火没能烧尽季汉，它便换作药碗与更漏，慢慢收走刘备。",
+      "quote": "人可躲过战火，未必躲得过岁月。"
+     },
+     {
+      "bio": "它不用兵，也不出千，只把每一天都从病榻前拿走一点。",
+      "quote": "你能赢群雄，可能赢一场病？"
+     }
+    ]
+   },
+   "map": [
+    {
+     "id": "last-words",
+     "node": 1,
+     "title": "永安宫 · 遗诏未落笔",
+     "lines": [
+      {
+       "speaker": "liubei",
+       "text": "我若说“君可自取”，是信你，还是把我不敢放下的江山压给你？孔明，你猜我写这句话时怕不怕？"
+      },
+      {
+       "speaker": "zhuge",
+       "text": "主公若真信亮，便别把信任写成一道不许拒绝的命。臣要的不是自取，是您把阿斗该担的也留给他。"
+      }
+     ],
+     "choices": [
+      {
+       "id": "plain-words",
+       "text": "请他当面说尽未言之语",
+       "detail": "本回看破提升，记住病榻真言",
+       "effects": {
+        "keenEye": true,
+        "fact": "baidi_plain_words"
+       }
+      },
+      {
+       "id": "adou-duty",
+       "text": "让阿斗先自己读完奏章",
+       "detail": "天命起手士气 -1，记住少主亲政",
+       "effects": {
+        "sow": 1,
+        "fact": "baidi_adou_duty"
+       }
+      }
+     ]
+    }
+   ],
+   "battle": [
+    {
+     "id": "baidi-open",
+     "at": "start",
+     "speaker": "unknown",
+     "text": "你改得了人的命，改得了日出日落吗？"
+    },
+    {
+     "id": "baidi-trust",
+     "at": "hand:2",
+     "speaker": "liubei",
+     "text": "我这一生卖过草鞋，也坐过皇位。临到最后，最怕的竟是阿斗离了人便站不住。"
+    },
+    {
+     "id": "baidi-answer",
+     "at": "hand:3",
+     "speaker": "zhuge",
+     "text": "那便让他今日自己站起来。臣能辅他，不能替他活。"
+    },
+    {
+     "id": "baidi-brother",
+     "at": "low",
+     "speaker": "guanyu",
+     "text": "大哥，麦城你没丢下我。今日也不许先丢下自己。",
+     "when": "page:maicheng:yeshi"
+    },
+    {
+     "id": "baidi-memory",
+     "at": "low",
+     "speaker": "liubei",
+     "text": "云长，若你还在，会不会又骂我只会哭？",
+     "when": "!page:maicheng:yeshi"
+    }
+   ],
+   "win": {
+    "text": "天光透进永安宫时，刘备推开药碗，自己坐了起来。他把“君可自取”四字从遗诏上划去，只写阿斗当亲政、孔明当尽言。那句沉重得无人敢接的托付，终于没有说出口。",
+    "hook": "病榻之后，南中又来急报。孟获不服王化，孔明却说要先擒住他的心。",
+    "choiceFact": "liubei_survives"
+   },
+   "loss": {
+    "text": "遗诏还是写完了。诸葛亮俯身接诏，刘备终于安心，却也把一座江山从此压在了他一个人的晨起与夜寐上。",
+    "clue": "史鉴 · 沉疴靠长久消耗取胜；重开时军资 +150，先保住自己的底池，再谈托孤之外的可能。",
+    "clueFx": "supply"
+   }
+  },
+  "qiqin": {
+   "cast": [
+    "zhuge",
+    "menghuo"
+   ],
+   "objective": "七战不只擒人，更要让孟获从恼怒、猜疑到自省，亲口决定南中的明天。",
+   "coldOpen": [
+    {
+     "speaker": "narrator",
+     "text": "泸水瘴气未散，第一根绊马索已经备好。诸葛亮却命人连孟获的酒碗也一并洗净。"
+    },
+    {
+     "speaker": "menghuo",
+     "text": "你带多少兵，我借多少山。南中不是你地图上一块空着的地方！"
+    },
+    {
+     "speaker": "zhuge",
+     "text": "我若只要你的降表，擒一次便够。我要的是你回去以后，不必再靠造反证明自己。"
+    }
+   ],
+   "intros": {
+    "menghuo": [
+     {
+      "when": "page:qiqin:yeshi",
+      "bio": "南中已经心服，他却仍愿回到泸水，看看那次服气是不是偶然。",
+      "quote": "服过一回，不等于让你再赢七回！"
+     },
+     {
+      "when": "seen:menghuo",
+      "bio": "他记得上次未被擒满的七局，也记得你每一次把他放到何处。",
+      "quote": "上次没打完。南王说话算数，从头来！"
+     },
+     {
+      "bio": "他有山的硬、酒的直，也有一句宁死不肯先说出口的“服”。",
+      "quote": "先赢我，再跟我讲什么攻心！"
+     }
+    ]
+   },
+   "map": [
+    {
+     "id": "heart-of-nanzhong",
+     "node": 1,
+     "title": "泸水 · 放人与收心",
+     "lines": [
+      {
+       "speaker": "menghuo",
+       "text": "你们汉人擒了王，不斩便囚。你若真放我，不怕我带更多人回来？"
+      },
+      {
+       "speaker": "zhuge",
+       "text": "怕。所以我不只放你，还要让你的族人看清：回去以后，盐粮归谁，山路归谁，明日归谁。"
+      }
+     ],
+     "choices": [
+      {
+       "id": "listen-elders",
+       "text": "先听南中长者说完旧俗",
+       "detail": "本回看破提升，记住南中之约",
+       "effects": {
+        "keenEye": true,
+        "fact": "qiqin_listen"
+       }
+      },
+      {
+       "id": "return-salt",
+       "text": "分出军粮盐巴，送俘虏回乡",
+       "detail": "军资 -100，孟获士气 -1",
+       "effects": {
+        "chips": -100,
+        "sow": 1,
+        "fact": "qiqin_hearts"
+       }
+      }
+     ]
+    }
+   ],
+   "battle": [
+    {
+     "id": "qiqin-r1",
+     "at": "start",
+     "speaker": "menghuo",
+     "text": "一场便想让我低头？南中的山都不答应！",
+     "when": "round:1"
+    },
+    {
+     "id": "qiqin-r2",
+     "at": "start",
+     "speaker": "menghuo",
+     "text": "上次是绊马索，不是真本事。有胆再擒我一次！",
+     "when": "round:2"
+    },
+    {
+     "id": "qiqin-r3",
+     "at": "start",
+     "speaker": "menghuo",
+     "text": "我输在自己轻敌，不输你。下次我把藤甲、毒泉和旧友都带来。",
+     "when": "round:3"
+    },
+    {
+     "id": "qiqin-r4",
+     "at": "start",
+     "speaker": "menghuo",
+     "text": "你烧的是藤甲，不是南中人的心。我还是不服！",
+     "when": "round:4"
+    },
+    {
+     "id": "qiqin-r5",
+     "at": "start",
+     "speaker": "menghuo",
+     "text": "为何每次擒了都放？你到底要我服你，还是服你的汉律？",
+     "when": "round:5"
+    },
+    {
+     "id": "qiqin-r6",
+     "at": "start",
+     "speaker": "menghuo",
+     "text": "我若再回去起兵，倒显得南中只识刀枪。且坐下，把这一局打完。",
+     "when": "round:6"
+    },
+    {
+     "id": "qiqin-r7",
+     "at": "start",
+     "speaker": "menghuo",
+     "text": "不必再放。今日我若输，替南中认你；我若赢，你也留下喝我一碗酒。",
+     "when": "round:7"
+    },
+    {
+     "id": "qiqin-answer",
+     "at": "hand:2",
+     "speaker": "zhuge",
+     "text": "他每怒一次，便多问一次为何。别堵住他的问题，攻心才有门。"
+    },
+    {
+     "id": "qiqin-low",
+     "at": "low",
+     "speaker": "menghuo",
+     "text": "你赢的是底池，我还没输南中。再来！",
+     "when": "!round:7"
+    },
+    {
+     "id": "qiqin-low-seven",
+     "at": "low",
+     "speaker": "menghuo",
+     "text": "我若此刻翻脸，先对不起的是那六次回去的路。",
+     "when": "round:7"
+    }
+   ],
+   "win": {
+    "text": "第七次，孟获没有等兵士解绳，自己把王冠放在案上：“丞相，七次不是我的耻辱，是你七次肯信我还能明理。”他转身向族人挥手，南中的鼓声第一次不为迎战而响。",
+    "hook": "南中既安，汉中灯亮。诸葛亮展开《出师表》，祁山在纸背等一条新路。",
+    "choiceFact": "nanzhong_at_peace"
+   },
+   "loss": {
+    "text": "孟获又一次走出营门，这次却没有回头。不是他不服，是你只记住了要放六次，忘了每一次都该让他多明白一点。",
+    "clue": "史鉴 · 七场连战会耗尽底池，擒人之前先留退路；重开时军资 +150，别为一时痛快孤注一掷。",
+    "clueFx": "supply"
+   }
+  },
+  "qishan": {
+   "cast": [
+    "zhuge",
+    "zhaoyun",
+    "caozhen"
+   ],
+   "objective": "把《出师表》从遗言写成开端，在祁山打通一条粮道与人心都能久行的北伐路。",
+   "coldOpen": [
+    {
+     "speaker": "zhuge",
+     "text": "隆中那一日，我说天下可分。如今先主把未尽之言交给我，我才懂三分不是答案，只是让人少流血的起点。",
+     "when": "page:sangu:yeshi"
+    },
+    {
+     "speaker": "zhuge",
+     "text": "草堂门开了多少次，我便欠门外人多少句答复。今日出师，不为证明卧龙多智，只为不再只写“来日”。",
+     "when": "!page:sangu:yeshi"
+    },
+    {
+     "speaker": "zhaoyun",
+     "text": "丞相，常山赵子龙还能请先登。别因我白了头，便把我写成一面只供人回望的旧旗。"
+    },
+    {
+     "speaker": "caozhen",
+     "text": "诸葛亮，你把国事写成一表，我把祁山写成一堵墙。看谁先被自己的字困住。"
+    }
+   ],
+   "intros": {
+    "caozhen": [
+     {
+      "when": "page:qishan:yeshi",
+      "bio": "祁山曾被走通过一次，他不再只守关隘，而要找出那条重新续上的粮路。",
+      "quote": "同样的山路，我不会让你走通第二次。"
+     },
+     {
+      "bio": "他守住的不是一座祁山，而是魏国以逸待劳、耗空季汉的老办法。",
+      "quote": "表写得再好，粮车也不会自己过山。"
+     }
+    ]
+   },
+   "map": [
+    {
+     "id": "road-beyond-fire",
+     "node": 1,
+     "title": "祁山 · 不用火的进军",
+     "lines": [
+      {
+       "speaker": "zhaoyun",
+       "text": "曹真把我的旗号都画在册上，却把我白发的数目画多了。他以为老将只能做疑兵。"
+      },
+      {
+       "speaker": "zhuge",
+       "text": "博望初用火时，诸将只问我何时再烧。今日偏不烧——祁山要争的是一条明年还能走的道。"
+      }
+     ],
+     "choices": [
+      {
+       "id": "zhaoyun-feint",
+       "text": "让子龙以旧旗佯攻斜谷",
+       "detail": "曹真起手士气 -1，记住常山疑兵",
+       "effects": {
+        "sow": 1,
+        "fact": "qishan_zhaoyun_feint"
+       }
+      },
+      {
+       "id": "grain-road",
+       "text": "先修粮站，再谈进兵",
+       "detail": "军资 +200，记住祁山粮道",
+       "effects": {
+        "chips": 200,
+        "fact": "qishan_grain_road"
+       }
+      }
+     ]
+    }
+   ],
+   "battle": [
+    {
+     "id": "qishan-open",
+     "at": "start",
+     "speaker": "caozhen",
+     "text": "六出祁山？你若能出六次，我便能守六次。季汉耗得起几个六年？"
+    },
+    {
+     "id": "qishan-patience",
+     "at": "hand:2",
+     "speaker": "zhuge",
+     "text": "他以为持久便是原地不动。非也。能让粮与人持续向前，才叫持久。"
+    },
+    {
+     "id": "qishan-veteran",
+     "at": "hand:3",
+     "speaker": "zhaoyun",
+     "text": "长坂坡我七进七出，不是为了让后人只记住一个“勇”字。今日看我怎样回来。"
+    },
+    {
+     "id": "qishan-low",
+     "at": "low",
+     "speaker": "caozhen",
+     "text": "你不火攻，不奇袭，竟真把一步一营走成了攻势？"
+    }
+   ],
+   "win": {
+    "text": "祁山关门未破，山路却先活了：粮站一站接一站，赵云的旧旗从斜谷安然折返。曹真这才发现，诸葛亮要的不是一次入关，而是以后每次都能再来。",
+    "hook": "路既通，下一道门叫街亭。马谡已在帐中铺开地图，把山上圈得极重。",
+    "choiceFact": "qishan_road_open"
+   },
+   "loss": {
+    "text": "《出师表》被风掀回案上。你不是败在曹真那一堵墙，而是把北伐当成一局必须立刻赢下的豪赌，忘了山路要留给下一年。",
+    "clue": "史鉴 · 曹真借祁山消耗你的耐心；重开时假破绽减少，辨清他何时真守、何时等你抢进。",
+    "clueFx": "keenEye"
+   }
+  },
+  "jieting": {
+   "cast": [
+    "zhuge",
+    "masuo",
+    "wangping",
+    "zhanghe"
+   ],
+   "objective": "让马谡把“高处必胜”改写成当道与水源，在张郃抵达前守住街亭，也守住他的命。",
+   "coldOpen": [
+    {
+     "speaker": "masuo",
+     "text": "丞相，置之死地而后生，兵书写得明白。山上俯瞰街亭，张郃来多少，我便破多少。"
+    },
+    {
+     "speaker": "wangping",
+     "text": "马参军，兵书也写水源。你圈的山头那么高，可曾看见士兵要下山几日才喝到水？"
+    },
+    {
+     "speaker": "zhuge",
+     "text": "幼常，我让你守的不是一幅好看的阵图。今日若再无人敢驳你，错便先在我。"
+    },
+    {
+     "speaker": "zhanghe",
+     "text": "山上的旗越整齐越好。那样我只需围住山下，等他替我军渴死。"
+    }
+   ],
+   "intros": {
+    "zhanghe": [
+     {
+      "when": "page:jieting:history",
+      "bio": "他已在街亭等到过一次山上的破绽，这一次连水道会从哪里断都知道。",
+      "quote": "山与水，你还会把哪一个留给敌人？"
+     },
+     {
+      "bio": "张郃不与你争一处漂亮阵地，只逼你承认地形之外还有时日与渴。",
+      "quote": "兵无常势。你却把山当成了常势。"
+     }
+    ]
+   },
+   "map": [
+    {
+     "id": "water-before-height",
+     "node": 1,
+     "title": "街亭 · 先看水后看山",
+     "lines": [
+      {
+       "speaker": "masuo",
+       "text": "若我今日听王平，是全军都会说我纸上谈兵，还是我终于敢承认自己也有一页没读懂？"
+      },
+      {
+       "speaker": "wangping",
+       "text": "参军，肯改军令不是丢脸。让弟兄们活着看见明早，才轮得到你我的脸面。"
+      }
+     ],
+     "choices": [
+      {
+       "id": "joint-order",
+       "text": "让马谡与王平共签守寨军令",
+       "detail": "张郃起手士气 -1，记住两人共守",
+       "effects": {
+        "sow": 1,
+        "fact": "jieting_joint_order"
+       }
+      },
+      {
+       "id": "survey-water",
+       "text": "带马谡亲自踏勘山下取水路",
+       "detail": "本回看破提升，记住水源军图",
+       "effects": {
+        "keenEye": true,
+        "fact": "jieting_water_survey"
+       }
+      }
+     ]
+    }
+   ],
+   "battle": [
+    {
+     "id": "jieting-open",
+     "at": "start",
+     "speaker": "zhanghe",
+     "text": "马谡在山上？那我不必急着仰攻。先问他营中水囊，还够几局。"
+    },
+    {
+     "id": "jieting-wangping",
+     "at": "hand:2",
+     "speaker": "wangping",
+     "text": "他切粮道是假，试水道是真。别追那一面来回晃的旗。"
+    },
+    {
+     "id": "jieting-masuo",
+     "at": "hand:3",
+     "speaker": "masuo",
+     "text": "传令，下寨当道。不是王平胜了我，是街亭比我的胜负要紧。"
+    },
+    {
+     "id": "jieting-low",
+     "at": "low",
+     "speaker": "zhanghe",
+     "text": "你肯从山上下来，我便少了一半胜算。诸葛亮身边，竟有人肯认错。"
+    }
+   ],
+   "win": {
+    "text": "张郃抵达时，当道营寨已经咬住山口，取水队从后沟安然往返。马谡亲手划去图上的山顶大寨，诸葛亮没有挥泪，只让他与王平同坐，重写那份军令。",
+    "hook": "街亭守住，司马懿却转向西城。那里没有马谡，只有一张琴和敞开的门。",
+    "choiceFact": "jieting_held"
+   },
+   "loss": {
+    "text": "山上的喊声先乱，随后才是刀兵。诸葛亮要斩的似乎不只是马谡，还有那个明知他爱逞才、却仍把街亭交给他的自己。",
+    "clue": "史鉴 · 张郃会假攻粮道、实困水源；重开时其起手士气 -1，先守住底池再图反击。",
+    "clueFx": "sow"
+   }
+  },
+  "kongcheng": {
+   "cast": [
+    "zhuge",
+    "simayi"
+   ],
+   "objective": "把无兵可守变成司马懿不敢承受的代价，让琴声、城门与他的多疑各守一道防线。",
+   "coldOpen": [
+    {
+     "speaker": "narrator",
+     "text": "西城的门轴上了油，连一声吱呀也不肯出。城中老弱洒扫，城上只摆一张琴。"
+    },
+    {
+     "speaker": "simayi",
+     "text": "博望的火、赤壁的风，我都复盘过。孔明，你今日又替我备了什么？"
+    },
+    {
+     "speaker": "zhuge",
+     "text": "街亭未失，他却仍咬住西城。看来他不是来捉马谡，是来逼我亲手承认无兵。",
+     "when": "page:jieting:yeshi"
+    },
+    {
+     "speaker": "zhuge",
+     "text": "街亭的败报在袖中，城中的老弱在门下。仲达要看我的破绽，便给他一个最像真的。",
+     "when": "!page:jieting:yeshi"
+    }
+   ],
+   "intros": {
+    "simayi": [
+     {
+      "when": "page:kongcheng:yeshi",
+      "bio": "他曾在西城退过一次，此后每一声琴都像在提醒那次不敢输。",
+      "quote": "同一座城，我不会再替你退第二次。"
+     },
+     {
+      "when": "page:jieting:yeshi",
+      "bio": "街亭没有替他耗空蜀军，他便亲自来读诸葛亮最险的一笔。",
+      "quote": "马谡没败，你便以为我也看不穿西城？"
+     },
+     {
+      "when": "seen:simayi",
+      "bio": "他记得你的下注，也记得自己曾因算得太深而放走一座城。",
+      "quote": "这次我会少算一层，还是多算一层？"
+     },
+     {
+      "bio": "冢虎第一次坐到卧龙对面，最利的武器不是兵，而是肯多想一层。",
+      "quote": "城中若无人，你为何敢请我进？"
+     }
+    ]
+   },
+   "map": [
+    {
+     "id": "tune-for-sima",
+     "node": 1,
+     "title": "城楼 · 琴要弹给谁听",
+     "lines": [
+      {
+       "speaker": "zhuge",
+       "text": "他若进城，我输；他若因不敢输而退，我们便赢。把城门再擦净些，别留半分欲盖弥彰。"
+      },
+      {
+       "speaker": "you",
+       "text": "若他这次宁可犯错，也要进来看一看呢？"
+      },
+      {
+       "speaker": "zhuge",
+       "text": "所以琴不能只求镇定，要让他听见：我已经把他不肯认错的后路，也算进伏兵里。"
+      }
+     ],
+     "choices": [
+      {
+       "id": "slow-qin",
+       "text": "把最后一遍琴弹得更慢",
+       "detail": "司马懿起手士气 -1，记住慢琴",
+       "effects": {
+        "sow": 1,
+        "fact": "kongcheng_slow_qin"
+       }
+      },
+      {
+       "id": "dust-reinforce",
+       "text": "令斜谷尘土佯作援军",
+       "detail": "司马懿军资 -200，记住疑兵尘影",
+       "effects": {
+        "raid": true,
+        "fact": "kongcheng_dust"
+       }
+      }
+     ]
+    }
+   ],
+   "battle": [
+    {
+     "id": "kongcheng-open",
+     "at": "start",
+     "speaker": "simayi",
+     "text": "城中无人，你便是虚；城中有伏，你便是险。我只需决定，哪一种错更便宜。"
+    },
+    {
+     "id": "kongcheng-zhuge",
+     "at": "hand:2",
+     "speaker": "zhuge",
+     "text": "别看他的手，看他每加注一次便多怕一分的后果。空城卖的是他的顾忌。"
+    },
+    {
+     "id": "kongcheng-you",
+     "at": "hand:3",
+     "speaker": "you",
+     "text": "他怕的不是伏兵，是一旦攻错，天下都会说他输给了空城。"
+    },
+    {
+     "id": "kongcheng-low",
+     "at": "low",
+     "speaker": "simayi",
+     "text": "琴弦若断，我进；琴弦不断，我便还要想。孔明，你连断弦也舍得拿来骗我。"
+    }
+   ],
+   "win": {
+    "text": "琴音落到城下，司马懿终于勒马。他在三十里外回望空门：“我不是输给伏兵，是输给了不敢输。”诸葛亮掌心全是汗，却只让书童再添一炉香。",
+    "hook": "空城各输一口气，五丈原再算总账。这一次，司马懿决定连琴也不听。",
+    "choiceFact": "kongcheng_retreat"
+   },
+   "loss": {
+    "text": "魏军踏过城门时，琴声还维持着最后一个音。司马懿没有笑，只说：“你赌我怕错，我这次偏要付一次错的代价。”",
+    "clue": "史鉴 · 司马懿会衡量诈唬的代价，而非只看气势；重开时假破绽减少，别重复同一条下注线。",
+    "clueFx": "keenEye"
+   }
+  },
+  "wuzhangyuan": {
+   "cast": [
+    "zhuge",
+    "simayi",
+    "jiangwei"
+   ],
+   "objective": "在粮尽与秋风之前逼司马懿作答，并把诸葛亮从既定的星落里带回人间。",
+   "coldOpen": [
+    {
+     "speaker": "zhuge",
+     "text": "博望借火，赤壁借风，我一生都在借天时。此次不借了。你替我争一日，我便把这一日活完。"
+    },
+    {
+     "speaker": "simayi",
+     "text": "西城我退得太快，这次我连你的琴也不听。你粮尽之日，便是我出兵之时。",
+     "when": "page:kongcheng:yeshi"
+    },
+    {
+     "speaker": "simayi",
+     "text": "我不问你有何伏兵，也不问你有何妙计。五丈原只比一件事：谁先耗尽。",
+     "when": "!page:kongcheng:yeshi"
+    },
+    {
+     "speaker": "jiangwei",
+     "text": "丞相，药又凉了。您总说看完这道军报，可军报永远没有最后一道。"
+    }
+   ],
+   "intros": {
+    "simayi": [
+     {
+      "when": "asZhuge",
+      "bio": "这一次你亲手执起羽扇，冢虎终于不必隔着蜀营猜测卧龙的神色。",
+      "quote": "孔明，你终于肯亲自坐在我对面。"
+     },
+     {
+      "when": "page:wuzhangyuan:yeshi",
+      "bio": "东南星明以后，他知道命数也会被赢走，却仍相信自己最懂消耗。",
+      "quote": "多活的岁月，也是岁月。我仍耗得起。"
+     },
+     {
+      "when": "page:kongcheng:yeshi",
+      "bio": "空城的退兵成了他的旧伤；如今他用坚壁把旧伤磨成耐心。",
+      "quote": "上次我算你的城，这次我只算你的粮。"
+     },
+     {
+      "bio": "他把不战当作最长久的一注，等秋风替自己清掉对面的筹码。",
+      "quote": "你可以赢每一阵，我只要等到最后一夜。"
+     }
+    ]
+   },
+   "map": [
+    {
+     "id": "one-more-day",
+     "node": 1,
+     "title": "武功水 · 向人间借一日",
+     "lines": [
+      {
+       "speaker": "jiangwei",
+       "text": "他不接战，军中便都劝丞相再催。可愈催，愈像替他证明秋风真的站在魏营。"
+      },
+      {
+       "speaker": "zhuge",
+       "text": "伯约，屯田不是认输。让兵士知道明年有粮，让百姓知道今年不扰，我才不必向夜空多借那几年。"
+      }
+     ],
+     "choices": [
+      {
+       "id": "tuntian",
+       "text": "与民屯田，让粮道自己生长",
+       "detail": "军资 +200，记住渭滨屯田",
+       "effects": {
+        "chips": 200,
+        "fact": "wuzhang_tuntian"
+       }
+      },
+      {
+       "id": "raid-grain",
+       "text": "斜谷出奇兵，反断魏军粮路",
+       "detail": "司马懿军资 -200，记住反客为主",
+       "effects": {
+        "raid": true,
+        "fact": "wuzhang_counterraid"
+       }
+      }
+     ]
+    }
+   ],
+   "battle": [
+    {
+     "id": "wuzhang-open",
+     "at": "start",
+     "speaker": "simayi",
+     "text": "你送女装来，我便穿给诸将看。能让丈夫羞怒的，从来不叫胜负。"
+    },
+    {
+     "id": "wuzhang-zhuge",
+     "at": "hand:2",
+     "speaker": "zhuge",
+     "text": "他不是无胆，是把我的命也算作盲注。别陪他等，要让他每不应一次都付出军资。"
+    },
+    {
+     "id": "wuzhang-jiangwei",
+     "at": "hand:7",
+     "speaker": "jiangwei",
+     "text": "丞相，东南星还未暗。您先喝药，这一手我陪您看。"
+    },
+    {
+     "id": "wuzhang-tuntian-low",
+     "at": "low",
+     "speaker": "zhuge",
+     "text": "仲达，新粮已经入仓。你等的那阵秋风，今年怕要迟到了。",
+     "when": "fact:wuzhang_tuntian"
+    },
+    {
+     "id": "wuzhang-sima-low",
+     "at": "low",
+     "speaker": "simayi",
+     "text": "你要星星再亮十年，我只等它暗一刻。看谁先撑不住。",
+     "when": "!fact:wuzhang_tuntian"
+    }
+   ],
+   "win": {
+    "text": "五丈原的灯没有灭。司马懿终于出战，又在武功水畔折损先手；诸葛亮趁隙让大军与粮道一同向前。天亮时，他推开药碗，写下另一篇出师表——不是借来十年，而是不再把每一天交给命数。",
+    "hook": "十四年很快。洛阳有人开始装病；这一次，卧龙尚在，旧局未清。",
+    "choiceFact": "zhuge_survives"
+   },
+   "loss": {
+    "text": "东南星暗下去时，司马懿仍没有出战。他不是赢了某一手，只是让你把所有“明日再做”都拖成了秋风里的盲注。",
+    "clue": "史鉴 · 坚壁把盲注拖成刀；重开时军资 +150，先手争粮，莫与他比谁更能空耗。",
+    "clueFx": "supply"
+   }
+  },
+  "gaopingling": {
+   "cast": [
+    "simayi",
+    "caoshuang",
+    "simashi",
+    "zhuge"
+   ],
+   "objective": "拆穿一坛专给曹爽看的病，在司马懿睁眼之前守住诏书、武库与曹魏最后的选择。",
+   "coldOpen": [
+    {
+     "speaker": "zhuge",
+     "text": "五丈原后，我与他又通了许多年的信。今日只寄来四字：勿信其病。他不是等死，是等你先把他当死人。",
+     "when": "page:wuzhangyuan:yeshi"
+    },
+    {
+     "speaker": "writer",
+     "text": "五丈原的星已经落过。如今没人替你看冢虎，只剩一碗故意洒在手背上的粥。",
+     "when": "!page:wuzhangyuan:yeshi"
+    },
+    {
+     "speaker": "caoshuang",
+     "text": "他连粥都喂不进，还能夺我的兵权？我去看过三次，三次都是如此。"
+    },
+    {
+     "speaker": "simashi",
+     "text": "父亲病成这样,师儿只能先持家中馈。将军若疑,何不亲自再探一次?",
+     "when": "!seen:simashi"
+    },
+    {
+     "speaker": "simayi",
+     "text": "大将军……老朽只有一事，不放心。来日……还请你多照看我的两个儿子。"
+    }
+   ],
+   "intros": {
+    "simayi": [
+     {
+      "when": "page:gaopingling:yeshi",
+      "bio": "高平陵败过一次后，他不再只装病，连你的疑心也可能被他拿来布局。",
+      "quote": "同一帖药，我不会再煎第二遍。"
+     },
+     {
+      "when": "page:wuzhangyuan:yeshi",
+      "bio": "五丈原没能熬走卧龙，他便把耐心带回洛阳，等另一个轻敌的人。",
+      "quote": "孔明尚在，正好。我要让他看看，熬得住不只是命。"
+     },
+     {
+      "bio": "他熬走过太多对手，如今把衰老演成最后一层甲，把曹爽的轻视养成刀。",
+      "quote": "老朽病得很重。大将军，你当然可以放心。"
+     }
+    ]
+   },
+   "map": [
+    {
+     "id": "medicine-and-armory",
+     "node": 1,
+     "title": "高平陵 · 病榻外有刀",
+     "lines": [
+      {
+       "speaker": "caoshuang",
+       "text": "他若装病，骗的是我；他若真病，我此时动手，便坐实了欺辱老臣。你要我怎么办？"
+      },
+      {
+       "speaker": "zhuge",
+       "text": "五丈原后我只教他一件事：耐心也是下注。你若不看底牌，便会把他的忍耐当成天命。",
+       "when": "page:wuzhangyuan:yeshi"
+      },
+      {
+       "speaker": "writer",
+       "text": "没有卧龙隔江提醒，你只能自己分辨：那碗粥喂给了病人，还是喂给了你的轻视。",
+       "when": "!page:wuzhangyuan:yeshi"
+      }
+     ],
+     "choices": [
+      {
+       "id": "read-prescription",
+       "text": "对照药方、更次与喂粥的人",
+       "detail": "本回看破提升，记住病榻伪证",
+       "effects": {
+        "keenEye": true,
+        "fact": "gaoping_medicine"
+       }
+      },
+      {
+       "id": "guard-armory",
+       "text": "先护太后诏书与洛阳武库",
+       "detail": "司马懿军资 -150，记住先手守门",
+       "effects": {
+        "oppChips": -150,
+        "fact": "gaoping_armory"
+       }
+      }
+     ]
+    }
+   ],
+   "battle": [
+    {
+     "id": "gaoping-open-alive",
+     "at": "start",
+     "speaker": "simayi",
+     "text": "孔明还活着，你也还爱多事。看来五丈原那一局，我确实输得不甘心。",
+     "when": "page:wuzhangyuan:yeshi"
+    },
+    {
+     "id": "gaoping-open-fallen",
+     "at": "start",
+     "speaker": "simayi",
+     "text": "孔明已不在。你们还有谁，肯把一个将死之人当作对手？",
+     "when": "!page:wuzhangyuan:yeshi"
+    },
+    {
+     "id": "gaoping-caoshuang",
+     "at": "hand:2",
+     "speaker": "caoshuang",
+     "text": "他是在装？可满朝都看见了……你为何不早说！"
+    },
+    {
+     "id": "gaoping-letter",
+     "at": "hand:3",
+     "speaker": "zhuge",
+     "text": "你若只会等他死，便永远看不见他怎样活。",
+     "when": "page:wuzhangyuan:yeshi"
+    },
+    {
+     "id": "gaoping-low",
+     "at": "low",
+     "speaker": "simayi",
+     "text": "你识破我的病，却识不破百官的怕。刀出鞘以后，他们自会站到我这边。"
+    }
+   ],
+   "win": {
+    "text": "粥碗落地，司马懿翻身而起，却见武库门已闭、太后诏已读。曹爽没有交出印绶，满朝也没有等来一场只能站队的清洗。冢虎第一次发现，满座聪明人并不都愿意陪他装睡。",
+    "hook": "司马家的刀暂回鞘中，三国却未停手。多年后，阴平小道响起裹毡滚崖之声。",
+    "choiceFact": "sima_coup_stopped"
+   },
+   "loss": {
+    "text": "曹爽交印时还相信能做个富家翁。司马懿没有立刻杀他，只让他慢慢想明白：那坛病不是骗一个人的眼睛，是喂大一群人的侥幸。",
+    "clue": "史鉴 · 他的虚弱多是诱饵，真正的强注藏在病后；重开时假破绽减少，别因摊牌前的示弱松手。",
+    "clueFx": "keenEye"
+   }
+  },
+  "yinping": {
+   "cast": [
+    "dengai",
+    "dengzhong",
+    "jiangwei",
+    "zhugezhan",
+    "zhugeshang",
+    "zhuge"
+   ],
+   "objective": "从摩天岭到绵竹设下两重回答，让邓艾的孤军无处落地，诸葛父子不必以死守名。",
+   "coldOpen": [
+    {
+     "speaker": "narrator",
+     "text": "阴平没有路，只有被雨冲淡的兽迹。邓艾命人裹毡滚崖，把自己的命也卷进了那层旧毡。"
+    },
+    {
+     "speaker": "dengai",
+     "text": "都、都说阴平无路。无路，才没人拦我。"
+    },
+    {
+     "speaker": "dengzhong",
+     "text": "父、父亲,忠先下探。绵竹若破,成都不战自降——这一程,儿替您蹚。",
+     "when": "!seen:dengzhong"
+    },
+    {
+     "speaker": "zhugezhan",
+     "text": "父相在时,常叹我等生于安乐。今日绵竹在身后,成都岁余,瞻,退无可退。"
+    },
+    {
+     "speaker": "zhugeshang",
+     "text": "祖父,父亲,儿孙三代之名,系于今日。尚,愿先登!"
+    },
+    {
+     "speaker": "jiangwei",
+     "text": "沓中不能丢，成都也不能丢。最怕的不是两线作战，是每一处都以为另一处有人。"
+    }
+   ],
+   "intros": {
+    "dengai": [
+     {
+      "when": "page:yinping:yeshi",
+      "bio": "阴平曾让他撞上伏守，他却更相信绝境里总还有第二条兽径。",
+      "quote": "这、这次我换一处下山。你还等得到吗？"
+     },
+     {
+      "bio": "他说得结巴，行得决绝；所有人口中的不可能，都是他敢孤注一掷的理由。",
+      "quote": "山、山不会让人。可人会绕过山。"
+     }
+    ],
+    "dengzhong": [
+     {
+      "when": "seen:dengzhong",
+      "bio": "初阵绵竹让他尝过血,这次把父亲的险棋又往前推了一格。",
+      "quote": "父、父亲教我的,我教给你。"
+     },
+     {
+      "bio": "虎父之下的少年,急于证明「邓」字不只属于上一辈。",
+      "quote": "家父面前,休得无礼!"
+     }
+    ]
+   },
+   "map": [
+    {
+     "id": "light-on-cliff",
+     "node": 1,
+     "title": "阴平 · 无人处先点灯",
+     "lines": [
+      {
+       "speaker": "zhuge",
+       "text": "旧札只有一句：阴平非道，守江油者不可撤。当年人人说它多虑，如今纸页比崖石还重。"
+      },
+      {
+       "speaker": "jiangwei",
+       "text": "守住了哨位，还要守哨位之间的回音。否则一盏灯灭，百里仍以为自己看得见。"
+      },
+      {
+       "speaker": "zhugezhan",
+       "text": "父相旧札我读了三遍:「阴平非道,守江油者不可撤」。哨位要设在能互相看见的地方。",
+       "when": "page:jieting:yeshi"
+      }
+     ],
+     "choices": [
+      {
+       "id": "three-beacons",
+       "text": "依旧札设三处互望烽哨",
+       "detail": "本回看破提升，记住绝壁灯火",
+       "effects": {
+        "keenEye": true,
+        "fact": "yinping_beacons"
+       }
+      },
+      {
+       "id": "grain-ambush",
+       "text": "迁走江油粮道，反设空仓诱敌",
+       "detail": "邓艾军资 -200，记住空仓之计",
+       "effects": {
+        "raid": true,
+        "fact": "yinping_empty_granary"
+       }
+      }
+     ]
+    }
+   ],
+   "battle": [
+    {
+     "id": "yinping-open",
+     "at": "start",
+     "speaker": "dengai",
+     "text": "我、我身后没有粮，脚下没有路。你猜我除了向前，还能往哪儿退？"
+    },
+    {
+     "id": "yinping-jiangwei",
+     "at": "hand:2",
+     "speaker": "jiangwei",
+     "text": "别追他的将旗。裹着毡的才是他，走得最慢的辎重才藏着全军活路。"
+    },
+    {
+     "id": "yinping-zhan",
+     "at": "hand:3",
+     "speaker": "zhugezhan",
+     "text": "高处不是胜势,能守住水与退路才是。绵竹的阵,瞻替父相补上这一课。",
+     "when": "page:jieting:yeshi"
+    },
+    {
+     "id": "yinping-shang",
+     "at": "hand:3",
+     "speaker": "zhugeshang",
+     "text": "邓忠!我祖我父之名在此——我的枪,比你的快!",
+     "when": "multi"
+    },
+    {
+     "id": "yinping-low",
+     "at": "low",
+     "speaker": "dengai",
+     "text": "山都让我过了，你、你以为几堆石头便能留住我？"
+    }
+   ],
+   "win": {
+    "text": "摩天岭上先有灯，再有滚木。邓艾抬头时，江油的空仓也已落锁；这条以命换出来的奇路，终于成了绝路。姜维收好旧札，没有庆功，只先给三处烽哨添了灯油。",
+    "hook": "蜀地守住，建业的潮声却渐低。旧史只剩最后一句：三分归晋。",
+    "choiceFact": "yinping_held"
+   },
+   "loss": {
+    "text": "邓艾落地时，身后只剩一层磨穿的毡。江油开门不是因为城中无勇，而是所有人都把阴平的那一句“不可能”当成了守备。",
+    "clue": "史鉴 · 邓艾以孤军不断抢进，退守只会替他省粮；重开时敌军军资 -200，抢先压住他的落地之势。",
+    "clueFx": "raid"
+   }
+  },
+  "guijin": {
+   "cast": [
+    "simayan",
+    "wangjun",
+    "duyu",
+    "sunhao",
+    "cenhun",
+    "writer"
+   ],
+   "objective": "在“天下归一”落笔前打完三国最后一局，证明合并不必等于抹掉所有人的名字。",
+   "coldOpen": [
+    {
+     "speaker": "simayan",
+     "text": "华容那一刀早落过，北方却照样换了人间。你们总说能改命，最后不还是由我司马氏收场？",
+     "when": [
+      "choice:huarong:yeshi",
+      "!choice:huarong:yeshiB"
+     ]
+    },
+    {
+     "speaker": "simayan",
+     "text": "华容你肯放曹操，是给魏续了一口气。可惜那口气最后姓了司马，你的“义”又救了谁？",
+     "when": "choice:huarong:yeshiB"
+    },
+    {
+     "speaker": "wangjun",
+     "text": "楼船百丈,铁锁千寻。王濬在益州造了七年船,只为这一趟顺流。",
+     "when": "!seen:wangjun"
+    },
+    {
+     "speaker": "duyu",
+     "text": "羊公临终荐预。荆州的人心他已经收好了,预只欠一场水涨。",
+     "when": "!seen:duyu"
+    },
+    {
+     "speaker": "sunhao",
+     "text": "铁锁横江,天堑自在。晋人的楼船?让他们先问过江里的石头!"
+    },
+    {
+     "speaker": "cenhun",
+     "text": "陛下放心,岑昏再加三道锁,火烧不断,水淹不透!"
+    },
+    {
+     "speaker": "writer",
+     "text": "这是旧史最后一页。你若赢，“天下归一”便不再是唯一能写完的句子。"
+    }
+   ],
+   "intros": {
+    "simayan": [
+     {
+      "when": "page:guijin:yeshi",
+      "bio": "他曾被迫承认归并非唯一结局，因此再来时更想把所有可能一并收回。",
+      "quote": "上次你留下三面旗。这次朕连旗杆也要收走。"
+     },
+     {
+      "bio": "他继承的不只是三国疆土，还有祖父最懂的那种等待：等所有人都厌倦。",
+      "quote": "你们打了一辈子，最后还不是要一个“合”字？"
+     }
+    ],
+    "wangjun": [
+     {
+      "when": "seen:wangjun",
+      "bio": "上一场江风让他记住了你,这次连火炬都备了两份。",
+      "quote": "烧、烧不断的是我的船。再来!"
+     },
+     {
+      "bio": "七十岁还想封侯的老将,把半生都押在了这条江上。",
+      "quote": "楼船下益州。金陵王气,收在此行。"
+     }
+    ]
+   },
+   "map": [
+    {
+     "id": "names-under-unification",
+     "node": 1,
+     "title": "石头城 · 降表外的姓名",
+     "lines": [
+      {
+       "speaker": "simayan",
+       "text": "朕给建业留全城性命，给蜀主留安乐封号。你们还要什么？难道割据一生的名字，比太平更要紧？"
+      },
+      {
+       "speaker": "you",
+       "text": "太平若只准一个人命名，下一次分裂时，便又只有刀能说话。"
+      },
+      {
+       "speaker": "writer",
+       "text": "别只替英雄争座位。看看降表背面，那些没被写进去的人，才真正等了三代。"
+      }
+     ],
+     "choices": [
+      {
+       "id": "record-people",
+       "text": "先记下降表背后的百姓姓名",
+       "detail": "本回看破提升，记住万民之史",
+       "effects": {
+        "keenEye": true,
+        "fact": "guijin_people"
+       }
+      },
+      {
+       "id": "three-flags",
+       "text": "重列三国旧旗，再争最后一局",
+       "detail": "司马炎起手士气 -1，记住三分余响",
+       "effects": {
+        "sow": 1,
+        "fact": "guijin_three_flags"
+       }
+      }
+     ]
+    }
+   ],
+   "battle": [
+    {
+     "id": "guijin-open",
+     "at": "start",
+     "speaker": "simayan",
+     "text": "魏熬走了蜀，晋又接过了魏。你看，等待比你们的奇谋都长久。"
+    },
+    {
+     "id": "guijin-writer",
+     "at": "hand:2",
+     "speaker": "writer",
+     "text": "他把“归一”当作底牌，你便不必比他更像天命。让他证明，凭什么只能如此。"
+    },
+    {
+     "id": "guijin-you",
+     "at": "hand:3",
+     "speaker": "you",
+     "text": "合不是把三个名字磨成一个，是让下一个名字出现时，不必先掀起一场乱世。"
+    },
+    {
+     "id": "guijin-low",
+     "at": "low",
+     "speaker": "simayan",
+     "text": "没有朕来收场，你们还要打多少年？你敢把这句话也说给城中百姓听吗？"
+    }
+   ],
+   "win": {
+    "text": "楼船在江心停下，建业没有献出降表。司马炎看着三分旧旗，第一次问：“若天下不是一件战利品，朕还能留下什么？”没有人能替他作答，但城中粮市第二天照常开了门。",
+    "hook": "卷四写尽，纸背却还有一页。写卷人已摆好牌：他要与你谈谈这些被改过的命。",
+    "choiceFact": "jin_unification_stopped"
+   },
+   "loss": {
+    "text": "石头城终于挂出晋旗。百姓确实等来了太平，只是旧史把所有人的名字越写越小，最后只留下“归晋”二字。",
+    "clue": "史鉴 · 司马炎借归一大势持续施压；重开时敌军军资 -200，别替他提前相信结局。",
+    "clueFx": "raid"
+   }
+  },
+  "zuizhong": {
+   "cast": [
+    "writer"
+   ],
+   "objective": "让写卷人承认你不是他的注脚；赢下最后一局，在封卷、还史、撕卷之间决定全书的去处。",
+   "coldOpen": [
+    {
+     "speaker": "writer",
+     "text": "白门楼你让吕布活下，后来每个人都多了一条本不该有的路。你以为我没看见？我每一笔都记着。",
+     "when": "fact:lvbu_lives"
+    },
+    {
+     "speaker": "writer",
+     "text": "麦城你救下关羽，我便看着夷陵少了理由、白帝城少了遗恨。可你没有救下所有遗憾，对不对？",
+     "when": "page:maicheng:yeshi"
+    },
+    {
+     "speaker": "writer",
+     "text": "麦城的雪仍在，夷陵的火也曾等着。你救过一些人，也亲手翻过一些来不及救的页。",
+     "when": "!page:maicheng:yeshi"
+    },
+    {
+     "speaker": "writer",
+     "text": "封卷，留住你的野史；还史，归还原来的命；撕卷，让往后不再有人预知。赢我，这三件事才轮得到你。"
+    }
+   ],
+   "intros": {
+    "写卷人": [
+     {
+      "when": "page:zuizhong:yeshi",
+      "bio": "他记得你曾把结局带出这一页，却仍不肯承认书只能有一种归处。",
+      "quote": "又回来改答案？这次连我也不替你记着。"
+     },
+     {
+      "when": "fact:zhuge_survives",
+      "bio": "他看见东南星仍亮，也知道你救下孔明之后，历史并没有因此变轻。",
+      "quote": "你救过他一次，便真懂怎样救人了吗？"
+     },
+     {
+      "bio": "他知道你翻过的每一页，却第一次坐在只能验牌、不能预设结果的位置。",
+      "quote": "我写过你的来路。现在，让我看看你的选择。"
+     }
+    ]
+   },
+   "map": [],
+   "battle": [
+    {
+     "id": "zuizhong-open-survivor",
+     "at": "start",
+     "speaker": "writer",
+     "text": "五丈原那颗星还亮着。你以为救下孔明是答案？那只是让仲达多了一个不能靠等待赢的人。",
+     "when": "fact:zhuge_survives"
+    },
+    {
+     "id": "zuizhong-open-fallen",
+     "at": "start",
+     "speaker": "writer",
+     "text": "五丈原的秋风我留着。你可以赢司马懿，却未必背得动一个非死不可的人。",
+     "when": "!fact:zhuge_survives"
+    },
+    {
+     "id": "zuizhong-seal",
+     "at": "hand:2",
+     "speaker": "writer",
+     "text": "封卷，我把这些野史装帧成书。他们会活在你改过的那一页，却永远到不了下一页。"
+    },
+    {
+     "id": "zuizhong-return",
+     "at": "hand:3",
+     "speaker": "writer",
+     "text": "还史，我把笔墨收回。麦城的雪、五丈原的风照旧，你只带走自己见过他们的记忆。"
+    },
+    {
+     "id": "zuizhong-tear",
+     "at": "hand:4",
+     "speaker": "writer",
+     "text": "撕卷，谁都可能再活一次，谁都可能再死一次。没有底稿，也没有我替你兜底。"
+    },
+    {
+     "id": "zuizhong-huarong-spare",
+     "at": "hand:5",
+     "speaker": "writer",
+     "text": "华容你放走曹操，信一个“义”字能抵过后患。今日再问你：敢不敢信未知也能抵过结局？",
+     "when": "choice:huarong:yeshiB"
+    },
+    {
+     "id": "zuizhong-huarong-strike",
+     "at": "hand:5",
+     "speaker": "writer",
+     "text": "华容你让刀落下，改了一个奸雄的命，改不了后人争位。撕卷也不会替你免去选择。",
+     "when": [
+      "choice:huarong:yeshi",
+      "!choice:huarong:yeshiB"
+     ]
+    },
+    {
+     "id": "zuizhong-low",
+     "at": "low",
+     "speaker": "writer",
+     "text": "我知你每一张旧牌，却不知下一张。读者，这就是我肯坐下与你赌的原因。"
+    }
+   ],
+   "win": {
+    "text": "写卷人推开牌，第一次没有替你写结局。桌上并排放着封绳、旧史与一把无刃的裁纸刀：封卷，留住所改；还史，承担所失；撕卷，交还未知。你伸手时，整本书都在等。",
+    "hook": "三个答案都在下一问里。你选择的不是结局，而是谁有权写下结局。"
+   },
+   "loss": {
+    "text": "他提笔在你的名字旁添了一个“又”字，所有改写便退回页边。可他没有抹去你坐过的位置——那说明下一次，他仍需要你来。",
+    "clue": "史鉴 · 写卷人熟知你的旧策，却只能按牌理下注；重开时假破绽减少，别被他的全知语气吓退。",
+    "clueFx": "keenEye"
+   }
+  },
+  "tianshui": {
+   "cast": [
+    "zhuge",
+    "zhaoyun",
+    "jiangwei",
+    "weiyan",
+    "guanxing",
+    "zhangbao"
+   ],
+   "objective": "识破冀城少年的每一步先手,把北伐最大的意外之得,请进蜀营。",
+   "coldOpen": [
+    {
+     "speaker": "narrator",
+     "text": "一出祁山,三郡响应。诸葛亮亲自设伏天水,却见城头一少年按图布防,把丞相的疑兵一一识破。"
+    },
+    {
+     "speaker": "zhaoyun",
+     "text": "某自长坂以来,未逢敌手。今日天水城下,这少年的枪,竟逼得某拨马而回。"
+    },
+    {
+     "speaker": "jiangwei",
+     "text": "老将军莫怪。维自幼读丞相兵法,今日不过是,替守城的弟兄们,把它原样还回去。"
+    },
+    {
+     "speaker": "zhuge",
+     "text": "子龙一生谨慎,能令他「拨马而回」的人,亮必亲往会之。"
+    },
+    {
+     "speaker": "guanxing",
+     "text": "丞相,兴愿随军!听说是同辈人,某这口刀,也想会会他。"
+    }
+   ],
+   "intros": {
+    "jiangwei": [
+     {
+      "when": "seen:jiangwei",
+      "bio": "他记得你怎样一步步卸掉他的先手,这次把阵扎在了你要来的路上。",
+      "quote": "又来?这次,先手在我。"
+     },
+     {
+      "bio": "冀城天水之间的少年郡吏,兵法是偷学的,忠义是自家的。",
+      "quote": "姜维在此。丞相的计,某接得住。"
+     }
+    ]
+   },
+   "map": [
+    {
+     "id": "young-reader",
+     "node": 1,
+     "title": "天水 · 他在读你",
+     "lines": [
+      {
+       "speaker": "zhuge",
+       "text": "亮布疑兵,他识疑兵;亮调粮道,他护粮道。此子用兵,倒像是把亮的旧稿先读了一遍。"
+      },
+      {
+       "speaker": "weiyan",
+       "text": "丞相,何须费事?文长领一军,连夜拿下冀城,人自然到手!"
+      },
+      {
+       "speaker": "zhangbao",
+       "text": "魏将军急什么!丞相要的不是城,是那个人。俺爹说过,抢来的不服,请来的才真。"
+      },
+      {
+       "speaker": "you",
+       "text": "他现在守的,是郡守的命令。要赢他,得先让他发现,自己真正想守的是什么。"
+      }
+     ],
+     "choices": [
+      {
+       "id": "mirror-plan",
+       "text": "以丞相旧稿反设一局",
+       "detail": "本回看破提升,记住镜像之局",
+       "effects": {
+        "keenEye": true,
+        "fact": "tianshui_mirror"
+       }
+      },
+      {
+       "id": "open-letter",
+       "text": "阵前递去丞相手书一封",
+       "detail": "军资 +120,姜维起手士气 -1",
+       "effects": {
+        "chips": 120,
+        "sow": 1,
+        "fact": "tianshui_letter"
+       }
+      }
+     ]
+    }
+   ],
+   "battle": [
+    {
+     "id": "tianshui-open",
+     "at": "start",
+     "speaker": "jiangwei",
+     "text": "丞相的疑兵,某已拆过一遍。你,是第二遍吗?"
+    },
+    {
+     "id": "tianshui-zhaoyun",
+     "at": "hand:2",
+     "speaker": "zhaoyun",
+     "text": "少年,你的枪是快。可你在守的是马遵的城,不是你自己的心。"
+    },
+    {
+     "id": "tianshui-mirror",
+     "at": "hand:3",
+     "speaker": "narrator",
+     "text": "他照旧稿布的阵,被你用同一份旧稿反锁。少年盯着阵图,忽然发现自己烂熟于胸的,竟是蜀营的路数。",
+     "when": "fact:tianshui_mirror"
+    },
+    {
+     "id": "tianshui-low",
+     "at": "low",
+     "speaker": "zhuge",
+     "text": "伯约,亮不夺你的城。亮只想问你一句:你的兵法,可愿有个用它的天下?"
+    }
+   ],
+   "win": {
+    "text": "冀城开城的那天,姜维单骑出降,甲胄未卸,先向蜀营深深一揖。诸葛亮下车扶住他:\"亮平生所学,今有传人。\"赵云在一旁按枪而笑。此后北伐的每一次点将,名单上多了一个年轻的、读遍丞相旧稿的名字。",
+    "hook": "得了姜维,北伐的旗更急。可街亭的名字,已在军图上冷冷地亮了起来。"
+   },
+   "loss": {
+    "text": "你急于收服,反被少年将计就计。天水城门合拢的那一刻,他站在城头轻声说:\"丞相之才,某敬佩。可某的枪,只为守土而出。\"",
+    "clue": "史鉴 · 姜维赢在先手,不在兵多。重开时先递信、后设局;让他自己走过来,别去追他。",
+    "clueFx": "sow"
+   }
+  },
+  "chencang": {
+   "cast": [
+    "zhuge",
+    "haozhao",
+    "weiyan",
+    "jiangwei",
+    "guanxing"
+   ],
+   "objective": "在云梯与火箭之间,找到郝昭守城的理由,再决定陈仓该不该破。",
+   "coldOpen": [
+    {
+     "speaker": "narrator",
+     "text": "陈仓城小而坚,守将郝昭,不过千人。蜀军云梯、冲车、地道轮番上阵,城头的火箭一一点名。"
+    },
+    {
+     "speaker": "haozhao",
+     "text": "诸葛丞相的攻具,昭领教二十日了。城小,好在要守的也少。"
+    },
+    {
+     "speaker": "zhuge",
+     "text": "郝伯道守城有法,强攻徒损将士。伯约,你说,困城先困什么?"
+    },
+    {
+     "speaker": "jiangwei",
+     "text": "维以为,困城先困心。郝昭同乡靳详在军中,可先劝降,探他守志。"
+    },
+    {
+     "speaker": "weiyan",
+     "text": "二十日了!再劝下去,长安的援军就到了。丞相,给文长三日益,必破此城!"
+    }
+   ],
+   "intros": {
+    "haozhao": [
+     {
+      "when": "seen:haozhao",
+      "bio": "他记得你的每一种攻具,城头又添了三排火箭。",
+      "quote": "云梯?冲车?还是地道?我都备好了。"
+     },
+     {
+      "bio": "千人守孤城,守的从来不是城,是一个「信」字。",
+      "quote": "昭受魏恩,城在人在。请丞相换法子吧。"
+     }
+    ],
+    "wangshuang": [
+     {
+      "when": "seen:wangshuang",
+      "bio": "他的流星锤记过你的将,也记过自己的轻进。",
+      "quote": "这次跟紧大队!锤下不留情!"
+     },
+     {
+      "bio": "陇西大汉,先登的奖赏他背了一路。",
+      "quote": "王双在此!谁的头,配我的锤?"
+     }
+    ]
+   },
+   "map": [
+    {
+     "id": "siege-letters",
+     "node": 1,
+     "title": "散关 · 云梯与书信",
+     "lines": [
+      {
+       "speaker": "haozhao",
+       "text": "昭知丞相必得陈仓而后去。只可惜,陛下给的城,昭一寸也不让。"
+      },
+      {
+       "speaker": "zhuge",
+       "text": "他不肯降,是信魏,还是信他身后无人肯守?攻具要继续,信,也要继续。"
+      },
+      {
+       "speaker": "guanxing",
+       "text": "丞相,兴押粮时数过:城中炊烟,一日淡过一日。"
+      },
+      {
+       "speaker": "you",
+       "text": "那就比谁先到——他的粮尽,还是长安的援军。"
+      }
+     ],
+     "choices": [
+      {
+       "id": "count-smoke",
+       "text": "以炊烟计城中存粮",
+       "detail": "本回看破提升,记住炊烟之数",
+       "effects": {
+        "keenEye": true,
+        "fact": "chencang_smoke"
+       }
+      },
+      {
+       "id": "cut-relief",
+       "text": "伏兵散关,截长安援军",
+       "detail": "魏军起手军资 -200,记住断援",
+       "effects": {
+        "raid": true,
+        "fact": "chencang_cut"
+       }
+      }
+     ]
+    }
+   ],
+   "battle": [
+    {
+     "id": "chencang-open",
+     "at": "start",
+     "speaker": "haozhao",
+     "text": "又是云梯。昭说过了——换法子吧,丞相。"
+    },
+    {
+     "id": "chencang-fire",
+     "at": "hand:2",
+     "speaker": "narrator",
+     "text": "火箭如雨,云梯成排地烧。城头那个瘦削的身影,二十日来没有离开过一步。"
+    },
+    {
+     "id": "chencang-shuang",
+     "at": "hand:3",
+     "speaker": "wangshuang",
+     "text": "郝昭撑住!王双的援军到了——呔!追兵也敢跟这么紧?!"
+    },
+    {
+     "id": "chencang-low",
+     "at": "low",
+     "speaker": "zhuge",
+     "text": "罢。传令:敛兵,回汉中。陈仓虽在,郝伯道之名,亮记下了。"
+    }
+   ],
+   "win": {
+    "text": "退军的路上,王双追来,却一头撞进你布在散关的伏兵。斩王双,退大军,陈仓的城头,郝昭扶着垛口望了许久。他守住了城,诸葛亮赢得了整个陇右的从容——这一仗,两人都没有输。",
+    "hook": "陈仓虽退,北伐的心没有退。渭水上游,一场更大的对峙正在蓄水——这一次,对手是司马。"
+   },
+   "loss": {
+    "text": "攻城的第二十日,云梯烧尽了,长安的援军也到了。你在陈仓城下学会了同一件事:有些城,强攻不动;有些将,劝降不动。",
+    "clue": "史鉴 · 郝昭以「守」待「攻」,你的每一步攻具都在替他点名。重开时先断援军、再数炊烟,等他的粮替你说话。",
+    "clueFx": "keenEye"
+   }
+  },
+  "shangfanggu": {
+   "cast": [
+    "zhuge",
+    "simayi",
+    "simazhao",
+    "weiyan",
+    "yangyi"
+   ],
+   "objective": "把司马懿父子诱入葫芦谷,在雨落下之前,让火替蜀军说最后一句话。",
+   "coldOpen": [
+    {
+     "speaker": "narrator",
+     "text": "渭水南岸,蜀军屯田,魏军筑垒。上方谷口堆满干柴,只等司马懿自己走进来。"
+    },
+    {
+     "speaker": "simayi",
+     "text": "孔明屯田,是邀孤决战;孤偏不战。他若退,孤追——只追到谷口为止。"
+    },
+    {
+     "speaker": "simazhao",
+     "text": "父亲,蜀军粮车连日向北原移动,孩儿愿领一军,探他虚实。"
+    },
+    {
+     "speaker": "zhuge",
+     "text": "司马懿不是不肯来,是不肯一个人来。那就给他的儿子,一个非来不可的理由。"
+    },
+    {
+     "speaker": "yangyi",
+     "text": "丞相,木牛流马三十车已备,每车都做了记号——威公保证,一车都不会真丢。"
+    }
+   ],
+   "intros": {
+    "simayi": [
+     {
+      "when": "page:kongcheng:yeshi",
+      "bio": "西城的琴声之后,他更信「孔明之退皆有伏」,这份疑心,正是你要的锁。",
+      "quote": "琴我听过一次。这次,我只信我的眼睛。"
+     },
+     {
+      "when": "seen:simayi",
+      "bio": "他仍旧闭目养神,可耳听八方——你在谷口做的每一处记号,他都想知道。",
+      "quote": "把你的粮车再往前挪一里。孤,看着。"
+     },
+     {
+      "bio": "冢虎不出洞,除非洞外的人,替他把洞口的石头搬开。",
+      "quote": "孔明啊孔明,你的耐心,终究要输给岁数。"
+     }
+    ],
+    "simazhao": [
+     {
+      "when": "seen:simazhao",
+      "bio": "他领教过你的伏笔,这次把父亲的谨慎折了一半,添进自己的果决。",
+      "quote": "父亲的谨慎我学一半。另一半,我改。"
+     },
+     {
+      "bio": "随军的次子,眼睛却总盯着帅帐里那把还没坐热的椅子。",
+      "quote": "小将军司马昭,代父巡谷。"
+     }
+    ]
+   },
+   "map": [
+    {
+     "id": "granary-carts",
+     "node": 1,
+     "title": "北原 · 粮车之饵",
+     "lines": [
+      {
+       "speaker": "weiyan",
+       "text": "丞相,诱敌的差事,该文长去了!司马懿若肯入谷,文长愿领五百人,替他关谷门!"
+      },
+      {
+       "speaker": "zhuge",
+       "text": "文长守谷门,孤放心。只是记住——火起之后,门要关得快,开得更快。"
+      },
+      {
+       "speaker": "yangyi",
+       "text": "粮车、干柴、火油,账目在此。丞相,威公只提醒一句:天,三月无雨了。"
+      },
+      {
+       "speaker": "you",
+       "text": "无雨的天,是火的朋友,也是雨的前奏。这一局,要赢得比天气快。"
+      }
+     ],
+     "choices": [
+      {
+       "id": "watch-sky",
+       "text": "先观云脚,择干燥日纵火",
+       "detail": "本回看破提升,记住天时之择",
+       "effects": {
+        "keenEye": true,
+        "fact": "shangfanggu_sky"
+       }
+      },
+      {
+       "id": "burn-carts",
+       "text": "弃三十车粮,佯败入谷",
+       "detail": "魏军起手军资 -200,记住弃粮之饵",
+       "effects": {
+        "raid": true,
+        "fact": "shangfanggu_carts"
+       }
+      }
+     ]
+    }
+   ],
+   "battle": [
+    {
+     "id": "shangfanggu-open",
+     "at": "start",
+     "speaker": "simayi",
+     "text": "粮车北移,营垒东倾。孔明,你的每一步,都在请孤入谷。"
+    },
+    {
+     "id": "shangfanggu-zhao",
+     "at": "hand:2",
+     "speaker": "simazhao",
+     "text": "父亲!粮车乱了,蜀军真的败了——追不追,就在此刻!",
+     "when": "multi"
+    },
+    {
+     "id": "shangfanggu-fire",
+     "at": "hand:3",
+     "speaker": "weiyan",
+     "text": "谷门——落!火箭,上!今日便叫魏军知道,什么叫进得来,出不去!"
+    },
+    {
+     "id": "shangfanggu-low",
+     "at": "low",
+     "speaker": "simayi",
+     "text": "中计了……我父子三人,竟要毕命于此谷?罢了,罢了!"
+    }
+   ],
+   "win": {
+    "text": "火起时,谷口的牌局已经收官。司马懿仰头看天,乌云正从山后压过来——可这次,雨落在火烧完之后。他从灰烬里被扶出来,半晌只说了一句:「天意犹在,人事先尽。」渭南的魏军,从此再不出垒。",
+    "hook": "上方谷的火没能烧尽司马氏,却烧掉了他们的傲气。渭滨的秋风,就要替这场对峙收尾。"
+   },
+   "loss": {
+    "text": "雨比你的火快了半刻。谷中父子在雨里放声大笑,笑声比火更烫。你终于明白:算尽了人事的人,输给天时,最痛。",
+    "clue": "史鉴 · 司马懿入谷前会反复试探。重开时先观云再纵火,弃粮之饵能减其军资 200——别让天气先亮牌。",
+    "clueFx": "raid"
+   }
+  },
+  "tielongshan": {
+   "cast": [
+    "jiangwei",
+    "simazhao",
+    "guohuai",
+    "xiahouba",
+    "zhangyi"
+   ],
+   "objective": "围住铁笼山的人,先要算赢解围的人——替姜维保住陇右这一手棋。",
+   "coldOpen": [
+    {
+     "speaker": "narrator",
+     "text": "姜维背水列阵,大破魏军于洮水,把司马昭围在了铁笼山上。山上无水,山下的人却带来了羌兵的火。"
+    },
+    {
+     "speaker": "jiangwei",
+     "text": "司马昭困守无水之山,三日内必降。维只担心一件事——郭淮的援军,会借羌人的路。"
+    },
+    {
+     "speaker": "simazhao",
+     "text": "山上掘三丈不得泉……父亲常说,困局先算援手。郭伯济,你会来吗?"
+    },
+    {
+     "speaker": "guohuai",
+     "text": "羌人反复,魏蜀皆用。老夫此去,不必破姜维,只要让羌人的火,烧回他自己的营。",
+     "when": "!seen:guohuai"
+    },
+    {
+     "speaker": "xiahouba",
+     "text": "伯约!夏侯霸降蜀三年,今日方知:陇右的每一寸,都是旧相识。"
+    }
+   ],
+   "intros": {
+    "guohuai": [
+     {
+      "when": "seen:guohuai",
+      "bio": "定军山的老对手还记得你的山,这次把援军藏进了羌帐。",
+      "quote": "上次你占了高地。这次,我借了风。"
+     },
+     {
+      "bio": "关西三十年,他最懂「借」字——借羌,借水,借你围城的耐心。",
+      "quote": "郭淮不与你斗围。我只拆你的围。"
+     }
+    ],
+    "simazhao": [
+     {
+      "when": "page:shangfanggu:yeshi",
+      "bio": "上方谷的雨救过他一次,他从此信「困局自有天意」。",
+      "quote": "又困我?上次的雨,这次也会来。"
+     },
+     {
+      "when": "seen:simazhao",
+      "bio": "他尝过被围的滋味,这次在山上镇定得反常。",
+      "quote": "困我三日?我等得起。你呢?"
+     },
+     {
+      "bio": "被围的次子不慌,因为他的镇定本身就是疑兵。",
+      "quote": "姜将军,山高风大,你的粮,吹得散。"
+     }
+    ]
+   },
+   "map": [
+    {
+     "id": "qiang-road",
+     "node": 1,
+     "title": "洮水 · 羌人的路",
+     "lines": [
+      {
+       "speaker": "xiahouba",
+       "text": "伯约,羌人与魏人眉来眼去三日了。雍州的事,仲权看了半辈子——他们只认粮,不认旗。"
+      },
+      {
+       "speaker": "jiangwei",
+       "text": "维背水一战,已无退路。若羌人倒向郭淮,山上山下,就要换一个围法。"
+      },
+      {
+       "speaker": "zhangyi",
+       "text": "将军,张翼愿领一军扼住羌道。翼位卑,可这一步棋,差不得。"
+      },
+      {
+       "speaker": "you",
+       "text": "围山的人最怕两件事:山上的水,和山外的路。水他没找到,路,还在你手里。"
+      }
+     ],
+     "choices": [
+      {
+       "id": "hold-qiang",
+       "text": "先稳羌部,断郭淮之援",
+       "detail": "本回看破提升,记住羌道之要",
+       "effects": {
+        "keenEye": true,
+        "fact": "tielongshan_qiang"
+       }
+      },
+      {
+       "id": "rush-hill",
+       "text": "趁无水速攻,先取山寨",
+       "detail": "军资 +150,山上守军士气 -1",
+       "effects": {
+        "chips": 150,
+        "sow": 1,
+        "fact": "tielongshan_rush"
+       }
+      }
+     ]
+    }
+   ],
+   "battle": [
+    {
+     "id": "tielongshan-open",
+     "at": "start",
+     "speaker": "simazhao",
+     "text": "姜维,你围得住山,围不住天。三日后,自有你的败报。"
+    },
+    {
+     "id": "tielongshan-guo",
+     "at": "hand:2",
+     "speaker": "guohuai",
+     "text": "羌帐已应老夫。姜将军,你的背后,还站得住人吗?"
+    },
+    {
+     "id": "tielongshan-wing",
+     "at": "hand:3",
+     "speaker": "zhangyi",
+     "text": "羌道还在我手里!将军只管攻山——张翼的阵地,羌人过不来!",
+     "when": "fact:tielongshan_qiang"
+    },
+    {
+     "id": "tielongshan-low",
+     "at": "low",
+     "speaker": "jiangwei",
+     "text": "丞相,维又差一步……不,还差的那一步,维自己走!"
+    }
+   ],
+   "win": {
+    "text": "羌道未失,郭淮的「借」字落了空。铁笼山上,司马昭捧着最后一皮囊水解了渴,然后望着山下纹丝不动的蜀军营垒,第一次主动议和退兵。姜维没有追——洮水大胜,陇右的城一座座开了门,北伐的路,又宽了一程。",
+    "hook": "陇右烽烟未熄,淮南的檄文已至洛阳——魏国的土地上,连着三年,燃起了三把同名的火。"
+   },
+   "loss": {
+    "text": "羌人的火从你背后烧起,铁笼山上的司马昭在雨里大笑。姜维引兵退回剑阁时,回头看了一眼那座山——围局如牌局,他终于信了这句话。",
+    "clue": "史鉴 · 郭淮赢在「借外势」,不在兵锋。重开时先定羌部再攻山;你的围,输给的一定是山外的路。",
+    "clueFx": "keenEye"
+   }
+  },
+  "huainan": {
+   "cast": [
+    "simashi",
+    "simazhao",
+    "guanqiujian",
+    "wenqin",
+    "zhugedan",
+    "wenyang"
+   ],
+   "objective": "在淮南三叛的连局里,读出忠义与侥幸的分界,替檄文找到它该送达的人。",
+   "coldOpen": [
+    {
+     "speaker": "narrator",
+     "text": "司马懿死后第二年,淮南第一道讨贼檄文竖起。此后四年,同样的火在这片土地上烧了三次。"
+    },
+    {
+     "speaker": "guanqiujian",
+     "text": "司马师废帝自立,天地不容!淮南六军,今日只问一句:魏,还是司马?"
+    },
+    {
+     "speaker": "simashi",
+     "text": "淮南又反。父亲留下的局面,师来收。眼疾再痛,也得亲征。"
+    },
+    {
+     "speaker": "wenqin",
+     "text": "毌丘将军,文钦父子三千骑,愿为先锋!冲中军,擒司马师!"
+    },
+    {
+     "speaker": "wenyang",
+     "text": "爹,夜里劫营,儿的枪先出。乐嘉城的魏旗,一夜就换!"
+    }
+   ],
+   "intros": {
+    "guanqiujian": [
+     {
+      "when": "seen:guanqiujian",
+      "bio": "辽东刻石的老将仍在等,等第二封没人敢回的檄文。",
+      "quote": "石头再硬,也要刻第二遍。"
+     },
+     {
+      "bio": "他刻过辽东的功勋,如今要刻司马氏的罪。",
+      "quote": "此檄一出,成败在天,名义在我。"
+     }
+    ],
+    "wenqin": [
+     {
+      "bio": "勇而无谋的谯郡男儿,嗓门与胆气一样大。",
+      "quote": "怕死的不姓文!冲!"
+     }
+    ],
+    "zhugedan": [
+     {
+      "when": "seen:zhugedan",
+      "bio": "寿春的火他见过一次,这次把城墙又加高了三尺。",
+      "quote": "再守一次。反正天下人只记得我反了。"
+     },
+     {
+      "bio": "诸葛家的「狗」,咬得最凶,也最孤独。",
+      "quote": "宁作断头鬼,不姓司马!"
+     }
+    ],
+    "wenyang": [
+     {
+      "bio": "十八岁的枪,追兵的梦。",
+      "quote": "谁敢追?文鸯在此!"
+     }
+    ],
+    "leshen": [
+     {
+      "bio": "他守着父亲留下的淮南,守着乐进家的门楣。",
+      "quote": "家父的阵,我一步没改。"
+     }
+    ]
+   },
+   "map": [
+    {
+     "id": "three-fires",
+     "node": 1,
+     "title": "项城 · 同名的火",
+     "lines": [
+      {
+       "speaker": "simazhao",
+       "text": "兄长眼里有瘤,仍要亲征淮南。我留在洛阳——不是怯,是要看着朝堂上每一双眼睛。"
+      },
+      {
+       "speaker": "guanqiujian",
+       "text": "第一叛败于粮,第二叛败于疑,第三叛……老夫等不到了。后来的人,替我把檄文写完。"
+      },
+      {
+       "speaker": "wenyang",
+       "text": "寿春城破那日,儿单骑七进七出。爹叫我走,我就走——留这条命,接着反!"
+      },
+      {
+       "speaker": "you",
+       "text": "三把火,烧的是同一句话。你要读的是:哪一缕烟,是忠;哪一缕,只是不甘。"
+      }
+     ],
+     "choices": [
+      {
+       "id": "read-manifesto",
+       "text": "细读檄文署名与粮册",
+       "detail": "本回看破提升,记住檄文之别",
+       "effects": {
+        "keenEye": true,
+        "fact": "huainan_read"
+       }
+      },
+      {
+       "id": "aid-shouchun",
+       "text": "护檄文东传,连结东吴",
+       "detail": "军资 +150,记住外援之约",
+       "effects": {
+        "chips": 150,
+        "fact": "huainan_wu"
+       }
+      }
+     ]
+    }
+   ],
+   "battle": [
+    {
+     "id": "huainan-open",
+     "at": "start",
+     "speaker": "guanqiujian",
+     "text": "魏的将,司马的兵——诸位,你们的刀,究竟听谁的?!"
+    },
+    {
+     "id": "huainan-yang",
+     "at": "hand:2",
+     "speaker": "wenyang",
+     "text": "追兵百骑?文鸯回头——一枪一个,排好队!",
+     "when": "round:2"
+    },
+    {
+     "id": "huainan-dan",
+     "at": "hand:3",
+     "speaker": "zhugedan",
+     "text": "寿春的粮,够守一年。你们司马家的刀,先钝!先冷!",
+     "when": "round:2"
+    },
+    {
+     "id": "huainan-low",
+     "at": "low",
+     "speaker": "simazhao",
+     "text": "杀他们的,不是我。是「等」字——等援军,等天命,等别人先拼命。"
+    }
+   ],
+   "win": {
+    "text": "檄文送到了洛阳,也送进了史官的梦里。三把火没有烧倒司马氏,却把「魏」字的笔画一根根烫深:连他们的兵都开始记住,自己曾经姓曹。司马师摘掉眼上的纱布,发现痛的不只是眼疾。",
+    "hook": "淮南的火三次燃尽,洛阳的天子坐不住了——他要亲手,把龙旗打出宫门。"
+   },
+   "loss": {
+    "text": "三叛相继败亡,寿春城头三次换旗。你记住了每一份檄文的抬头,却没算到:东吴的援兵,每次都晚到一步,而司马氏的刀,一次比一次快。",
+    "clue": "史鉴 · 淮南之败不在寡助,在「各等各的」。重开时先读檄文分清主从;文鸯之勇是最后的门,别把他当成整座城。",
+    "clueFx": "keenEye"
+   }
+  },
+  "ganlu": {
+   "cast": [
+    "caomao",
+    "simazhao",
+    "jiachong",
+    "wangshen"
+   ],
+   "objective": "在南阙之前替天子留住最后一步退路——或者,一场问心无愧的死战。",
+   "coldOpen": [
+    {
+     "speaker": "narrator",
+     "text": "甘露五年,洛阳。二十岁的天子在陵云台写了最后一首诗,题目叫《潜龙》。诗成,他把笔一折。"
+    },
+    {
+     "speaker": "caomao",
+     "text": "司马昭之心,路人皆知!朕不能坐受废辱——今日,卿等随朕,亲讨此贼!"
+    },
+    {
+     "speaker": "jiachong",
+     "text": "殿下勿慌。天子亲自持剑,不过是个孩子的把戏。养兵千日——用在此刻。",
+     "when": "!seen:jiachong"
+    },
+    {
+     "speaker": "wangshen",
+     "text": "陛下……沈,沈万死。可这件事,沈只能,只能先走一步了。"
+    },
+    {
+     "speaker": "caomao",
+     "text": "朕意已决。纵使今日血溅宫墙,史笔之上,「魏」字仍在!"
+    }
+   ],
+   "intros": {
+    "jiachong": [
+     {
+      "when": "seen:jiachong",
+      "bio": "他记得上次那杆停在半空的戟,这次连「停」的口令都不下了。",
+      "quote": "这次,不留手。变数,先除。"
+     },
+     {
+      "bio": "他从不亲手拿刀,只负责把刀递到最合适的手里。",
+      "quote": "贾充在此。陛下,别让下人为难。"
+     }
+    ],
+    "simazhao": [
+     {
+      "when": "page:tielongshan:yeshi",
+      "bio": "铁笼山的困局让他学会了谦卑的外壳,如今壳更厚,刀更近。",
+      "quote": "困过我的人,都得死。天子,也不例外?"
+     },
+     {
+      "when": "seen:simazhao",
+      "bio": "他与你交手多次,这次背靠的是整个司马氏的门楣。",
+      "quote": "又来。你的「改写」,朕…我,倒要看看能改到哪一页。"
+     },
+     {
+      "bio": "离皇位一步的人,最恨别人提醒他「名不正」。",
+      "quote": "天子亲征?好大的阵仗。可惜,兵符在我。"
+     }
+    ],
+    "wangshen": [
+     {
+      "when": "seen:wangshen",
+      "bio": "他的笔上次没能等到天亮,这次蘸墨蘸得更早。",
+      "quote": "沈的奏表,已誊了两份。给晋公的那份,先行一步。"
+     },
+     {
+      "bio": "史学世家的笔,在名节与门第之间,落了个干净利落。",
+      "quote": "王沈,有一表上奏。"
+     }
+    ]
+   },
+   "map": [
+    {
+     "id": "dragon-poem",
+     "node": 1,
+     "title": "太极殿 · 潜龙之诗",
+     "lines": [
+      {
+       "speaker": "caomao",
+       "text": "「伤哉龙受困,不能越深渊。」……写得再好,也不过是替自己哭丧。"
+      },
+      {
+       "speaker": "you",
+       "text": "陛下,诗可以留,路不能只剩一条。宫墙之外,还有人肯听天子的吗?"
+      },
+      {
+       "speaker": "caomao",
+       "text": "有没有,朕都要走这一遭。史官,带上你的笔——今日每一笔,都直书!"
+      },
+      {
+       "speaker": "jiachong",
+       "text": "南阙的甲士,只听成济的。而成济——只听我的。"
+      }
+     ],
+     "choices": [
+      {
+       "id": "rally-old-guard",
+       "text": "先聚三千宿卫旧臣",
+       "detail": "军资 +150,记住旧臣之心",
+       "effects": {
+        "chips": 150,
+        "fact": "ganlu_rally"
+       }
+      },
+      {
+       "id": "read-halberd",
+       "text": "盯住成济握戟的手",
+       "detail": "本回看破提升,记住那杆戟",
+       "effects": {
+        "keenEye": true,
+        "fact": "ganlu_halberd"
+       }
+      }
+     ]
+    }
+   ],
+   "battle": [
+    {
+     "id": "ganlu-open",
+     "at": "start",
+     "speaker": "caomao",
+     "text": "朕乃天子!谁敢弑君——谁敢?!"
+    },
+    {
+     "id": "ganlu-chee",
+     "at": "hand:2",
+     "speaker": "jiachong",
+     "text": "司马公养你们,不就是为了今日吗?!动手——",
+     "when": "multi"
+    },
+    {
+     "id": "ganlu-halberd",
+     "at": "hand:3",
+     "speaker": "narrator",
+     "text": "成济的戟抬起来了。满街的甲士都在看着——看天子,也看这杆戟,究竟听谁的。",
+     "when": "fact:ganlu_halberd"
+    },
+    {
+     "id": "ganlu-low",
+     "at": "low",
+     "speaker": "caomao",
+     "text": "戟若落,史笔在;朕若死,「魏」字在。来啊——朕在此!"
+    }
+   ],
+   "win": {
+    "text": "南阙之下,成济的戟最终没有落下——你当街唤出了他父亲的名字,喊破了那道只认「主公」的军令。甲士哗然退散,贾充的袖子第一次空了。天子持剑立于宫门,史官蘸墨:「甘露五年,帝亲讨贼,贼党溃。」魏,还剩一口气;这口气,姓曹。",
+    "hook": "天子的血没有流,司马氏的耐心却到了头。魏蜀吴三家最后的名字,都将写进同一部史书。"
+   },
+   "loss": {
+    "text": "戟落了。天子的血溅在南阙的砖上,三日不褪。司马昭闻讯「大惊」,诛了成济三族——把刀和罪,一起收回了鞘。",
+    "clue": "史鉴 · 贾充赢在「先断你的耳目」。重开时盯住那杆戟、聚拢旧臣;胜负之外,这一页赌的是史笔的下一行。",
+    "clueFx": "keenEye"
+   }
+  },
+  "jiange": {
+   "cast": [
+    "jiangwei",
+    "zhonghui",
+    "liaohua",
+    "zhangyi"
+   ],
+   "objective": "在剑阁天险挡住钟会的大军,也要替蜀汉挡住「侧面」两个字。",
+   "coldOpen": [
+    {
+     "speaker": "narrator",
+     "text": "十八万魏军压向剑阁,姜维凭险拒守。钟会的檄书写得漂亮,可惜剑门关只认得箭。"
+    },
+    {
+     "speaker": "zhonghui",
+     "text": "姜伯约,孤城之守,守的是忠,还是不甘?献关者,会保你封侯。"
+    },
+    {
+     "speaker": "jiangwei",
+     "text": "钟士季的檄文,比你的云梯好看。剑阁的路,却只有一条——你的兵,铺不开。"
+    },
+    {
+     "speaker": "liaohua",
+     "text": "老夫从麦城一路退到剑阁,退了四十年。这一关,元俭不退了!"
+    },
+    {
+     "speaker": "zhangyi",
+     "text": "将军,张翼再进一言:阴平小道,不可不防。艾若偷渡,剑阁再险也是空门!"
+    }
+   ],
+   "intros": {
+    "zhonghui": [
+     {
+      "when": "seen:zhonghui",
+      "bio": "他记过关前的每一面旗,这次把劝降书又多写了三页。",
+      "quote": "这次,孤连你劝降的退路都想好了。"
+     },
+     {
+      "bio": "颍川的贵公子,笔比剑快,野心比两者都快。",
+      "quote": "取蜀如摘冠。诸位,竞相摘之。"
+     }
+    ]
+   },
+   "map": [
+    {
+     "id": "pass-and-flank",
+     "node": 1,
+     "title": "剑阁 · 关与侧翼",
+     "lines": [
+      {
+       "speaker": "zhangyi",
+       "text": "将军,正面交给我。可翼把丑话说完:邓艾在沓中,他若不走大道——"
+      },
+      {
+       "speaker": "jiangwei",
+       "text": "伯恭放心。维在阴平留了哨,在江油留了眼。剑阁守的不是门,是整面墙。"
+      },
+      {
+       "speaker": "liaohua",
+       "text": "墙再厚,也得有人肯站上来。老夫这把骨头,先靠上去了。"
+      },
+      {
+       "speaker": "you",
+       "text": "钟会要的只是你回头。你一回头,正面就薄了——让他喊,别让他牵动。"
+      }
+     ],
+     "choices": [
+      {
+       "id": "hold-wall",
+       "text": "死守正面,不受檄文牵动",
+       "detail": "本回看破提升,记住墙式守御",
+       "effects": {
+        "keenEye": true,
+        "fact": "jiange_wall"
+       }
+      },
+      {
+       "id": "flank-beacons",
+       "text": "分兵三哨,盯死阴平道",
+       "detail": "钟会起手军资 -200,记住侧翼之眼",
+       "effects": {
+        "raid": true,
+        "fact": "jiange_beacons"
+       }
+      }
+     ]
+    }
+   ],
+   "battle": [
+    {
+     "id": "jiange-open",
+     "at": "start",
+     "speaker": "zhonghui",
+     "text": "姜维!剑阁虽险,你的粮,比我的笔先竭!"
+    },
+    {
+     "id": "jiange-lao",
+     "at": "hand:2",
+     "speaker": "liaohua",
+     "text": "老夫守的这段墙,四十年了没让人过去!小辈,再加把劲!"
+    },
+    {
+     "id": "jiange-flank",
+     "at": "hand:3",
+     "speaker": "zhangyi",
+     "text": "阴平三哨,灯都亮着!将军,正面放心——墙,是整面!",
+     "when": "fact:jiange_beacons"
+    },
+    {
+     "id": "jiange-low",
+     "at": "low",
+     "speaker": "jiangwei",
+     "text": "钟士季,你的檄文写得再好,也翻不过这道山。回去告诉司马昭:蜀,还有人在。"
+    }
+   ],
+   "win": {
+    "text": "钟会围关二十余日,粮草先尽,檄文写尽了最后的修辞。拔营西退那日,他回望剑门,把姜维的名字写进了自己的笔记:「取蜀不难,难在此人。」而剑阁的墙上,老将廖化靠着长刀睡着了——四十年,他第一次在关前睡着。",
+    "hook": "剑阁守住了正面,可摩天岭的雪线上,还有一支裹毡而下的孤军——那是下一页的风。"
+   },
+   "loss": {
+    "text": "钟会的佯攻牵走了你的哨兵,剑门的正面在一夜之间薄成了一层纸。关破时姜维没有回望,只朝阴平的方向一抱拳:「伯恭,是维负了你。」",
+    "clue": "史鉴 · 钟会以「势」压「险」,劝降与强攻轮番上。重开时先定墙后设哨;他的檄文,是他最便宜的一种云梯。",
+    "clueFx": "keenEye"
+   }
+  },
+  "yanglu": {
+   "cast": [
+    "lukang",
+    "yanghu"
+   ],
+   "objective": "与羊祜对境两年,赢下「不战之战」,替吴国留住最后的将,也留住最后的信。",
+   "coldOpen": [
+    {
+     "speaker": "narrator",
+     "text": "荆州边境,两军对垒,却两年无战。吴人打猎,猎物逃入晋境,羊祜必遣人送还;陆抗病了,羊祜送药,陆抗当众服下。"
+    },
+    {
+     "speaker": "yanghu",
+     "text": "陆将军,祜不欺丧乱之人,亦不欺有病之将。药在此,信亦在此。"
+    },
+    {
+     "speaker": "lukang",
+     "text": "羊公赠药,抗岂疑之?倒是抗有一问:将军以信猎城,猎的究竟是吴地,还是吴心?"
+    },
+    {
+     "speaker": "lukang",
+     "text": "建业来的诏书,比襄阳的兵更急。他们要抗出战,抗,偏要再守一年。"
+    },
+    {
+     "speaker": "narrator",
+     "text": "西陵城下,步阐举城降晋。陆抗的围城,围的已是自家的叛城。"
+    }
+   ],
+   "intros": {
+    "yanghu": [
+     {
+      "when": "seen:yanghu",
+      "bio": "他把你的阵图读了两遍,仍只把围猎的网收紧一寸。",
+      "quote": "急什么?祜的网,一年只收一寸。"
+     },
+     {
+      "bio": "轻裘缓带的名将,以信为饵,以德为钩。",
+      "quote": "祜不与你斗刀兵。祜,只等人心自己过江。"
+     }
+    ]
+   },
+   "map": [
+    {
+     "id": "border-trust",
+     "node": 1,
+     "title": "襄阳 · 各安其境",
+     "lines": [
+      {
+       "speaker": "yanghu",
+       "text": "祜每次会战,只与你约期而阵,不掩不袭。有人骂祜迂——他们不懂,这才是最快的刀。"
+      },
+      {
+       "speaker": "lukang",
+       "text": "羊公以信待我,抗以信还之。可西陵一叛,两境的信,就要经受火了。"
+      },
+      {
+       "speaker": "you",
+       "text": "他赢的方式是「不战」。你若急着开战,便替他把人心送过江去。"
+      }
+     ],
+     "choices": [
+      {
+       "id": "siege-xiling",
+       "text": "先克西陵,再论边境",
+       "detail": "晋军起手军资 -200,记住先定内",
+       "effects": {
+        "raid": true,
+        "fact": "yanglu_xiling"
+       }
+      },
+      {
+       "id": "keep-compact",
+       "text": "守与羊公之约,不开边衅",
+       "detail": "本回看破提升,记住两年之信",
+       "effects": {
+        "keenEye": true,
+        "fact": "yanglu_pact"
+       }
+      }
+     ]
+    }
+   ],
+   "battle": [
+    {
+     "id": "yanglu-open",
+     "at": "start",
+     "speaker": "yanghu",
+     "text": "陆将军,今日又免一战。祜备了新茶——江陵的,你尝得出来。"
+    },
+    {
+     "id": "yanglu-city",
+     "at": "hand:2",
+     "speaker": "lukang",
+     "text": "西陵城破了。步阐的人头,抗亲自送还建业。晋公的算盘,少了一颗关键的子。",
+     "when": "fact:yanglu_xiling"
+    },
+    {
+     "id": "yanglu-tea",
+     "at": "hand:3",
+     "speaker": "yanghu",
+     "text": "茶要趁热,城要等熟。将军,祜等得起——你等得起建业吗?",
+     "when": "fact:yanglu_pact"
+    },
+    {
+     "id": "yanglu-low",
+     "at": "low",
+     "speaker": "lukang",
+     "text": "抗常胜于外,而困于内。羊公……你围的从来不是我,是我的朝廷,对吗?"
+    }
+   ],
+   "win": {
+    "text": "西陵既定,边信未破。羊祜临终前上表请伐吴,把一生的准备与一怀的药味一并交给了杜预;陆抗也在同一年病逝,吴人立碑,碑上无「败」字。两块碑隔江相望——你赢了这一页:两个名字,谁也没有输给谁。",
+    "hook": "羊陆之后,再无名将可守。益州的楼船已下水,建业的铁锁,正在一寸寸生锈。"
+   },
+   "loss": {
+    "text": "建业催战的诏书终于压过了边境的信。你出兵的那一日,江边百姓指着晋营说:「羊公之德,不掠我禾。」仗还没打,城外的人心已先过江。",
+    "clue": "史鉴 · 羊祜的刀是「信」,急攻正中其怀。重开时先定西陵、再守其约;他输得起时间,你输不起人心。",
+    "clueFx": "keenEye"
+   }
+  }
+ },
+ "briefings": {
+  "taoyuan": {
+   "era": "184 年",
+   "source": "《三国志·先主传》·《三国演义》第一回",
+   "record": "中平元年黄巾起事，刘备在涿郡聚集乡勇，随官军参与镇压。乱世并非从三国鼎立开始，而从无数郡县的自保开始。",
+   "adaptation": "桃园结义采用演义叙事。写卷人让你以同行者身份入局，先替乡勇与三位故人争一条共同进退的路。",
+   "lead": "残卷第一页没有帝王，只有一张被雨浸湿的募兵告示。你要先弄明白，英雄为何愿意把命交给彼此。",
+   "skirmish": {
+    "title": "涿郡 · 乡勇首阵",
+    "why": "黄巾游骑逼近乡道，新兵尚未成阵。你得先截住前锋，让乡勇有时间护住百姓与退路。",
+    "win": "乡道守住，乡勇愿意随你继续向桃林集结，三个陌生人也有了第一次并肩作战的信任。",
+    "loss": "乡勇被冲散，桃园尚未结义便先尝到各自为战的代价；此页归回原卷，你带史鉴重来。"
+   },
+   "boss": {
+    "title": "广宗 · 渠帅之局",
+    "why": "渠帅以乱兵人数压阵，要击溃这支刚聚起的队伍。只有让他离席，乡勇才算真正站稳。",
+    "win": "桃园誓约经住了第一场败仗，野史由此落印；你将沿诸侯会盟的烽烟走向汜水。",
+    "loss": "黄巾之势仍按原卷蔓延，刚结下的誓约被乱军拆开；兵败亦会留下互救与留后的史鉴。"
+   }
+  },
+  "sishui": {
+   "era": "190–191 年",
+   "source": "《三国志·孙破虏讨逆传》·《三国演义》第五回",
+   "record": "初平元年关东诸郡起兵讨董。华雄是董卓部将，后在阳人之战中被孙坚军击败斩杀，并非关羽所斩。",
+   "adaptation": "本回沿用演义“温酒斩华雄”，把诸侯的轻视、关羽的请战与一杯酒压成同一场牌局。",
+   "lead": "桃园的酒尚温，酸枣的诸侯却各怀心思。下一杯必须由名不见经传的人亲手端回来。",
+   "skirmish": {
+    "title": "酸枣 · 诸侯阵前",
+    "why": "西凉骁骑正在试探联军的胆气。你若连游骑都拦不住，关羽便没有走到帐前请战的机会。",
+    "win": "前哨被压回汜水，诸侯终于愿意听一个马弓手说话，那杯温酒也有了主人。",
+    "loss": "联军先失一阵，帐中只剩互相推让；华雄的连胜继续压着每一个人的名字。"
+   },
+   "boss": {
+    "title": "汜水关 · 温酒未寒",
+    "why": "华雄要用连胜逼对手抢攻，关羽则要替自己争到一次不等身份许可的出战。",
+    "win": "华雄败退，杯酒未凉，诸侯再不能只用出身衡量英雄；虎牢关的画戟随即向你指来。",
+    "loss": "酒冷关未破，原卷里的遗憾再次落下；你会明白这一局忌的是被他的连胜催急。"
+   }
+  },
+  "hulao": {
+   "era": "190 年",
+   "source": "《三国志·董卓传》《吕布传》·《三国演义》第五回",
+   "record": "讨董联军与董卓军相持，吕布确以骁勇闻名，但刘备、关羽、张飞三英同战吕布并非史籍所载。",
+   "adaptation": "虎牢与三英战吕布采用演义写法。牌桌上的吕布“只进不退”，把天下第一的压迫感变成可阅读的下注节奏。",
+   "lead": "华雄一退，诸侯还没来得及争功，虎牢关已开门。真正的天下第一不屑等你的名声。",
+   "skirmish": {
+    "title": "虎牢道 · 狼骑试锋",
+    "why": "并州狼骑在关前巡猎，专追先露怯的军旗。你要先稳住阵脚，才有资格看清吕布的戟。",
+    "win": "狼骑没能冲散阵形，三英与你找到共同掠阵的位置，虎牢关门前的路被让开。",
+    "loss": "诸侯旗号先后退避，吕布甚至不必亲自出关；恐惧已经替他赢了一局。"
+   },
+   "boss": {
+    "title": "虎牢关 · 天下第一",
+    "why": "吕布要诸侯承认无人可敌，你要证明勇猛并非只能有一种进法，也不是不可阅读的命数。",
+    "win": "画戟坠地，天下第一记住了你的名字；下邳与凤仪亭的旧页因此有了新的可能。",
+    "loss": "吕布仍以无敌之姿立在关前，原卷不改；史鉴会提醒你，别把他的威名当成自己的第五张牌。"
+   }
+  },
+  "fengyiting": {
+   "era": "192 年",
+   "source": "《三国志·吕布传》·《三国演义》第八、九回",
+   "record": "初平三年，王允等与吕布合谋诛杀董卓。史书未载凤仪亭相会，也没有演义中那位以连环计周旋其间的貂蝉。",
+   "adaptation": "本回采用演义人物与凤仪亭情境，让董卓、吕布同桌相疑；写卷人更在意貂蝉能否取回自己的话语。",
+   "lead": "虎牢之后，吕布回到郿坞。外敌可以一戟破局，父子名分里的裂痕却不能用蛮力挑开。",
+   "skirmish": {
+    "title": "郿坞 · 珠帘之外",
+    "why": "董府侍卫封住亭外语路，任何一句传错的话都会让连环计先变成争风吃醋的闲话。",
+    "win": "侍卫被引开，董卓与吕布终于能在同一张桌前听见彼此，貂蝉也保住了自己的安排。",
+    "loss": "话尚未传到亭中便已走样，二人只会把疑心安到你身上；计谋在开局前败露。"
+   },
+   "boss": {
+    "title": "凤仪亭 · 父子同席",
+    "why": "董卓以恩情占有，吕布以顺从偿债。你要让两人的猜疑彼此加压，而不是替貂蝉选择归宿。",
+    "win": "父子名分裂开，董卓与吕布再难同席；貂蝉走出郿坞，吕布的去向也脱离原卷一步。",
+    "loss": "连环计被当成低劣挑唆，二人先合力逐你出局；貂蝉仍被困在别人的答案里。"
+   }
+  },
+  "yuanshemen": {
+   "era": "196 年",
+   "source": "《三国志·吕布传》",
+   "record": "袁术遣纪灵攻刘备，吕布设宴调停，以箭中辕门画戟小枝为约。箭中之后，纪灵等罢兵，这是史籍有载的神射。",
+   "adaptation": "本回保留辕门射戟的史实骨架，把两家是否承认同一赌注写成牌局：一箭能解危，也要给射失留下交代。",
+   "lead": "离开郿坞的吕布到了小沛。昔日只肯冲锋的人，这次要用一支箭让两支军队各退一步。",
+   "skirmish": {
+    "title": "小沛 · 两军之间",
+    "why": "纪灵部曲已经压到小沛，任何一次误冲都可能让调停失去名义。先稳住前锋，才能摆下辕门之宴。",
+    "win": "双方暂止攻杀，纪灵愿意带军令入席，刘备也不必拿全城百姓陪人赌勇。",
+    "loss": "误会先变成交战，小沛被卷进两军冲突；辕门的一箭再无可以落脚的空地。"
+   },
+   "boss": {
+    "title": "辕门 · 一箭共约",
+    "why": "纪灵不能因一场表演擅退大军。你要让他承认赌注，也逼吕布先说清箭若不中该当如何。",
+    "win": "两家罢兵，小沛得缓；吕布证明自己也能解局，而不只会把局面杀穿。",
+    "loss": "箭约未立，纪灵与刘备各自备战；调停者成了第三位讨债人，原卷的和局未能出现。"
+   }
+  },
+  "wancheng": {
+   "era": "197 年",
+   "source": "《三国志·武帝纪》《典韦传》",
+   "record": "张绣降而复叛，夜袭曹营。典韦死守营门，曹昂、曹安民亦遇难，是曹操在宛城付出的惨重代价。",
+   "adaptation": "本回把典韦双戟与后营退路化作战书核心。胡车儿盗戟等细节沿用演义，让你有机会守住那一夜。",
+   "lead": "辕门救得下小沛，却救不了所有轻慢。曹操在宛城把归顺当成无言，夜色已经替降将作答。",
+   "skirmish": {
+    "title": "淯水 · 降营夜动",
+    "why": "白日才降的部曲在夜里重新集结。你要辨清他们是被迫归营还是已决意反叛，给典韦留下预警。",
+    "win": "夜动被提前看穿，双戟与马道都有人把守，曹操不再把宴席当成绝对安全。",
+    "loss": "降营的动静被当成寻常巡夜，火起到营门时，所有退路都已成别人的伏兵。"
+   },
+   "boss": {
+    "title": "宛城 · 双戟未失",
+    "why": "张绣要讨回被轻慢的屈辱，曹操却需要一个活着离营的机会。你要以典韦为门，而不是拿他的命换时间。",
+    "win": "双戟仍在，营门未破，典韦与曹操都能走出火夜；下邳的白门楼随后展开。",
+    "loss": "营门仍由典韦以死守下，原卷的伤势与死亡一项不少；史鉴会留下兵器和退路的警示。"
+   }
+  },
+  "baimenlou": {
+   "era": "198 年",
+   "source": "《三国志·吕布传》",
+   "record": "曹操围下邳，吕布在陈宫等人相伴的困局中出降，最终被缢杀，陈宫亦被处死。白门楼不是一场单纯以勇决胜的战斗。",
+   "adaptation": "本回把吕布与陈宫放上同一敌阵：你要赢的不只是吕布的军资，还要让两个互相执拗的人承认退路。",
+   "lead": "宛城的火尚未熄，曹操已围下邳。虎牢那个只想向前的人，终于遇到了画戟刺不穿的城墙。",
+   "skirmish": {
+    "title": "泗水 · 困城前哨",
+    "why": "陷阵营仍在寻找突围方向，城中水困与饥饿却日日加重。先挡住这次轻进，陈宫的话才有人肯听。",
+    "win": "突围被止住，吕布暂时没有再用士卒换胜名；你可以带最后一策登上白门楼。",
+    "loss": "一次毫无方向的冲锋耗尽守城余力，陈宫的计谋再精妙也无人可执行。"
+   },
+   "boss": {
+    "title": "白门楼 · 困兽与谋士",
+    "why": "吕布怕低头便不再是自己，陈宫怕再胜一阵便全城同葬。你要同时拆破这两个死局。",
+    "win": "吕布肯问“往哪里退”，下邳争得另一条活路；许都的曹操也会因此重新估量你。",
+    "loss": "绳索仍在白门楼收紧，吕布与陈宫归回原卷结局；此卷大关不改，后续旧页照旧。"
+   }
+  },
+  "zhujiu": {
+   "era": "199 年",
+   "source": "《三国志·先主传》·《三国演义》第二十一回",
+   "record": "曹操对刘备说“今天下英雄，唯使君与操耳”，见于《三国志》。青梅煮酒、闻雷失箸等场景则经演义铺陈。",
+   "adaptation": "本回保留论英雄的心理交锋，让曹操以读人下注；若白门楼已改，他还会拿未死的吕布试探你。",
+   "lead": "你带着下邳的答案来到许都。曹操不再问谁能冲锋，只问你心中谁配称为英雄。",
+   "skirmish": {
+    "title": "许都 · 门吏问名",
+    "why": "门吏盘查的不是路引，而是你近来见过谁、救过谁。答得太满，青梅亭尚未开席便已泄露底牌。",
+    "win": "你穿过盘问而未露来意，得以坐进青梅亭；曹操只能当面读你，不能先听别人替你作答。",
+    "loss": "话语中的裂缝先被送去曹府，煮酒尚未开始，你便已成为被审查的人。"
+   },
+   "boss": {
+    "title": "青梅亭 · 英雄对酌",
+    "why": "曹操以一句“使君”逼你承认志向。你要藏住惊慌，也要看清他究竟是在赞人还是在定价。",
+    "win": "筷落而心不落，你带着未被说破的答案离开许都；下一页，有人将挂印封金。",
+    "loss": "曹操从你的每一次跟注里读出恐惧，青梅酒变成审问；原卷仍由他定义英雄。"
+   }
+  },
+  "qianli": {
+   "era": "200 年",
+   "source": "《三国志·关羽传》·《三国演义》第二十六至二十八回",
+   "record": "关羽离开曹操、奔归刘备，史有其事；东岭、洛阳等五关与孔秀等六将则主要来自演义，不能一并当作史实路线。",
+   "adaptation": "本回采用演义五关叙事并收束为五场连战。军资一路相随，每一关都写清守将为何阻拦、放行的代价。",
+   "lead": "青梅亭的身份终究藏不久。关羽封还所赐，带着旧约上路；你要让千里归途不被一道道关名截断。",
+   "skirmish": {
+    "title": "许都郊外 · 第一道路卡",
+    "why": "关隘守将要以通行文书换忠诚。关羽既已封金挂印，便不能再用曹操的官印替自己开路。",
+    "win": "第一道路卡被越过，车马与随行之人得以东行，五关连战正式开始。",
+    "loss": "归途停在许都之外，放行与守义不能两全；千里之志先败在一纸文书上。"
+   },
+   "boss": {
+    "title": "五关 · 千里归约",
+    "why": "五关各奉军令，关羽既要守旧约又不能让随行之人困死途中。连破五阵，才能把归路走完。",
+    "win": "五关皆过，古城鼓声在望；这场改写不是多杀几人，而是让归约不再被关隘消耗。",
+    "loss": "一阵受阻，军资与归路一同中断；整卷需重新启程，已过的关不能替你保留胜势。"
+   },
+   "rounds": [
+    {
+     "title": "东岭关 · 孔秀",
+     "why": "孔秀以无丞相文凭为由拒放，第一关要试的是关羽会否为旧约低头。",
+     "win": "东岭放行，归途不再受一纸文凭束缚，下一座洛阳已得消息。",
+     "loss": "孔秀闭关，千里路第一寸便被迫停下；重开仍须从东岭起。"
+    },
+    {
+     "title": "洛阳 · 韩福",
+     "why": "韩福既要守城又想以暗箭立功，你不能只防他明处的刀。",
+     "win": "洛阳箭伏被破，同行者不必用性命换通行，前路转向汜水。",
+     "loss": "暗箭打乱车队，洛阳城门紧闭；此前的胜势无法替你挡这一箭。"
+    },
+    {
+     "title": "镇国寺 · 卞喜",
+     "why": "卞喜把杀机藏进迎客宴，若被礼节牵着走，便会在最松懈时离席。",
+     "win": "宴中伏兵被拆，寺门重新成为生路；关羽继续向荥阳赶路。",
+     "loss": "接风宴成了绝命席，归约败在看不见的伏兵之下。"
+    },
+    {
+     "title": "荥阳 · 王植",
+     "why": "王植表面殷勤，暗中却要火封退路。你必须在他烧尽耐心与证据前离城。",
+     "win": "火计未合，荥阳夜门被打开，黄河渡已只剩一关。",
+     "loss": "荥阳火起，前有追兵后无退路；连战在第四阵归零。"
+    },
+    {
+     "title": "黄河渡 · 秦琪",
+     "why": "秦琪守最后一渡，以夏侯惇部将之名不肯放行。过了他，才算真正离开曹军掌控。",
+     "win": "渡口争得，黄河不再分断旧约；古城与故人的鼓声终于可达。",
+     "loss": "最后一渡仍被封锁，已过四关也换不来半条船；整段归途只能重写。"
+    }
+   ]
+  },
+  "guandu": {
+   "era": "200 年",
+   "source": "《三国志·武帝纪》《袁绍传》",
+   "record": "曹操与袁绍相持官渡，兵少粮尽。许攸来投、乌巢粮草被烧成为转折，袁绍军随之大溃，北方格局由此改变。",
+   "adaptation": "本回把兵力与补给差化为袁绍的高军资和加速盲注。你可以借许攸与乌巢，也可以赢在对方人心先散。",
+   "lead": "关羽北归之时，北方两强已在官渡相持。下一场要押上的不是一关一将，而是此后十年的北方。",
+   "skirmish": {
+    "title": "白马延津 · 粮道前哨",
+    "why": "河北游骑不断切断侦骑与粮道。若连真实账目都送不进官渡，乌巢之火只会是帐中传说。",
+    "win": "粮道与情报重新接通，你能分清袁军账面人数与真正可战之力。",
+    "loss": "游骑封住消息，曹营只剩越来越短的粮簿；未等袁绍决战，自己先被拖空。"
+   },
+   "boss": {
+    "title": "官渡 · 乌巢夜火",
+    "why": "袁绍要用雄厚军资拖到你先犯错。你必须在盲注涨空前找出粮道与人心之间的薄弱处。",
+    "win": "乌巢势解，袁军大阵自内松动，北方旧页被改写；下回草庐中将有三分之策。",
+    "loss": "曹军粮尽先溃，原卷的压力变成你的结局；史鉴会指出这一回不能与他比消耗。"
+   }
+  },
+  "sangu": {
+   "era": "207–208 年",
+   "source": "《三国志·诸葛亮传》·《三国演义》第三十七、三十八回",
+   "record": "刘备经徐庶推荐拜访诸葛亮，凡三往乃见，隆中对提出跨有荆益、联吴抗曹的构想。“三顾”有文献依据，风雪等细节经文学加工。",
+   "adaptation": "三顾被写成三次不同考问。前两顾败也前进，不是孔明拿乔，而是让你证明求贤不是只肯接受一个顺从的答案。",
+   "lead": "官渡之后，北方渐定，寄居新野的刘备却仍缺一条长远道路。答案不在百万军账里，而在草庐。",
+   "skirmish": {
+    "title": "新野 · 隆中问路",
+    "why": "隆中书童先问你来求名声还是求天下。若连一个守门人的问题都答不下去，草堂不会为你开门。",
+    "win": "你放下“务必请出”的急切，得以沿山径再访；真正的考问也从书童移到卧龙。",
+    "loss": "你把求贤当成完成差事，书童只回报一句先生不在；此访没有抵达问题本身。"
+   },
+   "boss": {
+    "title": "卧龙岗 · 三顾草庐",
+    "why": "诸葛亮要看的不是三次登门的形式，而是你能否在连续冷遇后仍认真听一套不逢迎的天下之策。",
+    "win": "草堂门开，隆中对成为可执行的路；荆州、益州与联吴不再只是酒后豪言。",
+    "loss": "第三顾仍只留下门外的脚印，原卷里那次相见被推迟；你须重问求贤究竟求什么。"
+   },
+   "rounds": [
+    {
+     "title": "一顾 · 门外之问",
+     "why": "先生不在，你要先证明愿为一次空等放下主君身段，而不是留下名帖便算求贤。",
+     "win": "你带着未解的问题离开，却没有把冷遇变成恼怒；第二顾仍有门可叩。",
+     "loss": "第一顾吃了闭门羹，但诚意不是以一阵胜负计算；你仍将再访。"
+    },
+    {
+     "title": "二顾 · 风雪再访",
+     "why": "再访仍只见草堂空席，卧龙要辨你求的是名士点缀，还是愿听逆耳之言的同行者。",
+     "win": "你未替诸葛亮预设效忠，第三次拜访终于不再是重复礼节。",
+     "loss": "第二顾仍无结果，但按此回规矩败也要前进；第三顾才是作答。"
+    },
+    {
+     "title": "三顾 · 隆中对策",
+     "why": "草堂门终于开了。你要跟上从荆益到天下的一整盘远局，而非只请他替你解眼前之困。",
+     "win": "隆中一对写就，刘备得其所愿，后续赤壁与入蜀都有了叙事起点。",
+     "loss": "对策未竟便各自散去，三分之路仍停在纸上；此回兵败，须重新三顾。"
+    }
+   ]
+  },
+  "bowang": {
+   "era": "史事 202 年 · 演义置于 207 年",
+   "source": "《三国志·先主传》·《三国演义》第三十九回",
+   "record": "史籍中的博望之战发生在建安七年，刘备设伏击败夏侯惇，早于三顾诸葛。演义把它改写为诸葛亮初出茅庐后的火攻首功。",
+   "adaptation": "本回采用演义时间线与“军师初用火”，并在史实栏明确标出年代差异；这不是把两段记载混成一个事实。",
+   "lead": "隆中对给了远路，博望坡先给近敌。新入帐的军师必须让骄将相信，那张地图真的能变成火势。",
+   "skirmish": {
+    "title": "新野道 · 诱敌入坡",
+    "why": "曹军前锋紧追不舍，你要让撤退看起来像真败，而不是一眼便被识破的空城。",
+    "win": "前锋被引进预设道路，伏兵与火路各就其位，夏侯惇仍以为自己在追一场溃败。",
+    "loss": "诱敌变成真乱，伏兵反被溃军冲散；军师的第一道军令先失去信用。"
+   },
+   "boss": {
+    "title": "博望坡 · 初用火",
+    "why": "夏侯惇依仗精兵直进，要以快攻破伏。你要忍住抢先决战，把火路与他的骄进同时收紧。",
+    "win": "博望火起，军师初令得行，诸将开始按全局而非名望听令；长坂的急报却已近。",
+    "loss": "火未合围，夏侯惇突破坡道；原卷里属于军师的首功没有落在这张地图上。"
+   }
+  },
+  "changban": {
+   "era": "208 年",
+   "source": "《三国志·先主传》《张飞传》《赵云传》·《三国演义》第四十一、四十二回",
+   "record": "曹操南征，刘备携百姓南撤，在长坂被追及。赵云保护甘夫人与后主，张飞据水断桥拒后；七进七出等细节属文学渲染。",
+   "adaptation": "本回以三人敌阵表现追军压力，并保留长坂首次清台后回马再战。牌局不是让英雄杀光追兵，而是争到百姓与幼主撤离的时间。",
+   "lead": "博望一火挡不住曹操南下。新野到汉津之间，最重要的是那些走不快的百姓，而不是又一场漂亮的胜仗。",
+   "skirmish": {
+    "title": "当阳 · 人群中的虎豹骑",
+    "why": "虎豹骑切入缓慢的队伍，你要在百姓与幼主之间截开一条缝，不能让撤退先变成互相践踏。",
+    "win": "追骑被迟滞，赵云与张飞各得一段救援空间，队伍仍朝汉津移动。",
+    "loss": "队伍被追军截断，幼主与百姓失散；即使名将仍在，也已输掉这一战要护的东西。"
+   },
+   "boss": {
+    "title": "长坂坡 · 断桥之前",
+    "why": "曹操、夏侯惇与张郃三面施压。你要淘汰整条敌阵，为赵云寻人和张飞断桥争到最后一息。",
+    "win": "追军被挡在长坂，幼主与同行者得以渡向汉津；赤壁之前的火种没有在这里熄灭。",
+    "loss": "长坂人马俱散，汉津之路被追军封住；若首次清台，你还可回马再战一次。"
+   },
+   "revive": {
+    "title": "长坂坡 · 回马再战",
+    "why": "第一次冲阵没有撕开缺口，怀中的幼主与身后的百姓仍在。你杀出后又杀回，只为把丢下的名字带回来。",
+    "win": "回马一击争得断桥时机，长坂终于不再只是败逃，而成为有人肯回来接人的野史。",
+    "loss": "第二次冲阵仍被合围，原卷的离散无法改变；此页归史，史鉴会记住退路必须留给人。"
+   }
+  },
+  "shezhan": {
+   "era": "208 年",
+   "source": "《三国志·诸葛亮传》《鲁肃传》《周瑜传》·《三国演义》第四十三回",
+   "record": "曹操南下后，诸葛亮出使江东见孙权，鲁肃、周瑜等力主抗曹。群儒依次问难、孔明舌战满堂是演义的集中铺写。",
+   "adaptation": "张昭、虞翻、陆绩同桌问难，把不同立场变成三种牌风。目标不是羞辱文臣，而是让抗曹不再被说成必败。",
+   "lead": "长坂之后，刘备已不能独自挡住曹操。江东每一句“降”或“战”，都关系到残军是否还有落脚处。",
+   "skirmish": {
+    "title": "柴桑馆驿 · 先声夺人",
+    "why": "江东儒生先以强弱之势问降，你若只剩情绪，进入议事厅前便已承认无路可走。",
+    "win": "第一轮质问被拆解，你获得进入议事厅陈述荆州败局与抗曹可能的资格。",
+    "loss": "馆驿中的论调先定下“曹不可敌”，后续每句话都会被当成败军求援的饰词。"
+   },
+   "boss": {
+    "title": "议事厅 · 三儒同席",
+    "why": "张昭问大势，虞翻问败绩，陆绩问根基。你要逐一应答又不让三人合围成同一个“降”字。",
+    "win": "满堂不再以众口代替判断，孙权听见抗曹仍有可为；江雾里的下一场谋划随之展开。",
+    "loss": "众口铄金，你被迫只剩求援者的位置；江东议程重归避战，原卷的抗曹联盟少一分助力。"
+   }
+  },
+  "caochuan": {
+   "era": "208 年",
+   "source": "《三国演义》第四十六回 · 赤壁史事为背景",
+   "record": "建安十三年孙刘联军与曹军隔江相持，但诸葛亮以草船向曹营借箭并非《三国志》正文所载，应明确视作演义名段。",
+   "adaptation": "本回保留大雾、擂鼓与借箭，把看不清牌面的风险写成江上对局；曹操的多疑既是箭的来源，也是反噬。",
+   "lead": "联盟既有可能，军需与互疑便同时上桌。周瑜要箭，曹操要稳，诸葛亮要的是一夜谁也看不清的雾。",
+   "skirmish": {
+    "title": "夏口 · 借船借人",
+    "why": "江东水卒只服水战规矩，不肯把船交给来历不明的奇谋。你要先证明这不是拿全船人做一场空谈。",
+    "win": "船只、草束与鼓手齐备，鲁肃也愿同船作证；雾夜借箭有了真正可执行的条件。",
+    "loss": "船未出港，疑心先在自家营中扩散；三日之约只剩无法兑现的夸口。"
+   },
+   "boss": {
+    "title": "曹营水寨 · 雾中借箭",
+    "why": "曹操在雾中不肯轻出，只会以箭雨试探。你要让他的谨慎变成你的补给，而非把船队送进重围。",
+    "win": "雾散船满，江东得箭，曹操第一次发现自己也被别人读作底牌；连舫与火攻接踵而来。",
+    "loss": "江上无雾或鼓声失序，草船成为箭靶；三日之约与联军互信同时受损。"
+   }
+  },
+  "chibi": {
+   "era": "208 年",
+   "source": "《三国志·武帝纪》《周瑜传》·《三国演义》第四十七至四十九回",
+   "record": "赤壁之战中，黄盖诈降并以火船突击，曹军遭火攻与疫病后退却。诸葛亮登台借东风属演义加工，不是联军胜利的唯一原因。",
+   "adaptation": "曹操、周瑜、诸葛亮三方同桌是写卷人的牌局隐喻，并非孙刘盟友在赤壁互为敌军；你必须同时读懂三种谋略。",
+   "lead": "箭已借足，船已连锁，真正难求的是各方在同一夜承担后果。风不是天上白送的，是所有人一起等来的机会。",
+   "skirmish": {
+    "title": "三江口 · 火船开路",
+    "why": "北军水骑守住江面通道，火船若不能接近连舫，再准确的东南风也只吹得动空帆。",
+    "win": "江口被打开，黄盖的船队获得突进路线，火攻从帐中计策变成可执行的一击。",
+    "loss": "火船在远处便被截住，诈降与风势都失去落点；联军只能重新面对漫长相持。"
+   },
+   "boss": {
+    "title": "赤壁 · 连舫一炬",
+    "why": "曹操要稳住连环船，周瑜要抢火起一刻，诸葛亮要等全局俱备。你要让三方谋略同时落到胜负上。",
+    "win": "连舫成灰，曹操北退，三分格局由此获得喘息；败军即将进入华容道。",
+    "loss": "风候、火船与人心未能同时到位，赤壁旧页没有改写；曹操的连舫仍压住江面。"
+   }
+  },
+  "huarong": {
+   "era": "208 年",
+   "source": "《三国志·武帝纪》裴注引《山阳公载记》·《三国演义》第五十回",
+   "record": "曹操赤壁败后行经华容险路，道路泥泞、士卒困顿有相关记载；关羽奉命把守并因旧义释曹，则是演义最著名的抉择。",
+   "adaptation": "本回保留“刀落或刀未落”双野史。牌局只争曹操是否走到你面前，胜后之义与后患仍由你亲自选择。",
+   "lead": "赤壁的火照见了曹操的败相，也把一道比胜负更难的问题留给你：旧恩、军令与天下，哪一样该最后落刀。",
+   "skirmish": {
+    "title": "乌林 · 败军余焰",
+    "why": "败军残部拼死护住退路，你要在他们重新结阵前截住去向，而不是被惨状拖进无意义追杀。",
+    "win": "残部的护卫被拆开，曹操只能走向华容；你将面对真正无法靠全压解决的问题。",
+    "loss": "败军重新护成一线，曹操趁隙远去；华容伏兵等到的只有空路。"
+   },
+   "boss": {
+    "title": "华容道 · 刀落之前",
+    "why": "曹操以旧恩求生，以北方后患自辩。先赢下他的军资，你才有资格决定刀落与不落各由谁承担。",
+    "win": "曹操的去留交到你手上：刀落将改北方，刀未落将全旧义；两种后果都会写入后页。",
+    "loss": "曹操越过华容，既没有军令上的斩获，也没有你主动成全的义；只是目标逃脱。"
+   }
+  },
+  "sanqi": {
+   "era": "210 年",
+   "source": "《三国志·周瑜传》·《三国演义》第五十一至五十六回",
+   "record": "周瑜于建安十五年病逝巴丘，年仅三十六，当时仍筹划进取巴蜀。“三气周瑜”与“既生瑜何生亮”属于演义塑造。",
+   "adaptation": "本回以演义的三次交锋写周瑜的心性与箭疮，不把真实病逝简单归因于被诸葛亮气死。",
+   "lead": "曹操北归后，孙刘同盟立刻面对荆州归属。旧友与对手只隔一席，最难的是争地而不把人逼入死局。",
+   "skirmish": {
+    "title": "南郡 · 同盟新隙",
+    "why": "东吴小将把赤壁旧功当作索地凭据，你若只顾争一时口头胜负，同盟会先在边地破裂。",
+    "win": "边地争端被暂时压住，周瑜愿亲自坐入局；荆州问题终于可以不靠小将传话。",
+    "loss": "零星冲突坐实彼此猜忌，周瑜接到的只剩挑衅；谈判未开便先成攻心。"
+   },
+   "boss": {
+    "title": "巴丘 · 第三激",
+    "why": "周瑜要证明自己仍能掌舵江东，你要穿过他的急怒看见箭疮与自尊，决定这一局是否只以病弱取胜。",
+    "win": "第三激后他反而看清执念，巴丘不再只是殒命之地；荆襄争夺也多一条未写尽的路。",
+    "loss": "箭疮与怒意一同崩断，原卷的“既生瑜”再次成为悼词；你赢地却未能改人。"
+   }
+  },
+  "luofengpo": {
+   "era": "214 年",
+   "source": "《三国志·庞统传》·《三国演义》第六十三回",
+   "record": "刘备进取益州时，庞统随军围雒县，中流矢身亡，年三十六。落凤坡、的卢换骑与伏兵桥段由演义集中渲染。",
+   "adaptation": "本回沿用落凤坡与伏兵，把“地名不吉”换成真正可判断的路线、坐骑与伏兵风险，而不是让宿命替人做决定。",
+   "lead": "荆州的争执尚未结束，入蜀的军队已到雒城。一个与卧龙齐名的人，正把大路让给主公，把小径留给自己。",
+   "skirmish": {
+    "title": "雒城 · 伏兵前影",
+    "why": "西川伏兵故意露出零星身影，引你沿最像捷径的山道深入。先辨真假，才谈得上改道。",
+    "win": "伏兵布置被提前看见，庞统不必只凭地名决定进退，雒城仍有多条进路。",
+    "loss": "疑兵把队伍牵入狭谷，所有后知后觉都变成箭雨前的停顿。"
+   },
+   "boss": {
+    "title": "落凤坡 · 的卢未换",
+    "why": "张任等的正是熟悉的旗号与坐骑。你要拆掉他对路线和人物的预判，让凤雏不成为被认出的目标。",
+    "win": "伏兵扑空，庞统得以继续向成都进发；季汉未来不再只压在卧龙一人肩上。",
+    "loss": "流矢仍落入坡前，凤雏归回原卷；你会明白所谓宿命，常是无人重新检查那条路。"
+   }
+  },
+  "dingjunshan": {
+   "era": "219 年",
+   "source": "《三国志·先主传》《黄忠传》《法正传》",
+   "record": "定军山之战中，刘备军居高俯击，黄忠在法正等人谋划配合下阵斩夏侯渊，汉中战局由此倾斜。",
+   "adaptation": "夏侯渊与张郃组成快慢两种敌阵。你要利用地势和时机，而非只把黄忠写成一刀必中的老将传奇。",
+   "lead": "益州已定，汉中成为下一道门槛。老将最缺的不是勇名，而是一次让所有人承认他仍能定局的战机。",
+   "skirmish": {
+    "title": "阳平关 · 争高先争势",
+    "why": "曹军屯兵控制山口，若只沿旧路仰攻，黄忠再勇也只能把士卒耗在坡下。",
+    "win": "山口守军被调动，法正所指的居高之地让出通道，定军山之势开始倒向刘备。",
+    "loss": "曹军凭险稳住阵脚，老将被迫在不利的坡面求战；战机先于兵力流失。"
+   },
+   "boss": {
+    "title": "定军山 · 疾锋与后发",
+    "why": "夏侯渊以快治乱，张郃以后发补隙。你要让两人的节奏错位，给黄忠争到居高临下的一刀。",
+    "win": "夏侯渊败亡、张郃难再补局，汉中门户洞开；下一场，关羽将在沔水迎来最盛之时。",
+    "loss": "快慢敌阵互相救援，高地下的一刀砍空；汉中仍胶着，老将只能再等下一次机会。"
+   }
+  },
+  "shuiyan": {
+   "era": "219 年",
+   "source": "《三国志·关羽传》《于禁传》",
+   "record": "汉水因连绵大雨暴涨，于禁所督七军被水困。于禁降，庞德被斩，关羽遂“威震华夏”，这是其北伐声势的顶点。",
+   "adaptation": "本回把秋雨与高地化作战前条件。水势不是凭空神迹，真正要判断的是谁能利用天时而不被天时反噬。",
+   "lead": "汉中一定，荆州北上之势同时展开。关羽距离威震华夏只差一场雨，也距离盛极而衰只剩几步。",
+   "skirmish": {
+    "title": "樊城 · 雨线之下",
+    "why": "于禁部众抢占高处与渡口，若不在水位再涨前夺下通路，楼船和援军都会被隔在樊城之外。",
+    "win": "渡口与高地重新连通，七军的低处营地暴露在水线之下，关羽掌握主动。",
+    "loss": "雨势先困住己方调度，援军无法合流；所谓天时反过来成为曹军的屏障。"
+   },
+   "boss": {
+    "title": "沔水 · 七军皆鱼",
+    "why": "于禁要以完整军阵拖过雨季，你必须在堤岸与高地之间逼他做选择，而不是只等洪水替你赢。",
+    "win": "七军尽没，于禁就擒，关羽之名震动许都；然而吕蒙的白衣已悄然接近江陵。",
+    "loss": "雨住堤未决，于禁军阵仍整，关羽失去最盛的战机；荆州后防空虚却已成事实。"
+   }
+  },
+  "maicheng": {
+   "era": "219 年冬",
+   "source": "《三国志·关羽传》《吴主传》《吕蒙传》",
+   "record": "吕蒙趁关羽北进袭取荆州，公安、江陵相继失守。关羽退至麦城，后在临沮被擒杀，孙权将其首级送予曹操。",
+   "adaptation": "吕蒙与陆逊同桌，白衣与全谎规则强调后方的隐瞒。你可以让关羽脱困，但救下一人不等于自动修好整条荆州防线。",
+   "lead": "沔水的捷报越响，江陵的空虚越深。最盛之名与最冷之雪只隔一卷，你要同时看见前线的威风和身后的门。",
+   "skirmish": {
+    "title": "江陵临沮 · 白衣断后",
+    "why": "东吴伏兵不穿甲而穿白衣，先截烽燧与归路。若不重建消息链，关羽连荆州已失都可能最后知道。",
+    "win": "伏兵与封锁被撕开，麦城不再是孤城，上庸与江陵之间重新出现求援方向。",
+    "loss": "烽燧沉默、归路断绝，前线名将成了最后知道后方已失的人。"
+   },
+   "boss": {
+    "title": "麦城 · 雪夜双谋",
+    "why": "吕蒙藏锋，陆逊深算，二人要你只盯关羽的勇而忘了全城补给。赢下双谋，才可争一条突围路。",
+    "win": "云长死战得脱，荆州与夷陵的旧页都随之改变；大关野史落印，卷四提前翻开。",
+    "loss": "麦城雪落，关羽仍败亡临沮；原卷不可跨越的意难平再次发生，史鉴将留下白衣假动作的线索。"
+   }
+  },
+  "yiling": {
+   "era": "222 年",
+   "source": "《三国志·先主传》《陆逊传》",
+   "record": "刘备大举东征，陆逊先固守避锋，后在夷陵、猇亭一带以火攻大破蜀军营垒。刘备退往白帝，季汉元气大伤。",
+   "adaptation": "本回把复仇、连营与火油写成连锁风险。若麦城已改，关羽会亲自否定以他为名的无谓牺牲，但战争仍可能发生。",
+   "lead": "荆州的答案决定了东征的理由，却不能自动决定东征的打法。怒火烧到人之前，会先把自己的营盘连成火绳。",
+   "skirmish": {
+    "title": "秭归猇亭 · 火油前哨",
+    "why": "吴军火油队沿林道试探营垒，你要先拆其火路，而不是把每次袭扰都当成决战邀请。",
+    "win": "火油位置与林道被摸清，蜀营得以拆开相连栅垒，陆逊失去最省力的一把火。",
+    "loss": "火油悄然贴近连营，蜀军越追击越把队伍拉成长线；陆逊只需等待。"
+   },
+   "boss": {
+    "title": "夷陵 · 火未起时",
+    "why": "陆逊以固守养你的急，以连营等你的错。你要在盲注与怒火耗尽全军前，让刘备看见营外的人命。",
+    "win": "旧营已空，火起无处蔓延，东征不再以惨败收尾；永安宫的病榻却仍等着你。",
+    "loss": "七百里火势按原卷奔袭，刘备败走白帝；夷陵不仅烧掉营盘，也烧掉季汉的后续选择。"
+   }
+  },
+  "baidicheng": {
+   "era": "223 年",
+   "source": "《三国志·先主传》《诸葛亮传》",
+   "record": "刘备在永安宫病重，将刘禅托付给诸葛亮，并以李严为副，随后去世。白帝托孤既有信任，也有政权交接的沉重现实。",
+   "adaptation": "本回把“天命·沉疴”拟作对手，不宣称一场牌能医治疾病；它写的是在有限时间里，能否把遗言从试探变回坦诚。",
+   "lead": "夷陵之后，战火退了，身体里的消耗却追了上来。你这次面对的不是名将，而是每个人最终都无法吓退的时间。",
+   "skirmish": {
+    "title": "永安宫 · 长夜宿卫",
+    "why": "宫中宿卫因遗诏流言各自紧张，任何误会都可能让最后的托付变成争抢遗命的宫门之变。",
+    "win": "宫门与药道安稳，刘备能在没有兵刃声的夜里把话说明，诸葛亮与少主得以同席。",
+    "loss": "猜疑先封住宫门，遗诏尚未写完便已成各方武器；托孤只剩下权力焦虑。"
+   },
+   "boss": {
+    "title": "白帝城 · 与命争言",
+    "why": "沉疴要拿走的是说话的时间。你要争到足够坦诚的一刻，让刘备不再把江山只压给诸葛亮一人。",
+    "win": "遗诏改写，少主与辅臣各担其责；刘备争得人间时日，南中与北伐的后页因此变化。",
+    "loss": "永安宫长夜将尽，原卷托孤如期而至；没有说尽的话将成为诸葛亮此后每一次独自决断的重量。"
+   }
+  },
+  "qiqin": {
+   "era": "225 年",
+   "source": "《三国志·诸葛亮传》裴注引《汉晋春秋》·《三国演义》南征诸回",
+   "record": "诸葛亮于建兴三年南征并平定南中。“七擒七纵”见于裴注所引《汉晋春秋》，具体藤甲、毒泉等情节多由后世文学扩充。",
+   "adaptation": "七阵不是七次重复刷胜，而是孟获从恼怒到自问的七个态度阶段。每阵战书会变化，胜负也要为下一次放人留余地。",
+   "lead": "永安之后，南中再起。若只得到一张降表，今日擒下的王明日仍会带着更多人回来。",
+   "skirmish": {
+    "title": "泸水 · 藤甲拦路",
+    "why": "藤甲兵凭地形与装备守住渡口，强渡只会让南征先变成彼此都不肯再听解释的仇杀。",
+    "win": "渡口打开而俘虏未被尽数追杀，南中长者愿意说出盐粮与旧俗，攻心才有事实可凭。",
+    "loss": "泸水变成血战，孟获只看见又一支来征服的军队；七次擒纵尚未开始便失去意义。"
+   },
+   "boss": {
+    "title": "南中 · 七擒七纵",
+    "why": "孟获以不服维护自己和族人的尊严。你要七次赢牌又六次放人，让他最后服气的是选择而非无力。",
+    "win": "孟获亲口定下南中明日，南征从压服变成可延续的约定；诸葛亮得以整军北向。",
+    "loss": "你只记住擒与纵的次数，没有让人多懂一层；整回重开，南中仍不信所谓攻心。"
+   },
+   "rounds": [
+    {
+     "title": "第一擒 · 先赢其勇",
+     "why": "孟获认定汉军只会恃强，你要先在他最熟悉的硬仗里赢下第一局。",
+     "win": "第一次擒而不杀，他得到回去再来的路，也开始疑惑你究竟要什么。",
+     "loss": "首阵便被他以山势压住，所谓攻心成了掩饰失败的空话。"
+    },
+    {
+     "title": "第二擒 · 不服其计",
+     "why": "他把首败归于绊马索，这一阵要证明你能读懂他主动改变的打法。",
+     "win": "第二次放人，他不再只说偶然，转而寻找真正能赢你的办法。",
+     "loss": "孟获证明自己仍能反制，连战中的轻敌代价由你承担。"
+    },
+    {
+     "title": "第三擒 · 旧友与藤甲",
+     "why": "他带来旧友与更强部曲，要你不只针对一个人的牌风，而要看见援军与地利的组合。",
+     "win": "第三次得胜，孟获开始区分自己的败因与南中族人的选择。",
+     "loss": "你把前三阵当成同一局，新的援军让旧经验彻底失效。"
+    },
+    {
+     "title": "第四擒 · 火不伤其心",
+     "why": "藤甲遇火而败，孟获却要问烧掉装备是否也烧掉了南中的尊严。",
+     "win": "你赢阵却不以火羞辱俘虏，他第一次正面追问你的攻心究竟为何。",
+     "loss": "只懂以火克制，赢了装备却输了人心；此阵兵败，前功尽弃。"
+    },
+    {
+     "title": "第五擒 · 问服谁",
+     "why": "孟获已不再只争勇，他要弄清你让他服的是诸葛亮、汉律，还是自己也能认可的生活。",
+     "win": "第五次纵归，答案不再由你替他说；他开始带回长者与族人的问题。",
+     "loss": "你把服从当作唯一答案，孟获重新以兵回应；攻心退回压服。"
+    },
+    {
+     "title": "第六擒 · 同桌明言",
+     "why": "他已愿坐下谈，却仍怕一次服气便让南中永远失去拒绝的资格。你要给这份顾虑留位置。",
+     "win": "第六次放人不再是演示仁德，而成为双方都能信赖的旧例。",
+     "loss": "你把愿意交谈当作已经归顺，误判最后的防线；连战由此中断。"
+    },
+    {
+     "title": "第七擒 · 自定明日",
+     "why": "最后一阵不必再演示会放人。孟获要以完整实力决定，此后南中与汉营是否能有另一种关系。",
+     "win": "他亲口说出“服”，不是因无路可退，而是七次选择终于可信；南中新约落印。",
+     "loss": "最后一阵仍把对方当必须击败的蛮王，七次机会没有换来新答案。"
+    }
+   ]
+  },
+  "qishan": {
+   "era": "227–234 年",
+   "source": "《三国志·诸葛亮传》·后世“六出祁山”叙事",
+   "record": "诸葛亮在出师表后驻汉中，屡次北伐，行军路线与次数并不等同于俗称的“六出祁山”。本回是北伐整体意象，而非单次战役复刻。",
+   "adaptation": "曹真代表魏国以逸待劳的防御思路，粮道与盲注代表长期消耗。本回要争的是可持续进军，而不是一把火换个虚名。",
+   "lead": "南中既安，北伐终于有了后方。可《出师表》写得再决绝，粮车仍要一辆辆翻山，士兵也不能只靠名篇充饥。",
+   "skirmish": {
+    "title": "汉中 · 前哨与粮站",
+    "why": "魏军前哨专袭山道与运粮队，若只护将旗不护粮站，第一出祁山便会成为最后一次。",
+    "win": "前哨被牵制，沿途粮站接续起来，北伐获得明年仍能再来的基础。",
+    "loss": "山路被截，前锋越深入越无退路；所谓进取变成把全军押在一次空运上。"
+   },
+   "boss": {
+    "title": "祁山 · 长路对坚壁",
+    "why": "曹真要用山地和时日磨空你的底池。你必须让粮道、疑兵与进军节奏共同向前，逼他的墙失去意义。",
+    "win": "祁山长路被走通，北伐不再只有悲壮口号；街亭随即成为这条路上最关键的支点。",
+    "loss": "粮尽路断，《出师表》又被风掀回案上；北伐仍被写成明知不可为的一次消耗。"
+   }
+  },
+  "jieting": {
+   "era": "228 年",
+   "source": "《三国志·诸葛亮传》《张郃传》《王平传》",
+   "record": "街亭之战中，马谡舍水上山、举措失当，被张郃断绝水道后击败，王平所部得以收拢残军。诸葛亮随后诛马谡以谢众。",
+   "adaptation": "本回让马谡、王平都有发言，不把失败只归结于一句“纸上谈兵”；你要改的是军令、地形与用人的共同错误。",
+   "lead": "祁山的路要长久，就不能在街亭断掉。越是熟悉兵书的人，越可能把一句成法押得比全军性命还重。",
+   "skirmish": {
+    "title": "列柳城 · 先锋争道",
+    "why": "魏军先锋故意露出粮道空隙，真正目标却是山下水源。若被诱离主道，街亭会先失去守的意义。",
+    "win": "先锋佯攻被识破，马谡与王平得以共同踏勘水道，守寨军令仍有修改时间。",
+    "loss": "部队被带离当道，水源与营寨分离；张郃未至，守军已把破绽写好。"
+   },
+   "boss": {
+    "title": "街亭 · 山高不如水长",
+    "why": "张郃不必仰攻，只要围住水道等你自乱。你要逼马谡放下脸面，在张郃合围前下寨当道。",
+    "win": "街亭守住，马谡与王平共同重写军令，诸葛亮不必挥泪；西城的琴声却即将响起。",
+    "loss": "山上无水，街亭仍失，马谡与诸葛亮的错误一同结算；后续空城只剩更险的退路。"
+   }
+  },
+  "kongcheng": {
+   "era": "228 年",
+   "source": "《三国志·诸葛亮传》裴注·《三国演义》第九十五回",
+   "record": "街亭失利后蜀军退还汉中。西城空城退司马懿并非《三国志》正文所载，相关裴注材料也历来受到辨析，宜作为著名故事而非确定史实。",
+   "adaptation": "本回明确采用空城计，把司马懿的多疑写成可被利用的下注心理。胜利不是“他太笨”，而是他选择更便宜的风险。",
+   "lead": "街亭的答案决定西城还剩多少兵，也决定诸葛亮还能拿多少真实筹码做一场没有底的诈唬。",
+   "skirmish": {
+    "title": "斜谷 · 斥候读城",
+    "why": "魏军斥候要先确认城中虚实。若让他们看见真正的慌乱，城门与琴声都只是请敌入内的摆设。",
+    "win": "斥候只带回互相矛盾的线索，司马懿必须亲自带疑入局，空城才有一线可守。",
+    "loss": "虚实先被看穿，魏军不再计算伏兵代价；空城计在诸葛亮抚琴前便已失效。"
+   },
+   "boss": {
+    "title": "西城 · 一琴一疑",
+    "why": "司马懿要决定进城犯错与退兵错失哪一种更便宜。你要让他的深思变成第二道城墙，而非替他神机妙算。",
+    "win": "琴声未断，魏军退去，城中老弱争得撤离时间；五丈原的坚壁将是他下一次回答。",
+    "loss": "魏军进城，空城无兵可战；诈唬一旦被跟注，原卷里所有老弱都要承担代价。"
+   }
+  },
+  "wuzhangyuan": {
+   "era": "234 年秋",
+   "source": "《三国志·诸葛亮传》《晋书·宣帝纪》",
+   "record": "诸葛亮驻军五丈原，与司马懿相持，分兵屯田以求久驻。其后病逝军中，年五十四，蜀军撤退，北伐在这一页戛然而止。",
+   "adaptation": "本回保留坚壁、女装、屯田与秋风意象，让粮尽和加速盲注共同逼近；你要改写星落，而不是把司马懿写成不敢出战的小丑。",
+   "lead": "空城只能赢一次侥幸，五丈原则没有一座空城可退。两个人都已老去，这一次比的是谁还敢认真过完每一天。",
+   "skirmish": {
+    "title": "武功水 · 游骑耗粮",
+    "why": "魏军游骑不决战，只不断骚扰屯田与运输。若被牵着四处救火，司马懿不必出手便已得胜。",
+    "win": "粮道与屯田守住，蜀军不必为一口饭仓促求战；诸葛亮终于能把明日也算进部署。",
+    "loss": "游骑拖散守军，粮仓与药碗一同见底；坚壁尚未开口，秋风已先得分。"
+   },
+   "boss": {
+    "title": "五丈原 · 秋风与坚壁",
+    "why": "司马懿把不战当作最长的一注，你要在粮尽前逼他为每次不应付出代价，同时留住诸葛亮的时间。",
+    "win": "坚壁被撬开，东南星仍明，诸葛亮争得继续书写北伐的岁月；高平陵的未来也被惊动。",
+    "loss": "秋风中星落如旧，司马懿只靠等待便赢下终局；此卷大关不改，星落仍是星落。"
+   }
+  },
+  "gaopingling": {
+   "era": "249 年",
+   "source": "《三国志·曹爽传》《晋书·宣帝纪》",
+   "record": "正始十年，曹爽随魏主曹芳谒高平陵，司马懿在洛阳发动政变，控制武库与宫城。曹爽交出权力后不久被诛，曹魏权柄自此转入司马氏。",
+   "adaptation": "本回以诈病为前置迷局，把诏书、武库与人心写成真正的底池；若五丈原已改，诸葛亮会以旧信提醒你不要只看衰老。",
+   "lead": "五丈原之后，最懂等待的人回到洛阳。天下不再只看卧龙与冢虎，所有以为他会自然病死的人都被算进了局。",
+   "skirmish": {
+    "title": "洛阳 · 家兵暗动",
+    "why": "司马府家兵借探病与吊丧遮掩调动，若只盯病榻，便会漏掉武库和宫门真正的变化。",
+    "win": "暗动被提前锁定，太后诏书与武库有人看守，司马懿即使睁眼也不能直接收走全城。",
+    "loss": "家兵先占要害，病榻上的老人尚未起身，洛阳已换了主人。"
+   },
+   "boss": {
+    "title": "高平陵 · 病榻之外",
+    "why": "司马懿用衰弱换曹爽的松懈，你要拆穿病相又守住权力交接；只揭穿演技而没有守门，仍然会输。",
+    "win": "政变被截，曹爽未轻交印绶，司马氏独大的旧页被改写；多年后的阴平却仍会有险路。",
+    "loss": "曹爽交权，司马氏掌权，原卷的高平陵之变完整发生；他的假破绽也会成为下一次史鉴。"
+   }
+  },
+  "yinping": {
+   "era": "263 年",
+   "source": "《三国志·邓艾传》《后主传》",
+   "record": "魏军伐蜀，邓艾从阴平险道奇袭，越摩天岭、取江油，继而在绵竹击败诸葛瞻，最终兵临成都，刘禅出降。",
+   "adaptation": "本回把阴平守备写成一盏盏互望的灯。若街亭已改，马谡会以自身旧错提醒：高处不是险固，粮水与联络才是。",
+   "lead": "高平陵之后，司马氏的魏终于向蜀伸手。所有人都说阴平无路，邓艾却偏偏要把“不可能”裹进旧毡滚下山。",
+   "skirmish": {
+    "title": "沓中阴平 · 奇兵未落地",
+    "why": "邓艾奇兵以无退路换速度，你要在他们落地前恢复烽哨联络，而不是继续默认绝路无需守。",
+    "win": "绝壁灯火相接，江油获得预警与迁粮时间，奇袭不再能直接穿透成都门户。",
+    "loss": "烽哨彼此不知存亡，奇兵落地时各城仍以为山天然会替自己防守。"
+   },
+   "boss": {
+    "title": "摩天岭 · 绝路有人",
+    "why": "邓艾把全军命押在向前，你要以粮道与互望哨位证明险路不是捷径，落地也不等于胜利。",
+    "win": "阴平奇袭被截，江油与成都争得新的防线；归晋的最后一页因此出现另一种可能。",
+    "loss": "邓艾穿过无人守处，绵竹与成都相继暴露，蜀汉仍按原划出降。"
+   }
+  },
+  "guijin": {
+   "era": "280 年",
+   "source": "《晋书·武帝纪》《三国志·三嗣主传》",
+   "record": "太康元年，王濬等晋军沿江而下，兵临建业，孙皓出降，吴亡。自黄巾起事以来近百年的分裂，至此在西晋手中暂归一统。",
+   "adaptation": "本回以司马炎作为“归一”的牌桌化身，并非让他亲赴建业领军。你要讨论统一与抹除差别是否必然相同，也承认百姓对太平的真实需要。",
+   "lead": "阴平之后，三国只剩最后的旧旗。王濬楼船东下，建业降表将具；你要面对的不是又一个名将，而是分久必合这句话本身。",
+   "skirmish": {
+    "title": "石头城 · 楼船压境",
+    "why": "晋军前锋守住江面与城门，先争的不是三面旧旗，而是城破时百姓与粮市能否免遭劫掠。",
+    "win": "城防与民生暂时保住，建业不必以屠戮换统一；你获得与司马炎讨论“如何合”的资格。",
+    "loss": "江面与城门同失，降表之外普通人的姓名先被战火抹去；天下归一只剩胜者版本。"
+   },
+   "boss": {
+    "title": "建业 · 天下最后一局",
+    "why": "司马炎以结束乱世为最大底牌，你要证明太平值得珍惜，却不等于三国所有人的名字都应被一笔抹平。",
+    "win": "楼船暂止，归一不再是唯一句法；三国旧页全部阅尽，写卷人将在纸背向你摊开最后一局。",
+    "loss": "孙皓出降，天下按原卷入晋。太平确实到来，但你没有替降表背面的人留下更多文字。"
+   }
+  },
+  "zuizhong": {
+   "era": "无纪年",
+   "source": "写卷人原创 · 残卷终章",
+   "record": "这一页没有可考的历史事件。它回收你在此前旧页留下的生命、选择与代价，让叙事者本人接受不能预知下一张牌的规则。",
+   "adaptation": "写卷人是全书虚构角色。牌局之后，封卷、还史与撕卷分别代表保存改写、恢复原卷和接受未知，没有标准答案。",
+   "lead": "你从桃园读到归晋，救过人也见过兵败。现在，那个总在页边写注的人终于承认：只有你还从未向他问过执笔之权。",
+   "skirmish": {
+    "title": "残卷深处 · 笔墨试探",
+    "why": "写卷人先用你熟悉的旧句试探，要看你是否只会重复曾经赢过的答案。通过这一阵，他才肯真正落座。",
+    "win": "旧句被拆去预设，写卷人不能再以全知语气免除自己的选择；最终牌桌向你开放。",
+    "loss": "你仍被旧页中的经验牵着走，他提笔添一个“又”字；最后一问暂时关闭。"
+   },
+   "boss": {
+    "title": "最后一页 · 与叙事者对赌",
+    "why": "他写过所有人的来路，你却要他在未知牌序前承担选择。赢他，决定谁有权替这部书写下结局。",
+    "win": "封卷、还史、撕卷三件事同时交到你手上；你可保存野史、归还原命，或让三国从此没有终稿。",
+    "loss": "改写暂退页边，但你的座位没有被抹去；史鉴留下后，你仍可回来重新问他。"
+   }
+  },
+  "xianshan": {
+   "era": "191–192 年",
+   "source": "《三国志·孙破虏讨逆传》·《三国演义》第七回",
+   "record": "孙坚击刘表,围襄阳,单马逐岘山,中伏矢石而死,年三十七。演义将细节归于吕公设伏,黄祖此前已败于孙坚。",
+   "adaptation": "本回让黄祖与蔡瑁同桌:黄祖赢过孙坚一次的机会,全在「伏」字;你要替猛虎读出竹影里的箭。",
+   "lead": "洛阳的火还没熄,玉玺还揣在孙坚怀里。襄阳城头有人算了算:猛虎死于追击的概率,比死于正面高得多。",
+   "skirmish": {
+    "title": "邓塞 · 竹影疑兵",
+    "why": "溃逃的吕公部穿过竹林,人影与竹影搅作一处。先辨清这阵乱是真的溃逃还是请君入瓮,才谈得上追击。",
+    "win": "竹影被识破,伏兵露形,孙坚的前锋不再盲目深入;岘山的主局得以在你看清地形后展开。",
+    "loss": "前锋被竹影拖住,阵形在追击中散开;岘山的伏兵以逸待劳,主力未战先疲。"
+   },
+   "boss": {
+    "title": "岘山 · 乱箭与猛虎",
+    "why": "黄祖要以乱箭与地形留下孙坚,蔡瑁掌水路退路。你要让猛虎在竹密之处慢下来,又不磨掉他敢战的心。",
+    "win": "孙坚拨转马头,江东的基业不折于起笔;黄祖折箭为誓,荆襄之争留给下一代。",
+    "loss": "猛虎殒于竹影,孙策提前接过复仇的旗;史鉴会告诉你,虎失于怒,不失于勇。"
+   }
+  },
+  "jieqiao": {
+   "era": "191–192 年",
+   "source": "《三国志·袁绍传》《公孙瓒传》·《后汉书》",
+   "record": "界桥之战,袁绍以麹义八百先登破公孙瓒白马义从,强弩雷发。赵云此时在公孙瓒军中,初显身手。",
+   "adaptation": "本回把先登弩阵写成可读的节奏:麹义的盾与弩各有节拍,数清节拍,白马才有半渡之外的第二种冲法。",
+   "lead": "幽州的白马号称天下第一骑,河北的先登号称天下第一弩。两样名号在界桥两岸相遇,夹着一条不宽的河。",
+   "skirmish": {
+    "title": "界桥 · 先登拦路",
+    "why": "麹义的八百人不见马就上弩。你要先数清他盾落弩张的节奏,再决定白马以何种队形过河。",
+    "win": "先登的节拍被记下,白马分队的路线有了依据;文丑的铁枪失去以逸待劳的便宜。",
+    "loss": "白马在河滩挤作一团,先登的弩不挑人;半渡而溃,界桥先输一阵。"
+   },
+   "boss": {
+    "title": "界桥 · 白马对铁枪",
+    "why": "文丑替袁绍压阵,枪沉而心躁。你要让公孙瓒听进赵云一句谏,别把全部骑兵押在一次冲锋上。",
+    "win": "河北中军退回界桥以北,赵云之名初动幽燕;白马义从败而不散,尚有再战之力。",
+    "loss": "白马成排倒在半渡,公孙瓒自此只信高墙深堑;赵云的枪,只能先替退路开道。"
+   }
+  },
+  "shenting": {
+   "era": "195 年",
+   "source": "《三国志·太史慈传》《孙策传》·《三国演义》第十五回",
+   "record": "孙策征刘繇,与太史慈独斗于神亭,夺戟披甲,未分胜负。太史慈后困于泾县,降于孙策,执手曰「天下智谋之士,岂止一人」。",
+   "adaptation": "本回把这场单挑写成必须「打满」的一局:胜负不在回合数,在两人是否都见到了对方的真本事。",
+   "lead": "斥候报孙策只带十二骑探营,太史慈提枪便追。旁人劝他再等等,他说:机会与险,向来同一个名字。",
+   "skirmish": {
+    "title": "曲阿 · 府卫拦路",
+    "why": "刘繇的府卫不认得太史慈的独来独往,先把岭路封死。你要让这一架打得起来,先得让看门的人让开。",
+    "win": "府卫让路,神亭岭的土留给了两个真正想交手的人;单挑得以不被军令搅局。",
+    "loss": "岭路被军令封死,单挑变成乱战;两件兵器都没有得到交手的体面。"
+   },
+   "boss": {
+    "title": "神亭岭 · 戟折甲裂",
+    "why": "太史慈不求胜过孙策,只求打满全场。你要克制替人分胜负的手,让两人在力竭处见到彼此的真性情。",
+    "win": "断戟与裂甲都成了信物;不打不相识,东莱之枪自此认得江东之主。",
+    "loss": "单挑被你插手搅局,胜者不服,败者不平;史鉴只留一句:看客之手,掀翻牌桌。"
+   }
+  },
+  "baima": {
+   "era": "200 年春",
+   "source": "《三国志·关羽传》《武帝纪》·《三国演义》第二十五回",
+   "record": "袁绍遣颜良围白马,关羽望见颜良麾盖,刺良于万众之中,策马刺良而还。文丑随后至延津,军乱,死于乱军。",
+   "adaptation": "本回把白马、延津写成连战两阵:颜良死于骄,文丑死于躁。云长的刀之外,真正要读的是两将各自的性子。",
+   "lead": "颜良连斩二将,曹营无人敢应。曹操不看诸将,只看那个始终背对战报的人——他知道那口刀在等一封信的消息。",
+   "skirmish": {
+    "title": "黎阳 · 曹营先锋",
+    "why": "宋宪急于替旧主证明自己,抢下了头阵。你要护住这份急,又不能让白白的牺牲磨掉曹营再战的胆。",
+    "win": "先锋败退而阵脚未乱,曹营保留住了气力;云长出阵的时机成熟了。",
+    "loss": "先锋尽没,白马城下士气先折;云长即使出阵,也要先替全营的慌乱买单。"
+   },
+   "boss": {
+    "title": "白马延津 · 连诛二将",
+    "why": "颜良以连营与麾盖立威,文丑以铁骑与怒气追击。连战两阵,你要赢得一场比一场冷静。",
+    "win": "两阵皆破,两刀皆净;关羽把大功换成寻兄的路引,曹刘之间最后一层窗纸,就此捅破。",
+    "loss": "第一阵的胜冲昏了第二阵的头;河北双壁至少留下一壁,白马之围未解。"
+   },
+   "rounds": [
+    {
+     "title": "白马 · 麾盖之下",
+     "why": "颜良连胜而骄,把麾盖立在阵前当靶。你要借云长之眼先看清那杆旗,再谈快刀。",
+     "win": "麾盖倒,白马围解;颜良之败成为云长名震华夏的第一笔。",
+     "loss": "骄兵之勇反压住了阵脚;麾盖不倒,白马城头的曹旗先换。"
+    },
+    {
+     "title": "延津 · 铁骑与饵",
+     "why": "文丑为复仇而来,却比颜良多一分耐心。你要用他等的那份耐心,反过来算计他的马蹄。",
+     "win": "铁骑陷进散落的辎重里,延津的追兵成了溃兵;河北双壁至此皆折。",
+     "loss": "饵兵之计被识破,文丑的铁骑踏碎河滩;白马的胜果就此吐出。"
+    }
+   ]
+  },
+  "nanjun": {
+   "era": "209 年",
+   "source": "《三国志·周瑜传》《曹仁传》·《三国演义》第五十一回",
+   "record": "周瑜攻南郡岁余,先遣甘宁取夷陵,身中流矢仍起而励军;曹仁弃江陵走,南郡遂入吴,都督箭疮由是屡发。",
+   "adaptation": "本回把曹仁的守城写成一门「等你急」的手艺:城头的鼓专擂给周瑜的伤。你要替都督数他的换防,别数他的挑衅。",
+   "lead": "赤壁的火光才熄,荆州的旗还都姓曹。周瑜箭疮未愈便临江督战,而曹仁在江陵城头,已经备好了一面专门气他的鼓。",
+   "skirmish": {
+    "title": "夷陵 · 断后之路",
+    "why": "曹洪扼住夷陵道口,吴军若分兵取城,便要先过这道门。赢下他,甘宁的铃才响得到江陵侧翼。",
+    "win": "夷陵道开,吴军水陆并进;江陵侧翼受制,曹仁只剩正面可用。",
+    "loss": "夷陵不下,吴军不敢分兵;曹仁得以专心在江陵城下,与周瑜拼消耗。"
+   },
+   "boss": {
+    "title": "江陵 · 箭疮与鼓",
+    "why": "曹仁的鼓专攻周瑜的怒与伤。你要让都督把每一次被激,都记成曹军换防的时刻。",
+    "win": "江陵城开,箭疮未裂;周瑜抚鼓三声送还曹仁,南郡入吴而都督不折寿。",
+    "loss": "疮因怒裂,虎将带伤强攻;城虽或下,都督的命数先赔了进去。"
+   }
+  },
+  "tongguan": {
+   "era": "211 年",
+   "source": "《三国志·马超传》《武帝纪》《贾诩传》·《三国演义》第五十八回",
+   "record": "马超、韩遂联西凉十部反,曹操用贾诩离间之计,超、遂相疑而败。割须弃袍、许褚裸衣斗马超皆演义渲染。",
+   "adaptation": "本回把离间计写成牌桌上的一枚墨点:曹操与贾诩不靠兵力取胜,靠让马超自己看见那点墨。虎痴的勇,只是给墨点争取时间。",
+   "lead": "潼关的风沙里立着白袍银枪。马超把父仇押上桌时,曹操的中军帐里,贾诩正慢慢研墨——研的却不是战书。",
+   "skirmish": {
+    "title": "潼关 · 庞德先行",
+    "why": "马超的前锋庞德刀沉志决,先赢他一阵,曹操的渭南大营才有从容布垒的余地。",
+    "win": "前锋受挫,西凉军锋稍敛;渭水结冰与筑垒的时间,被你挣了出来。",
+    "loss": "庞德连破数营,曹操被迫背水列阵;离间的墨,还没研好就要见血。"
+   },
+   "boss": {
+    "title": "渭南 · 马超与虎痴",
+    "why": "马超的怒气是筹码的来源,许褚的勇是挡箭的墙。你要让那封信上的墨点,恰好落在马超看得见的地方。",
+    "win": "西凉军自相疑散,曹操抚须而笑;马超单骑西去,恨意未消,方向已乱。",
+    "loss": "铁骑冲透冰城,割须弃袍成真;离间未行,凉州之怒先烧穿了渭南。"
+   }
+  },
+  "ruxu": {
+   "era": "213 年",
+   "source": "《三国志·甘宁传》《吴主传》·《三国演义》第六十八回",
+   "record": "曹操号四十万攻濡须,甘宁率百骑夜劫曹营,斩敌而还,不折一人。孙权曰:孟德有张辽,孤有兴霸,足相敌也。",
+   "adaptation": "本回把百骑劫营写成一场「耳目之战」:曹营的四十万人不是输给一百骑,是输给自己不知道来了多少骑。",
+   "lead": "四十万人的营火把江面照成了白昼。孙权案上摆着一百枚铜铃——兴霸要借的不是夜色,是曹操的疑心。",
+   "skirmish": {
+    "title": "皖口 · 乐进之锋",
+    "why": "魏军前锋乐进先登惯战,要趁吴军新集冲一阵。稳住他,坞里的百骑才领得到出城的军令。",
+    "win": "前锋之势被挫,濡须坞立稳;百骑的军令,终于发到了甘宁手里。",
+    "loss": "前哨失守,吴军被迫守坞;铃还没响,先折了出击的名分。"
+   },
+   "boss": {
+    "title": "濡须坞 · 铃响三遍",
+    "why": "曹操把疑心布满四十万营,也把破绽留在每一处疑心。你要让铃声响在曹操想象不到的方向。",
+    "win": "百骑归来,一枚铃不少;曹操叹「孙权不可急图」,班师回许。",
+    "loss": "铃响得太早,营中的慌乱醒了过来;回来的铃串,从此缺了三十枚。"
+   }
+  },
+  "jiameng": {
+   "era": "214 年",
+   "source": "《三国志·马超传》《张飞传》·《三国演义》第六十五回",
+   "record": "马超投张鲁后攻葭萌,与张飞战,挑灯夜斗之说是演义名段。其后马超降刘备,蜀汉由此得一大将。",
+   "adaptation": "本回把「挑灯夜战」写成胜负之外的一局:两杆最烈的枪要打满,打到火把烧短,打到枪自己开始说话。",
+   "lead": "渭南的败兵到了葭萌关下。张飞听说来的是马超,先笑了三声,然后让人把当年戒酒的誓书,压在了案角。",
+   "skirmish": {
+    "title": "巴西 · 马岱试锋",
+    "why": "马岱替兄长先探关防,刀法沉实。赢下这场试探,马超才肯亲自到关前叫阵。",
+    "win": "试探被识破,马岱收刀回阵;葭萌关的正戏得以开锣。",
+    "loss": "关前折了锐气,马超改攻为困;夜战的火把,点不起来。"
+   },
+   "boss": {
+    "title": "葭萌关 · 挑灯夜战",
+    "why": "张飞要打得痛快,马超要打出退路。两百盏火把之下,你要数的不是回合,是两杆枪何时开始敬重彼此。",
+    "win": "火把烧短,两虎相惜;西凉的枪找到了新的方向,蜀汉再添一将。",
+    "loss": "急于替张飞找胜机,反而打断了枪想说的话;马超闭门不出,谁也请不动。"
+   }
+  },
+  "daodan": {
+   "era": "215 年",
+   "source": "《三国志·鲁肃传》·《三国演义》第六十六回",
+   "record": "鲁肃邀关羽单刀赴会议荆州,双方伏兵相对而终未发。史载「单刀」实为诸将皆单刀,演义归于关羽独往之壮。",
+   "adaptation": "本回把酒宴写成牌局:鲁肃押的是「信」,伏兵等的是「刀」。谁先急,谁先输;关公的刀只要不拔,就是最大的筹码。",
+   "lead": "请帖写了三遍,措辞一遍比一遍客气。舱里坐好了刀斧手,帖上却只写着两个字:叙旧。",
+   "skirmish": {
+    "title": "巴丘 · 丁奉设伏",
+    "why": "丁奉把短兵藏进案几之下,先寻酒宴的破绽。你先一步识破埋伏的位置,席上的话才有分量。",
+    "win": "伏兵位置尽知,宴席的主动权在握;鲁肃的道理只能在桌面上说。",
+    "loss": "伏兵成了悬在头顶的刀,席间的每一句话都先软了三分。"
+   },
+   "boss": {
+    "title": "陆口 · 江心一宴",
+    "why": "鲁肃讨的是荆州之信,关羽守的是兄弟之义。你要让借据与偃月刀都留在原处,只让话在桌上过招。",
+    "win": "刀未出鞘,账未撕破;一杯酒替荆州又买了几年太平。",
+    "loss": "杯落刀出,江心见血;两家同盟当场崩裂,曹操在北岸笑出了声。"
+   }
+  },
+  "xiaoyaojin": {
+   "era": "215 年",
+   "source": "《三国志·张辽传》《吴主传》·《三国演义》第六十七回",
+   "record": "曹操征张鲁,张辽、李典、乐进以七千人守合肥。辽率八百陷阵,孙权围城十余日不克,撤军时几为辽所获;「张辽止啼」由此而来。",
+   "adaptation": "本回把八百勇士写成「趁乱」二字的具象:张辽赢的每一手,都是吴军自己先乱的那一手。十万人的阵站得稳,八百人便只是八百人。",
+   "lead": "合肥城门无声地开了,八百人的甲叶上没有一滴水——他们已等了一夜。城外,十万吴军刚拔完营。",
+   "skirmish": {
+    "title": "施水 · 李典之稳",
+    "why": "李典布的阵讲究余地,专封吴军的退路。先过他这一关,津桥的木板才有时间修。",
+    "win": "阵脚立稳,渡桥有序;孙权的中军得以完整列阵。",
+    "loss": "退路被李典封住一半,吴军挤在河滩;张辽的冲锋未至,阵先自乱。"
+   },
+   "boss": {
+    "title": "逍遥津 · 半渡之桥",
+    "why": "张辽的刀永远落在吴军最乱的一处。你要让十万人在半渡时仍是一个整体,替凌统的断后留住退路。",
+    "win": "津桥稳渡,凌统得还;张辽收刀入鞘,吴人记住了合肥,也记住了自己的乱。",
+    "loss": "津桥一断,凌统的三百亲兵留在了对岸;江东的夜哭,从此有了名字。"
+   }
+  },
+  "tianshui": {
+   "era": "228 年春",
+   "source": "《三国志·姜维传》·《三国演义》第九十三回",
+   "record": "诸葛亮一出祁山,天水中郎将姜维识破调虎离山之计,反设伏大败赵云;后为马遵所疑,降蜀,亮曰「此人凉州上士」。",
+   "adaptation": "本回把收姜维写成「请」的一局:他的先手来自读遍丞相旧稿,你要用同一份旧稿反锁他,再让丞相递出那封信。",
+   "lead": "三郡望风而降,只有天水城头,站着一个把丞相疑兵一一识破的少年。赵云回营后沉默良久,只说了四个字:枪法有源。",
+   "skirmish": {
+    "title": "冀城 · 郡兵之阵",
+    "why": "郡兵的阵图出自姜维之手,先破外围,才能与那位少年隔桌相望。",
+    "win": "外围既破,冀城门开;姜维亲自出城,来看这个读懂他阵图的人。",
+    "loss": "郡兵之阵反而困住前锋;连他的面都见不到,遑论收服。"
+   },
+   "boss": {
+    "title": "天水 · 少年之先",
+    "why": "姜维的每一步都是先手,因为你的每一步他都读过。要赢他,得让他发现:自己真正想守的,不是马遵的城。",
+    "win": "少年一揖到地,蜀营多了一个读遍丞相旧稿的名字;北伐的名单,从此改写。",
+    "loss": "急于收服反被将计就计;他守土之志更坚,丞相只能另寻传人。"
+   }
+  },
+  "chencang": {
+   "era": "229 年",
+   "source": "《三国志·诸葛亮传》《曹真传》附郝昭事·演义第九十七、九十八回",
+   "record": "诸葛亮二出散关围陈仓,郝昭以千余人拒守,云梯、冲车、地道、内应轮番破之;亮粮尽退军,魏将王双追击,被斩。",
+   "adaptation": "本回把攻城写成读人:郝昭守的不是城,是一个「信」字。云梯火箭之外,真正要算的是他的粮与长安的援军谁先到。",
+   "lead": "陈仓城小得像一枚棋子,守它的人却千人当万。云梯烧到第二十排时,连魏延都开始重数日子。",
+   "skirmish": {
+    "title": "散关 · 王双之锤",
+    "why": "王双的流星锤为援军开道,先挡住他,陈仓城下的攻具才搭得起来。",
+    "win": "猛将受挫,援路迟滞;陈仓被围的时间,掌握在了攻方手里。",
+    "loss": "锤开散关,粮道与援路俱通;攻城的每一日,都在替守城的人计功。"
+   },
+   "boss": {
+    "title": "陈仓 · 云梯与书信",
+    "why": "郝昭不与你斗气,只与你比「谁先到」。劝降信与云梯轮番上阵,你要算清炊烟、粮道与援军的赛跑。",
+    "win": "斩王双,全师而退;郝昭守住了城,丞相赢得了陇右的从容——这一仗两人都没输。",
+    "loss": "云梯烧尽,援军已至;强攻之失,成为二次北伐最疼的一课。"
+   }
+  },
+  "shangfanggu": {
+   "era": "234 年春",
+   "source": "《三国演义》第一百三回·《晋书·宣帝纪》",
+   "record": "上方谷(葫芦谷)火计为演义情节:魏延诱司马懿父子入谷,火起而天降大雨,父子得脱。正史无此事,唯渭滨相持为真。",
+   "adaptation": "本回给这场著名的「天意」一个还手的机会:雨一定会来,但火与雨的先后,由牌桌上出手的快慢决定。",
+   "lead": "渭水的冰化了又结。蜀军屯田,魏军筑垒,两军隔水种着同一场秋收。而谷口堆好的干柴,只欠一个肯走进来的人。",
+   "skirmish": {
+    "title": "渭滨 · 垒间斥候",
+    "why": "魏垒斥候专探木牛流马的去向。先赢下粮道耳目之战,弃粮的饵才有人肯吞。",
+    "win": "耳目既通,粮车动线尽在掌中;北原的饵,顺利挂上了钩。",
+    "loss": "粮道虚实先泄,饵未设而形已露;司马父子愈不敢出垒。"
+   },
+   "boss": {
+    "title": "上方谷 · 火与雨",
+    "why": "司马懿的谨慎与司马昭的进取在同一谷口分兵。你要让父子的步调错开半日,让火起在雨前。",
+    "win": "火尽功成,雨落事后;司马氏自此坚壁不出,渭南的秋收姓了蜀。",
+    "loss": "雨快过火半刻,谷中父子于雨中大笑;人事已尽,天时先翻。"
+   }
+  },
+  "tielongshan": {
+   "era": "255 年",
+   "source": "《三国志·姜维传》《郭淮传》·《三国演义》第一百九回",
+   "record": "姜维洮西大胜,进围狄道;魏以陈泰、郭淮解围。演义把此役写作铁笼山困司马昭、郭淮中箭等情事。",
+   "adaptation": "本回采用演义铁笼山框架,把胜负写在「围外」:围山的人先要赢下山外的路——羌人、粮道与郭淮的「借」字。",
+   "lead": "洮水一战,魏军折了数万。铁笼山上无水,山下的人却不慌——因为围局之外,还有一条借羌兵的路。",
+   "skirmish": {
+    "title": "狄道 · 昭营试探",
+    "why": "困兽也要伸爪。挡住山上下来的试探之兵,围城的栅栏才立得稳。",
+    "win": "试探受挫,山上水源愈紧;三日之约,开始倒数。",
+    "loss": "围栅被撕开一角,军心浮动;郭淮的援军未至,围局先松。"
+   },
+   "boss": {
+    "title": "铁笼山 · 围与路",
+    "why": "郭淮不与你斗围,只拆你的围。羌道、粮道、水道,三条路守得住一条,围局就成立。",
+    "win": "羌道不失,援军落空;司马昭捧着最后一囊水议和退兵,陇右门户为蜀而开。",
+    "loss": "羌人的火烧回自家营盘;围山者反被围,姜维含恨退守剑阁。"
+   }
+  },
+  "huainan": {
+   "era": "255–258 年",
+   "source": "《三国志·毌丘俭传》《诸葛诞传》《晋书》·演义第一百十至一百十二回",
+   "record": "王凌(251)、毌丘俭(255)、诸葛诞(257-258)三叛淮南,皆败。毌丘俭败死,诸葛诞据寿春,城破夷三族,文鸯单骑退追兵。",
+   "adaptation": "本回以后两叛为连战两阵:毌丘俭败于粮与内应,诸葛诞败于疑与等。文鸯的枪是淮南最后的门,但门不是城。",
+   "lead": "司马懿死后,淮南竖起了第一道讨贼檄。此后四年,同样的火在这片土地上烧了三次,名字换了,句子没换。",
+   "skirmish": {
+    "title": "淮南 · 乐綝之守",
+    "why": "乐綝按父亲留下的阵法守淮南,先破他的门户,檄文才能出城。",
+    "win": "门户既开,义兵东连吴境;两叛的连局,有了彼此呼应的活路。",
+    "loss": "困守孤城,檄文出不了寿春;两叛各自为战,逐个被吃。"
+   },
+   "boss": {
+    "title": "寿春 · 两叛连局",
+    "why": "毌丘俭以义聚兵,诸葛诞以城待援。你要读出两叛的死因不同——一个缺粮,一个多疑——才谈得上改写。",
+    "win": "檄文送达洛阳,「魏」字在兵卒心里重新发烫;司马师的眼疾与他的江山,一起痛了起来。",
+    "loss": "寿春城头三次换旗;东吴援兵每次都晚一步,司马氏的刀一次比一次快。"
+   },
+   "rounds": [
+    {
+     "title": "第一叛 · 义兵之檄",
+     "why": "毌丘俭起兵靠的是名义,最缺的是粮与援。你要让义兵的锐气落在粮道上,而非城下空耗。",
+     "win": "义兵立于项城,粮道通吴;司马师被迫带病亲征,局面开始流血。",
+     "loss": "锐气折于坚城,粮道被断;义兵散于半途,名义随雨打风吹去。"
+    },
+    {
+     "title": "第二叛 · 寿春之守",
+     "why": "诸葛诞握寿春之粮与东吴之盟,败在疑心——疑部将、疑援军、疑时机。你要替这座城守住「等」的底气。",
+     "win": "寿春内外相应,文鸯之枪护住退路;淮南之火第二次烧痛洛阳。",
+     "loss": "城内先降,城外援绝;文鸯单骑走脱,淮南只剩断头的名。"
+    }
+   ]
+  },
+  "ganlu": {
+   "era": "260 年",
+   "source": "《三国志·三少帝纪》·《汉晋春秋》·演义第一百一十四回",
+   "record": "甘露五年,曹髦率宿卫僮仆数百讨司马昭,贾充命成济弑帝于南阙之下。髦好文墨,曾作《潜龙》之诗自伤。",
+   "adaptation": "本回让那一杆戟停在半空:胜负之外,这一页赌的是史笔的下一行。天子的筹码只有名义,如何不把它孤注一掷,是你的题。",
+   "lead": "陵云台上,二十岁的天子写完了《潜龙》,折断笔杆。他叫来仅剩的旧臣,说的不是政令,而是一句话:司马昭之心,路人皆知。",
+   "skirmish": {
+    "title": "太极殿 · 告密之笔",
+    "why": "王沈的笔永远先一步出宫。拦住那支笔,天子的亲征才有出其不意的可能。",
+    "win": "密表未出宫门,南阙的甲士尚不知情;天子得以亲列阵前。",
+    "loss": "笔快过剑,晋公府先得了消息;所谓亲征,成了自投罗网。"
+   },
+   "boss": {
+    "title": "南阙 · 戟在半空",
+    "why": "贾充不亲自动手,只把刀递到成济手里。你要当街唤破那道只认主公的军令,让甲士看见天子,也看见自己。",
+    "win": "戟未落,甲士溃散;史官蘸墨直书「帝亲讨贼」,魏,还剩一口气。",
+    "loss": "天子之血溅上宫砖,司马昭诛成济以谢天下;刀与罪,一起回鞘。"
+   }
+  },
+  "jiange": {
+   "era": "263 年秋",
+   "source": "《三国志·姜维传》《钟会传》·演义第一百一十六回",
+   "record": "魏十八万分三路伐蜀,姜维退保剑阁,钟会不能克,粮运县远,议欲还;邓艾遂自阴平偷度,遂有绵竹、成都之事。",
+   "adaptation": "本回把剑阁写成「正面」的胜利:钟会的檄文是他最便宜的云梯。墙守住之外,还要替张翼留出「侧翼」的哨——那是下一页的事。",
+   "lead": "十八万大军压向剑门,姜维凭险而守。钟会的檄文写得漂亮,可惜剑阁的箭,只认得字面上的血。",
+   "skirmish": {
+    "title": "白水 · 关前前锋",
+    "why": "魏军前锋要在关前立营,先挫其锋,剑阁的墙才有整固的时日。",
+    "win": "前锋退去,关墙整固;老将廖化靠上墙垛,四年来头一次合眼。",
+    "loss": "营垒逼关,攻城器械日日抬近;墙再险,也架不住天天被量。"
+   },
+   "boss": {
+    "title": "剑阁 · 檄文与天险",
+    "why": "钟会以势压险,劝降与强攻轮番上阵。你要让这面墙整面地立着,不因任何一封檄文回头。",
+    "win": "钟会粮尽议退,笔记里写下「难在此人」;蜀汉又赢得一个冬天。",
+    "loss": "佯攻牵走哨兵,正面薄成一层纸;关破之日,姜维只能向阴平方向一抱拳。"
+   }
+  },
+  "yanglu": {
+   "era": "272–274 年",
+   "source": "《三国志·陆抗传》《晋书·羊祜传》·演义第一百二十回",
+   "record": "羊祜、陆抗对镇荆州,开源、立信,通使交好,抗曰「彼专为德,我专为暴,是不战而自服也」。西陵之战,抗先破步阐,却羊祜。",
+   "adaptation": "本回把「不战之战」搬上牌桌:羊祜的刀是信,你急攻便正中其怀。先定西陵,再守其约,是吴国最后的体面。",
+   "lead": "荆州边境两年无战。吴人打猎的猎物逃进晋营,晋人真的送了回来;陆抗病了,襄阳送来的是药。两边都在下同一副棋:人心。",
+   "skirmish": {
+    "title": "西陵 · 叛城旧卒",
+    "why": "步阐举城降晋,旧卒据垒自守。先收自家门户,边境之信才不是笑话。",
+    "win": "叛城归吴,内外皆定;与羊公的局,才配称「对坐」。",
+    "loss": "门户失守,建业益疑陆抗拥兵;对境之信,先输给自家的城。"
+   },
+   "boss": {
+    "title": "襄阳 · 对境之交",
+    "why": "羊祜以信为饵,以德为钩,赢的方式是「不战」。你要赢下同一个字,而不是赢他这个人。",
+    "win": "西陵定,边信全;两块碑隔江相望,谁也没有输给谁。",
+    "loss": "催战诏压过边境之信,出兵之日,人心已先过江。"
+   }
+  }
+ }
+}

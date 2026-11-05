@@ -1,0 +1,2082 @@
+{
+ "lvbu": {
+  "name": "吕布",
+  "skin": "lvbu",
+  "bio": "天下第一,不肯低头。",
+  "tells": {
+   "strong": "画戟横于膝上,指节发白",
+   "weak": "赤兔不安地刨蹄"
+  },
+  "barks": {
+   "open": "天下无双,吕奉先!",
+   "taunt": "你说谁是三姓家奴?!",
+   "tilt": "方天画戟,取你首级!",
+   "smug": "还有谁?!",
+   "badbeat": "不可能……不可能!"
+  }
+ },
+ "liubei": {
+  "name": "刘备",
+  "skin": "liubei",
+  "bio": "屡败屡起，最懂人心未凉。",
+  "tells": {
+   "strong": "双剑并放，眉目温和",
+   "weak": "袖中拇指反复摩挲"
+  },
+  "barks": {
+   "open": "备，愿与君同行。",
+   "taunt": "备并非无怒，只是不轻怒。",
+   "tilt": "莫非天意如此!",
+   "smug": "仁义并非退让。",
+   "badbeat": "败了，便再来。"
+  }
+ },
+ "guanyu": {
+  "name": "关羽",
+  "skin": "guanyu",
+  "bio": "青龙偃月，一诺重于千钧。",
+  "tells": {
+   "strong": "丹凤眼微睁，抚须不语",
+   "weak": "刀尖向下一垂"
+  },
+  "barks": {
+   "open": "关某，领教。",
+   "taunt": "多言无益。",
+   "tilt": "鼠辈，安敢如此!",
+   "smug": "义之所至，何惧之有。",
+   "badbeat": "这一局，关某记下了。"
+  }
+ },
+ "zhangfei": {
+  "name": "张飞",
+  "skin": "zhangfei",
+  "bio": "豹头环眼，粗中亦有细。",
+  "tells": {
+   "strong": "环眼圆睁，向前倾身",
+   "weak": "摸起酒碗又放下"
+  },
+  "barks": {
+   "open": "燕人张飞在此!",
+   "taunt": "你再说一遍?!",
+   "tilt": "俺要掀了这桌!",
+   "smug": "痛快，再来!",
+   "badbeat": "俺偏不信这个邪!"
+  }
+ },
+ "chengong": {
+  "name": "陈宫",
+  "skin": "chengong",
+  "bio": "谋士所争，常是主公一念。",
+  "tells": {
+   "strong": "合袖正坐，目光不移",
+   "weak": "望向城图一角"
+  },
+  "barks": {
+   "open": "陈宫，有一策。",
+   "taunt": "激我无益。",
+   "tilt": "竖子不足与谋!",
+   "smug": "此局尚可挽回。",
+   "badbeat": "明公……仍不肯听吗?"
+  }
+ },
+ "zhaoyun": {
+  "name": "赵云",
+  "skin": "zhaoyun",
+  "bio": "一身是胆，长坂护主。",
+  "tells": {
+   "strong": "枪锋收在身后，呼吸绵长",
+   "weak": "护住怀中襁褓"
+  },
+  "barks": {
+   "open": "常山赵子龙，请战。",
+   "taunt": "云并无惧意。",
+   "tilt": "挡我者，让开!",
+   "smug": "进退自如。",
+   "badbeat": "少主尚在，云不能退。"
+  }
+ },
+ "dianwei": {
+  "name": "典韦",
+  "skin": "dianwei",
+  "bio": "双戟在手，营门便在。",
+  "tells": {
+   "strong": "双戟顿地，寸步不退",
+   "weak": "回头望了一眼营门"
+  },
+  "barks": {
+   "open": "典韦在此，谁也别想过。",
+   "taunt": "找死!",
+   "tilt": "先问过我的双戟!",
+   "smug": "营门无恙。",
+   "badbeat": "主公……可曾走远?"
+  }
+ },
+ "diaochan": {
+  "name": "貂蝉",
+  "skin": "diaochan",
+  "bio": "连环计中，最自由的一步。",
+  "tells": {
+   "strong": "眼波未动，笑意不减",
+   "weak": "指尖掠过袖中短刃"
+  },
+  "barks": {
+   "open": "诸位，何必急着相看两厌。",
+   "taunt": "将军也只会说狠话吗?",
+   "tilt": "你们都不肯听我说。",
+   "smug": "局中人，未必知局。",
+   "badbeat": "原来我也不在计外。"
+  }
+ },
+ "sunquan": {
+  "name": "孙权",
+  "skin": "sunquan",
+  "bio": "坐断东南，善择人和。",
+  "tells": {
+   "strong": "按剑听潮，不置一词",
+   "weak": "反复权衡左右神色"
+  },
+  "barks": {
+   "open": "江东孙权，愿闻高见。",
+   "taunt": "仲谋自有决断。",
+   "tilt": "欺人太甚!",
+   "smug": "江东不可轻侮。",
+   "badbeat": "再议，再议。"
+  }
+ },
+ "lusu": {
+  "name": "鲁肃",
+  "skin": "lusu",
+  "bio": "榻上之策，厚道亦有锋。",
+  "tells": {
+   "strong": "拱手微笑，言辞笃定",
+   "weak": "欲言又止，望向江北"
+  },
+  "barks": {
+   "open": "鲁肃，愿两家都好。",
+   "taunt": "足下何必如此。",
+   "tilt": "肃也要争一回!",
+   "smug": "和并非让。",
+   "badbeat": "是肃看漏了一层。"
+  }
+ },
+ "pangtong": {
+  "name": "庞统",
+  "skin": "pangtong",
+  "bio": "凤雏不栖枯枝。",
+  "tells": {
+   "strong": "负手大笑，目光犀利",
+   "weak": "咳嗽一声，避开坡名"
+  },
+  "barks": {
+   "open": "庞士元，献丑了。",
+   "taunt": "你且说说谁不中用。",
+   "tilt": "竖子安敢轻我!",
+   "smug": "小计而已。",
+   "badbeat": "落凤……果然不吉。"
+  }
+ },
+ "huangzhong": {
+  "name": "黄忠",
+  "skin": "huangzhong",
+  "bio": "老将开弓，不服春秋。",
+  "tells": {
+   "strong": "弓满如月，臂不摇",
+   "weak": "揉了揉右肩"
+  },
+  "barks": {
+   "open": "老将黄忠，请战!",
+   "taunt": "谁敢说我老!",
+   "tilt": "看我再开一石弓!",
+   "smug": "尚能饭否?能!",
+   "badbeat": "这一刀，慢了吗?"
+  }
+ },
+ "masuo": {
+  "name": "马谡",
+  "skin": "masuo",
+  "bio": "纸上兵势，山上孤寨。",
+  "tells": {
+   "strong": "谈兵不止，手指山河",
+   "weak": "反复寻找水源"
+  },
+  "barks": {
+   "open": "马幼常，早已胸有成竹。",
+   "taunt": "你懂什么兵法!",
+   "tilt": "我之计绝无疏漏!",
+   "smug": "居高临下，势如破竹。",
+   "badbeat": "丞相……谡错了。"
+  }
+ },
+ "wangping": {
+  "name": "王平",
+  "skin": "wangping",
+  "bio": "沉实善守，知何时进。",
+  "tells": {
+   "strong": "阵列齐整，呼吸沉稳",
+   "weak": "低声清点水源"
+  },
+  "barks": {
+   "open": "王平，奉令守此。",
+   "taunt": "守好自己再说。",
+   "tilt": "不可乱了阵脚!",
+   "smug": "稳，也是胜。",
+   "badbeat": "终究没能劝住。"
+  }
+ },
+ "jiangwei": {
+  "name": "姜维",
+  "skin": "jiangwei",
+  "bio": "幼麟继志，锐气未折。",
+  "tells": {
+   "strong": "挺枪直视，神采逼人",
+   "weak": "短暂望向汉中"
+  },
+  "barks": {
+   "open": "天水姜伯约，请赐教。",
+   "taunt": "再来便是。",
+   "tilt": "维宁死不退!",
+   "smug": "此志尚可继。",
+   "badbeat": "丞相……维有愧。"
+  }
+ },
+ "caoshuang": {
+  "name": "曹爽",
+  "skin": "caoshuang",
+  "bio": "权柄在手，疑心在门。",
+  "tells": {
+   "strong": "凭几而坐，号令随意",
+   "weak": "频频探问府外"
+  },
+  "barks": {
+   "open": "大将军面前，还不行礼。",
+   "taunt": "你也配激我?",
+   "tilt": "调兵!快调兵!",
+   "smug": "魏室尽在我手。",
+   "badbeat": "仲达竟真敢……"
+  }
+ },
+ "yufan": {
+  "name": "虞翻",
+  "skin": "yufan",
+  "bio": "江东直士，话里藏针。",
+  "tells": {
+   "strong": "拂袖反问，声调愈高",
+   "weak": "捻须停顿片刻"
+  },
+  "barks": {
+   "open": "虞仲翔，有一问。",
+   "taunt": "狂生无礼!",
+   "tilt": "你休要强辩!",
+   "smug": "理屈词穷了吧。",
+   "badbeat": "是翻失言了。"
+  }
+ },
+ "luji": {
+  "name": "陆绩",
+  "skin": "luji",
+  "bio": "陆郎怀橘，少年有锋。",
+  "tells": {
+   "strong": "正襟反问，寸步不让",
+   "weak": "看向案上橘核"
+  },
+  "barks": {
+   "open": "陆公纪，愿闻其详。",
+   "taunt": "莫欺我年少!",
+   "tilt": "你此话不通!",
+   "smug": "此问已答。",
+   "badbeat": "绩，受教了。"
+  }
+ },
+ "kongxiu": {
+  "name": "孔秀",
+  "skin": "commander",
+  "bio": "东岭守将，一关亦一诺。",
+  "tells": {
+   "strong": "横刀关上，脚跟不动",
+   "weak": "回望身后印信"
+  },
+  "barks": {
+   "open": "东岭孔秀，验文过关。",
+   "taunt": "你敢闯关!",
+   "tilt": "关门落锁!",
+   "smug": "无令莫行。",
+   "badbeat": "关某之名，不假。"
+  }
+ },
+ "hanfu": {
+  "name": "韩福",
+  "skin": "commander",
+  "bio": "洛阳关吏，刀快心虚。",
+  "tells": {
+   "strong": "拔刀抢先，声势逼人",
+   "weak": "频繁擦拭掌心"
+  },
+  "barks": {
+   "open": "韩福在此，留下文凭。",
+   "taunt": "找死!",
+   "tilt": "放箭，快放箭!",
+   "smug": "此关难越。",
+   "badbeat": "我怎敢拦他……"
+  }
+ },
+ "bianxi": {
+  "name": "卞喜",
+  "skin": "bianxi",
+  "bio": "镇国寺僧，袈裟藏刃。",
+  "tells": {
+   "strong": "合十低眉，气息沉稳",
+   "weak": "袖中刀环轻响"
+  },
+  "barks": {
+   "open": "镇国寺一叙，如何?",
+   "taunt": "佛也渡不得你。",
+   "tilt": "动手!",
+   "smug": "此地清静。",
+   "badbeat": "刀藏在佛前，也瞒不过他。"
+  }
+ },
+ "wangzhi": {
+  "name": "王植",
+  "skin": "commander",
+  "bio": "荥阳太守，笑里设局。",
+  "tells": {
+   "strong": "笑容不改，杯盏极稳",
+   "weak": "瞥向廊下伏兵"
+  },
+  "barks": {
+   "open": "王植备了薄酒。",
+   "taunt": "莫给脸不要脸。",
+   "tilt": "放火!",
+   "smug": "入我彀中矣。",
+   "badbeat": "这一局，反被你看破。"
+  }
+ },
+ "qinqi": {
+  "name": "秦琪",
+  "skin": "commander",
+  "bio": "黄河渡口，最后一声喝。",
+  "tells": {
+   "strong": "横刀立马，目光直迫",
+   "weak": "握缰的手收紧"
+  },
+  "barks": {
+   "open": "秦琪守渡，来者止步。",
+   "taunt": "你敢小瞧我!",
+   "tilt": "渡口封死!",
+   "smug": "插翅难飞。",
+   "badbeat": "黄河，也拦不住你。"
+  }
+ },
+ "huaxiong": {
+  "name": "华雄",
+  "skin": "huaxiong",
+  "bio": "温酒未寒时的那个人。",
+  "tells": {
+   "strong": "按刀而立,纹丝不动",
+   "weak": "频频回望关门"
+  },
+  "barks": {
+   "open": "华雄在此,谁敢出战!",
+   "taunt": "找死!",
+   "tilt": "斩了你祭旗!",
+   "smug": "诸侯不过如此。",
+   "badbeat": "怎会……"
+  }
+ },
+ "dongzhuo": {
+  "name": "董卓",
+  "skin": "dongzhuo",
+  "bio": "郿坞深池,酒池肉林。",
+  "tells": {
+   "strong": "抚腹大笑,冠缨乱颤",
+   "weak": "肥硕的手捂住钱袋"
+  },
+  "barks": {
+   "open": "咱家说了算。",
+   "taunt": "拖出去!",
+   "tilt": "咱家要你的命!",
+   "smug": "顺咱者昌。",
+   "badbeat": "奉先……何在?"
+  }
+ },
+ "jiling": {
+  "name": "纪灵",
+  "skin": "jiling",
+  "bio": "袁术头号打手。",
+  "tells": {
+   "strong": "大刀顿地,声如闷雷",
+   "weak": "眼神瞟向自家营门"
+  },
+  "barks": {
+   "open": "袁公路麾下,纪灵!",
+   "taunt": "放肆!",
+   "tilt": "拿下!",
+   "smug": "识相。",
+   "badbeat": "主公……"
+  }
+ },
+ "zhangxiu": {
+  "name": "张绣",
+  "skin": "zhangxiu",
+  "bio": "北地枪王,降而复叛。",
+  "tells": {
+   "strong": "枪尖垂地,稳如磐石",
+   "weak": "舔了舔干裂的唇"
+  },
+  "barks": {
+   "open": "宛城张绣,领教。",
+   "taunt": "你!",
+   "tilt": "杀!",
+   "smug": "这一枪,二十年的功夫。",
+   "badbeat": "文和,我错了……"
+  }
+ },
+ "caocao": {
+  "name": "曹操",
+  "skin": "caocao",
+  "bio": "治世能臣,乱世奸雄。",
+  "tells": {
+   "strong": "横槊赋诗,旁若无人",
+   "weak": "抚须沉吟,目光游移"
+  },
+  "barks": {
+   "open": "对酒当歌,人生几何。",
+   "taunt": "哦?",
+   "tilt": "孤……失态了。",
+   "smug": "宁教我负天下人。",
+   "badbeat": "……呵呵,有意思。"
+  }
+ },
+ "yuanshao": {
+  "name": "袁绍",
+  "skin": "yuanshao",
+  "bio": "四世三公,色厉内荏。",
+  "tells": {
+   "strong": "四世三公,腰板笔直",
+   "weak": "不停地看向左右"
+  },
+  "barks": {
+   "open": "四世三公,袁本初。",
+   "taunt": "放肆!",
+   "tilt": "来人!……罢了。",
+   "smug": "天命在袁。",
+   "badbeat": "岂有此理……"
+  }
+ },
+ "zhuge": {
+  "name": "诸葛亮",
+  "skin": "zhuge",
+  "bio": "卧龙。",
+  "tells": {
+   "strong": "羽扇轻摇,不急不缓",
+   "weak": "扇面停了一瞬"
+  },
+  "barks": {
+   "open": "亮,躬耕南阳一布衣。",
+   "taunt": "(摇扇,笑而不语)",
+   "tilt": "……亮,失态了。",
+   "smug": "略懂,略懂。",
+   "badbeat": "天不助我……"
+  }
+ },
+ "xiahoudun": {
+  "name": "夏侯惇",
+  "skin": "xiahoudun",
+  "bio": "拔矢啖睛的独目将军。",
+  "tells": {
+   "strong": "独目如电,一瞬不瞬",
+   "weak": "独目避开了你"
+  },
+  "barks": {
+   "open": "夏侯惇在此!",
+   "taunt": "找死!",
+   "tilt": "拔矢啖睛,何惧你!",
+   "smug": "元让未尝一败。",
+   "badbeat": "左眼……又痛了。"
+  }
+ },
+ "zhangzhao": {
+  "name": "张昭",
+  "skin": "zhangzhao",
+  "bio": "江东文胆。",
+  "tells": {
+   "strong": "正襟危坐,引经据典",
+   "weak": "袖中的手在抖"
+  },
+  "barks": {
+   "open": "江东张昭,有一问。",
+   "taunt": "竖子无礼!",
+   "tilt": "你、你……",
+   "smug": "理在我江东。",
+   "badbeat": "老朽……失言。"
+  }
+ },
+ "zhouyu": {
+  "name": "周瑜",
+  "skin": "zhouyu",
+  "bio": "江东周郎,才情与火气并盛。",
+  "tells": {
+   "strong": "抚琴的手按住了剑",
+   "weak": "箭疮隐隐作痛"
+  },
+  "barks": {
+   "open": "曲有误,周郎顾。",
+   "taunt": "你说什么?!",
+   "tilt": "既生瑜——!",
+   "smug": "谈笑间,樯橹灰飞烟灭。",
+   "badbeat": "怎么可能!"
+  }
+ },
+ "zhangren": {
+  "name": "张任",
+  "skin": "zhangren",
+  "bio": "西川第一忠勇。",
+  "tells": {
+   "strong": "弓已满弦,纹丝不动",
+   "weak": "瞥了一眼落凤坡"
+  },
+  "barks": {
+   "open": "张任,守土有责。",
+   "taunt": "休想!",
+   "tilt": "放箭!",
+   "smug": "雒城固若金汤。",
+   "badbeat": "坡上的伏兵……"
+  }
+ },
+ "xiahouyuan": {
+  "name": "夏侯渊",
+  "skin": "xiahouyuan",
+  "bio": "兵贵神速,性如烈火。",
+  "tells": {
+   "strong": "虎步碾地,跃跃欲试",
+   "weak": "频频催促快些发牌"
+  },
+  "barks": {
+   "open": "夏侯渊,速战速决!",
+   "taunt": "少废话!",
+   "tilt": "纳命来!",
+   "smug": "兵贵神速。",
+   "badbeat": "太快了……是我太快了。"
+  }
+ },
+ "yujin": {
+  "name": "于禁",
+  "skin": "yujin",
+  "bio": "泰山之稳,晚节之痛。",
+  "tells": {
+   "strong": "军阵严整,呼吸不乱",
+   "weak": "望了一眼低洼处"
+  },
+  "barks": {
+   "open": "于禁,奉令行事。",
+   "taunt": "……",
+   "tilt": "休得放肆!",
+   "smug": "军令如山。",
+   "badbeat": "水……水涨了吗?"
+  }
+ },
+ "lvmeng": {
+  "name": "吕蒙",
+  "skin": "lvmeng",
+  "bio": "白衣渡江,刮目相看。",
+  "tells": {
+   "strong": "白衣执卷,气定神闲",
+   "weak": "咳嗽声压得很低"
+  },
+  "barks": {
+   "open": "吕蒙,士别三日。",
+   "taunt": "(微笑)",
+   "tilt": "……失礼了。",
+   "smug": "刮目相看。",
+   "badbeat": "荆州……可惜了。"
+  }
+ },
+ "luxun": {
+  "name": "陆逊",
+  "skin": "luxun",
+  "bio": "儒生都督,火烧连营。",
+  "tells": {
+   "strong": "负手观火,岿然不动",
+   "weak": "袖中掐算,迟迟不决"
+  },
+  "barks": {
+   "open": "陆逊,请指教。",
+   "taunt": "(拱手一笑)",
+   "tilt": "……逊,失态。",
+   "smug": "火烧连营,不过如此。",
+   "badbeat": "这一局,算错了。"
+  }
+ },
+ "menghuo": {
+  "name": "孟获",
+  "skin": "menghuo",
+  "bio": "七擒七纵的南王。",
+  "tells": {
+   "strong": "拍案而起,碗盏乱跳",
+   "weak": "挠头,嘿嘿干笑"
+  },
+  "barks": {
+   "open": "南王孟获!",
+   "taunt": "不服!",
+   "tilt": "再打过!",
+   "smug": "南中无敌!",
+   "badbeat": "……服了。"
+  }
+ },
+ "caozhen": {
+  "name": "曹真",
+  "skin": "caozhen",
+  "bio": "曹魏宗室名将。",
+  "tells": {
+   "strong": "按剑正坐,不动如山",
+   "weak": "挪动了一下坐姿"
+  },
+  "barks": {
+   "open": "曹真,督诸军。",
+   "taunt": "哼。",
+   "tilt": "出战!",
+   "smug": "魏军威武。",
+   "badbeat": "孔明……果然。"
+  }
+ },
+ "zhanghe": {
+  "name": "张郃",
+  "skin": "zhanghe",
+  "bio": "巧变善战的名将。",
+  "tells": {
+   "strong": "坐姿前倾,如狐伺兔",
+   "weak": "后退半步,重新打量你"
+  },
+  "barks": {
+   "open": "张郃,请。",
+   "taunt": "哦?",
+   "tilt": "击破他们!",
+   "smug": "兵无常势。",
+   "badbeat": "街亭之后,再无退路……"
+  }
+ },
+ "simayi": {
+  "name": "司马懿",
+  "skin": "simayi",
+  "bio": "冢虎。耗得起的,都赢了。",
+  "tells": {
+   "strong": "闭目养神,呼吸绵长",
+   "weak": "指节叩桌,三短一长"
+  },
+  "barks": {
+   "open": "(闭目)……请发牌。",
+   "taunt": "(微笑,不为所动)",
+   "tilt": "……",
+   "smug": "(嘴角微动)",
+   "badbeat": "……无妨。"
+  }
+ },
+ "dengai": {
+  "name": "邓艾",
+  "skin": "dengai",
+  "bio": "偷渡阴平的口吃将军。",
+  "tells": {
+   "strong": "口吃,目光却如炬",
+   "weak": "搓着衣角,结巴得更厉害"
+  },
+  "barks": {
+   "open": "邓、邓艾,请战。",
+   "taunt": "你、你……",
+   "tilt": "放、放马过来!",
+   "smug": "险、险中求胜。",
+   "badbeat": "阴平……太险了。"
+  }
+ },
+ "simayan": {
+  "name": "司马炎",
+  "skin": "simayan",
+  "bio": "三分归一的晋武帝。",
+  "tells": {
+   "strong": "冕旒不动,居高临下",
+   "weak": "频频看向殿外"
+  },
+  "barks": {
+   "open": "朕,司马炎。",
+   "taunt": "大胆!",
+   "tilt": "拖下去!",
+   "smug": "天下归晋。",
+   "badbeat": "朕的江山……"
+  }
+ },
+ "machao": {
+  "name": "马超",
+  "skin": "machao",
+  "bio": "锦袍银枪,西凉之怒。",
+  "tells": {
+   "strong": "枪杆横在膝上,杀气不藏",
+   "weak": "回头看了一眼西凉来的兵"
+  },
+  "barks": {
+   "open": "西凉马超,谁敢应战!",
+   "taunt": "杀父之仇,不共戴天!",
+   "tilt": "全军突击,一个不留!",
+   "smug": "神威天将军。",
+   "badbeat": "父……叔……"
+  }
+ },
+ "yanliang": {
+  "name": "颜良",
+  "skin": "yanliang",
+  "bio": "河北第一刀,势不可当。",
+  "tells": {
+   "strong": "大刀平举,连营肃静",
+   "weak": "阵前来回踱步,等得不耐"
+  },
+  "barks": {
+   "open": "河北颜良,列阵!",
+   "taunt": "又来一个送死的!",
+   "tilt": "给我踏平!",
+   "smug": "无人可挡。",
+   "badbeat": "这人……不对劲!"
+  }
+ },
+ "wenchou": {
+  "name": "文丑",
+  "skin": "wenchou",
+  "bio": "河北双壁,与颜良并驱。",
+  "tells": {
+   "strong": "铁枪顿地,目中无人",
+   "weak": "听见「颜良」二字便咬牙"
+  },
+  "barks": {
+   "open": "文丑在此,替颜良讨回来!",
+   "taunt": "退!再退试试!",
+   "tilt": "把欠的都还来!",
+   "smug": "不过如此。",
+   "badbeat": "又是这个红脸……"
+  }
+ },
+ "xuchu": {
+  "name": "许褚",
+  "skin": "xuchu",
+  "bio": "虎痴。力大,心更直。",
+  "tells": {
+   "strong": "赤膊拍案,声震屋瓦",
+   "weak": "挠头,想不明白就再看一眼"
+  },
+  "barks": {
+   "open": "谯县许褚,请!",
+   "taunt": "再说一遍?",
+   "tilt": "虎侯发怒了!",
+   "smug": "主公看好了。",
+   "badbeat": "俺……没看清!"
+  }
+ },
+ "zhangliao": {
+  "name": "张辽",
+  "skin": "zhangliao",
+  "bio": "八百破十万的那个人。",
+  "tells": {
+   "strong": "按辔不动,先数你的营",
+   "weak": "笑声里透出一丝疲惫"
+  },
+  "barks": {
+   "open": "雁门张文远,领教。",
+   "taunt": "文远只管向前。",
+   "tilt": "随我冲阵!",
+   "smug": "还能再守十年。",
+   "badbeat": "合肥……不可失。"
+  }
+ },
+ "pangde": {
+  "name": "庞德",
+  "skin": "pangde",
+  "bio": "抬榇决死战,不回头。",
+  "tells": {
+   "strong": "抬棺的手,稳过握刀的手",
+   "weak": "摩挲腰间空了的酒葫芦"
+  },
+  "barks": {
+   "open": "南安庞德,前来送死。",
+   "taunt": "榇已在侧,何惧之有!",
+   "tilt": "今日便分生死!",
+   "smug": "幸不辱命。",
+   "badbeat": "榇……终究用上了。"
+  }
+ },
+ "taishici": {
+  "name": "太史慈",
+  "skin": "taishici",
+  "bio": "猿臂善射,信义为先。",
+  "tells": {
+   "strong": "短戟在袖,背弓不卸",
+   "weak": "望了一眼旧主的营"
+  },
+  "barks": {
+   "open": "东莱太史慈,请战。",
+   "taunt": "大丈夫岂惧你!",
+   "tilt": "看箭!",
+   "smug": "神射未老。",
+   "badbeat": "大丈夫,当带三尺剑……"
+  }
+ },
+ "ganning": {
+  "name": "甘宁",
+  "skin": "ganning",
+  "bio": "锦帆贼出身的斗将。",
+  "tells": {
+   "strong": "铃铛一响,刀已出鞘",
+   "weak": "摩挲着颈上的铜铃"
+  },
+  "barks": {
+   "open": "锦帆甘兴霸,见过没有?",
+   "taunt": "百骑劫营,听过没有?",
+   "tilt": "都给爷留下!",
+   "smug": "铃响,人至。",
+   "badbeat": "乌鸦……叫得真吵。"
+  }
+ },
+ "huangzu": {
+  "name": "黄祖",
+  "skin": "huangzu",
+  "bio": "守江夏的旧将,记仇。",
+  "tells": {
+   "strong": "伏在垛后,只等一箭",
+   "weak": "频频擦汗,望着上游"
+  },
+  "barks": {
+   "open": "江夏黄祖,守土而已。",
+   "taunt": "孙家的种,来一个死一个!",
+   "tilt": "放箭!放箭!",
+   "smug": "岘山收账。",
+   "badbeat": "又是孙氏……"
+  }
+ },
+ "caimao": {
+  "name": "蔡瑁",
+  "skin": "caimao",
+  "bio": "荆州水军,看姐姐脸色。",
+  "tells": {
+   "strong": "水图在袖,谈笑布阵",
+   "weak": "回头请示后堂"
+  },
+  "barks": {
+   "open": "蔡瑁,督荆州水军。",
+   "taunt": "陆上逞什么能!",
+   "tilt": "凿沉他们!",
+   "smug": "水上是我的。",
+   "badbeat": "姐夫……"
+  }
+ },
+ "simashi": {
+  "name": "司马师",
+  "skin": "simashi",
+  "bio": "眼睛里有瘤,眼里更有天下。",
+  "tells": {
+   "strong": "按剑而坐,目不斜视",
+   "weak": "抬手按了按眼上的纱布"
+  },
+  "barks": {
+   "open": "司马师,在此。",
+   "taunt": "子元不怒,怒则事不成。",
+   "tilt": "目疾又如何!照杀!",
+   "smug": "废立之事,我说了算。",
+   "badbeat": "这只眼……终究看不到头了。"
+  }
+ },
+ "simazhao": {
+  "name": "司马昭",
+  "skin": "simazhao",
+  "bio": "之心,路人皆知。",
+  "tells": {
+   "strong": "抚剑微笑,话里让三分",
+   "weak": "指尖在案上轻叩,数着人心"
+  },
+  "barks": {
+   "open": "司马昭,字子上。",
+   "taunt": "将军何苦替死人卖命。",
+   "tilt": "围死他!一只鸟也别放过!",
+   "smug": "天下,早有定数。",
+   "badbeat": "父兄之基……不可毁于我手!"
+  }
+ },
+ "gongsunzan": {
+  "name": "公孙瓒",
+  "skin": "gongsunzan",
+  "bio": "白马将军,守北疆。",
+  "tells": {
+   "strong": "白马列阵,弓骑齐张",
+   "weak": "望向高墙,算着存粮"
+  },
+  "barks": {
+   "open": "白马义从,公孙瓒!",
+   "taunt": "胡儿闻我名而遁!",
+   "tilt": "铁骑,冲!",
+   "smug": "界桥见真章。",
+   "badbeat": "易京的楼,还是太高……"
+  }
+ },
+ "quyi": {
+  "name": "麹义",
+  "skin": "quyi",
+  "bio": "先登死士,骄而善战。",
+  "tells": {
+   "strong": "盾墙一沉,静得可怕",
+   "weak": "嫌后排跟得太慢"
+  },
+  "barks": {
+   "open": "先登营,麹义。",
+   "taunt": "骑兵?笑话!",
+   "tilt": "压上去!",
+   "smug": "白马,也是马。",
+   "badbeat": "轻敌的是我……"
+  }
+ },
+ "caoren": {
+  "name": "曹仁",
+  "skin": "caoren",
+  "bio": "天人之勇,守城如山。",
+  "tells": {
+   "strong": "飞马绕城,亲数你的旗",
+   "weak": "轻抚旧甲上的箭痕"
+  },
+  "barks": {
+   "open": "曹仁,守此城。",
+   "taunt": "围我一年又如何!",
+   "tilt": "开城门,随我冲!",
+   "smug": "樊城还在。",
+   "badbeat": "江陵……守不住了?"
+  }
+ },
+ "caohong": {
+  "name": "曹洪",
+  "skin": "caohong",
+  "bio": "让马的兄弟,护主的将。",
+  "tells": {
+   "strong": "横刀立马,堵住退路",
+   "weak": "数着主公走远了没有"
+  },
+  "barks": {
+   "open": "曹洪在此,休想过!",
+   "taunt": "天下可无洪,不可无主公!",
+   "tilt": "给我顶住!",
+   "smug": "这条路,封了。",
+   "badbeat": "马可以让,人不退……"
+  }
+ },
+ "xuhuang": {
+  "name": "徐晃",
+  "skin": "xuhuang",
+  "bio": "周亚夫之风,治军严。",
+  "tells": {
+   "strong": "斧戟并持,阵列如林",
+   "weak": "不动声色地重整旗鼓"
+  },
+  "barks": {
+   "open": "杨县徐晃,请。",
+   "taunt": "晃不受激,只受令。",
+   "tilt": "长驱直入!",
+   "smug": "军法如山。",
+   "badbeat": "败在军法之外……"
+  }
+ },
+ "lejin": {
+  "name": "乐进",
+  "skin": "lejin",
+  "bio": "每战先登,个子矮锋刃长。",
+  "tells": {
+   "strong": "身先士卒,寸步不退",
+   "weak": "勒马回望本阵"
+  },
+  "barks": {
+   "open": "阳平乐进,先登!",
+   "taunt": "个子矮,刀不短!",
+   "tilt": "随我登城!",
+   "smug": "又是先登。",
+   "badbeat": "这一登,早了……"
+  }
+ },
+ "lidian": {
+  "name": "李典",
+  "skin": "lidian",
+  "bio": "儒将,顾全大局。",
+  "tells": {
+   "strong": "按卷不读,先看地势",
+   "weak": "欲谏,又收住了话"
+  },
+  "barks": {
+   "open": "李典,有一言。",
+   "taunt": "曼成不与人斗气。",
+   "tilt": "也罢,战!",
+   "smug": "顾全的是大局。",
+   "badbeat": "公等……未曾听我。"
+  }
+ },
+ "haozhao": {
+  "name": "郝昭",
+  "skin": "haozhao",
+  "bio": "千人守陈仓,守成传说。",
+  "tells": {
+   "strong": "连弩上弦,城头无声",
+   "weak": "数着城下的云梯"
+  },
+  "barks": {
+   "open": "郝昭,守陈仓。",
+   "taunt": "有本事,再来一个月!",
+   "tilt": "火箭,烧梯!",
+   "smug": "千人,够了。",
+   "badbeat": "再守,也要有人换防……"
+  }
+ },
+ "wangshuang": {
+  "name": "王双",
+  "skin": "wangshuang",
+  "bio": "陇西大汉,流星锤。",
+  "tells": {
+   "strong": "大锤拄地,地都一颤",
+   "weak": "回头找主力在哪里"
+  },
+  "barks": {
+   "open": "王双,来送死!",
+   "taunt": "锤下不留全尸!",
+   "tilt": "锤他!",
+   "smug": "追!继续追!",
+   "badbeat": "埋伏……怎么会有埋伏!"
+  }
+ },
+ "gaoshun": {
+  "name": "高顺",
+  "skin": "gaoshun",
+  "bio": "陷阵营,每战必克。",
+  "tells": {
+   "strong": "陷阵旗展,枪如墙进",
+   "weak": "叹息一声,仍向前"
+  },
+  "barks": {
+   "open": "陷阵营,高顺。",
+   "taunt": "顺不饮酒,也不受激。",
+   "tilt": "攻无不克!",
+   "smug": "阵未乱。",
+   "badbeat": "明知不可谏……"
+  }
+ },
+ "songxian": {
+  "name": "宋宪",
+  "skin": "songxian",
+  "bio": "吕布旧部,心事重重。",
+  "tells": {
+   "strong": "抖擞精神,刀花不乱",
+   "weak": "和魏续交换了一个眼色"
+  },
+  "barks": {
+   "open": "宋宪,候教。",
+   "taunt": "辱我者,死!",
+   "tilt": "拼了!",
+   "smug": "温侯麾下,岂有弱兵。",
+   "badbeat": "他……真的不管我们死活?"
+  }
+ },
+ "gaolan": {
+  "name": "高览",
+  "skin": "gaolan",
+  "bio": "河北名将,后路常悬。",
+  "tells": {
+   "strong": "枪沉马稳,河北气度",
+   "weak": "留意着主将的旗往哪倒"
+  },
+  "barks": {
+   "open": "高览,奉命出阵。",
+   "taunt": "河北无人?笑话!",
+   "tilt": "并马齐上!",
+   "smug": "不过如此。",
+   "badbeat": "军心……散了。"
+  }
+ },
+ "wenpin": {
+  "name": "文聘",
+  "skin": "wenpin",
+  "bio": "守荆州的忠,先主之惭。",
+  "tells": {
+   "strong": "勒马横枪,礼数不失",
+   "weak": "垂首,不敢直视旧主家眷"
+  },
+  "barks": {
+   "open": "文聘,奉命巡此。",
+   "taunt": "聘不负刘荆州,亦不负曹公。",
+   "tilt": "让开此路!",
+   "smug": "追与不追,聘自有度。",
+   "badbeat": "这一枪,终究刺偏了……"
+  }
+ },
+ "guohuai": {
+  "name": "郭淮",
+  "skin": "guohuai",
+  "bio": "关西宿将,善识风色。",
+  "tells": {
+   "strong": "按图沉思,落子极慢",
+   "weak": "揉着旧伤的腿"
+  },
+  "barks": {
+   "open": "郭淮,字伯济。",
+   "taunt": "淮不逞一时之勇。",
+   "tilt": "陇右,不可失!",
+   "smug": "料敌在先。",
+   "badbeat": "羌人……竟不听约!"
+  }
+ },
+ "wangshen": {
+  "name": "王沈",
+  "skin": "wangshen",
+  "bio": "把密谋写成奏表的笔。",
+  "tells": {
+   "strong": "笔不离手,言辞滴水不漏",
+   "weak": "墨迹未干,先掂量权柄"
+  },
+  "barks": {
+   "open": "王沈,有一表上奏。",
+   "taunt": "识时务者,不为愚忠。",
+   "tilt": "事泄了?!",
+   "smug": "此局早已写好。",
+   "badbeat": "史笔……会如何写我?"
+  }
+ },
+ "leshen": {
+  "name": "乐綝",
+  "skin": "leshen",
+  "bio": "名将之子,守淮南。",
+  "tells": {
+   "strong": "按父阵法,一板一眼",
+   "weak": "觉得寿春城墙不够厚"
+  },
+  "barks": {
+   "open": "乐綝,守淮南。",
+   "taunt": "家父之名,不容辱!",
+   "tilt": "关城门!",
+   "smug": "淮南铁打。",
+   "badbeat": "故友之子,为何至此……"
+  }
+ },
+ "guanqiujian": {
+  "name": "毌丘俭",
+  "skin": "guanqiujian",
+  "bio": "辽东刻石的名将,忠于魏。",
+  "tells": {
+   "strong": "按剑诵读讨贼檄",
+   "weak": "望着洛阳,老泪纵横"
+  },
+  "barks": {
+   "open": "毌丘俭,起义兵!",
+   "taunt": "司马氏欺天罔地!",
+   "tilt": "将士,随我回洛阳!",
+   "smug": "师老无名,必自乱。",
+   "badbeat": "寿春……守不住了吗?"
+  }
+ },
+ "wenqin": {
+  "name": "文钦",
+  "skin": "wenqin",
+  "bio": "勇而少谋,父子同仇。",
+  "tells": {
+   "strong": "嗓门先到,刀随后至",
+   "weak": "和儿子抢着出战"
+  },
+  "barks": {
+   "open": "文钦,谯郡男儿!",
+   "taunt": "怕死的不姓文!",
+   "tilt": "阿鸯,随我冲!",
+   "smug": "淮南儿郎,个个好汉。",
+   "badbeat": "误了……误了大事!"
+  }
+ },
+ "wenyang": {
+  "name": "文鸯",
+  "skin": "wenyang",
+  "bio": "单骑退追兵的少年。",
+  "tells": {
+   "strong": "鞭梢一指,千军让路",
+   "weak": "回头数追兵还剩几个"
+  },
+  "barks": {
+   "open": "文鸯在此!谁敢追!",
+   "taunt": "再来!再来啊!",
+   "tilt": "枪挑马踏!",
+   "smug": "鼠辈,可认得文鸯?",
+   "badbeat": "父帅先撤,我断后!"
+  }
+ },
+ "zhugedan": {
+  "name": "诸葛诞",
+  "skin": "zhugedan",
+  "bio": "以卵击石,反得最烈。",
+  "tells": {
+   "strong": "抚麾而立,淮南部曲山呼",
+   "weak": "反复摩挲诸葛家的家书"
+  },
+  "barks": {
+   "open": "诸葛诞,为魏室讨贼!",
+   "taunt": "宁作断头之鬼!",
+   "tilt": "寿春共存亡!",
+   "smug": "东吴援兵在即。",
+   "badbeat": "麾下……竟有人出降?"
+  }
+ },
+ "jiachong": {
+  "name": "贾充",
+  "skin": "jiachong",
+  "bio": "成济那把刀的执刀人。",
+  "tells": {
+   "strong": "袖手立于主公身后",
+   "weak": "推了推身边人的手肘"
+  },
+  "barks": {
+   "open": "贾充,字公闾。",
+   "taunt": "养兵千日,用在此时。",
+   "tilt": "司马公养你们何用?!",
+   "smug": "脏活,也有人抢着干。",
+   "badbeat": "弑君之名……岂在我!"
+  }
+ },
+ "zhonghui": {
+  "name": "钟会",
+  "skin": "zhonghui",
+  "bio": "书法家的野心,剑藏笔底。",
+  "tells": {
+   "strong": "笔走龙蛇,落子成阵",
+   "weak": "把别人的捷报又读一遍"
+  },
+  "barks": {
+   "open": "钟会,字士季。",
+   "taunt": "竖子,安敢与我论兵!",
+   "tilt": "传檄,三军听令!",
+   "smug": "灭蜀之功,舍我其谁。",
+   "badbeat": "功高……果然震主。"
+  }
+ },
+ "dengzhong": {
+  "name": "邓忠",
+  "skin": "dengzhong",
+  "bio": "虎父之子,初阵绵竹。",
+  "tells": {
+   "strong": "学父亲结巴前先出枪",
+   "weak": "偷看父亲的神色"
+  },
+  "barks": {
+   "open": "邓、邓忠,请战。",
+   "taunt": "家父面前,休得无礼!",
+   "tilt": "绵竹,不让!",
+   "smug": "不输父亲。",
+   "badbeat": "父亲,忠尽力了……"
+  }
+ },
+ "caomao": {
+  "name": "曹髦",
+  "skin": "caomao",
+  "bio": "司马昭之心,路人皆知。",
+  "tells": {
+   "strong": "仗剑登辇,龙旗在前",
+   "weak": "抚着案上的《潜龙》诗"
+  },
+  "barks": {
+   "open": "朕,大魏皇帝曹髦!",
+   "taunt": "是可忍,孰不可忍!",
+   "tilt": "今日,朕亲讨贼!",
+   "smug": "龙,终非池中物。",
+   "badbeat": "朕……竟死于此?"
+  }
+ },
+ "yanghu": {
+  "name": "羊祜",
+  "skin": "yanghu",
+  "bio": "轻裘缓带,以信猎城。",
+  "tells": {
+   "strong": "围猎收拢,只取己物",
+   "weak": "对着药壶轻轻摇头"
+  },
+  "barks": {
+   "open": "羊祜,字叔子。",
+   "taunt": "祜不欺丧乱之人。",
+   "tilt": "进军!",
+   "smug": "不战,也是战。",
+   "badbeat": "此病,误了渡江……"
+  }
+ },
+ "lukang": {
+  "name": "陆抗",
+  "skin": "lukang",
+  "bio": "吴国最后的长城。",
+  "tells": {
+   "strong": "筑围如山,粮道分明",
+   "weak": "望着建业,叹而不言"
+  },
+  "barks": {
+   "open": "陆抗,字幼节。",
+   "taunt": "抗不敢忘家训。",
+   "tilt": "西陵,必克!",
+   "smug": "各守其界,各安其民。",
+   "badbeat": "臣死后,谁守荆州……"
+  }
+ },
+ "wangjun": {
+  "name": "王濬",
+  "skin": "wangjun",
+  "bio": "楼船下益州,收金陵王气。",
+  "tells": {
+   "strong": "把楼船图又改一稿",
+   "weak": "数着江上的铁锁还剩几道"
+  },
+  "barks": {
+   "open": "王濬,楼船东下。",
+   "taunt": "火炬,烧锁!",
+   "tilt": "直取石头城!",
+   "smug": "一片降幡出石头。",
+   "badbeat": "东风……误我!"
+  }
+ },
+ "sunjian": {
+  "name": "孙坚",
+  "skin": "sunjian",
+  "bio": "江东猛虎,怀璧其罪。",
+  "tells": {
+   "strong": "古锭刀一指,身先士卒",
+   "weak": "摩挲怀中的传国玉玺"
+  },
+  "barks": {
+   "open": "乌程侯孙坚,在此!",
+   "taunt": "背主之徒,也配拦我?",
+   "tilt": "猛虎,岂困于岘山!",
+   "smug": "虎渡江,谁可挡?",
+   "badbeat": "吕公……伏兵!"
+  }
+ },
+ "sunce": {
+  "name": "孙策",
+  "skin": "sunce",
+  "bio": "小霸王,以玉玺换江山。",
+  "tells": {
+   "strong": "枪挑盔缨,笑得像少年",
+   "weak": "按了按颊上的箭伤"
+  },
+  "barks": {
+   "open": "小霸王孙策,来斗!",
+   "taunt": "叫你三声不敢应?",
+   "tilt": "挡我者死!",
+   "smug": "江东,我说了算。",
+   "badbeat": "刺客……何其多!"
+  }
+ },
+ "huanggai": {
+  "name": "黄盖",
+  "skin": "huanggai",
+  "bio": "三世老臣,苦肉的火种。",
+  "tells": {
+   "strong": "铁鞭在握,脊背挺直",
+   "weak": "揉了揉背上未愈的杖痕"
+  },
+  "barks": {
+   "open": "老将黄盖,愿打头阵。",
+   "taunt": "皮肉之苦,算得了什么!",
+   "tilt": "火船,起!",
+   "smug": "三世旧臣,言出必行。",
+   "badbeat": "这一仗,老骨头交了……"
+  }
+ },
+ "chengpu": {
+  "name": "程普",
+  "skin": "chengpu",
+  "bio": "三朝元老,铁脊蛇矛。",
+  "tells": {
+   "strong": "蛇矛拄地,老而弥坚",
+   "weak": "叹一句「周郎小儿」又收住"
+  },
+  "barks": {
+   "open": "程普,字德谋。",
+   "taunt": "欺我年迈?",
+   "tilt": "老夫再战一场!",
+   "smug": "江东基业,有我一份。",
+   "badbeat": "后生……可畏啊。"
+  }
+ },
+ "handang": {
+  "name": "韩当",
+  "skin": "handang",
+  "bio": "义从老兵,弓马不辍。",
+  "tells": {
+   "strong": "弓开满月,大呼陷阵",
+   "weak": "默默替士卒紧甲"
+  },
+  "barks": {
+   "open": "韩当,字义公。",
+   "taunt": "辽东男儿,岂惧你!",
+   "tilt": "随老夫冲!",
+   "smug": "弓马,未曾生疏。",
+   "badbeat": "义从……所剩无几了。"
+  }
+ },
+ "zhoutai": {
+  "name": "周泰",
+  "skin": "zhoutai",
+  "bio": "十二处伤,换主公一命。",
+  "tells": {
+   "strong": "解甲示疤,浑身是胆",
+   "weak": "把主公往身后拢了拢"
+  },
+  "barks": {
+   "open": "周泰,字幼平。",
+   "taunt": "这条疤,便是答话!",
+   "tilt": "伤我主者,先过我!",
+   "smug": "疤,又添一处而已。",
+   "badbeat": "主公……先走!"
+  }
+ },
+ "lingtong": {
+  "name": "凌统",
+  "skin": "lingtong",
+  "bio": "父仇在心,公义在前。",
+  "tells": {
+   "strong": "咬着牙出枪,快而狠",
+   "weak": "听见甘宁的铃就攥紧拳"
+  },
+  "barks": {
+   "open": "凌统,字公绩。",
+   "taunt": "杀父之仇,且记下!",
+   "tilt": "与我父亲的旧部,冲!",
+   "smug": "国士,不逞私斗。",
+   "badbeat": "断后……是死路。"
+  }
+ },
+ "dingfeng": {
+  "name": "丁奉",
+  "skin": "dingfeng",
+  "bio": "雪中奋短兵的老将。",
+  "tells": {
+   "strong": "脱甲提刀,雪里列队",
+   "weak": "眯眼算风向与敌粮"
+  },
+  "barks": {
+   "open": "丁奉,字承渊。",
+   "taunt": "短兵,才是真本事!",
+   "tilt": "雪里,见真章!",
+   "smug": "东兴之捷,犹在昨日。",
+   "badbeat": "老将迟暮,刀不迟。"
+  }
+ },
+ "panzhang": {
+  "name": "潘璋",
+  "skin": "panzhang",
+  "bio": "截粮擒将,不择手段。",
+  "tells": {
+   "strong": "刀横在窄路上,狞笑",
+   "weak": "盯着别人的好刀好马"
+  },
+  "barks": {
+   "open": "潘璋,字文珪。",
+   "taunt": "你的兵器,归我了!",
+   "tilt": "麦城,收网!",
+   "smug": "青龙刀,真趁手。",
+   "badbeat": "这刀……烫手!"
+  }
+ },
+ "zhuran": {
+  "name": "朱然",
+  "skin": "zhuran",
+  "bio": "坚守江陵,火中不乱。",
+  "tells": {
+   "strong": "城中粮册翻得极熟",
+   "weak": "数着城外又添了几层围"
+  },
+  "barks": {
+   "open": "朱然,字义封。",
+   "taunt": "围我六月,又如何?",
+   "tilt": "守!",
+   "smug": "火起不了。",
+   "badbeat": "援军……为何不至?"
+  }
+ },
+ "weiyan": {
+  "name": "魏延",
+  "skin": "weiyan",
+  "bio": "子午谷一条路,没人肯走。",
+  "tells": {
+   "strong": "按剑而立,眼里全是长安",
+   "weak": "又一次收起自请的战书"
+  },
+  "barks": {
+   "open": "魏延,字文长。",
+   "taunt": "给兵一万,直取长安!",
+   "tilt": "谁敢扼我!",
+   "smug": "丞相不在,看我出场。",
+   "badbeat": "谁敢杀我——!"
+  }
+ },
+ "madai": {
+  "name": "马岱",
+  "skin": "madai",
+  "bio": "堂弟,断后与补刀都稳。",
+  "tells": {
+   "strong": "刀法沉实,不抢不慌",
+   "weak": "留意兄长的战马去向"
+  },
+  "barks": {
+   "open": "马岱,请战。",
+   "taunt": "岱不与兄长争锋。",
+   "tilt": "截住退路!",
+   "smug": "马家,还有人。",
+   "badbeat": "兄长……先走!"
+  }
+ },
+ "guanping": {
+  "name": "关平",
+  "skin": "guanping",
+  "bio": "义子,刀法与心性同正。",
+  "tells": {
+   "strong": "横刀护在父亲侧后",
+   "weak": "替父亲拢了拢披风"
+  },
+  "barks": {
+   "open": "关平,候教。",
+   "taunt": "辱我父者,先过我。",
+   "tilt": "随父突围!",
+   "smug": "关家刀,未失分寸。",
+   "badbeat": "父亲……孩儿先行一步。"
+  }
+ },
+ "zhoucang": {
+  "name": "周仓",
+  "skin": "zhoucang",
+  "bio": "扛刀的,脚程天下第一。",
+  "tells": {
+   "strong": "扛着八十二斤如提竹杖",
+   "weak": "望着水军旗帜直咬牙"
+  },
+  "barks": {
+   "open": "周仓,给关公扛刀!",
+   "taunt": "俺的刀,也不轻!",
+   "tilt": "踩水,也追上他!",
+   "smug": "赤兔都要歇,俺不用。",
+   "badbeat": "将军……先渡!"
+  }
+ },
+ "zhangbao": {
+  "name": "张苞",
+  "skin": "zhangbao",
+  "bio": "虎父之子,蛇矛新主。",
+  "tells": {
+   "strong": "矛出如虎,大喝开路",
+   "weak": "与关兴争功时红了脸"
+  },
+  "barks": {
+   "open": "张苞,承父之矛!",
+   "taunt": "俺爹的名号,听过吗?",
+   "tilt": "杀过去!",
+   "smug": "将门虎子。",
+   "badbeat": "兴哥……替我。"
+  }
+ },
+ "guanxing": {
+  "name": "关兴",
+  "skin": "guanxing",
+  "bio": "青龙刀的第二次出鞘。",
+  "tells": {
+   "strong": "刀随身走,快而不乱",
+   "weak": "抚过刀鞘上父亲的旧痕"
+  },
+  "barks": {
+   "open": "关兴,请战。",
+   "taunt": "家父之刀,不斩无名。",
+   "tilt": "此刀,偿父债!",
+   "smug": "虎父无犬子。",
+   "badbeat": "苞弟……先撤!"
+  }
+ },
+ "fazheng": {
+  "name": "法正",
+  "skin": "fazheng",
+  "bio": "睚眦必报,奇谋亦必报。",
+  "tells": {
+   "strong": "以目示意,锋藏在袖",
+   "weak": "轻咳,按住胸口旧疾"
+  },
+  "barks": {
+   "open": "法正,字孝直。",
+   "taunt": "恩怨,直某都记着。",
+   "tilt": "可,一击!",
+   "smug": "定军山,在局中。",
+   "badbeat": "天不假年……"
+  }
+ },
+ "yanyan": {
+  "name": "严颜",
+  "skin": "yanyan",
+  "bio": "断头将军,不降之骨。",
+  "tells": {
+   "strong": "拄刀而立,白发不乱",
+   "weak": "替身后的新附兵留了退路"
+  },
+  "barks": {
+   "open": "严颜,在此!",
+   "taunt": "只有断头将军!",
+   "tilt": "老骨,当先!",
+   "smug": "入蜀之功,有我半箭。",
+   "badbeat": "江州……终究失了。"
+  }
+ },
+ "huangquan": {
+  "name": "黄权",
+  "skin": "huangquan",
+  "bio": "归魏不归吴,两全之难。",
+  "tells": {
+   "strong": "按图直谏,声不高而理重",
+   "weak": "望着江北,久久不语"
+  },
+  "barks": {
+   "open": "黄权,字公衡。",
+   "taunt": "权不背主,亦不误国。",
+   "tilt": "水军,回援!",
+   "smug": "早谏一日,何至于此。",
+   "badbeat": "归路……断在江上。"
+  }
+ },
+ "maliang": {
+  "name": "马良",
+  "skin": "maliang",
+  "bio": "白眉最良,执笔随军。",
+  "tells": {
+   "strong": "白眉一扬,笔下成阵",
+   "weak": "把五溪的图又核了一遍"
+  },
+  "barks": {
+   "open": "马良,字季常。",
+   "taunt": "白眉,不是白长的。",
+   "tilt": "移营,不可!",
+   "smug": "图在我手。",
+   "badbeat": "营……已连成一片火……"
+  }
+ },
+ "shamoke": {
+  "name": "沙摩柯",
+  "skin": "shamoke",
+  "bio": "五溪番王,铁蒺藜骨朵。",
+  "tells": {
+   "strong": "骨朵挂腰,赤膊披发",
+   "weak": "听不懂汉营的将令,皱眉"
+  },
+  "barks": {
+   "open": "五溪沙摩柯!",
+   "taunt": "番王的骨朵,认得你!",
+   "tilt": "番兵,冲!",
+   "smug": "替汉家打仗,痛快!",
+   "badbeat": "骨朵……断了。"
+  }
+ },
+ "liaohua": {
+  "name": "廖化",
+  "skin": "liaohua",
+  "bio": "从麦城活到剑阁的人。",
+  "tells": {
+   "strong": "老而弥坚,刀仍提得动",
+   "weak": "数着还剩几个蜀中故人"
+  },
+  "barks": {
+   "open": "廖化,字元俭。",
+   "taunt": "老夫熬得过你们!",
+   "tilt": "剑阁,人在关在!",
+   "smug": "先锋,轮到我了。",
+   "badbeat": "又送走一位故人……"
+  }
+ },
+ "zhangyi": {
+  "name": "张翼",
+  "skin": "zhangyi",
+  "bio": "谏而后战,战不还顾。",
+  "tells": {
+   "strong": "按剑而谏,字字如钉",
+   "weak": "抚着剑穗上旧年的结"
+  },
+  "barks": {
+   "open": "张翼,字伯恭。",
+   "taunt": "敌虽强,阵不可乱!",
+   "tilt": "与汉共存亡!",
+   "smug": "谏了,也战了。",
+   "badbeat": "降……不可,战……不胜。"
+  }
+ },
+ "xiahouba": {
+  "name": "夏侯霸",
+  "skin": "xiahouba",
+  "bio": "投蜀的曹家旧将。",
+  "tells": {
+   "strong": "弓刀并举,家传的狠",
+   "weak": "望见魏旗,手停了一瞬"
+  },
+  "barks": {
+   "open": "夏侯霸,字仲权。",
+   "taunt": "司马氏,夺我家国!",
+   "tilt": "随姜将军,冲!",
+   "smug": "陇上,我熟。",
+   "badbeat": "家在何方……"
+  }
+ },
+ "yangyi": {
+  "name": "杨仪",
+  "skin": "yangyi",
+  "bio": "能理事,不能容人。",
+  "tells": {
+   "strong": "粮册军册,一口报清",
+   "weak": "斜眼盯着同僚的功劳簿"
+  },
+  "barks": {
+   "open": "杨仪,字威公。",
+   "taunt": "丞相帐下,离不得我。",
+   "tilt": "退军,按次序!",
+   "smug": "井然有序,也是战功。",
+   "badbeat": "为何功劳……不算我的!"
+  }
+ },
+ "zhugezhan": {
+  "name": "诸葛瞻",
+  "skin": "zhugezhan",
+  "bio": "丞相之子,绵竹最后一阵。",
+  "tells": {
+   "strong": "执父旧扇,身正影直",
+   "weak": "怕自己不配这个姓氏"
+  },
+  "barks": {
+   "open": "诸葛瞻,字思远。",
+   "taunt": "父子两代,受汉厚恩!",
+   "tilt": "绵竹,不退!",
+   "smug": "不敢辱没先父。",
+   "badbeat": "内不能除黄皓……"
+  }
+ },
+ "zhugeshang": {
+  "name": "诸葛尚",
+  "skin": "zhugeshang",
+  "bio": "将门孙,先登赴死。",
+  "tells": {
+   "strong": "束甲紧了又紧,一步不退",
+   "weak": "回望成都,眼眶通红"
+  },
+  "barks": {
+   "open": "诸葛尚,请战!",
+   "taunt": "我祖我父之名,不容辱!",
+   "tilt": "与父同阵!",
+   "smug": "孙,不坠家风。",
+   "badbeat": "父亲……儿先走一步。"
+  }
+ },
+ "guojia": {
+  "name": "郭嘉",
+  "skin": "guojia",
+  "bio": "鬼才,算尽十年不敢算寿。",
+  "tells": {
+   "strong": "掩袖轻咳,落子却狠",
+   "weak": "药盏凉了也没喝"
+  },
+  "barks": {
+   "open": "郭嘉,奉孝。",
+   "taunt": "嘉不怕输,只怕不战。",
+   "tilt": "就是现在!",
+   "smug": "遗计,仍有余温。",
+   "badbeat": "天命……不在我这十年。"
+  }
+ },
+ "xunyu": {
+  "name": "荀彧",
+  "skin": "xunyu",
+  "bio": "王佐之才,持的是汉。",
+  "tells": {
+   "strong": "端坐如仪,进言有条",
+   "weak": "摩挲着空食盒的盖"
+  },
+  "barks": {
+   "open": "荀彧,字文若。",
+   "taunt": "彧所辅,是汉室。",
+   "tilt": "此议,断不可行!",
+   "smug": "居中持重,十年无事。",
+   "badbeat": "终无汉禄可食……"
+  }
+ },
+ "jiaxu": {
+  "name": "贾诩",
+  "skin": "jiaxu",
+  "bio": "一言乱天下,再言全身退。",
+  "tells": {
+   "strong": "垂目似睡,话最少",
+   "weak": "把话在嘴里又滚了一遍"
+  },
+  "barks": {
+   "open": "贾诩,字文和。",
+   "taunt": "诩不与人结仇。",
+   "tilt": "……罢了,说。",
+   "smug": "自保,也是一种谋。",
+   "badbeat": "这一步,不该我走。"
+  }
+ },
+ "tianfeng": {
+  "name": "田丰",
+  "skin": "tianfeng",
+  "bio": "直言的谋士,狱中待胜。",
+  "tells": {
+   "strong": "长揖到地,直言不讳",
+   "weak": "镣铐声里仍在推演"
+  },
+  "barks": {
+   "open": "田丰,字元皓。",
+   "taunt": "若胜,丰必死;若败,丰亦死。",
+   "tilt": "不可战,战必败!",
+   "smug": "料中,又如何。",
+   "badbeat": "主公……终究不听。"
+  }
+ },
+ "jushou": {
+  "name": "沮授",
+  "skin": "jushou",
+  "bio": "缓战之策,没人肯听。",
+  "tells": {
+   "strong": "抱策而立,眼神如炬",
+   "weak": "望着渡河的大军叹气"
+  },
+  "barks": {
+   "open": "沮授,字公与。",
+   "taunt": "急进者,胜而不固。",
+   "tilt": "护粮!护粮!",
+   "smug": "局面,本可缓图。",
+   "badbeat": "志大而智小……"
+  }
+ },
+ "xuyou": {
+  "name": "许攸",
+  "skin": "xuyou",
+  "bio": "一个背主的名字,一把火。",
+  "tells": {
+   "strong": "拍着旧交的名帖大笑",
+   "weak": "摸着空了的酒杯四下找人"
+  },
+  "barks": {
+   "open": "许攸,字子远。",
+   "taunt": "阿瞒,还认得我吗?",
+   "tilt": "乌巢,乌巢!",
+   "smug": "功在第一。",
+   "badbeat": "你们……竟敢无礼!"
+  }
+ },
+ "liubiao": {
+  "name": "刘表",
+  "skin": "liubiao",
+  "bio": "坐谈之客,守成之主。",
+  "tells": {
+   "strong": "抚琴自若,宾礼不失",
+   "weak": "问过夫人,又问舅兄"
+  },
+  "barks": {
+   "open": "刘表,字景升。",
+   "taunt": "荆州,自守足矣。",
+   "tilt": "闭门,守城!",
+   "smug": "八俊之名,非虚。",
+   "badbeat": "身后事……托谁?"
+  }
+ },
+ "sunhao": {
+  "name": "孙皓",
+  "skin": "sunhao",
+  "bio": "暴虐的末帝,归命侯。",
+  "tells": {
+   "strong": "掷杯而起,眼中有火",
+   "weak": "数着忠臣还剩几个"
+  },
+  "barks": {
+   "open": "朕,孙皓!",
+   "taunt": "朕席视青盖,备北辰!",
+   "tilt": "沉了它!沉了江!",
+   "smug": "天命,在我。",
+   "badbeat": "归命……好一个归命!"
+  }
+ },
+ "cenhun": {
+  "name": "岑昏",
+  "skin": "cenhun",
+  "bio": "侫臣,以铁锁封江。",
+  "tells": {
+   "strong": "呈上图谶,言之凿凿",
+   "weak": "被武士拖走时还在喊冤"
+  },
+  "barks": {
+   "open": "岑昏,有长治之策。",
+   "taunt": "铁锁横江,万无一失!",
+   "tilt": "再加三道锁!",
+   "smug": "陛下圣明。",
+   "badbeat": "群臣……为何都盯着我!"
+  }
+ },
+ "duyu": {
+  "name": "杜预",
+  "skin": "duyu",
+  "bio": "左传癖,马不停蹄。",
+  "tells": {
+   "strong": "把注好的书卷搁在鞍上",
+   "weak": "数着旬日,催问水情"
+  },
+  "barks": {
+   "open": "杜预,字元凯。",
+   "taunt": "势如破竹,数节之后。",
+   "tilt": "江陵,合围!",
+   "smug": "兵不满万,破城有余。",
+   "badbeat": "待水,还是待机?"
+  }
+ },
+ "mengyou": {
+  "name": "孟优",
+  "skin": "mengyou",
+  "bio": "孟获之弟,与兄同进退。",
+  "tells": {
+   "strong": "跟着兄长的鼓点起舞",
+   "weak": "酒碗还没放下就上阵"
+  },
+  "barks": {
+   "open": "孟优,替兄守寨!",
+   "taunt": "我兄乃南中之王!",
+   "tilt": "蛮兵,围上去!",
+   "smug": "兄弟同心。",
+   "badbeat": "兄长,救我……"
+  }
+ },
+ "zhurong": {
+  "name": "祝融",
+  "skin": "zhurong",
+  "bio": "火神后裔,飞刀索命。",
+  "tells": {
+   "strong": "背插飞刀,笑得从容",
+   "weak": "留意着孩子的营帐"
+  },
+  "barks": {
+   "open": "祝融,来会会你!",
+   "taunt": "南中的女人,更烈!",
+   "tilt": "飞刀,取你!",
+   "smug": "夫人不出,谁出?",
+   "badbeat": "夫君……又被擒了?"
+  }
+ },
+ "wutugu": {
+  "name": "兀突骨",
+  "skin": "wutugu",
+  "bio": "乌戈国王,藤甲之主。",
+  "tells": {
+   "strong": "藤甲哗哗作响,身高丈二",
+   "weak": "闻见桐油味就皱眉"
+  },
+  "barks": {
+   "open": "乌戈国,兀突骨!",
+   "taunt": "刀箭不入,耐我何!",
+   "tilt": "踏平汉营!",
+   "smug": "藤甲,天下无双。",
+   "badbeat": "火……火从何来!!"
+  }
+ },
+ "dailai": {
+  "name": "带来洞主",
+  "skin": "dailai",
+  "bio": "八纳洞主,请藤甲的人。",
+  "tells": {
+   "strong": "献计时眼珠灵活地转",
+   "weak": "把功劳往自己身上揽"
+  },
+  "barks": {
+   "open": "带来洞主,有计!",
+   "taunt": "我荐的人,不会错!",
+   "tilt": "再借一洞之兵!",
+   "smug": "计是我献的。",
+   "badbeat": "这计……怎么反了!"
+  }
+ },
+ "chengyuanzhi": {
+  "name": "程远志",
+  "skin": "chengyuanzhi",
+  "bio": "黄巾头领,大业的起点。",
+  "tells": {
+   "strong": "挥刀大呼,人多势众",
+   "weak": "回头看副将还在不在"
+  },
+  "barks": {
+   "open": "苍天已死!",
+   "taunt": "黄天治世,挡者死!",
+   "tilt": "大队,压上!",
+   "smug": "太平道,百万之众。",
+   "badbeat": "那大汉……好生的狠!"
+  }
+ },
+ "hucheer": {
+  "name": "胡车儿",
+  "skin": "hucheer",
+  "bio": "能负五百斤的盗戟人。",
+  "tells": {
+   "strong": "敬酒的手稳得反常",
+   "weak": "眼神一直落在兵器架上"
+  },
+  "barks": {
+   "open": "胡车儿,敬将军一碗。",
+   "taunt": "俺只出力,不出头。",
+   "tilt": "戟,到手了!",
+   "smug": "五百斤,行走如飞。",
+   "badbeat": "戟……怎么还在他手里!"
+  }
+ },
+ "caizhong": {
+  "name": "蔡中",
+  "skin": "caizhong",
+  "bio": "诈降的双生子之一。",
+  "tells": {
+   "strong": "和弟弟口径一致,滴水不漏",
+   "weak": "兄弟俩暗号总差半拍"
+  },
+  "barks": {
+   "open": "降卒蔡中,听候差遣。",
+   "taunt": "曹公待我兄弟不薄!",
+   "tilt": "举火为号!",
+   "smug": "谁疑降者,谁心虚。",
+   "badbeat": "弟弟……先走一步。"
+  }
+ },
+ "yuanshu": {
+  "name": "袁术",
+  "skin": "yuanshu",
+  "bio": "冢中枯骨,怀璧称孤。",
+  "tells": {
+   "strong": "捧着玉玺,指节发亮",
+   "weak": "数着粮车,又数了一遍"
+  },
+  "barks": {
+   "open": "袁公路,淮南之主。",
+   "taunt": "吾家四世三公!",
+   "tilt": "朕……孤不容你!",
+   "smug": "天命归我袁氏。",
+   "badbeat": "蜜水……可有蜜水?"
+  }
+ },
+ "caopi": {
+  "name": "曹丕",
+  "skin": "caopi",
+  "bio": "受禅台上的魏文帝。",
+  "tells": {
+   "strong": "受禅诏书在手,字字千钧",
+   "weak": "回望邺城旧年的梨"
+  },
+  "barks": {
+   "open": "朕,曹丕。",
+   "taunt": "禅让,是给天下台阶。",
+   "tilt": "舜禹之事,朕知之矣!",
+   "smug": "魏代汉,天命也。",
+   "badbeat": "七步……成诗何难!"
+  }
+ },
+ "liuzhang": {
+  "name": "刘璋",
+  "skin": "liuzhang",
+  "bio": "守成之主,开门之日。",
+  "tells": {
+   "strong": "捧册垂泪,礼数不乱",
+   "weak": "望着满城父老,语塞"
+  },
+  "barks": {
+   "open": "刘璋,字季玉。",
+   "taunt": "璋非治乱世之才。",
+   "tilt": "开城……开城吧。",
+   "smug": "蜀中太平,亦是功。",
+   "badbeat": "父子相承,竟守不住。"
+  }
+ }
+}

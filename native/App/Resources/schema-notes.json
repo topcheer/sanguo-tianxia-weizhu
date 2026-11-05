@@ -1,0 +1,204 @@
+{
+ "chapterKeys": [
+  "id",
+  "scroll",
+  "year",
+  "name",
+  "type",
+  "premise",
+  "regret",
+  "map",
+  "skirmish",
+  "boss",
+  "omens",
+  "ruleText",
+  "history",
+  "yeshi",
+  "note",
+  "defeat"
+ ],
+ "chapterSample": {
+  "id": "taoyuan",
+  "scroll": 1,
+  "year": "中平元年",
+  "name": "桃园",
+  "type": "assault",
+  "premise": "若乱世始于一场酒。",
+  "regret": "黄巾之乱,是乱世的开场白。",
+  "map": [
+   "涿郡",
+   "桃林",
+   "广宗"
+  ],
+  "skirmish": {
+   "name": "黄巾 · 程远志",
+   "gen": "chengyuanzhi",
+   "traits": {
+    "武勇": 60,
+    "智谋": 20,
+    "诈术": 20,
+    "胆识": 50,
+    "耐性": 35,
+    "心性": 30
+   },
+   "stack": 450
+  },
+  "boss": {
+   "name": "黄巾渠帅",
+   "traits": {
+    "武勇": 55,
+    "智谋": 20,
+    "诈术": 20,
+    "胆识": 55,
+    "耐性": 40,
+    "心性": 30
+   },
+   "stack": 700
+  },
+  "omens": [
+   {
+    "n": "酹酒誓天",
+    "fx": "supply"
+   },
+   {
+    "n": "烈酒入喉",
+    "fx": "sow"
+   },
+   {
+    "n": "夜观乡勇",
+    "fx": "keenEye"
+   }
+  ],
+  "ruleText": "",
+  "history": "黄巾起,天下纷纷应之。",
+  "yeshi": "涿郡一场败,黄巾作鸟兽散。桃园里,酒尚温。",
+  "note": "写卷人注:此页易读,去罢。",
+  "defeat": "酒还温着,人已退场。"
+ },
+ "multiBossKeys": [
+  "id",
+  "scroll",
+  "year",
+  "name",
+  "type",
+  "premise",
+  "regret",
+  "map",
+  "skirmish",
+  "boss",
+  "omens",
+  "ruleText",
+  "history",
+  "yeshi",
+  "note",
+  "defeat"
+ ],
+ "multiBossSample": {
+  "name": "黄祖 · 江夏之箭",
+  "gen": "huangzu",
+  "traits": {
+   "武勇": 65,
+   "智谋": 55,
+   "诈术": 45,
+   "胆识": 60,
+   "耐性": 55,
+   "心性": 35
+  },
+  "stack": 850,
+  "opponents": [
+   {
+    "name": "黄祖 · 江夏之箭",
+    "gen": "huangzu",
+    "traits": {
+     "武勇": 65,
+     "智谋": 55,
+     "诈术": 45,
+     "胆识": 60,
+     "耐性": 55,
+     "心性": 35
+    },
+    "stack": 850
+   },
+   {
+    "name": "蔡瑁 · 荆州水军",
+    "gen": "caimao",
+    "traits": {
+     "武勇": 55,
+     "智谋": 60,
+     "诈术": 45,
+     "胆识": 50,
+     "耐性": 55,
+     "心性": 45
+    },
+    "stack": 700
+   }
+  ]
+ },
+ "generalKeys": [
+  "name",
+  "skin",
+  "bio",
+  "tells",
+  "barks"
+ ],
+ "generalSample": {
+  "name": "吕布",
+  "skin": "lvbu",
+  "bio": "天下第一,不肯低头。",
+  "tells": {
+   "strong": "画戟横于膝上,指节发白",
+   "weak": "赤兔不安地刨蹄"
+  },
+  "barks": {
+   "open": "天下无双,吕奉先!",
+   "taunt": "你说谁是三姓家奴?!",
+   "tilt": "方天画戟,取你首级!",
+   "smug": "还有谁?!",
+   "badbeat": "不可能……不可能!"
+  }
+ },
+ "arenaKeys": [
+  "id",
+  "size",
+  "year",
+  "name",
+  "place",
+  "era",
+  "source",
+  "lead",
+  "btitle",
+  "why",
+  "win",
+  "loss",
+  "ruleText",
+  "stack",
+  "blinds",
+  "escalate",
+  "opponents"
+ ],
+ "storyKeys": [
+  "cast",
+  "objective",
+  "coldOpen",
+  "map",
+  "battle",
+  "win",
+  "loss"
+ ],
+ "briefingKeys": [
+  "era",
+  "source",
+  "record",
+  "adaptation",
+  "lead",
+  "skirmish",
+  "boss"
+ ],
+ "counts": {
+  "chapters": 51,
+  "generals": 130,
+  "arenas": 33,
+  "stories": 51,
+  "briefings": 51
+ }
+}

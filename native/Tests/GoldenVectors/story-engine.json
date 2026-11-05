@@ -1,0 +1,419 @@
+{
+ "matchResults": [
+  {
+   "when": null,
+   "ok": true
+  },
+  {
+   "when": "page:taoyuan:yeshi",
+   "ok": true
+  },
+  {
+   "when": "page:taoyuan:history",
+   "ok": false
+  },
+  {
+   "when": "page:taoyuan:yeshi",
+   "ok": true
+  },
+  {
+   "when": "!page:taoyuan:yeshi",
+   "ok": false
+  },
+  {
+   "when": "choice:baimenlou:kill",
+   "ok": true
+  },
+  {
+   "when": "clue:jieqiao",
+   "ok": true
+  },
+  {
+   "when": "fact:factA",
+   "ok": true
+  },
+  {
+   "when": "seen:lvbu",
+   "ok": true
+  },
+  {
+   "when": "round:1",
+   "ok": true
+  },
+  {
+   "when": "hand:2",
+   "ok": false
+  },
+  {
+   "when": "multi",
+   "ok": false
+  },
+  {
+   "when": "single",
+   "ok": true
+  },
+  {
+   "when": "asZhuge",
+   "ok": false
+  },
+  {
+   "when": "omen:supply",
+   "ok": false
+  },
+  {
+   "when": [
+    "single",
+    "round:1",
+    "!fact:factA"
+   ],
+   "ok": false
+  },
+  {
+   "when": "page:baimenlou:yeshi",
+   "ok": false
+  }
+ ],
+ "stories": {
+  "taoyuan": {
+   "coldOpen": [],
+   "coldOpenAlt": [],
+   "introFirst": {},
+   "outcomeWin": {
+    "lines": []
+   },
+   "outcomeLoss": {
+    "lines": []
+   },
+   "battleBeats": []
+  },
+  "baimenlou": {
+   "coldOpen": [],
+   "coldOpenAlt": [],
+   "introFirst": {},
+   "outcomeWin": {
+    "lines": []
+   },
+   "outcomeLoss": {
+    "lines": []
+   },
+   "battleBeats": []
+  },
+  "huarong": {
+   "coldOpen": [],
+   "coldOpenAlt": [],
+   "introFirst": {},
+   "outcomeWin": {
+    "lines": []
+   },
+   "outcomeLoss": {
+    "lines": []
+   },
+   "battleBeats": []
+  },
+  "maicheng": {
+   "coldOpen": [],
+   "coldOpenAlt": [],
+   "introFirst": {},
+   "outcomeWin": {
+    "lines": []
+   },
+   "outcomeLoss": {
+    "lines": []
+   },
+   "battleBeats": []
+  },
+  "wuzhangyuan": {
+   "coldOpen": [],
+   "coldOpenAlt": [],
+   "introFirst": {},
+   "outcomeWin": {
+    "lines": []
+   },
+   "outcomeLoss": {
+    "lines": []
+   },
+   "battleBeats": []
+  },
+  "chibi": {
+   "coldOpen": [],
+   "coldOpenAlt": [],
+   "introFirst": {},
+   "outcomeWin": {
+    "lines": []
+   },
+   "outcomeLoss": {
+    "lines": []
+   },
+   "battleBeats": []
+  }
+ },
+ "encounters": {
+  "qianli": [
+   {
+    "kind": "skirmish",
+    "cfg": {
+     "name": "关隘守将"
+    }
+   },
+   {
+    "kind": "boss",
+    "round": 1,
+    "cfg": {
+     "name": "孔秀 · 东岭",
+     "gen": "kongxiu",
+     "stack": 550
+    }
+   },
+   {
+    "kind": "boss",
+    "round": 2,
+    "cfg": {
+     "name": "韩福 · 洛阳",
+     "gen": "hanfu",
+     "stack": 600
+    }
+   },
+   {
+    "kind": "boss",
+    "round": 3,
+    "cfg": {
+     "name": "卞喜 · 镇国寺",
+     "gen": "bianxi",
+     "stack": 600
+    }
+   },
+   {
+    "kind": "boss",
+    "round": 4,
+    "cfg": {
+     "name": "王植 · 荥阳",
+     "gen": "wangzhi",
+     "stack": 650
+    }
+   },
+   {
+    "kind": "boss",
+    "round": 5,
+    "cfg": {
+     "name": "秦琪 · 黄河渡",
+     "gen": "qinqi",
+     "stack": 700
+    }
+   }
+  ],
+  "sangu": [
+   {
+    "kind": "skirmish",
+    "cfg": {
+     "name": "隆中书童"
+    }
+   },
+   {
+    "kind": "boss",
+    "round": 1,
+    "cfg": {
+     "name": "卧龙 · 诸葛",
+     "gen": "zhuge",
+     "stack": 900
+    }
+   },
+   {
+    "kind": "boss",
+    "round": 2,
+    "cfg": {
+     "name": "卧龙 · 诸葛",
+     "gen": "zhuge",
+     "stack": 900
+    }
+   },
+   {
+    "kind": "boss",
+    "round": 3,
+    "cfg": {
+     "name": "卧龙 · 诸葛",
+     "gen": "zhuge",
+     "stack": 900
+    }
+   }
+  ],
+  "huainan": [
+   {
+    "kind": "skirmish",
+    "cfg": {
+     "name": "乐綝守淮南",
+     "gen": "leshen",
+     "stack": 800
+    }
+   },
+   {
+    "kind": "boss",
+    "round": 1,
+    "cfg": {
+     "name": "毌丘俭 · 辽东旧将",
+     "gen": "guanqiujian",
+     "stack": 1000
+    }
+   },
+   {
+    "kind": "boss",
+    "round": 1,
+    "cfg": {
+     "name": "文钦 · 谯郡男儿",
+     "gen": "wenqin",
+     "stack": 850
+    }
+   },
+   {
+    "kind": "boss",
+    "round": 2,
+    "cfg": {
+     "name": "诸葛诞 · 淮南都督",
+     "gen": "zhugedan",
+     "stack": 1150
+    }
+   },
+   {
+    "kind": "boss",
+    "round": 2,
+    "cfg": {
+     "name": "文鸯 · 单骑断后",
+     "gen": "wenyang",
+     "stack": 900
+    }
+   }
+  ],
+  "qiqin": [
+   {
+    "kind": "skirmish",
+    "cfg": {
+     "name": "南蛮藤甲兵"
+    }
+   },
+   {
+    "kind": "boss",
+    "round": 1,
+    "cfg": {
+     "name": "孟获 · 一擒",
+     "gen": "menghuo",
+     "stack": 650
+    }
+   },
+   {
+    "kind": "boss",
+    "round": 2,
+    "cfg": {
+     "name": "孟优 · 替兄守寨",
+     "gen": "mengyou",
+     "stack": 700
+    }
+   },
+   {
+    "kind": "boss",
+    "round": 3,
+    "cfg": {
+     "name": "祝融 · 飞刀夫人",
+     "gen": "zhurong",
+     "stack": 750
+    }
+   },
+   {
+    "kind": "boss",
+    "round": 4,
+    "cfg": {
+     "name": "带来洞主 · 诈降计",
+     "gen": "dailai",
+     "stack": 700
+    }
+   },
+   {
+    "kind": "boss",
+    "round": 5,
+    "cfg": {
+     "name": "孟获 · 银坑洞主",
+     "gen": "menghuo",
+     "stack": 800
+    }
+   },
+   {
+    "kind": "boss",
+    "round": 5,
+    "cfg": {
+     "name": "孟优 · 巡山之弟",
+     "gen": "mengyou",
+     "stack": 650
+    }
+   },
+   {
+    "kind": "boss",
+    "round": 6,
+    "cfg": {
+     "name": "兀突骨 · 藤甲军",
+     "gen": "wutugu",
+     "stack": 850
+    }
+   },
+   {
+    "kind": "boss",
+    "round": 7,
+    "cfg": {
+     "name": "孟获 · 七擒盘蛇谷",
+     "gen": "menghuo",
+     "stack": 950
+    }
+   }
+  ],
+  "chibi": [
+   {
+    "kind": "skirmish",
+    "cfg": {
+     "name": "北军水骑"
+    }
+   },
+   {
+    "kind": "boss",
+    "round": 1,
+    "cfg": {
+     "name": "曹操 · 连舫",
+     "gen": "caocao",
+     "stack": 780
+    }
+   },
+   {
+    "kind": "boss",
+    "round": 1,
+    "cfg": {
+     "name": "周瑜 · 都督",
+     "gen": "zhouyu",
+     "stack": 720
+    }
+   },
+   {
+    "kind": "boss",
+    "round": 1,
+    "cfg": {
+     "name": "诸葛亮 · 借风",
+     "gen": "zhuge",
+     "stack": 700
+    }
+   }
+  ],
+  "taoyuan": [
+   {
+    "kind": "skirmish",
+    "cfg": {
+     "name": "黄巾 · 程远志",
+     "gen": "chengyuanzhi",
+     "stack": 450
+    }
+   },
+   {
+    "kind": "boss",
+    "round": 1,
+    "cfg": {
+     "name": "黄巾渠帅",
+     "stack": 700
+    }
+   }
+  ]
+ }
+}

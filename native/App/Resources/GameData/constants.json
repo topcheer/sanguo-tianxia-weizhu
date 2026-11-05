@@ -1,0 +1,64 @@
+{
+ "SUITS": [
+  "♠",
+  "♥",
+  "♦",
+  "♣"
+ ],
+ "SUIT_RED": [
+  false,
+  true,
+  true,
+  false
+ ],
+ "RANKS": [
+  "2",
+  "3",
+  "4",
+  "5",
+  "6",
+  "7",
+  "8",
+  "9",
+  "10",
+  "J",
+  "Q",
+  "K",
+  "A"
+ ],
+ "HAND_NAMES": [
+  "高牌",
+  "一对",
+  "两对",
+  "三条",
+  "顺子",
+  "同花",
+  "葫芦",
+  "四条",
+  "同花顺"
+ ],
+ "AI_DEFAULTS": {
+  "aggr": 0.8,
+  "bluff": 0.16,
+  "semi": 0,
+  "trap": 0,
+  "read": 0,
+  "callBias": 0.04,
+  "courage": 1,
+  "plan": 0,
+  "scare": 0,
+  "valueMin": 0.82,
+  "moraleSens": 0.5,
+  "moraleStyle": "rage",
+  "tilt": 0,
+  "morale": 0
+ },
+ "TRAITS": [
+  "武勇",
+  "智谋",
+  "诈术",
+  "胆识",
+  "耐性",
+  "心性"
+ ]
+}

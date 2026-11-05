@@ -1,0 +1,300 @@
+{
+ "personas": [
+  {
+   "traits": {
+    "武勇": 50,
+    "智谋": 50,
+    "诈术": 50,
+    "胆识": 50,
+    "耐性": 50,
+    "心性": 50
+   },
+   "ai": {
+    "aggr": 0.7999999999999999,
+    "bluff": 0.16999999999999998,
+    "semi": 0.5,
+    "trap": 0.16999999999999998,
+    "read": 0.5,
+    "callBias": 0.039999999999999994,
+    "courage": 0.55,
+    "plan": 0.31875,
+    "scare": 0.26,
+    "valueMin": 0.82,
+    "moraleSens": 0.5,
+    "moraleStyle": "rage"
+   },
+   "tauntMult": 1,
+   "lieChance": 0.15000000000000002,
+   "difficulty": 50
+  },
+  {
+   "traits": {
+    "武勇": 92,
+    "智谋": 78,
+    "诈术": 30,
+    "胆识": 95,
+    "耐性": 40,
+    "心性": 70
+   },
+   "ai": {
+    "aggr": 1.178,
+    "bluff": 0.11,
+    "semi": 0.492,
+    "trap": 0.078,
+    "read": 0.78,
+    "callBias": 0.033,
+    "courage": 0.91,
+    "plan": 0.43095000000000006,
+    "scare": 0.444,
+    "valueMin": 0.7988,
+    "moraleSens": 0.30000000000000004,
+    "moraleStyle": "steady"
+   },
+   "tauntMult": 1,
+   "lieChance": 0.11,
+   "difficulty": 69
+  },
+  {
+   "traits": {
+    "武勇": 40,
+    "智谋": 96,
+    "诈术": 80,
+    "胆识": 55,
+    "耐性": 85,
+    "心性": 80
+   },
+   "ai": {
+    "aggr": 0.71,
+    "bluff": 0.26,
+    "semi": 0.864,
+    "trap": 0.636,
+    "read": 0.96,
+    "callBias": 0.0645,
+    "courage": 0.59,
+    "plan": 0.7343999999999999,
+    "scare": 0.6880000000000001,
+    "valueMin": 0.82,
+    "moraleSens": 0.19999999999999996,
+    "moraleStyle": "steady"
+   },
+   "tauntMult": 0,
+   "lieChance": 0.21000000000000002,
+   "difficulty": 75
+  },
+  {
+   "traits": {
+    "武勇": 60,
+    "智谋": 20,
+    "诈术": 10,
+    "胆识": 15,
+    "耐性": 10,
+    "心性": 10
+   },
+   "ai": {
+    "aggr": 0.8899999999999999,
+    "bluff": 0.05,
+    "semi": 0.14,
+    "trap": 0.02,
+    "read": 0.2,
+    "callBias": 0.012,
+    "courage": 0.27,
+    "plan": 0.09350000000000001,
+    "scare": 0.02,
+    "valueMin": 0.822,
+    "moraleSens": 0.9,
+    "moraleStyle": "rage"
+   },
+   "tauntMult": 2,
+   "lieChance": 0.07,
+   "difficulty": 24
+  },
+  {
+   "traits": {
+    "武勇": 50,
+    "智谋": 50,
+    "诈术": 50,
+    "胆识": 50,
+    "耐性": 50,
+    "心性": 90
+   },
+   "ai": {
+    "aggr": 0.7999999999999999,
+    "bluff": 0.16999999999999998,
+    "semi": 0.5,
+    "trap": 0.16999999999999998,
+    "read": 0.5,
+    "callBias": 0.039999999999999994,
+    "courage": 0.55,
+    "plan": 0.31875,
+    "scare": 0.26,
+    "valueMin": 0.82,
+    "moraleSens": 0.09999999999999998,
+    "moraleStyle": "steady"
+   },
+   "tauntMult": 0,
+   "lieChance": 0.15000000000000002,
+   "difficulty": 54
+  },
+  {
+   "traits": {
+    "武勇": 50,
+    "智谋": 50,
+    "诈术": 50,
+    "胆识": 50,
+    "耐性": 50,
+    "心性": 10
+   },
+   "ai": {
+    "aggr": 0.7999999999999999,
+    "bluff": 0.16999999999999998,
+    "semi": 0.5,
+    "trap": 0.16999999999999998,
+    "read": 0.5,
+    "callBias": 0.039999999999999994,
+    "courage": 0.55,
+    "plan": 0.31875,
+    "scare": 0.26,
+    "valueMin": 0.82,
+    "moraleSens": 0.9,
+    "moraleStyle": "rage"
+   },
+   "tauntMult": 2,
+   "lieChance": 0.15000000000000002,
+   "difficulty": 46
+  },
+  {
+   "traits": {
+    "武勇": 50,
+    "智谋": 50,
+    "诈术": 50,
+    "胆识": 50,
+    "耐性": 50,
+    "心性": 50
+   },
+   "ai": {
+    "aggr": 0.7999999999999999,
+    "bluff": 0.16999999999999998,
+    "semi": 0.5,
+    "trap": 0.16999999999999998,
+    "read": 0.5,
+    "callBias": 0.039999999999999994,
+    "courage": 0.55,
+    "plan": 0.31875,
+    "scare": 0.26,
+    "valueMin": 0.82,
+    "moraleSens": 0.5,
+    "moraleStyle": "rage"
+   },
+   "tauntMult": 1,
+   "lieChance": 0.15000000000000002,
+   "difficulty": 50
+  }
+ ],
+ "describe": [
+  [
+   {
+    "trait": "武勇",
+    "value": 50,
+    "label": "稳健"
+   },
+   {
+    "trait": "智谋",
+    "value": 50,
+    "label": "有识"
+   },
+   {
+    "trait": "诈术",
+    "value": 50,
+    "label": "有诈"
+   },
+   {
+    "trait": "胆识",
+    "value": 50,
+    "label": "持重"
+   },
+   {
+    "trait": "耐性",
+    "value": 50,
+    "label": "常人"
+   },
+   {
+    "trait": "心性",
+    "value": 50,
+    "label": "常人"
+   }
+  ],
+  [
+   {
+    "trait": "武勇",
+    "value": 92,
+    "label": "万夫不当"
+   },
+   {
+    "trait": "智谋",
+    "value": 78,
+    "label": "多谋"
+   },
+   {
+    "trait": "诈术",
+    "value": 30,
+    "label": "光明磊落"
+   },
+   {
+    "trait": "胆识",
+    "value": 95,
+    "label": "胆大包天"
+   },
+   {
+    "trait": "耐性",
+    "value": 40,
+    "label": "常人"
+   },
+   {
+    "trait": "心性",
+    "value": 70,
+    "label": "沉稳"
+   }
+  ],
+  [
+   {
+    "trait": "武勇",
+    "value": 40,
+    "label": "稳健"
+   },
+   {
+    "trait": "智谋",
+    "value": 96,
+    "label": "神机妙算"
+   },
+   {
+    "trait": "诈术",
+    "value": 80,
+    "label": "诡道百出"
+   },
+   {
+    "trait": "胆识",
+    "value": 55,
+    "label": "持重"
+   },
+   {
+    "trait": "耐性",
+    "value": 85,
+    "label": "坚如磐石"
+   },
+   {
+    "trait": "心性",
+    "value": 80,
+    "label": "不动如山"
+   }
+  ]
+ ],
+ "difficulty": [
+  50,
+  69,
+  75,
+  24,
+  54,
+  46,
+  50
+ ]
+}
