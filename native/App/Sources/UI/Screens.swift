@@ -1019,11 +1019,15 @@ struct GeneralIntroSheet: View {
           ZStack {
             RadialGradient(colors: [Color(hex: 0x625b3d), Color(hex: 0x252a20)],
                            center: UnitPoint(x: 0.5, y: 0.3), startRadius: 10, endRadius: 240)
-            PortraitView(skin: skin, size: min(300, geo.size.height * 0.62))
-              .offset(x: shown ? 0 : -45)
-              .scaleEffect(shown ? 1 : 1.08)
-              .opacity(shown ? 1 : 0)
-              .animation(.timingCurve(0.16, 0.84, 0.24, 1, duration: 0.8), value: shown)
+            // 立绘铺满左栏(对应 #bossIntroArt 的 object-fit: cover)
+            GeometryReader { g in
+              PortraitView(skin: skin, size: max(g.size.width, g.size.height) * 1.08)
+            }
+            .clipped()
+            .offset(x: shown ? 0 : -45)
+            .scaleEffect(shown ? 1 : 1.08)
+            .opacity(shown ? 1 : 0)
+            .animation(.timingCurve(0.16, 0.84, 0.24, 1, duration: 0.8), value: shown)
             VStack {
               Spacer()
               Text(PL("intro.caption", "残卷留影"))
@@ -1237,6 +1241,72 @@ struct StorySceneSheet: View {
 }
 
 // MARK: - 结算(朱批)
+
+/// 战果面板 —— 小规模遭遇战结束后的场景(赢/输都要停一次,对应原版牌局结算)。
+struct BattleResultSheet: View {
+  @ObservedObject var game = GameViewModel.shared
+  let win: Bool
+
+  var body: some View {
+    VStack(spacing: 18) {
+      HStack(spacing: 18) {
+        SealStamp(text: win ? L("settle.stampWin") : L("settle.stampLoss"), dim: !win)
+        VStack(alignment: .leading, spacing: 8) {
+          Text(win ? PL("battle.resultWin", "此阵已下") : PL("battle.resultLoss", "此阵未下"))
+            .font(Theme.serif(24, bold: true)).kerning(3)
+            .foregroundColor(win ? Color(hex: 0xe9d9b0) : Theme.cinnabarLight)
+          Text(win ? PL("battle.resultWinSub", "对手军资归零,你带着这一桌的军资继续行军。")
+                   : PL("battle.resultLossSub", "军资见底,这一阵没守住。"))
+            .font(Theme.serif(13)).foregroundColor(Theme.muted)
+            .fixedSize(horizontal: false, vertical: true)
+        }
+        Spacer(minLength: 0)
+      }
+      if let info = game.battleResultInfo {
+        HStack(spacing: 0) {
+          cell(PL("battle.resultOpponent", "对手"), info.opponent)
+          divider
+          cell(PL("battle.resultChips", "余军资"), "\(info.chips)")
+          divider
+          cell(PL("battle.resultOutcome", "战果"), win ? PL("battle.resultWon", "胜") : PL("battle.resultLost", "负"))
+        }
+        .padding(.vertical, 12)
+        .background(Theme.lacquer.opacity(0.5))
+        .overlay(Rectangle().strokeBorder(Theme.gold.opacity(0.25), lineWidth: 1))
+      }
+      HStack(spacing: 14) {
+        Button { game.dismissBattleResult() } label: {
+          InkButton(title: win ? PL("battle.resultContinue", "继续行军") : PL("battle.resultBack", "回目录"),
+                    prominent: true)
+        }.buttonStyle(.plain)
+          .accessibilityIdentifier("battleResult.continue")
+        if win {
+          Button { game.dismissBattleResult(); game.showCodex() } label: {
+            InkButton(title: L("settle.home"))
+          }.buttonStyle(.plain)
+        }
+      }
+    }
+    .padding(34)
+    .background(Theme.ink.opacity(0.98))
+    .frame(maxWidth: 580)
+    .overlay(Rectangle().strokeBorder(Theme.gold.opacity(0.35), lineWidth: 1))
+    .shadow(color: .black.opacity(0.6), radius: 40, y: 20)
+  }
+
+  private func cell(_ label: String, _ value: String) -> some View {
+    VStack(spacing: 6) {
+      Text(label).font(Theme.serif(10)).kerning(3).foregroundColor(Theme.muted)
+      Text(value).font(Theme.serif(17)).foregroundColor(Theme.paperLight).lineLimit(1).minimumScaleFactor(0.7)
+    }
+    .frame(maxWidth: .infinity)
+    .padding(.horizontal, 10)
+  }
+
+  private var divider: some View {
+    Rectangle().fill(Theme.gold.opacity(0.25)).frame(width: 1, height: 34)
+  }
+}
 
 struct SettleSheet: View {
   @ObservedObject var game = GameViewModel.shared

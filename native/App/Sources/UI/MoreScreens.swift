@@ -341,6 +341,9 @@ struct RootView: View {
         let delay = Double(arg.split(separator: "=").last.map(String.init) ?? "") ?? 0.6
         await game.debugStartBattle(autoAcceptAfter: delay)
       }
+      if let arg = ProcessInfo.processInfo.arguments.first(where: { $0.hasPrefix("-ggcodeDebugResult") }) {
+        game.debugShowBattleResult(win: !arg.lowercased().contains("loss"))
+      }
       #endif
     }
   }
@@ -354,6 +357,7 @@ struct RootView: View {
     case .briefing: if case .briefing(let n, let b, let r, let rs) = game.sheet { BriefingSheet(sheet: .briefing(nodeId: n, boss: b, round: r, rounds: rs)) }
     case .generalIntro(let i, let c, let b): GeneralIntroSheet(index: i, count: c, boss: b)
     case .settle(let w): SettleSheet(win: w)
+    case .battleResult(let w): BattleResultSheet(win: w)
     case .finale: FinaleSheet()
     case .annals: AnnalsSheet()
     case .settings: SettingsSheet()

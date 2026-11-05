@@ -55,6 +55,7 @@ enum Sheet: Identifiable {
   case briefing(nodeId: String, boss: Bool, round: Int, rounds: Int)
   case generalIntro(index: Int, count: Int, boss: Bool)
   case settle(win: Bool)
+  case battleResult(win: Bool)
   case finale
   case annals
   case settings
@@ -68,6 +69,7 @@ enum Sheet: Identifiable {
     case .briefing(let n, let b, _, _): return "briefing-\(n)-\(b)"
     case .generalIntro(let i, let c, let b): return "intro-\(i)-\(c)-\(b)"
     case .settle(let w): return "settle-\(w)"
+    case .battleResult(let w): return "battleResult-\(w)"
     case .finale: return "finale"
     case .annals: return "annals"
     case .settings: return "settings"
@@ -88,6 +90,8 @@ final class GameViewModel: ObservableObject {
   @Published var pendingBriefing: ((Bool) -> Void)? = nil
   @Published var pendingIntro: ((Bool) -> Void)? = nil
   @Published var settleResult: SettleChoice? = nil
+  /// 小规模遭遇战的战果(胜/负后弹一次场景,对应原版牌局结算面板)
+  @Published var battleResultInfo: (opponent: String, chips: Int, gained: Int)? = nil
   @Published var finaleChoice: ((String) -> Void)? = nil
   @Published var omenPick: ((String) -> Void)? = nil
   @Published var eventPick: ((String) -> Void)? = nil
@@ -119,7 +123,17 @@ final class GameViewModel: ObservableObject {
     guard let node = R?.nodes.first(where: { $0.type == "battle" }) ?? R?.nodes.first else { return }
     _ = await enterBattle(node, cfg: chapter["skirmish"], stack: chapter["skirmish"]["stack"].int ?? 500,
                           boss: false, round: 1, rounds: 1)
+  }  /// 截图/验收专用:直接弹出战果面板(不跑完整牌局)。
+  func debugShowBattleResult(win: Bool) {
+    if R == nil, let chapter = GameData.shared.chapters.first {
+      selectedChapter = chapter
+      startMarch(chapter, omenFx: "supply")
+    }
+    battleResultInfo = (opponent: "黄巾 · 程远志", chips: R?.chips ?? 1190, gained: 0)
+    screen = .map
+    sheet = .battleResult(win: win)
   }
+
   #endif
 
   func openChapter(_ chapter: Dyn) {
@@ -220,7 +234,13 @@ final class GameViewModel: ObservableObject {
     if node.type == "battle" {
       let win = await enterBattle(node, cfg: chapter["skirmish"], stack: chapter["skirmish"]["stack"].int ?? 500, boss: false, round: 1, rounds: 1)
       if win == nil { return } // 返回行军
-      if win == false { return await endChapter(false) }
+      if win == false {
+        // 负:先给一场战果场景,再走「回原卷」结算(史鉴)
+        await showBattleResult(node: node, win: false, cfg: chapter["skirmish"])
+        return await endChapter(false)
+      }
+      // 胜:先给一场牌局结算场景,再标记节点继续行军
+      await showBattleResult(node: node, win: true, cfg: chapter["skirmish"])
       markNodeDone(node)
       return
     }
@@ -330,7 +350,8 @@ final class GameViewModel: ObservableObject {
           sheet = .generalIntro(index: i, count: members.count, boss: boss)
           #if DEBUG
           if let d = debugAutoAcceptAfter {
-            DispatchQueue.main.asyncAfter(deadline: .now() + d) { [weak self] in self?.pendingIntro?(true) }
+            // 亮相卡停留更久(4x),便于截图取证
+            DispatchQueue.main.asyncAfter(deadline: .now() + d * 4) { [weak self] in self?.pendingIntro?(true) }
           }
           #endif
         }
@@ -498,6 +519,26 @@ final class GameViewModel: ObservableObject {
     }
     showCodex()
   }
+
+  private var battleResultContinuation: (() -> Void)? = nil
+
+  /// 牌局战果面板:胜/负后都要停一次,让玩家看清军资与对手。
+  func showBattleResult(node: MarchNode?, win: Bool, cfg: Dyn) async {
+    let before = R?.chips ?? 0
+    let opponent = cfg["name"].string
+      ?? GameData.shared.general(cfg["gen"].string)?["name"].string
+      ?? cfg["gen"].string ?? node?.name ?? ""
+    battleResultInfo = (opponent: opponent, chips: before, gained: max(0, before))
+    sheet = .battleResult(win: win)
+    await withCheckedContinuation { (cont: CheckedContinuation<Void, Never>) in
+      battleResultContinuation = { cont.resume() }
+    }
+    battleResultContinuation = nil
+    sheet = nil
+    battleResultInfo = nil
+  }
+
+  func dismissBattleResult() { battleResultContinuation?() }
 
   private var settleContinuation: CheckedContinuation<SettleChoice, Never>? = nil
 
