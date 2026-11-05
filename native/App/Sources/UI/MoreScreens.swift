@@ -312,16 +312,32 @@ final class DocumentPickerDelegate: NSObject, UIDocumentPickerDelegate {
 struct RootView: View {
   @ObservedObject var game = GameViewModel.shared
   @ObservedObject var l10n = L10n.shared
+  private var screenKey: String {
+    switch game.screen {
+    case .title: return "title"
+    case .codex: return "codex"
+    case .chapterPage: return "page"
+    case .map: return "map"
+    case .battle: return "battle"
+    case .practice: return "practice"
+    }
+  }
+
   var body: some View {
     ZStack {
-      switch game.screen {
-      case .title: TitleScreen()
-      case .codex: CodexScreen()
-      case .chapterPage: ChapterPageScreen()
-      case .map: MapScreen()
-      case .battle: BattleScreen()
-      case .practice: PracticeScreen()
+      // 屏幕交叉淡入淡出(牌局结束回行军图时不再硬切/留空桌面)
+      Group {
+        switch game.screen {
+        case .title: TitleScreen()
+        case .codex: CodexScreen()
+        case .chapterPage: ChapterPageScreen()
+        case .map: MapScreen()
+        case .battle: BattleScreen()
+        case .practice: PracticeScreen()
+        }
       }
+      .id(screenKey)
+      .transition(.opacity)
       sheetLayer
       if let toast = game.toast {
         VStack {
@@ -333,16 +349,18 @@ struct RootView: View {
         }
       }
     }
+    .animation(.easeInOut(duration: 0.32), value: screenKey)
     .task {
       _ = GameData.shared // 触发加载
       #if DEBUG
       // 截图/验收: ggcode-weizhu -ggcodeDebugBattle=0.6 (参数为战书自动确认延迟秒数)
-      if let arg = ProcessInfo.processInfo.arguments.first(where: { $0.hasPrefix("-ggcodeDebugBattle") }) {
+      let args = ProcessInfo.processInfo.arguments
+      print("[debug] args=\(args)")
+      if let arg = args.first(where: { $0.hasPrefix("-ggcodeDebugResult") }) {
+        game.debugShowBattleResult(win: !arg.lowercased().contains("loss"))
+      } else if let arg = args.first(where: { $0.hasPrefix("-ggcodeDebugBattle") }) {
         let delay = Double(arg.split(separator: "=").last.map(String.init) ?? "") ?? 0.6
         await game.debugStartBattle(autoAcceptAfter: delay)
-      }
-      if let arg = ProcessInfo.processInfo.arguments.first(where: { $0.hasPrefix("-ggcodeDebugResult") }) {
-        game.debugShowBattleResult(win: !arg.lowercased().contains("loss"))
       }
       #endif
     }

@@ -123,15 +123,16 @@ final class GameViewModel: ObservableObject {
     guard let node = R?.nodes.first(where: { $0.type == "battle" }) ?? R?.nodes.first else { return }
     _ = await enterBattle(node, cfg: chapter["skirmish"], stack: chapter["skirmish"]["stack"].int ?? 500,
                           boss: false, round: 1, rounds: 1)
-  }  /// 截图/验收专用:直接弹出战果面板(不跑完整牌局)。
+  }  /// 截图/验收专用:模拟「牌局刚结束」的真实条件(牌桌仍在画面上)再走战果面板。
   func debugShowBattleResult(win: Bool) {
     if R == nil, let chapter = GameData.shared.chapters.first {
       selectedChapter = chapter
       startMarch(chapter, omenFx: "supply")
     }
+    screen = .battle
+    activeBattle = nil
     battleResultInfo = (opponent: "黄巾 · 程远志", chips: R?.chips ?? 1190, gained: 0)
-    screen = .map
-    sheet = .battleResult(win: win)
+    Task { await showBattleResult(node: nil, win: win, cfg: R?.chapter["skirmish"] ?? Dyn([:])) }
   }
 
   #endif
@@ -396,6 +397,8 @@ final class GameViewModel: ObservableObject {
     run3.chips = max(0, result.finalStack)
     R = run3
     activeBattle = nil
+    // 牌局一结束就离开牌桌:否则结算/战果等待期间会露出一张空桌面
+    if screen == .battle { screen = .map }
     // 列传入账
     if members.count == 1, let gid = members[0].gen {
       progressStore.annalsRecord(gid, win: result.win)
@@ -476,6 +479,9 @@ final class GameViewModel: ObservableObject {
         progressStore.progress.story.clues[chapterId] = true
       }
     }
+    // 结算面板不要叠在空牌桌上:牌局结束后先回到行军图/目录背景
+    activeBattle = nil
+    if screen == .battle { screen = R == nil ? .codex : .map }
     sheet = .settle(win: win)
     let choice: SettleChoice = await withCheckedContinuation { cont in
       settleContinuation = cont
@@ -528,6 +534,9 @@ final class GameViewModel: ObservableObject {
     let opponent = cfg["name"].string
       ?? GameData.shared.general(cfg["gen"].string)?["name"].string
       ?? cfg["gen"].string ?? node?.name ?? ""
+    // 牌局已结束:先离开牌桌(否则战果面板后面会留一张空桌面),再在图上的战果场景里展示
+    activeBattle = nil
+    screen = .map
     battleResultInfo = (opponent: opponent, chips: before, gained: max(0, before))
     sheet = .battleResult(win: win)
     await withCheckedContinuation { (cont: CheckedContinuation<Void, Never>) in
