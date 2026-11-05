@@ -1758,5 +1758,229 @@
   "en": "The Tell Book",
   "es": "Libro de tells",
   "de": "Das Tell-Buch"
+ },
+ "title.badge": {
+  "zh": "残卷",
+  "ja": "残巻",
+  "ko": "잔권",
+  "en": "The Tattered Scroll",
+  "es": "Rollo dañado",
+  "de": "Die zerfledderte Rolle"
+ },
+ "prologue.0.kicker": {
+  "zh": "序 · 残卷择人",
+  "ja": "序 · 残巻、人を選ぶ",
+  "ko": "서 · 잔권이 사람을 고르다",
+  "en": "Prologue · The Scroll Chooses Its Reader",
+  "es": "Prólogo · El rollo elige a su lector",
+  "de": "Prolog · Die Rolle erwählt"
+ },
+ "prologue.0.title": {
+  "zh": "史书只写了沙场，没写牌桌。",
+  "ja": "史書が記したのは戦場だけ。牌卓のことは書かれていない。",
+  "ko": "사서에는 전장만 적혔고, 패桌은 없었다.",
+  "en": "History recorded the battlefield, never the card table.",
+  "es": "La historia solo registró los campos de batalla, no las mesas de póker.",
+  "de": "Die Chronik schrieb nur vom Schlachtfeld, nicht vom Kartentisch."
+ },
+ "prologue.0.text": {
+  "zh": "你是残卷外的读卷人。写卷人请你进入《英雄记》，不是让你无名顶替刘备或关羽，而是让你坐到故人身旁，在关键一局里替他们争另一种可能。集齐三十枚野史朱印，就能见到写卷人，问出这卷书为何选中你。",
+  "ja": "あなたは残巻の外にいる読み手。写し手はあなたを『英雄記』へ招いた——劉備や関羽の名を無断で名乗るためではなく、かつての者たちの隣に座り、肝心の一局で彼らに別の可能性を争わせるために。野史の朱印を三十枚集めれば写し手に会える。この巻がなぜあなたを選んだのか、問いただすことができる。",
+  "ko": "당신은 잔권 밖의 독권인입니다. 두루마리 필자가 《영웅기》로 당신을 초대합니다. 이름 없이 유비나 관우를 대신하라는 것이 아니라, 옛 사람들 곁에 앉아 결정적인 한 판에서 그들에게 또 다른 가능성을 쟁취해 주라는 것입니다. 야사 주인 30개를 모으면 두루마리 필자를 만나 이 책이 왜 당신을 택했는지 물을 수 있습니다.",
+  "en": "You are the reader outside the tattered scroll. The Writer asks you to step into the Records of Heroes—not to stand nameless in place of Liu Bei or Guan Yu, but to sit beside old friends and, in one crucial hand, win them another possibility. Collect thirty crimson seals of the apocrypha and you will meet the Writer, and learn why this scroll chose you.",
+  "es": "Eres el lector que está fuera del rollo dañado. El Escriba te invita a entrar en la Crónica de los Héroes, no para que suplantes sin nombre a Liu Bei o a Guan Yu, sino para que te sientes junto a los antiguos y, en una mano decisiva, les ganes otra posibilidad. Reúne treinta sellos bermejos de la historia no oficial y podrás ver al Escriba, y preguntarle por qué este rollo te eligió a ti.",
+  "de": "Du bist ein Leser außerhalb der zerfledderten Rolle. Der Schreiber bittet dich, in die „Aufzeichnung der Helden“ einzutreten – nicht um namenlos an die Stelle von Liu Bei oder Guan Yu zu treten, sondern um dich neben die Alten zu setzen und in einer entscheidenden Runde eine andere Möglichkeit für sie zu erstreiten. Sammle dreißig rote Siegel der inoffiziellen Geschichte, dann kannst du den Schreiber treffen und ihn fragen, warum diese Rolle dich erwählt hat."
+ },
+ "prologue.0.p0": {
+  "zh": "四卷五十回，都有史籍底稿与演义边界",
+  "ja": "全四巻五十回、いずれも史籍の底本と演義の境界を持つ",
+  "ko": "사권 오십 회, 모두 사료의 초고와 연의의 경계가 있다",
+  "en": "Four volumes, fifty chapters, each with historical sources and the bounds of the romance",
+  "es": "Cuatro rollos y cincuenta capítulos, todos con un fondo histórico y un límite de la leyenda",
+  "de": "Vier Bände, fünfzig Kapitel – jedes mit historischer Vorlage und den Grenzen der Romanfassung"
+ },
+ "prologue.0.p1": {
+  "zh": "故人记得你的胜负，也记得你的选择",
+  "ja": "かつての者たちはあなたの勝負も、あなたの選択も覚えている",
+  "ko": "옛 사람들은 당신의 승패를 기억하고, 당신의 선택도 기억한다",
+  "en": "Old friends remember your wins—and your choices",
+  "es": "Los antiguos recuerdan tus victorias y derrotas, y también tus decisiones",
+  "de": "Die Alten erinnern sich an deine Siege und Niederlagen – und an deine Entscheidungen"
+ },
+ "prologue.1.kicker": {
+  "zh": "序 · 胜负皆成章",
+  "ja": "序 · 勝敗こそ章を成す",
+  "ko": "서 · 승패 모두 장이 된다",
+  "en": "Prologue · Every Outcome Becomes a Chapter",
+  "es": "Prólogo · Victoria y derrota se escriben",
+  "de": "Prolog · Sieg und Niederlage werden Schrift"
+ },
+ "prologue.1.title": {
+  "zh": "赢，改一段遗憾；输，多懂一层真相。",
+  "ja": "勝てば、ひとつの無念を書き換える。負ければ、真実をひと層深く知る。",
+  "ko": "이기면 한 가지 한을 고치고, 지면 진실을 한 겹 더 안다.",
+  "en": "Win, and rewrite a regret; lose, and understand a deeper truth.",
+  "es": "Ganar, cambia un lamento; perder, revela una verdad más.",
+  "de": "Ein Sieg schreibt ein Bedauern um; eine Niederlage lehrt dich eine Wahrheit mehr."
+ },
+ "prologue.1.text": {
+  "zh": "赢下关底，原卷会被改写成野史。兵败并非白打：你会亲历原本的遗憾，并得到一条“史鉴”，下次重来便知道该看什么。",
+  "ja": "関所の最後を勝ち抜けば、原巻は野史へと書き換えられる。敗れても無駄ではない——本来の無念をこの身で味わい、『史鑑』をひとつ得る。次に挑むとき、何を見るべきかがわかる。",
+  "ko": "관문을 이기면 원권이 야사로 다시 쓰입니다. 패배도 헛되지 않습니다. 당신은 원래의 한을 직접 겪고 '사감' 하나를 얻어, 다음에 다시 시작할 때 무엇을 봐야 할지 알게 됩니다.",
+  "en": "Win the final hand and the original record is rewritten as apocrypha. A defeat is not wasted: you live through the regret as it was, and earn a Lesson—so next time you know what to watch.",
+  "es": "Si vences en el desafío final, el registro original se reescribe como historia no oficial. Ser derrotado no es en vano: revives el lamento original y recibes una 'Lección de la historia'; la próxima vez sabrás qué observar.",
+  "de": "Gewinnst du das letzte Gefecht, wird die Originalaufzeichnung zur inoffiziellen Geschichte umgeschrieben. Eine verlorene Schlacht ist nicht umsonst: Du erlebst das ursprüngliche Bedauern und erhältst eine „Lehre“, sodass du beim nächsten Versuch weißt, worauf du achten musst."
+ },
+ "prologue.1.p0": {
+  "zh": "胜则改写，败亦入卷",
+  "ja": "勝てば書き換え、敗れても巻に入る",
+  "ko": "이기면 고쳐 쓰고, 져도 책에 남는다",
+  "en": "Victory rewrites; defeat also enters the scroll",
+  "es": "La victoria reescribe, la derrota también entra en el rollo",
+  "de": "Sieg schreibt um, Niederlage geht ins Buch ein"
+ },
+ "prologue.1.p1": {
+  "zh": "大关改写后，下一卷才会展开",
+  "ja": "大関を書き換えてこそ、次の巻が開ける",
+  "ko": "큰 관문이 바뀌어야 다음 권이 펼쳐진다",
+  "en": "Only after a major chapter is rewritten does the next volume unfold",
+  "es": "Solo tras reescribir el gran desafío se despliega el siguiente rollo",
+  "de": "Erst nach der Umwandlung des großen Gefechts öffnet sich der nächste Band"
+ },
+ "prologue.2.kicker": {
+  "zh": "序 · 牌桌就是战场",
+  "ja": "序 · 牌卓は戦場である",
+  "ko": "서 · 패桌이 곧 전장",
+  "en": "Prologue · The Card Table Is the Battlefield",
+  "es": "Prólogo · La mesa es el campo de batalla",
+  "de": "Prolog · Der Kartentisch ist das Schlachtfeld"
+ },
+ "prologue.2.title": {
+  "zh": "两张手牌，五张公共牌；赢军资，不争一手意气。",
+  "ja": "手札二枚、共有札五枚。軍資金を奪え、一手の意地に賭けるな。",
+  "ko": "핸드 두 장, 공용 카드 다섯 장. 군자금을 이겨라, 한 수의 기세를 다투지 말고.",
+  "en": "Two hole cards, five community cards; win war chests, not arguments.",
+  "es": "Dos cartas propias, cinco comunitarias; gana el arca de guerra, no una mano de orgullo.",
+  "de": "Zwei Handkarten, fünf Gemeinschaftskarten; gewinne Kriegskasse, nicht eine Hand aus Stolz."
+ },
+ "prologue.2.text": {
+  "zh": "用手牌与公共牌组成最大的五张牌型。通过下注、跟注或弃牌保住军资；让关底敌将的军资归零，就能改写本回。多人局要淘汰所有敌将。",
+  "ja": "手札と共有札で最大の五枚の役を作る。ベット・コール・フォールドで軍資金を守り、関所の敵将の軍資金をゼロにすれば本回を書き換えられる。多人数戦では敵将すべてを脱落させよ。",
+  "ko": "핸드와 공용 카드로 가장 강한 다섯 장의 족보를 만드세요. 벳, 콜, 폴드로 군자금을 지키세요. 관문 적장의 군자금을 0으로 만들면 이번 회를 고쳐 쓸 수 있습니다. 다인전에서는 모든 적장을 탈락시켜야 합니다.",
+  "en": "Make the best five-card hand from your hole cards and the community cards. Protect your war chest through bets, calls, and folds; reduce the enemy general's war chest to zero and you rewrite this chapter. In multi-player games, eliminate every enemy general.",
+  "es": "Con tus cartas y las comunitarias forma la mejor mano de cinco. Apuesta, iguala o retírate para conservar tu arca de guerra; si dejas en cero el arca del general enemigo del desafío final, reescribirás este capítulo. En partidas multijugador, elimina a todos los generales enemigos.",
+  "de": "Bilde aus Hand- und Gemeinschaftskarten die beste Fünf-Karten-Kombination. Setze, gehe mit oder passe, um deine Kriegskasse zu retten; bringst du die Kriegskasse des feindlichen Generals im letzten Gefecht auf null, kannst du dieses Kapitel umschreiben. In Runden mit mehreren Spielern musst du alle feindlichen Generäle ausschalten."
+ },
+ "prologue.2.p0": {
+  "zh": "过牌／跟注：控制代价",
+  "ja": "チェック／コール：代価を制御する",
+  "ko": "체크/콜: 비용을 통제한다",
+  "en": "Check/Call: control the cost",
+  "es": "Pasar / igualar: controla el coste",
+  "de": "Schieben / Mitgehen: den Preis kontrollieren"
+ },
+ "prologue.2.p1": {
+  "zh": "加注／全压：逼对手做难选的决定",
+  "ja": "レイズ／オールイン：相手に苦しい選択を迫る",
+  "ko": "레이즈/올인: 상대에게 어려운 결정을 강요한다",
+  "en": "Bet/All-In: force the hard decision",
+  "es": "Subir / all-in: obliga al rival a decidir bajo presión",
+  "de": "Erhöhen / All-In: den Gegner zu einer schweren Entscheidung zwingen"
+ },
+ "prologue.3.kicker": {
+  "zh": "序 · 牌外三门课",
+  "ja": "序 · 牌外の三つの課",
+  "ko": "서 · 패桌 밖의 세 가지 수업",
+  "en": "Prologue · Three Lessons Beyond the Cards",
+  "es": "Prólogo · Tres lecciones fuera de las cartas",
+  "de": "Prolog · Drei Lektionen jenseits der Karten"
+ },
+ "prologue.3.title": {
+  "zh": "看牌，也看人；争先，也借天时。",
+  "ja": "牌を見て、人も見る。先を争い、天時も借りる。",
+  "ko": "패를 보고, 사람도 본다. 앞서 가고, 천시도 빌린다.",
+  "en": "Read the cards, and the man; seize the initiative, and borrow the Omen.",
+  "es": "Mira las cartas, pero también a los hombres; compite, pero aprovecha el Presagio.",
+  "de": "Lies die Karten und die Menschen; strebe voran, aber nutze auch den Omen."
+ },
+ "prologue.3.text": {
+  "zh": "开卷前选一项天时。牌桌上，武将的神态会泄露强弱，但也会作假；摊牌后破绽簿会验证你的判断。每手可用一次攻心，挑动他的心性。",
+  "ja": "開巻の前に天時をひとつ選ぶ。牌卓では武将の様子が強弱を漏らすが、偽りもある。ショーダウン後、テル帳があなたの読みを検証する。毎ハンド一度だけ攻心を使え、相手の心性を揺さぶれる。",
+  "ko": "책을 펼치기 전에 천시 하나를 고르세요. 패桌에서 무장의 표정은 강약을 드러내지만, 속임수도 있습니다. 쇼다운 후 텔 노트가 당신의 판단을 검증합니다. 매 핸드마다 공심을 한 번 사용해 그의 심성을 자극할 수 있습니다.",
+  "en": "Before the volume opens, choose an Omen. At the table, a general's manner will betray strength or weakness—but can also be feigned; after the showdown, the tell log tests your judgment. Once per hand you may use Goading to stir his Temper.",
+  "es": "Antes de abrir el rollo, elige un Presagio. En la mesa, el semblante de los generales delata fuerza o debilidad, pero también pueden fingir; tras el showdown, el registro de tells verificará tu juicio. En cada mano puedes usar una vez Provocación para alterar su Genio.",
+  "de": "Wähle vor dem Öffnen der Rolle ein Omen. Am Tisch verrät die Miene eines Generals Stärke oder Schwäche – doch sie kann auch täuschen; nach dem Showdown prüft das Tell-Buch dein Urteil. Pro Hand kannst du einmal Anstacheln einsetzen, um an sein Gemüt zu rühren."
+ },
+ "prologue.3.p0": {
+  "zh": "破绽：强未必强，弱未必弱",
+  "ja": "テル：強きは必ずしも強からず、弱きは必ずしも弱からず",
+  "ko": "텔: 강한 자가 반드시 강하지 않고, 약한 자가 반드시 약하지 않다",
+  "en": "Tell: strong may not be strong, weak may not be weak",
+  "es": "Tell: fuerte no siempre es fuerte, débil no siempre es débil",
+  "de": "Tell: Stark ist nicht immer stark, schwach nicht immer schwach"
+ },
+ "prologue.3.p1": {
+  "zh": "攻心：张飞易怒，司马懿不动如山",
+  "ja": "攻心：張飛は怒りやすく、司馬懿は山のごとく動じない",
+  "ko": "공심: 장비는 쉽게 성내고, 사마의는 산처럼 움직이지 않는다",
+  "en": "Goading: Zhang Fei is quick to anger; Sima Yi is immovable as a mountain",
+  "es": "Provocación: Zhang Fei es colérico, Sima Yi es inamovible como una montaña",
+  "de": "Anstacheln: Zhang Fei ist jähzornig, Sima Yi bleibt unerschütterlich wie ein Berg"
+ },
+ "prologue.3.p2": {
+  "zh": "行军：军资相随，途中选择会留下后果",
+  "ja": "行軍：軍資金は供をし、道中の選択は後に残る",
+  "ko": "행군: 군자금이 따라오고, 도중의 선택이 결과를 남긴다",
+  "en": "The march: your war chest follows you; choices along the way leave consequences",
+  "es": "Marcha: el arca de guerra te acompaña; las decisiones del camino dejan consecuencias",
+  "de": "Der Marsch: Die Kriegskasse folgt dir, und Entscheidungen unterwegs hinterlassen Folgen"
+ },
+ "prologue.next": {
+  "zh": "继 续",
+  "ja": "次へ",
+  "ko": "계 속",
+  "en": "Continue",
+  "es": "Continuar",
+  "de": "Weiter"
+ },
+ "prologue.nextSub": {
+  "zh": "点击推进 · 可随时跳过",
+  "ja": "クリックで進む · いつでもスキップ可",
+  "ko": "클릭하여 진행 · 언제든 건너뛸 수 있음",
+  "en": "Click to advance · Skip anytime",
+  "es": "Haz clic para avanzar · Puedes saltar en cualquier momento",
+  "de": "Klicken zum Fortfahren · jederzeit überspringbar"
+ },
+ "prologue.open": {
+  "zh": "展 开 英 雄 记",
+  "ja": "英 雄 記 を 開 く",
+  "ko": "영 웅 기 펼 치 기",
+  "en": "Open the Records of Heroes",
+  "es": "Abrir la Crónica de los Héroes",
+  "de": "Aufzeichnung der Helden öffnen"
+ },
+ "prologue.openSub": {
+  "zh": "进入残卷目录",
+  "ja": "残巻の目録へ",
+  "ko": "잔권 목록으로 들어가기",
+  "en": "Enter the tattered scroll's contents",
+  "es": "Entrar al índice del rollo dañado",
+  "de": "Zum Verzeichnis der zerfledderten Rolle"
+ },
+ "prologue.skip": {
+  "zh": "跳过背景，直接入卷",
+  "ja": "背景を飛ばして巻へ",
+  "ko": "배경 건너뛰고 바로 입권",
+  "en": "Skip the background, enter the scroll",
+  "es": "Saltar el contexto e ir al rollo",
+  "de": "Hintergrund überspringen und direkt in die Rolle eintreten"
+ },
+ "prologue.hint": {
+  "zh": "背景序章约三十秒；机制还会在第一次操作时分别提示",
+  "ja": "背景序章は約三十秒。操作時にもその都度、仕組みを案内する",
+  "ko": "배경 서장은 약 30초. 메커니즘은 첫 조작 시 각각 안내됩니다",
+  "en": "The background prologue lasts about thirty seconds; mechanics will be explained again at your first action",
+  "es": "El prólogo de contexto dura unos treinta segundos; las mecánicas se explican al realizar la primera acción",
+  "de": "Der Hintergrundprolog dauert etwa dreißig Sekunden; die Mechaniken werden beim ersten Ausführen jeweils erklärt"
  }
 }

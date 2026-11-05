@@ -17,6 +17,7 @@ struct JSON {
   }
   var int: Int? { double.map(Int.init) }
   var intArray: [Int]? { (value as? [Any])?.compactMap { ($0 as? NSNumber)?.intValue } }
+  var stringArray: [String] { (value as? [Any] ?? []).compactMap { $0 as? String } }
   var doubleArray: [Double]? { (value as? [Any])?.compactMap { ($0 as? NSNumber)?.doubleValue } }
   var bool: Bool? { value as? Bool }
   subscript(key: String) -> JSON { JSON(dict[key] ?? NSNull()) }

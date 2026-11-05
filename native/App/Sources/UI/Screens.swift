@@ -3,179 +3,6 @@ import SwiftUI
 
 // MARK: - 开卷(标题 + 四步序章)
 
-struct TitleScreen: View {
-  @ObservedObject var game = GameViewModel.shared
-  @ObservedObject var l10n = L10n.shared
-  @State private var step = 0
-  @State private var wipe: Double = 0
-
-  private let kickers = ["序 · 残卷择人", "序 · 胜负皆成章", "序 · 牌桌就是战场", "序 · 牌外三门课"]
-  private let lessons: [(String, String, [String])] = [
-    ("史书只写了沙场，没写牌桌。",
-     "你是残卷外的读卷人。写卷人请你进入《英雄记》，不是让你无名顶替刘备或关羽，而是让你坐到故人身旁，在关键一局里替他们争另一种可能。集齐三十枚野史朱印，就能见到写卷人，问出这卷书为何选中你。",
-     ["四卷五十回，都有史籍底稿与演义边界", "故人记得你的胜负，也记得你的选择"]),
-    ("赢，改一段遗憾；输，多懂一层真相。",
-     "赢下关底，原卷会被改写成野史。兵败并非白打：你会亲历原本的遗憾，并得到一条“史鉴”，下次重来便知道该看什么。",
-     ["胜则改写，败亦入卷", "大关改写后，下一卷才会展开"]),
-    ("两张手牌，五张公共牌；赢军资，不争一手意气。",
-     "用手牌与公共牌组成最大的五张牌型。通过下注、跟注或弃牌保住军资；让关底敌将的军资归零，就能改写本回。多人局要淘汰所有敌将。",
-     ["过牌／跟注：控制代价", "加注／全压：逼对手做难选的决定"]),
-    ("看牌，也看人；争先，也借天时。",
-     "开卷前选一项天时。牌桌上，武将的神态会泄露强弱，但也会作假；摊牌后破绽簿会验证你的判断。每手可用一次攻心，挑动他的心性。",
-     ["破绽：强未必强，弱未必弱", "攻心：张飞易怒，司马懿不动如山", "行军：军资相随，途中选择会留下后果"]),
-  ]
-
-  var body: some View {
-    GeometryReader { geo in
-      ZStack {
-        Theme.inkDeep
-        RadialGradient(colors: [.clear,
-                                Color(hex: 0x0c100b).opacity(0.13),
-                                Color(hex: 0x090c09).opacity(0.73)],
-                       center: UnitPoint(x: 0.65, y: 0.40),
-                       startRadius: 40,
-                       endRadius: max(geo.size.width, geo.size.height) * 0.8)
-        IntroLandscape()
-        // 右侧竖排落款
-        HStack {
-          Spacer()
-          VStack(spacing: 20) {
-            Text(PL("title.foot1", "卷帙有尽")).font(Theme.serif(11)).kerning(7).foregroundColor(Color(hex: 0x625f50))
-            Text(PL("title.foot2", "野史无生")).font(Theme.serif(11)).kerning(7).foregroundColor(Color(hex: 0x625f50))
-          }
-          .padding(.trailing, 30)
-          .padding(.top, geo.size.height * 0.30)
-        }
-        VStack(alignment: .leading, spacing: 0) {
-          HStack(spacing: 12) {
-            Text(PL("title.badge", "残卷"))
-              .font(Theme.serif(12)).kerning(3).foregroundColor(Color(hex: 0xd9caa7))
-              .padding(.horizontal, 8).padding(.vertical, 4)
-              .overlay(Rectangle().strokeBorder(Color(hex: 0x88734b), lineWidth: 1))
-            Text(PL("title.era", "英雄记 · 汉末异闻"))
-              .font(Theme.serif(13)).kerning(7).foregroundColor(Color(hex: 0x9d967e))
-          }
-          .padding(.bottom, 26)
-          HStack(alignment: .center, spacing: 26) {
-            Text(PL("title.seal", "汉"))
-              .font(Theme.serif(38)).foregroundColor(Color(hex: 0xe3c9a0))
-              .frame(width: 56, height: 82)
-              .background(Color(hex: 0x8d332b))
-              .overlay(Rectangle().strokeBorder(Color(hex: 0xb95c48), lineWidth: 2))
-              .overlay(Rectangle().strokeBorder(Color(hex: 0x6e2b25), lineWidth: 1).padding(6))
-              .rotationEffect(.degrees(-2))
-              .shadow(color: .black.opacity(0.33), radius: 18, y: 8)
-            VStack(alignment: .leading, spacing: 0) {
-              Text(L("title.name"))
-                .font(Theme.serif(min(80, max(48, geo.size.width * 0.056)))).kerning(9)
-                .foregroundColor(Color(hex: 0xe5d8b7))
-                .shadow(color: Color(hex: 0x171911).opacity(0.85), radius: 0, x: 0, y: 5)
-                .shadow(color: .black.opacity(0.5), radius: 20, y: 12)
-                .lineLimit(1).minimumScaleFactor(0.5)
-              Text("HEROES AT THE TABLE")
-                .font(.custom("Georgia", size: 11)).kerning(6)
-                .foregroundColor(Color(hex: 0x8c876f)).padding(.top, 13)
-            }
-            // 魏 蜀 — 吴(原版置于标题右侧并与字行对齐)
-            HStack(spacing: 16) {
-              ForEach(Array(["魏", "蜀", "吴"].enumerated()), id: \.offset) { i, k in
-                if i == 2 {
-                  Rectangle().fill(Color(hex: 0x655d46)).frame(width: 26, height: 1)
-                }
-                Text(k).font(Theme.serif(24)).foregroundColor(Color(hex: 0xb4a57e))
-                  .frame(width: 54, height: 54)
-                  .background(Color(hex: 0x1d2118).opacity(0.67))
-                  .overlay(Circle().strokeBorder(Color(hex: 0x736748), lineWidth: 1))
-              }
-            }
-            .padding(.leading, 30).padding(.top, 18)
-          }
-          .padding(.bottom, 42)
-          // 序章(擦除切换)
-          VStack(alignment: .leading, spacing: 0) {
-            Text("\(kickers[step]) · \(step + 1) / 4")
-              .font(Theme.serif(12)).kerning(5).foregroundColor(Color(hex: 0x9d967e))
-            Text(lessons[step].0)
-              .font(Theme.serif(24, bold: true)).kerning(2)
-              .foregroundColor(Color(hex: 0xe9dcbb))
-              .padding(.top, 16)
-            Text(lessons[step].1)
-              .font(Theme.serif(16)).lineSpacing(12).kerning(2)
-              .foregroundColor(Color(hex: 0xc3b99e))
-              .fixedSize(horizontal: false, vertical: true)
-              .frame(maxWidth: 760, alignment: .leading)
-              .padding(.top, 12)
-            HStack(spacing: 0) {
-              ForEach(Array(lessons[step].2.enumerated()), id: \.offset) { index, point in
-                if index > 0 {
-                  Rectangle().fill(Color(hex: 0x6b6450)).frame(width: 1, height: 13).padding(.horizontal, 12)
-                }
-                Text(point).font(Theme.serif(13)).kerning(1).foregroundColor(Color(hex: 0x8f8a73))
-              }
-            }
-            .padding(.top, 18)
-            HStack(spacing: 12) {
-              Button { advance() } label: {
-                VStack(spacing: 4) {
-                  Text(step < 3 ? PL("prologue.next", "继 续") : PL("prologue.open", "展 开 英 雄 记"))
-                    .font(Theme.serif(21)).kerning(4).foregroundColor(Color(hex: 0xf0dfb8))
-                  Text(step < 3 ? PL("prologue.nextSub", "点击推进 · 可随时跳过") : PL("prologue.openSub", "进入残卷目录"))
-                    .font(Theme.serif(10)).kerning(3).foregroundColor(Color(hex: 0xc9a887))
-                }
-                .frame(minWidth: 212)
-                .padding(.horizontal, 34).padding(.top, 13).padding(.bottom, 11)
-                .background(Color(hex: 0x713129))
-                .overlay(Rectangle().strokeBorder(Color(hex: 0xb16b4f), lineWidth: 1))
-                .overlay(Rectangle().strokeBorder(Color(hex: 0x411d18).opacity(0.5), lineWidth: 3).padding(3))
-                .shadow(color: .black.opacity(0.33), radius: 12, y: 6)
-              }
-              .buttonStyle(.plain)
-              Button { game.enterGame() } label: {
-                Text(PL("prologue.skip", "跳过背景，直接入卷"))
-                  .font(Theme.serif(12)).kerning(2).foregroundColor(Color(hex: 0xaaa38c))
-                  .padding(.horizontal, 14).padding(.vertical, 9)
-                  .overlay(Rectangle().strokeBorder(Color(hex: 0x5d5b48), lineWidth: 1))
-              }
-              .buttonStyle(.plain)
-            }
-            .padding(.top, 30)
-            Text(PL("prologue.hint", "背景序章约三十秒；机制还会在第一次操作时分别提示"))
-              .font(Theme.serif(11)).kerning(2).foregroundColor(Color(hex: 0x777662))
-              .padding(.top, 22)
-          }
-          .modifier(WipeUp(progress: wipe))
-          Spacer(minLength: 16)
-        }
-        .frame(maxWidth: 1180, alignment: .leading)
-        .padding(.leading, max(24, geo.size.width * 0.05))
-        .padding(.trailing, 60)
-        .padding(.top, 36)
-      }
-      .overlay(alignment: .bottom) {
-        HStack(spacing: 6) {
-          Text(PL("app.version", "v1.0.0 · 单机残卷")).font(.system(size: 9)).foregroundColor(Color(hex: 0x8c8b78))
-          ForEach([PL("footer.fullscreen", "全屏"), PL("footer.settings", "设置")], id: \.self) { label in
-            Text(label).font(.system(size: 9)).foregroundColor(Color(hex: 0xc9b88a))
-              .padding(.horizontal, 7).padding(.vertical, 1)
-              .overlay(RoundedRectangle(cornerRadius: 3).strokeBorder(Color(hex: 0x6b5c33), lineWidth: 1))
-          }
-        }
-        .padding(.bottom, 4)
-      }
-    }
-  }
-
-  private func advance() {
-    if step >= 3 { game.enterGame(); return }
-    // 原版:160ms 向上擦除,再 620ms 自上而下落入
-    withAnimation(.easeIn(duration: 0.16)) { wipe = 1 }
-    DispatchQueue.main.asyncAfter(deadline: .now() + 0.17) {
-      step += 1
-      wipe = 1
-      withAnimation(.timingCurve(0.22, 0.75, 0.2, 1, duration: 0.62)) { wipe = 0 }
-    }
-  }
-}
 
 /// 开卷背景:月、远山、近山、江线、旗(对应 intro-landscape SVG)。
 struct IntroLandscape: View {
@@ -421,14 +248,49 @@ struct CodexScreen: View {
 // 简易流式布局
 struct FlowLayout<Content: View>: View {
   var spacing: CGFloat = 8
+  var lineSpacing: CGFloat?
   var content: Content
-  init(spacing: CGFloat = 8, @ViewBuilder content: () -> Content) {
+  init(spacing: CGFloat = 8, lineSpacing: CGFloat? = nil, @ViewBuilder content: () -> Content) {
     self.spacing = spacing
+    self.lineSpacing = lineSpacing
     self.content = content()
   }
   var body: some View {
-    LazyVGrid(columns: [GridItem(.adaptive(minimum: 130), alignment: .leading)], alignment: .leading, spacing: spacing) {
-      content
+    _FlowLayoutImpl(spacing: spacing, lineSpacing: lineSpacing ?? spacing) { content }
+  }
+}
+
+/// 真实换行流式布局(对齐 CSS flex-wrap:同一行内按 spacing,行间按 lineSpacing)。
+private struct _FlowLayoutImpl: Layout {
+  var spacing: CGFloat
+  var lineSpacing: CGFloat
+
+  func sizeThatFits(proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) -> CGSize {
+    let maxW = proposal.width ?? .infinity
+    var x: CGFloat = 0, y: CGFloat = 0, lineH: CGFloat = 0, widest: CGFloat = 0
+    for sv in subviews {
+      let s = sv.sizeThatFits(.unspecified)
+      if x > 0, x + s.width > maxW {
+        widest = max(widest, x - spacing)
+        x = 0; y += lineH + lineSpacing; lineH = 0
+      }
+      x += s.width + spacing
+      lineH = max(lineH, s.height)
+    }
+    widest = max(widest, x - spacing)
+    return CGSize(width: min(widest, maxW == .infinity ? widest : maxW), height: y + lineH)
+  }
+
+  func placeSubviews(in bounds: CGRect, proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) {
+    var x = bounds.minX, y = bounds.minY, lineH: CGFloat = 0
+    for sv in subviews {
+      let s = sv.sizeThatFits(.unspecified)
+      if x > bounds.minX, x + s.width > bounds.maxX {
+        x = bounds.minX; y += lineH + lineSpacing; lineH = 0
+      }
+      sv.place(at: CGPoint(x: x, y: y), proposal: ProposedViewSize(s))
+      x += s.width + spacing
+      lineH = max(lineH, s.height)
     }
   }
 }

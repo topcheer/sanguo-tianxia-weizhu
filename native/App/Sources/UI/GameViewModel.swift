@@ -106,6 +106,22 @@ final class GameViewModel: ObservableObject {
     withAnimation { screen = .codex }
   }
 
+  #if DEBUG
+  /// 截图/验收专用:绕过开卷与目录,直接落进第一场「遭遇战」。
+  /// autoAcceptAfter = 战书/亮相自动确认的延迟秒数(给截图留时间)。
+  var debugAutoAcceptAfter: Double?
+
+  func debugStartBattle(autoAcceptAfter: Double) async {
+    guard let chapter = GameData.shared.chapters.first(where: { !($0["map"].stringArray.isEmpty) }) else { return }
+    selectedChapter = chapter
+    startMarch(chapter, omenFx: "supply")
+    debugAutoAcceptAfter = autoAcceptAfter
+    guard let node = R?.nodes.first(where: { $0.type == "battle" }) ?? R?.nodes.first else { return }
+    _ = await enterBattle(node, cfg: chapter["skirmish"], stack: chapter["skirmish"]["stack"].int ?? 500,
+                          boss: false, round: 1, rounds: 1)
+  }
+  #endif
+
   func openChapter(_ chapter: Dyn) {
     selectedChapter = chapter
     screen = .chapterPage
@@ -275,6 +291,11 @@ final class GameViewModel: ObservableObject {
         cont.resume(returning: ok)
       }
       sheet = .briefing(nodeId: node?.id ?? "", boss: boss, round: round, rounds: rounds)
+      #if DEBUG
+      if let d = debugAutoAcceptAfter {
+        DispatchQueue.main.asyncAfter(deadline: .now() + d) { [weak self] in self?.pendingBriefing?(true) }
+      }
+      #endif
     }
     guard accepted else { return nil }
 
@@ -307,6 +328,11 @@ final class GameViewModel: ObservableObject {
             cont.resume(returning: true)
           }
           sheet = .generalIntro(index: i, count: members.count, boss: boss)
+          #if DEBUG
+          if let d = debugAutoAcceptAfter {
+            DispatchQueue.main.asyncAfter(deadline: .now() + d) { [weak self] in self?.pendingIntro?(true) }
+          }
+          #endif
         }
         markSceneSeen(&progressStore.progress, R!.chapter["id"].string ?? "", introId)
       }

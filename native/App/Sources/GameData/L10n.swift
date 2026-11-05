@@ -52,6 +52,12 @@ public final class L10n: ObservableObject {
     reload()
   }
 
+  /// 读取某语言的语言包(测试用:校验键集合覆盖)。
+  public func loadPackForTesting(_ lang: AppLanguage) -> [String: String]? {
+    let pack = loadPack(lang)
+    return pack.isEmpty ? nil : pack
+  }
+
   private func loadPack(_ lang: AppLanguage) -> [String: String] {
     guard let url = Bundle.main.url(forResource: lang.rawValue, withExtension: "json", subdirectory: "Localizations"),
           let data = try? Data(contentsOf: url),

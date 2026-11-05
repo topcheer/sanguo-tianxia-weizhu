@@ -335,6 +335,13 @@ struct RootView: View {
     }
     .task {
       _ = GameData.shared // 触发加载
+      #if DEBUG
+      // 截图/验收: ggcode-weizhu -ggcodeDebugBattle=0.6 (参数为战书自动确认延迟秒数)
+      if let arg = ProcessInfo.processInfo.arguments.first(where: { $0.hasPrefix("-ggcodeDebugBattle") }) {
+        let delay = Double(arg.split(separator: "=").last.map(String.init) ?? "") ?? 0.6
+        await game.debugStartBattle(autoAcceptAfter: delay)
+      }
+      #endif
     }
   }
 

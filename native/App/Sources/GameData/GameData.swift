@@ -10,21 +10,25 @@ public final class GameData {
   public private(set) var telllines: Dyn      // {INTENT_NOTES, FAMOUS, ARCHETYPE}
 
   private init() {
-    func load(_ name: String) -> Dyn {
-      let bundle = Bundle.main
-      guard let url = bundle.url(forResource: name, withExtension: "json", subdirectory: "GameData"),
-            let d = Dyn(data: (try? Data(contentsOf: url)) ?? Data()) else {
-        return Dyn(NSNull())
-      }
-      return d
+    func raw(_ name: String) -> Any {
+      guard let url = Bundle.main.url(forResource: name, withExtension: "json", subdirectory: "GameData"),
+            let data = try? Data(contentsOf: url),
+            let obj = try? JSONSerialization.jsonObject(with: data) else { return NSNull() }
+      return obj
     }
-    chaptersRoot = load("chapters")
-    generals = load("generals")
-    practice = load("practice")
-    story = load("story")
-    telllines = load("telllines")
+    for name in ["chapters", "generals", "practice", "story", "telllines"] {
+      pristineJSON[name] = raw(name)
+    }
+    chaptersRoot = Dyn(pristineJSON["chapters"] ?? NSNull())
+    generals = Dyn(pristineJSON["generals"] ?? NSNull())
+    practice = Dyn(pristineJSON["practice"] ?? NSNull())
+    story = Dyn(pristineJSON["story"] ?? NSNull())
+    telllines = Dyn(pristineJSON["telllines"] ?? NSNull())
     applyLocalization(L10n.shared)
   }
+
+  /// 原始(未本地化)JSON 快照。切语言时从这里重建,避免在已翻译文本上叠加覆盖。
+  private var pristineJSON: [String: Any] = [:]
 
   // MARK: 章节访问
 
@@ -85,6 +89,12 @@ public final class GameData {
   /// 应用语言包:zh 之外的语言用覆盖表就地替换数据文本。
   public func applyLocalization(_ l10n: L10n) {
     let pack = l10n.contentPack
+    // 总是从原始快照重建:zh → ja → zh 来回切换不会残留旧译文。
+    if let v = pristineJSON["chapters"] { chaptersRoot = Dyn(v) }
+    if let v = pristineJSON["generals"] { generals = Dyn(v) }
+    if let v = pristineJSON["practice"] { practice = Dyn(v) }
+    if let v = pristineJSON["story"] { story = Dyn(v) }
+    if let v = pristineJSON["telllines"] { telllines = Dyn(v) }
     // chapters
     var root = chaptersRoot.value
     if var chaptersArr = (root as? [String: Any])?["chapters"] as? [Any] {
