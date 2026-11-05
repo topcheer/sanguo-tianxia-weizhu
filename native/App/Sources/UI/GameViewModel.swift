@@ -97,6 +97,27 @@ final class GameViewModel: ObservableObject {
   @Published var eventPick: ((String) -> Void)? = nil
   @Published var storyChoicePick: ((Dyn?) -> Void)? = nil
   @Published var activeBattle: BattleEngine? = nil
+  /// 玩家行动提示:由引擎侧 provider 直接驱动,不依赖视图 onAppear 时序
+  @Published var actionPrompt: (view: ActionView, presets: [BattleEngine.BetPreset])? = nil
+  private var actionContinuation: ResumeOnce<AIDecision>? = nil
+
+  /// 引擎请求玩家决策(唯一入口;保证每局只等一次)
+  func awaitPlayerAction(_ view: ActionView, _ presets: [BattleEngine.BetPreset]) async -> AIDecision {
+    await withCheckedContinuation { cont in
+      let once = ResumeOnce(cont)
+      Task { @MainActor in
+        self.actionContinuation = once
+        self.actionPrompt = (view, presets)
+      }
+    }
+  }
+
+  func submitPlayerAction(_ decision: AIDecision) {
+    actionPrompt = nil
+    let once = actionContinuation
+    actionContinuation = nil
+    once?.resume(decision)
+  }
   @Published var practiceArena: Dyn? = nil
   @Published var toast: String? = nil
 
@@ -307,9 +328,10 @@ final class GameViewModel: ObservableObject {
 
     // 战书确认
     let accepted: Bool = await withCheckedContinuation { cont in
+      let once = ResumeOnce(cont)
       pendingBriefing = { ok in
         self.sheet = nil
-        cont.resume(returning: ok)
+        once.resume(ok)
       }
       sheet = .briefing(nodeId: node?.id ?? "", boss: boss, round: round, rounds: rounds)
       #if DEBUG
@@ -344,9 +366,10 @@ final class GameViewModel: ObservableObject {
       let seen = sceneSeen(P, R!.chapter["id"].string ?? "", introId)
       if !seen {
         _ = await withCheckedContinuation { (cont: CheckedContinuation<Bool, Never>) in
+          let once = ResumeOnce(cont)
           pendingIntro = { _ in
             self.sheet = nil
-            cont.resume(returning: true)
+            once.resume(true)
           }
           sheet = .generalIntro(index: i, count: members.count, boss: boss)
           #if DEBUG
@@ -373,6 +396,10 @@ final class GameViewModel: ObservableObject {
     config.keenEye = R!.keenEye
 
     let engine = BattleEngine(config: config)
+    engine.playerActionProvider = { [weak self] view, presets in
+      guard let self else { return AIDecision(type: "check") }
+      return await self.awaitPlayerAction(view, presets)
+    }
     engine.oddsEnabled = { [weak engine] in
       ProgressStore.shared.progress.settings.equityAssist && engine != nil
     }
@@ -385,8 +412,8 @@ final class GameViewModel: ObservableObject {
     activeBattle = engine
     screen = .battle
 
-    let result: (win: Bool, finalStack: Int) = await withCheckedContinuation { (cont: CheckedContinuation<(win: Bool, finalStack: Int), Never>) in
-      battleEndContinuation = cont
+    let result: (win: Bool, finalStack: Int) = await withCheckedContinuation { cont in
+      battleEndContinuation = ResumeOnce(cont)
       Task.detached { [weak engine] in
         guard let engine else { return }
         await engine.run()
@@ -410,11 +437,13 @@ final class GameViewModel: ObservableObject {
     return result.win
   }
 
-  private var battleEndContinuation: CheckedContinuation<(win: Bool, finalStack: Int), Never>? = nil
+  private var battleEndContinuation: ResumeOnce<(win: Bool, finalStack: Int)>? = nil
 
   func handleBattleEvent(_ event: BattleEvent, engine: BattleEngine, members: inout [BattleOpponentConfig]) {
     if case .end(let win, let finalStack) = event {
-      battleEndContinuation?.resume(returning: (win, finalStack))
+      let cont = battleEndContinuation
+      battleEndContinuation = nil
+      cont?.resume((win, finalStack))
     }
   }
 
@@ -484,7 +513,7 @@ final class GameViewModel: ObservableObject {
     if screen == .battle { screen = R == nil ? .codex : .map }
     sheet = .settle(win: win)
     let choice: SettleChoice = await withCheckedContinuation { cont in
-      settleContinuation = cont
+      settleContinuation = ResumeOnce(cont)
     }
     settleContinuation = nil
     sheet = nil
@@ -540,7 +569,8 @@ final class GameViewModel: ObservableObject {
     battleResultInfo = (opponent: opponent, chips: before, gained: max(0, before))
     sheet = .battleResult(win: win)
     await withCheckedContinuation { (cont: CheckedContinuation<Void, Never>) in
-      battleResultContinuation = { cont.resume() }
+      let once = ResumeOnce(cont)
+      battleResultContinuation = { once.resume(()) }
     }
     battleResultContinuation = nil
     sheet = nil
@@ -549,7 +579,7 @@ final class GameViewModel: ObservableObject {
 
   func dismissBattleResult() { battleResultContinuation?() }
 
-  private var settleContinuation: CheckedContinuation<SettleChoice, Never>? = nil
+  private var settleContinuation: ResumeOnce<SettleChoice>? = nil
 
   struct SettleChoice {
     var r: String  // next | retry | home
@@ -557,7 +587,7 @@ final class GameViewModel: ObservableObject {
   }
 
   func chooseSettle(_ choice: SettleChoice) {
-    settleContinuation?.resume(returning: choice)
+    settleContinuation?.resume(choice)
   }
 
   func chooseFinale(_ key: String) {
@@ -606,9 +636,10 @@ final class GameViewModel: ObservableObject {
     }
     // 战书
     let accepted: Bool = await withCheckedContinuation { cont in
+      let once = ResumeOnce(cont)
       pendingBriefing = { ok in
         self.sheet = nil
-        cont.resume(returning: ok)
+        once.resume(ok)
       }
       sheet = .briefing(nodeId: "practice-\(arena["id"].string ?? "")", boss: false, round: 1, rounds: 1)
     }
@@ -623,19 +654,25 @@ final class GameViewModel: ObservableObject {
     config.escalateEvery = arena["escalate"].int ?? 6
 
     let engine = BattleEngine(config: config)
+    engine.playerActionProvider = { [weak self] view, presets in
+      guard let self else { return AIDecision(type: "check") }
+      return await self.awaitPlayerAction(view, presets)
+    }
     engine.oddsEnabled = { ProgressStore.shared.progress.settings.equityAssist }
     engine.onEvent = { [weak self] event in
       Task { @MainActor in
         if case .end(let win, let finalStack) = event {
-          self?.battleEndContinuation?.resume(returning: (win, finalStack))
+          let cont = self?.battleEndContinuation
+          self?.battleEndContinuation = nil
+          cont?.resume((win, finalStack))
         }
       }
     }
     activeBattle = engine
     screen = .battle
 
-    let result: (win: Bool, finalStack: Int) = await withCheckedContinuation { (cont: CheckedContinuation<(win: Bool, finalStack: Int), Never>) in
-      battleEndContinuation = cont
+    let result: (win: Bool, finalStack: Int) = await withCheckedContinuation { cont in
+      battleEndContinuation = ResumeOnce(cont)
       Task.detached { [weak engine] in
         guard let engine else { return }
         await engine.run()

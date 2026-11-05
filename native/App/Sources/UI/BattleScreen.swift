@@ -385,23 +385,22 @@ struct BattleScreen: View {
 
 struct ActionBanner: View {
   @ObservedObject var game = GameViewModel.shared
-  @State private var prompt: (ActionView, [BattleEngine.BetPreset])? = nil
-  @State private var pending: ((AIDecision) -> Void)? = nil
 
   var body: some View {
     HStack(spacing: 10) {
-      if let (view, presets) = prompt {
+      if let prompt = game.actionPrompt {
+        let view = prompt.view
         if view.toCall > 0 {
-          actionButton(L("action.fold"), danger: true) { submit(.init(type: "fold")) }
-          actionButton(view.toCall >= view.stack ? "\(L("action.allinCall")) \(view.stack)" : "\(L("action.call")) \(view.toCall)") { submit(.init(type: "call")) }
+          actionButton(L("action.fold"), danger: true) { game.submitPlayerAction(.init(type: "fold")) }
+          actionButton(view.toCall >= view.stack ? "\(L("action.allinCall")) \(view.stack)" : "\(L("action.call")) \(view.toCall)") { game.submitPlayerAction(.init(type: "call")) }
         } else {
-          actionButton(L("action.check")) { submit(.init(type: "check")) }
+          actionButton(L("action.check")) { game.submitPlayerAction(.init(type: "check")) }
         }
-        ForEach(Array(presets.enumerated()), id: \.offset) { _, p in
-          actionButton("\(p.label) \(p.amount)") { submit(.init(type: "raise", amount: p.amount)) }
+        ForEach(Array(prompt.presets.enumerated()), id: \.offset) { _, p in
+          actionButton("\(p.label) \(p.amount)") { game.submitPlayerAction(.init(type: "raise", amount: p.amount)) }
         }
         if view.stack > 0 && view.canRaise {
-          actionButton("\(L("action.allin")) \(view.stack)", prominent: true) { submit(.init(type: "allin")) }
+          actionButton("\(L("action.allin")) \(view.stack)", prominent: true) { game.submitPlayerAction(.init(type: "allin")) }
         }
       } else {
         Text(game.activeBattle?.spectate == true ? L("battle.spectating") : " ")
@@ -409,34 +408,25 @@ struct ActionBanner: View {
       }
     }
     .frame(minHeight: 44)
-    .onAppear { installProvider() }
-    .onDisappear { game.activeBattle?.playerActionProvider = nil }
-  }
-
-  private func installProvider() {
-    guard let engine = game.activeBattle else { return }
-    engine.playerActionProvider = { view, presets in
-      await withCheckedContinuation { (cont: CheckedContinuation<AIDecision, Never>) in
-        Task { @MainActor in
-          self.prompt = (view, presets)
-          self.pending = { decision in
-            self.prompt = nil
-            cont.resume(returning: decision)
-          }
-        }
-      }
-    }
-  }
-
-  private func submit(_ decision: AIDecision) {
-    prompt = nil
-    pending?(decision)
   }
 
   private func actionButton(_ label: String, prominent: Bool = false, danger: Bool = false, action: @escaping () -> Void) -> some View {
     Button(action: action) {
       InkButton(title: label, prominent: prominent, danger: danger)
     }.buttonStyle(.plain)
+  }
+}
+
+/// 一次性续体包装:重复 resume 在 DEBUG 下断言,release 下静默忽略。
+final class ResumeOnce<T> {
+  private var consumed = false
+  private var cont: CheckedContinuation<T, Never>?
+  init(_ cont: CheckedContinuation<T, Never>) { self.cont = cont }
+  func resume(_ value: T) {
+    if consumed { return }
+    consumed = true
+    cont?.resume(returning: value)
+    cont = nil
   }
 }
 

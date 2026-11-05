@@ -92,7 +92,8 @@ public final class BattleEngine: ObservableObject {
   public var opponents: [Seat] { Array(seats.dropFirst()) }
   public private(set) var handNum = 0
   public private(set) var blinds: [Int]
-  public private(set) var board: [Int] = []
+  // 公共牌必须逐街刷新:牌桌直接渲染 board,不发布就不会在翻牌/转牌/河牌时出现
+  @Published public private(set) var board: [Int] = []
   public private(set) var deckLog: [Int] = []
   public private(set) var H: Hand? = nil
   public private(set) var over = false
