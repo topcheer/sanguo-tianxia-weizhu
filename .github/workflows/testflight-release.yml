@@ -1,0 +1,179 @@
+name: testflight-release
+
+# san TestFlight 全链路(参考 ggcode deploy-mas.yml 已验收配方):
+# macOS runner 上:双 p12 导入(openssl 预解析 + 90s 看门狗 + -A 配方)
+# → macOS 测试 → iOS 归档导出+fastlane pilot → macOS 归档+productbuild pkg
+# → fastlane deliver → 轮询 build VALID → 外测组挂载+Beta App Review 提交。
+# 版本号由仓库 project.yml 决定(bump 是一次 commit),CI 构建所提交的状态。
+# 证书复用既有对(Distribution 56KZWJPL66 / Installer 5LUDF9R6LY),
+# 严格遵守"能复用绝不新建"铁律 —— 本 workflow 不创建任何证书。
+
+on:
+  workflow_dispatch:
+    inputs:
+      submit_external:
+        description: "构建后自动挂 Ext 组并提交外测 Beta 审核"
+        type: boolean
+        default: true
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: testflight-release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    name: build + upload + external beta (macos)
+    runs-on: macos-14
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install xcodegen
+        run: brew install xcodegen
+
+      - name: Generate Xcode project
+        working-directory: native
+        run: xcodegen generate
+
+      - name: Read build version
+        id: ver
+        working-directory: native
+        run: |
+          VER=$(xcodebuild -project SanguoWeizhu.xcodeproj -scheme SanguoWeizhu_iOS -showBuildSettings 2>/dev/null | awk '/ CURRENT_PROJECT_VERSION =/{print $3; exit}')
+          echo "ver=$VER" >> "$GITHUB_OUTPUT"
+          echo "build version: $VER"
+
+      # ---- credentials(ggcode deploy-mas 验收配方;密码走 secrets)----
+      - name: Setup keychain + import certs
+        env:
+          SAN_DIST_P12: ${{ secrets.SAN_DIST_P12 }}
+          SAN_DIST_P12_PW: ${{ secrets.SAN_DIST_P12_PW }}
+          SAN_INSTALLER_P12: ${{ secrets.SAN_INSTALLER_P12 }}
+          SAN_INSTALLER_P12_PW: ${{ secrets.SAN_INSTALLER_P12_PW }}
+        run: |
+          set -euo pipefail
+          KC="san_ci.keychain"
+          security create-keychain -p "" "$KC"
+          security list-keychains -d user -s "$KC" "$(security list-keychains -d user | tr -d '\"')"
+          security set-keychain-settings "$KC"
+          openssl pkcs12 -info -in <(printf '%s' "$SAN_DIST_P12" | base64 -d) -noout -passin "pass:$SAN_DIST_P12_PW" >/dev/null 2>&1 \
+            || { echo "::error::distribution p12 bytes/password bad (pre-parse)"; exit 1; }
+          openssl pkcs12 -info -in <(printf '%s' "$SAN_INSTALLER_P12" | base64 -d) -noout -passin "pass:$SAN_INSTALLER_P12_PW" >/dev/null 2>&1 \
+            || { echo "::error::installer p12 bytes/password bad (pre-parse)"; exit 1; }
+          printf '%s' "$SAN_DIST_P12" | base64 -d > "$RUNNER_TEMP/dist.p12"
+          printf '%s' "$SAN_INSTALLER_P12" | base64 -d > "$RUNNER_TEMP/installer.p12"
+          echo "=== import distribution p12 (90s watchdog) ==="
+          if ! perl -e 'alarm 90; exec @ARGV' security import "$RUNNER_TEMP/dist.p12" -k "$KC" -P "$SAN_DIST_P12_PW" -A -t cert -f pkcs12 2>&1; then
+            echo "::error::DISTRIBUTION P12 import failed/timed out (90s)"; exit 1
+          fi
+          echo "=== import installer p12 (90s watchdog) ==="
+          if ! perl -e 'alarm 90; exec @ARGV' security import "$RUNNER_TEMP/installer.p12" -k "$KC" -P "$SAN_INSTALLER_P12_PW" -A -t cert -f pkcs12 2>&1; then
+            echo "::error::INSTALLER P12 import failed/timed out (90s)"; exit 1
+          fi
+          curl -sSfo "$RUNNER_TEMP/wwdr.pem" https://www.apple.com/certificatefiles/AppleWWDRCAG3.pem
+          security import "$RUNNER_TEMP/wwdr.pem" -k "$KC"
+          security set-key-partition-list -S apple-tool:,apple: -s -k "" "$KC" >/dev/null
+          security find-identity -v -p codesigning "$KC" | tee "$RUNNER_TEMP/ids.txt"
+          grep -q "Apple Distribution" "$RUNNER_TEMP/ids.txt" || { echo "::error::Apple Distribution identity missing"; exit 1; }
+          grep -q "Mac Developer Installer" "$RUNNER_TEMP/ids.txt" || { echo "::error::Installer identity missing"; exit 1; }
+
+      - name: Install provisioning profiles
+        env:
+          SAN_IOS_PROFILE: ${{ secrets.SAN_IOS_PROFILE }}
+          SAN_MAC_PROFILE: ${{ secrets.SAN_MAC_PROFILE }}
+        run: |
+          set -euo pipefail
+          DIR="$HOME/Library/MobileDevice/Provisioning Profiles"
+          mkdir -p "$DIR"
+          printf '%s' "$SAN_IOS_PROFILE" | base64 -d > "$DIR/46687758-1d6a-4510-91b1-d6ff54a9a758.mobileprovision"
+          printf '%s' "$SAN_MAC_PROFILE" | base64 -d > "$DIR/7d18dcfd-ba65-4263-aff8-e73c027aa1af.mobileprovision"
+          ls "$DIR"
+
+      - name: macOS tests
+        working-directory: native
+        run: |
+          set -o pipefail
+          xcodebuild -project SanguoWeizhu.xcodeproj -scheme SanguoWeizhu_macOS \
+            -configuration Debug -destination 'platform=macOS' test 2>&1 | xcbeautify -q || \
+          xcodebuild -project SanguoWeizhu.xcodeproj -scheme SanguoWeizhu_macOS \
+            -configuration Debug -destination 'platform=macOS' test 2>&1 | tail -40
+
+      - name: Archive + export iOS IPA
+        working-directory: native
+        run: |
+          set -euo pipefail
+          if ! perl -e 'alarm 1500; exec @ARGV' xcodebuild archive \
+            -project SanguoWeizhu.xcodeproj -scheme SanguoWeizhu_iOS \
+            -configuration Release -destination 'generic/platform=iOS' \
+            -archivePath "$RUNNER_TEMP/SaniOS.xcarchive" \
+            CODE_SIGN_STYLE=Manual DEVELOPMENT_TEAM=EGZFS7M525 \
+            CODE_SIGN_IDENTITY="Apple Distribution" \
+            PROVISIONING_PROFILE_SPECIFIER="dev.ggcode.san AppStore" 2>&1 | tail -30; then
+            echo "::error::iOS archive failed (1500s watchdog)"; exit 1
+          fi
+          xcodebuild -exportArchive -archivePath "$RUNNER_TEMP/SaniOS.xcarchive" \
+            -exportOptionsPlist ios/fastlane/ExportOptions.plist \
+            -exportPath "$RUNNER_TEMP/ios_export" | tail -5
+          ls -la "$RUNNER_TEMP/ios_export/"
+
+      - name: Upload iOS (fastlane pilot)
+        working-directory: native/ios
+        env:
+          SAN_API_KEY_ID: ${{ secrets.SAN_API_KEY_ID }}
+          SAN_API_ISSUER: ${{ secrets.SAN_API_ISSUER }}
+          SAN_API_KEY_P8: ${{ secrets.SAN_API_KEY_P8 }}
+        run: fastlane upload_testflight ipa:"$RUNNER_TEMP/ios_export/sanguo-weizhu.ipa"
+
+      - name: Archive macOS + productbuild pkg
+        working-directory: native
+        run: |
+          set -euo pipefail
+          if ! perl -e 'alarm 1500; exec @ARGV' xcodebuild archive \
+            -project SanguoWeizhu.xcodeproj -scheme SanguoWeizhu_macOS \
+            -configuration Release -destination 'generic/platform=macOS' \
+            -archivePath "$RUNNER_TEMP/SanMac.xcarchive" \
+            CODE_SIGN_STYLE=Manual DEVELOPMENT_TEAM=EGZFS7M525 \
+            CODE_SIGN_IDENTITY="Apple Distribution" \
+            PROVISIONING_PROFILE_SPECIFIER="dev.ggcode.san Mac AppStore" 2>&1 | tail -30; then
+            echo "::error::macOS archive failed (1500s watchdog)"; exit 1
+          fi
+          APP="$RUNNER_TEMP/SanMac.xcarchive/Products/Applications/sanguo-weizhu.app"
+          codesign -f -vvv --keychain "san_ci.keychain" \
+            --sign "Apple Distribution: Junjun Zhang (EGZFS7M525)" \
+            --options runtime --timestamp "$APP" 2>&1 | tail -5
+          if ! perl -e 'alarm 300; exec @ARGV' productbuild --component "$APP" /Applications \
+            --sign "3rd Party Mac Developer Installer: Junjun Zhang (EGZFS7M525)" \
+            --keychain "san_ci.keychain" \
+            --timestamp "$RUNNER_TEMP/sanguo-weizhu-mac.pkg" 2>&1 | tail -5; then
+            echo "::error::productbuild failed (300s watchdog)"; exit 1
+          fi
+          ls -la "$RUNNER_TEMP/sanguo-weizhu-mac.pkg"
+
+      - name: Upload macOS pkg (fastlane deliver)
+        working-directory: native/ios
+        env:
+          SAN_API_KEY_ID: ${{ secrets.SAN_API_KEY_ID }}
+          SAN_API_ISSUER: ${{ secrets.SAN_API_ISSUER }}
+          SAN_API_KEY_P8: ${{ secrets.SAN_API_KEY_P8 }}
+        run: fastlane upload_mac_pkg pkg:"$RUNNER_TEMP/sanguo-weizhu-mac.pkg"
+
+      - name: External beta (attach Ext group + Beta App Review)
+        if: ${{ inputs.submit_external != false }}
+        env:
+          SAN_API_KEY_ID: ${{ secrets.SAN_API_KEY_ID }}
+          SAN_API_ISSUER: ${{ secrets.SAN_API_ISSUER }}
+          SAN_API_KEY_P8: ${{ secrets.SAN_API_KEY_P8 }}
+          BUILD_VER: ${{ steps.ver.outputs.ver }}
+        run: |
+          # 轮询至双平台 build VALID(最多 ~25min),再幂等挂组+提交审核
+          for i in $(seq 1 50); do
+            OUT=$(python3 scripts/asc_external_beta.py 2>&1) && { echo "$OUT"; exit 0; }
+            echo "attempt $i: $OUT" | tail -2
+            [ $i -eq 50 ] && { echo "::error::builds never reached VALID in 25min"; exit 1; }
+            sleep 30
+          done
