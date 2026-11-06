@@ -151,6 +151,7 @@ jobs:
           fi
           APP="$RUNNER_TEMP/SanMac.xcarchive/Products/Applications/sanguo-weizhu.app"
           codesign -f -vvv --keychain "san_ci.keychain" \
+            --entitlements "$GITHUB_WORKSPACE/native/App/San-macOS.entitlements" \
             --sign "Apple Distribution: Junjun Zhang (EGZFS7M525)" \
             --options runtime --timestamp "$APP" 2>&1 | tail -5
           if ! perl -e 'alarm 300; exec @ARGV' productbuild --component "$APP" /Applications \
