@@ -31,16 +31,26 @@ targets:
       - path: App/Assets.xcassets
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.topcheer.sanguo-weizhu
+        PRODUCT_BUNDLE_IDENTIFIER: dev.ggcode.san
         PRODUCT_NAME: sanguo-weizhu
         PRODUCT_MODULE_NAME: SanguoWeizhu
         CODE_SIGN_IDENTITY: "-"
         SUPPORTS_MACCATALYST: false
+        CURRENT_PROJECT_VERSION: "2026110601"
+        DEVELOPMENT_TEAM: EGZFS7M525
+      configs:
+        Release:
+          CODE_SIGN_IDENTITY: "Apple Distribution"
+          CODE_SIGN_STYLE: Manual
+          PROVISIONING_PROFILE_SPECIFIER: "dev.ggcode.san Mac AppStore"
+          DEVELOPMENT_TEAM: EGZFS7M525
+          CODE_SIGN_ENTITLEMENTS: App/San-macOS.entitlements
     info:
       path: App/Info-macOS.plist
       properties:
         CFBundleDisplayName: 三国·天下为注
         NSHighResolutionCapable: true
+        LSApplicationCategoryType: public.app-category.card-games
   App_iOS:
     type: application
     platform: iOS
