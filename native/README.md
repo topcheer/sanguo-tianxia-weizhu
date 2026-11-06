@@ -61,3 +61,14 @@ native/
 ## 存档互通
 
 原生版存档与网页版 JSON 格式互通（`sanguo-tianxia-weizhu-save` v1）：网页导出的存档可直接导入，反之亦可。
+
+## TestFlight 发布（CI 全链路）
+
+`.github/workflows/testflight-release.yml`（`native-app` 分支，tag `v*` 触发）：
+
+1. macOS runner 导入 Distribution + Installer p12（openssl 预解析 + 90s 看门狗 + `-A` 配方，WWDR G3 证书入仓 `scripts/certs/`，不依赖 apple.com URL）
+2. macOS 黄金向量测试 → iOS 归档导出 → `fastlane pilot` 上传
+3. macOS 归档 + codesign + `productbuild` pkg → `fastlane deliver` 上传
+4. 轮询 build VALID 后执行 `scripts/asc_external_beta.py`：挂 `Ext` 外测组（公开链接）并显式 POST `betaAppReviewSubmissions`（仅挂组不会触发 Beta 审核）
+
+版本节奏：`native/project.yml` 的 `MARKETING_VERSION` / `CURRENT_PROJECT_VERSION` 即所构建版本，bump 后打 tag（如 `v1.0.1-701` → build `2026110701`）。签名复用既有证书对（能复用绝不新建）；所需 secrets 前缀 `SAN_*`（p12×2、密码×2、双平台 profile、ASC API key 三件套）。
