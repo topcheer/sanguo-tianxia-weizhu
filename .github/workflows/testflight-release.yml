@@ -75,8 +75,8 @@ jobs:
           if ! perl -e 'alarm 90; exec @ARGV' security import "$RUNNER_TEMP/installer.p12" -k "$KC" -P "$SAN_INSTALLER_P12_PW" -A -t cert -f pkcs12 2>&1; then
             echo "::error::INSTALLER P12 import failed/timed out (90s)"; exit 1
           fi
-          curl -sSfo "$RUNNER_TEMP/wwdr.pem" https://www.apple.com/certificatefiles/AppleWWDRCAG3.pem
-          security import "$RUNNER_TEMP/wwdr.pem" -k "$KC"
+          # WWDR G3 入仓(ggcode 验收配方):Apple 证书 URL 会漂移(404 已踩),不依赖网络
+          security import "$GITHUB_WORKSPACE/scripts/certs/AppleWWDRCAG3.pem" -k "$KC" 2>&1 | grep -v "already exists in the keychain" || true
           security set-key-partition-list -S apple-tool:,apple: -s -k "" "$KC" >/dev/null
           security find-identity -v -p codesigning "$KC" | tee "$RUNNER_TEMP/ids.txt"
           grep -q "Apple Distribution" "$RUNNER_TEMP/ids.txt" || { echo "::error::Apple Distribution identity missing"; exit 1; }
