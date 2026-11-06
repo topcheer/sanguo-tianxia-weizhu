@@ -158,9 +158,20 @@ struct BattleScreen: View {
       .frame(width: realW, height: realH)
     }
     .ignoresSafeArea(edges: .bottom)
-    .sheet(isPresented: $verifyOpen) {
-      if let engine = game.activeBattle { VerifySheet(engine: engine) }
+    // 验牌浮层:点击任意位置关闭(不再用 .sheet,免去 esc/回退)
+    .overlay {
+      if verifyOpen, let engine = game.activeBattle {
+        ZStack {
+          Color.black.opacity(0.55)
+            .ignoresSafeArea()
+            .onTapGesture { verifyOpen = false }
+          VerifySheet(engine: engine)
+            .onTapGesture { verifyOpen = false }
+            .transition(.scale(scale: 0.96).combined(with: .opacity))
+        }
+      }
     }
+    .animation(.spring(response: 0.3, dampingFraction: 0.85), value: verifyOpen)
     #if os(macOS)
     .frame(minWidth: 1080, minHeight: 720)
     #endif
@@ -236,7 +247,8 @@ struct BattleScreen: View {
             CardBackView().offset(x: CGFloat(i) * 1.5, y: CGFloat(-i) * 1.5)
           }
         }
-        Text("#" + engine.config.seed).font(.system(size: 9, design: .monospaced)).foregroundColor(Theme.muted)
+        // 只展示种子首段(短 hex);完整串仅参与洗牌哈希
+      Text("#" + (engine.config.seed.split(separator: "#").first.map(String.init) ?? engine.config.seed)).font(.system(size: 9, design: .monospaced)).foregroundColor(Theme.muted)
       }
       .position(x: w * 0.10, y: playH * 0.42 + h * 0.03)
 
@@ -366,7 +378,7 @@ struct BattleScreen: View {
 
   private func infoLine(engine: BattleEngine) -> some View {
     HStack(spacing: 14) {
-      Text("\(L("battle.handLabel")) \(engine.handNum) · \(L("battle.blinds")) \(engine.blinds[0])/\(engine.blinds[1])")
+      Text("\(String(format: L("battle.handLabel"), engine.handNum)) · \(L("battle.blinds")) \(engine.blinds[0])/\(engine.blinds[1])")
         .font(Theme.serif(12)).foregroundColor(Theme.paperDim)
       Text("\(L("odds.currentHand")) \(engine.H != nil ? madeName(engine.hero.hole, engine.board) : "—")")
         .font(Theme.serif(12)).foregroundColor(Theme.paper)
@@ -484,7 +496,7 @@ struct VerifySheet: View {
   let engine: BattleEngine
   var body: some View {
     VStack(alignment: .leading, spacing: 12) {
-      Text("\(L("verify.title")) #\(engine.config.seed) · \(L("battle.handLabel")) \(max(1, engine.handNum))")
+      Text("\(L("verify.title")) #\(engine.config.seed.split(separator: "#").first.map(String.init) ?? engine.config.seed) · \(String(format: L("battle.handLabel"), max(1, engine.handNum)))")
         .font(Theme.serif(18, bold: true)).foregroundColor(Theme.goldLight)
       if engine.deckLog.isEmpty {
         Text(L("verify.empty")).font(Theme.serif(13)).foregroundColor(Theme.muted)
