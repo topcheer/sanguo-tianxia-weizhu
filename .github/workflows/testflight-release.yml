@@ -79,7 +79,9 @@ jobs:
           security import "$GITHUB_WORKSPACE/scripts/certs/AppleWWDRCAG3.pem" -k "$KC" 2>&1 | grep -v "already exists in the keychain" || true
           security set-key-partition-list -S apple-tool:,apple: -s -k "" "$KC" >/dev/null
           security find-identity -v -p codesigning "$KC" | tee "$RUNNER_TEMP/ids.txt"
+          security find-identity -v "$KC" | tee -a "$RUNNER_TEMP/ids.txt"
           grep -q "Apple Distribution" "$RUNNER_TEMP/ids.txt" || { echo "::error::Apple Distribution identity missing"; exit 1; }
+          # Installer 证书无 codesigning EKU,须用全量列表探测(-p codesigning 会滤掉它;本机已复现)
           grep -q "Mac Developer Installer" "$RUNNER_TEMP/ids.txt" || { echo "::error::Installer identity missing"; exit 1; }
 
       - name: Install provisioning profiles
