@@ -11,6 +11,4 @@ runtime.json
 # native build artifacts
 native/SanguoWeizhu.xcodeproj/
 native/build/
-native/App/Resources/Portraits/
-native/App/Assets.xcassets/
 .DS_Store
