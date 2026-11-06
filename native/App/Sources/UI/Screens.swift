@@ -104,7 +104,7 @@ struct CodexScreen: View {
           .overlay(Rectangle().strokeBorder(Color(hex: 0xb2634d), lineWidth: 1))
         VStack(alignment: .leading, spacing: 4) {
           Text(PL("codex.title", "英 雄 记")).font(Theme.serif(31)).kerning(8).foregroundColor(Theme.goldLight)
-          Text(PL("codex.sub", "以牌为刃 · 重写意难平")).font(Theme.serif(11)).kerning(3).foregroundColor(Color(hex: 0x8f8a73))
+          Text(PL("codex.sub", "以牌为刃 · 重写意难平")).font(Theme.serif(11)).kerning(3).lineSpacing(4).foregroundColor(Color(hex: 0x8f8a73))
         }
       }
       Spacer()
@@ -138,7 +138,7 @@ struct CodexScreen: View {
       }
       Spacer()
       Text(PL("codex.motto", "不必每页皆胜，败亦成章"))
-        .font(Theme.serif(11)).foregroundColor(Color(hex: 0x8b8066))
+        .font(Theme.serif(11)).lineSpacing(4).foregroundColor(Color(hex: 0x8b8066))
     }
     .padding(.top, 13)
   }
@@ -192,12 +192,12 @@ struct CodexScreen: View {
                 "yeshiAB": PL("mark.both", "全")][st] ?? "○"
     let fg: Color = yeshi ? Color(hex: 0x392a1c) : (st == "history" ? Color(hex: 0x5d5b50) : Color(hex: 0x332f24))
     let bg: Color = yeshi ? Color(hex: 0xdbc58f) : (st == "history" ? Color(hex: 0xaaa590) : Color(hex: 0xc9bfa3))
-    return HStack(spacing: 9) {
+    return HStack(spacing: 10) {
       Text(mark).font(Theme.serif(13))
         .foregroundColor(yeshi ? Color(hex: 0x94392c) : Color(hex: 0x6b6757))
-        .frame(width: 23, height: 25)
+        .frame(width: 24, height: 24)
         .overlay(Rectangle().strokeBorder(yeshi ? Color(hex: 0xa34b39) : Color(hex: 0x8f856b), lineWidth: 1))
-      Text(c["name"].string ?? "").font(Theme.serif(15)).kerning(2).lineLimit(1)
+      Text(c["name"].string ?? "").font(Theme.serif(15)).kerning(2).lineSpacing(4).lineLimit(1)
       Spacer(minLength: 0)
     }
     .foregroundColor(fg)

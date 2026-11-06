@@ -106,7 +106,7 @@ struct TitleScreen: View {
       titleMaxW = compact ? max(200, contentW - sealW - titleGap)
         : max(320, contentW - sealW - titleGap - 300)
       subFont = tiny ? 8 : 11
-      subKerning = tiny ? 2.4 : 5.7
+      subKerning = tiny ? 1.4 : 2.2
       subTop = short ? 6 : 13
       chip = tiny ? 38 : (compact ? 44 : 54)
       chipFont = tiny ? 18 : (compact ? 20 : 24)
