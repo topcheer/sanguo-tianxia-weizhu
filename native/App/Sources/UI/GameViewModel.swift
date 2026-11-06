@@ -452,6 +452,17 @@ final class GameViewModel: ObservableObject {
   private var battleEndContinuation: ResumeOnce<(win: Bool, finalStack: Int)>? = nil
 
   func handleBattleEvent(_ event: BattleEvent, engine: BattleEngine, members: inout [BattleOpponentConfig]) {
+    // 音效(移植原版 AudioFX):发牌/下注/结算
+    switch event {
+    case .board: AudioFX.shared.card()
+    case .dealt: AudioFX.shared.card()
+    case .action: AudioFX.shared.chip()
+    case .settle(let result):
+      AudioFX.shared.heartStop()
+      if (result.awards["player"] ?? 0) > 0 { AudioFX.shared.win() } else { AudioFX.shared.thud() }
+    case .end: AudioFX.shared.heartStop()
+    default: break
+    }
     if case .end(let win, let finalStack) = event {
       let cont = battleEndContinuation
       battleEndContinuation = nil

@@ -115,6 +115,8 @@ struct BattleScreen: View {
   @ObservedObject var game = GameViewModel.shared
   @ObservedObject var store = ProgressStore.shared
   @State private var banner: (String, String)? = nil
+  @State private var shakeTrigger: CGFloat = 0
+  @State private var shakePower: CGFloat = 5
   @State private var verifyOpen = false
   @State private var codexEntries: [String] = []
 
@@ -141,6 +143,10 @@ struct BattleScreen: View {
           .strokeBorder(Theme.gold.opacity(0.12), lineWidth: 10)
           .frame(width: w * 0.72, height: h * 0.5)
           .offset(y: -h * 0.02)
+        // 落叶氛围(复刻 fx2d backdrop)
+        LeafFallView()
+          .opacity(0.85)
+          .allowsHitTesting(false)
 
         if let engine = game.activeBattle {
           playField(engine: engine, w: w, h: h)
@@ -148,6 +154,7 @@ struct BattleScreen: View {
       }
       .frame(width: w, height: h)
       .scaleEffect(scale)
+      .modifier(ShakeEffect(travel: shakePower, shakes: 3, animatableData: shakeTrigger))
       .frame(width: realW, height: realH)
     }
     .ignoresSafeArea(edges: .bottom)
@@ -233,17 +240,18 @@ struct BattleScreen: View {
       }
       .position(x: w * 0.10, y: playH * 0.42 + h * 0.03)
 
-      // 底池(公共牌上方)
+      // 底池(公共牌上方;入账弹跳金光)
       VStack(spacing: 3) {
         ChipStack(count: engine.H.map { potTotal($0.seats) } ?? 0, tone: "pot")
         Text("\(engine.H.map { potTotal($0.seats) } ?? 0)").font(Theme.serif(15, bold: true)).foregroundColor(Theme.goldLight)
       }
+      .potPulse(engine.H.map { potTotal($0.seats) } ?? 0)
       .position(x: w * 0.5, y: playH * 0.40 + h * 0.03)
 
-      // 公共牌(中央 45%)
+      // 公共牌(中央 45%;新牌从牌堆飞入并翻开)
       HStack(spacing: 10) {
-        ForEach(Array(engine.board.enumerated()), id: \.offset) { _, cid in
-          CardView(id: cid, big: true)
+        ForEach(Array(engine.board.enumerated()), id: \.offset) { i, cid in
+          DealtCard(card: cid, fromX: -w * 0.40, fromY: -h * 0.05, delay: Double(i % 3) * 0.10)
         }
         ForEach(engine.board.count..<5, id: \.self) { _ in
           RoundedRectangle(cornerRadius: 7).fill(Color.black.opacity(0.18))
@@ -283,7 +291,7 @@ struct BattleScreen: View {
         .background(Theme.inkDeep.opacity(0.82))
         .overlay(RoundedRectangle(cornerRadius: 4).strokeBorder(Theme.gold.opacity(0.6), lineWidth: 1))
         .position(x: w * 0.5, y: playH * 0.62 + h * 0.03)
-        .transition(.opacity)
+        .transition(.asymmetric(insertion: .scale(scale: 0.72).combined(with: .opacity), removal: .opacity))
       }
 
       // 破绽簿(右侧,桌面端)
@@ -318,6 +326,11 @@ struct BattleScreen: View {
     }
     .onReceive(engine.eventBridge.bannerPub) { b in
       withAnimation { banner = b }
+      // 全押级横幅:屏震 + 心跳(复刻 fx2d.shake / heartStart)
+      let allin = b.0.contains(L("action.allin")) || b.1.contains(L("action.allin"))
+      shakePower = allin ? 11 : 5
+      withAnimation(.easeOut(duration: 0.5)) { shakeTrigger += 1 }
+      if allin { AudioFX.shared.heartStart() } else { AudioFX.shared.chip() }
       Task {
         try? await Task.sleep(nanoseconds: 2_100_000_000)
         withAnimation { if banner?.0 == b.0 && banner?.1 == b.1 { banner = nil } }
@@ -370,7 +383,11 @@ struct BattleScreen: View {
         SeatPlate(seat: engine.hero, engine: engine, isBoss: false)
         HStack(spacing: 10) {
           ForEach(Array(engine.hero.hole.enumerated()), id: \.offset) { _, cid in
-            CardView(id: cid, big: true, highlighted: engine.heroWinHighlight)
+            if engine.heroWinHighlight {
+              CardView(id: cid, big: true, highlighted: true).goldenPulse()
+            } else {
+              CardView(id: cid, big: true)
+            }
           }
         }
       }
