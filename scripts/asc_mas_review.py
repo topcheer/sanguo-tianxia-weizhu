@@ -300,11 +300,15 @@ def submit(vid):
     if not rsid:
         print(f"::error::no reviewSubmission obtainable")
         return False
-    s, r = call("POST", f"/v1/reviewSubmissions/{rsid}/items",
-                {"data": {"type": "reviewSubmissionItems", "attributes": {},
-                          "relationships": {"appStoreVersion": {
-                              "data": {"type": "appStoreVersions", "id": vid}}}}})
-    print(f"attach item: {s} {json.dumps(r)[:200]}")
+    # 子路径 items 405;改用扁平资源同时挂 reviewSubmission + appStoreVersion 两关系
+    s, r = call("POST", "/v1/reviewSubmissionItems",
+                {"data": {"type": "reviewSubmissionItems",
+                          "relationships": {
+                              "reviewSubmission": {"data": {"type": "reviewSubmissions",
+                                                            "id": rsid}},
+                              "appStoreVersion": {"data": {"type": "appStoreVersions",
+                                                           "id": vid}}}}})
+    print(f"attach item: {s} {json.dumps(r)[:250]}")
     s, r = call("PATCH", f"/v1/reviewSubmissions/{rsid}",
                 {"data": {"type": "reviewSubmissions", "id": rsid,
                           "attributes": {"submitted": True}}})
