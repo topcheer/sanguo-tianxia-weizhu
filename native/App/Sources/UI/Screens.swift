@@ -174,7 +174,7 @@ struct CodexScreen: View {
     return Group {
       if horizontalCompact {
         VStack(alignment: .leading, spacing: 7) {
-          LazyVGrid(columns: [GridItem(.adaptive(minimum: 104), alignment: .leading)], alignment: .leading, spacing: 6) {
+          LazyVGrid(columns: [GridItem(.adaptive(minimum: 84), alignment: .leading)], alignment: .leading, spacing: 6) {
             ForEach(items, id: \.0) { mark, key, zh in
               HStack(spacing: 5) {
                 Text(mark).font(Theme.serif(11)).foregroundColor(Color(hex: 0xb49b6a))
@@ -537,8 +537,8 @@ struct ChapterPageScreen: View {
                 }
                 .padding(.bottom, 12)
               }
-              // 底部按钮条
-              HStack(spacing: 12) {
+              // 底部按钮条(窄屏按钮收窄,防双边裁切)
+              HStack(spacing: geo.size.width < 620 ? 8 : 12) {
                 SfxToggleButton()
                 Spacer()
                 if altShow {
@@ -548,7 +548,8 @@ struct ChapterPageScreen: View {
                   } label: {
                     Text(L("page.zhizishou")).font(Theme.serif(15))
                       .foregroundColor(Color(hex: 0x655c48))
-                      .frame(minWidth: 116).padding(.horizontal, 24).padding(.vertical, 11)
+                      .frame(minWidth: geo.size.width < 620 ? 0 : 116)
+                      .padding(.horizontal, geo.size.width < 620 ? 14 : 24).padding(.vertical, 11)
                       .overlay(Rectangle().strokeBorder(Color(hex: 0x8d8063), lineWidth: 1))
                   }.buttonStyle(.plain)
                 }
@@ -558,19 +559,21 @@ struct ChapterPageScreen: View {
                 } label: {
                   Text(PL("page.start", "启 程")).font(Theme.serif(15)).kerning(4)
                     .foregroundColor(Color(hex: 0xf0dfb8))
-                    .frame(minWidth: 116).padding(.horizontal, 24).padding(.vertical, 11)
+                    .frame(minWidth: geo.size.width < 620 ? 0 : 116)
+                    .padding(.horizontal, geo.size.width < 620 ? 14 : 24).padding(.vertical, 11)
                     .background(Color(hex: 0x6e3028))
                     .overlay(Rectangle().strokeBorder(Color(hex: 0x934b3b), lineWidth: 1))
                 }.buttonStyle(.plain)
                 Button { game.showCodex() } label: {
                   Text(L("common.back")).font(Theme.serif(15)).kerning(2)
                     .foregroundColor(Color(hex: 0x655c48))
-                    .frame(minWidth: 116).padding(.horizontal, 24).padding(.vertical, 11)
+                    .frame(minWidth: geo.size.width < 620 ? 0 : 116)
+                    .padding(.horizontal, geo.size.width < 620 ? 14 : 24).padding(.vertical, 11)
                     .overlay(Rectangle().strokeBorder(Color(hex: 0x8d8063), lineWidth: 1))
                 }.buttonStyle(.plain)
                 Spacer()
               }
-              .padding(.horizontal, 58).padding(.top, 14).padding(.bottom, 14)
+              .padding(.horizontal, geo.size.width < 620 ? 14 : 58).padding(.top, 14).padding(.bottom, 14)
               .background(LinearGradient(colors: [Color(hex: 0xe0d3b1), paper], startPoint: .top, endPoint: .bottom))
               .overlay(alignment: .top) { Rectangle().fill(Color(hex: 0x9b8a65).opacity(0.4)).frame(height: 1) }
             }
@@ -585,7 +588,8 @@ struct ChapterPageScreen: View {
               .frame(width: 48, height: 48)
               .overlay(Rectangle().strokeBorder(Color(hex: 0xa43d31), lineWidth: 3).padding(1))
               .rotationEffect(.degrees(-9)).opacity(0.55)
-              .padding(.trailing, 27).padding(.bottom, 92)
+              .padding(.trailing, geo.size.width < 620 ? 12 : 27)
+              .padding(.bottom, geo.size.width < 620 ? 150 : 92)
           }
           .shadow(color: .black.opacity(0.55), radius: 45, y: 30)
         }

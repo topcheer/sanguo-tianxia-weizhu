@@ -183,6 +183,39 @@ final class GameViewModel: ObservableObject {
     Task { await showBattleResult(node: nil, win: win, cfg: R?.chapter["skirmish"] ?? Dyn([:])) }
   }
 
+  /// 截图/验收专用:按名直达界面(与 UI 交互共用同一套状态设置,布局真实)
+  /// 用法: -ggcodeDebugScreen=codex|chapter|map|omen|briefing|practice|settings|save|annals
+  func debugJumpScreen(name: String) {
+    let ch = GameData.shared.chapters.first { !($0["map"].stringArray.isEmpty) } ?? GameData.shared.chapters.first
+    switch name {
+    case "codex": screen = .codex
+    case "chapter": if let ch { openChapter(ch) }
+    case "map":
+      if let ch {
+        selectedChapter = ch
+        startMarch(ch, omenFx: "supply")
+        screen = .map
+      }
+    case "omen":
+      screen = .codex
+      pickOmen()
+    case "briefing":
+      if let ch {
+        selectedChapter = ch
+        startMarch(ch, omenFx: "supply")
+        screen = .map
+        if let node = R?.nodes.first(where: { $0.type == "battle" }) ?? R?.nodes.first {
+          sheet = .briefing(nodeId: node.id, boss: false, round: 1, rounds: 1)
+        }
+      }
+    case "practice": screen = .practice
+    case "settings": screen = .codex; sheet = .settings
+    case "save": screen = .codex; sheet = .save
+    case "annals": screen = .codex; sheet = .annals
+    default: break
+    }
+  }
+
   #endif
 
   func openChapter(_ chapter: Dyn) {

@@ -133,7 +133,6 @@ struct BattleScreen: View {
       let realW = geo.size.width, realH = geo.size.height
       let portrait = realW < realH
       let w = portrait ? realW : max(realW, 1180), h = portrait ? realH : max(realH, 780)
-      let scale = portrait ? 1 : min(1, min(realW / w, realH / h))
       ZStack {
         // 背景与桌面
         LinearGradient(colors: [Color(hex: 0x0d110d), Color(hex: 0x141a12), Color(hex: 0x0d110d)], startPoint: .top, endPoint: .bottom)
@@ -158,37 +157,41 @@ struct BattleScreen: View {
               .padding(.bottom, 118)
           }
         } else {
-          // 桌面:毛毡满屏(椭圆出四缘消除黑灰分界;小屏横置适中溢出,大屏更满)
+          // 桌面:毛毡满屏,真实坐标绘制(椭圆出四缘消除黑灰分界;小屏横置适中溢出,大屏更满)
           let wide = realW > 900
           Ellipse()
             .fill(Theme.gold.opacity(0.30))
-            .frame(width: wide ? w * 1.3 : w * 1.16, height: wide ? h * 1.15 : h * 0.98)
-            .offset(y: -h * 0.02)
+            .frame(width: wide ? realW * 1.3 : realW * 1.16, height: wide ? realH * 1.15 : realH * 1.10)
+            .offset(y: wide ? -realH * 0.02 : 0)
           Ellipse()
             .fill(LinearGradient(colors: [Color(hex: 0x34523f), Theme.felt, Color(hex: 0x2c463a)], startPoint: .top, endPoint: .bottom))
-            .frame(width: wide ? w * 1.25 : w * 1.12, height: wide ? h * 1.08 : h * 0.92)
-            .offset(y: -h * 0.02)
+            .frame(width: wide ? realW * 1.25 : realW * 1.12, height: wide ? realH * 1.08 : realH * 1.04)
+            .offset(y: wide ? -realH * 0.02 : 0)
           // 桌布纹理暗纹
           Ellipse()
             .strokeBorder(Theme.gold.opacity(0.10), lineWidth: 10)
-            .frame(width: w * 1.1, height: h * 0.9)
-            .offset(y: -h * 0.02)
+            .frame(width: realW * 1.1, height: wide ? realH * 0.9 : realH)
+            .offset(y: wide ? -realH * 0.02 : 0)
           // 落叶氛围(复刻 fx2d backdrop)
           LeafFallView()
             .opacity(0.85)
             .allowsHitTesting(false)
-
+          // 桌面画布(1180×780 设计稿):满屏缩放;设计稿已为行动栏预留顶部席位区/底部 14%,
+          // 工具栏以真实尺寸覆盖在预留区上,不再占用额外纵向空间
           if let engine = game.activeBattle {
             playField(engine: engine, w: w, h: h)
+              .frame(width: w, height: h)
+              .scaleEffect(min(1, min(realW / w, realH / h)))
+              .frame(width: realW, height: realH)
           }
         }
       }
-      .frame(width: portrait ? realW : w, height: portrait ? realH : h)
-      // 顶/底栏:ZStack 内显式布局(底栏 compact 按钮后总高≈100,104 让位足够)
+      .frame(width: realW, height: realH)
+      // 顶/底栏:真实尺寸覆盖在画布预留区之上(竖屏 118 让位、横屏 10pt 轻留白)
       VStack(spacing: 0) {
         if let engine = game.activeBattle {
           topBar(engine: engine, width: geo.size.width)
-            .padding(.top, 52)
+            .padding(.top, portrait ? 52 : 10)
           Spacer(minLength: 0)
           VStack(spacing: 6) {
             infoLine(engine: engine)
@@ -200,7 +203,6 @@ struct BattleScreen: View {
           .background(Theme.inkDeep.opacity(0.95))
         }
       }
-      .scaleEffect(scale)
       .modifier(ShakeEffect(travel: shakePower, shakes: 3, animatableData: shakeTrigger))
       .frame(width: realW, height: realH)
     }
@@ -592,7 +594,7 @@ struct BattleScreen: View {
       SfxToggleButton()
     }
     .padding(.horizontal, 16).padding(.vertical, 6)
-    .background(Theme.inkDeep.opacity(0.7))
+    .background(Theme.inkDeep.opacity(0.95))
   }
 
   private func infoLine(engine: BattleEngine) -> some View {

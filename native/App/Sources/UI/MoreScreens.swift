@@ -364,7 +364,9 @@ struct RootView: View {
       game.debugAutoAct = args.contains { $0.hasPrefix("-ggcodeAutoAct") }
       game.demoPace = args.contains { $0.hasPrefix("-ggcodeDemoPace") }
       #endif
-      if let arg = args.first(where: { $0.hasPrefix("-ggcodeDebugResult") }) {
+      if let arg = args.first(where: { $0.hasPrefix("-ggcodeDebugScreen") }) {
+        game.debugJumpScreen(name: arg.split(separator: "=").last.map(String.init) ?? "")
+      } else if let arg = args.first(where: { $0.hasPrefix("-ggcodeDebugResult") }) {
         game.debugShowBattleResult(win: !arg.lowercased().contains("loss"))
       } else if let arg = args.first(where: { $0.hasPrefix("-ggcodeDebugBattle") }) {
         let delay = Double(arg.split(separator: "=").last.map(String.init) ?? "") ?? 0.6
