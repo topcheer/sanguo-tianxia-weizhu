@@ -1003,25 +1003,45 @@ struct BriefingSheet: View {
           }
           VStack(spacing: 9) {
             ForEach(Array(roster.enumerated()), id: \.offset) { index, member in
-              HStack(spacing: 0) {
-                ZStack(alignment: .topLeading) {
-                  PortraitView(skin: member.skin, size: 70)
-                    .overlay(Rectangle().strokeBorder(Color(hex: 0x76643f), lineWidth: 1))
-                  Text("\(index + 1)").font(Theme.serif(11)).foregroundColor(Color(hex: 0xe9d3a3))
-                    .frame(width: 19, height: 22).background(Color(hex: 0x84362b)).padding(4)
-                }
-                VStack(alignment: .leading, spacing: 4) {
+              if compact {
+                // 竖排卡:像上文下,人像完整展示
+                VStack(spacing: 6) {
+                  ZStack(alignment: .topLeading) {
+                    PortraitView(skin: member.skin, size: 96)
+                      .overlay(Rectangle().strokeBorder(Color(hex: 0x76643f), lineWidth: 1))
+                    Text("\(index + 1)").font(Theme.serif(11)).foregroundColor(Color(hex: 0xe9d3a3))
+                      .frame(width: 19, height: 22).background(Color(hex: 0x84362b)).padding(4)
+                  }
                   Text(member.name).font(Theme.serif(16)).foregroundColor(Color(hex: 0xead7ab))
                   Text("\(boss ? PL("brief.bossRole", "关底敌将") : PL("brief.enemyRole", "遭遇敌将")) · \(L("term.chips")) \(member.stack)")
                     .font(Theme.serif(9)).foregroundColor(Color(hex: 0x9e957b))
                 }
-                .padding(.horizontal, 10).padding(.vertical, 9)
-                Spacer(minLength: 0)
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 12)
+                .background(LinearGradient(colors: [Color(hex: 0x292b21), Color(hex: 0x1c2018)],
+                                           startPoint: .top, endPoint: .bottom))
+                .overlay(Rectangle().strokeBorder(Color(hex: 0x76643f), lineWidth: 1))
+              } else {
+                HStack(spacing: 0) {
+                  ZStack(alignment: .topLeading) {
+                    PortraitView(skin: member.skin, size: 70)
+                      .overlay(Rectangle().strokeBorder(Color(hex: 0x76643f), lineWidth: 1))
+                    Text("\(index + 1)").font(Theme.serif(11)).foregroundColor(Color(hex: 0xe9d3a3))
+                      .frame(width: 19, height: 22).background(Color(hex: 0x84362b)).padding(4)
+                  }
+                  VStack(alignment: .leading, spacing: 4) {
+                    Text(member.name).font(Theme.serif(16)).foregroundColor(Color(hex: 0xead7ab))
+                    Text("\(boss ? PL("brief.bossRole", "关底敌将") : PL("brief.enemyRole", "遭遇敌将")) · \(L("term.chips")) \(member.stack)")
+                      .font(Theme.serif(9)).foregroundColor(Color(hex: 0x9e957b))
+                  }
+                  .padding(.horizontal, 10).padding(.vertical, 9)
+                  Spacer(minLength: 0)
+                }
+                .frame(minHeight: 82)
+                .background(LinearGradient(colors: [Color(hex: 0x292b21), Color(hex: 0x1c2018)],
+                                           startPoint: .topLeading, endPoint: .bottomTrailing))
+                .overlay(Rectangle().strokeBorder(Color(hex: 0x76643f), lineWidth: 1))
               }
-              .frame(minHeight: 82)
-              .background(LinearGradient(colors: [Color(hex: 0x292b21), Color(hex: 0x1c2018)],
-                                         startPoint: .topLeading, endPoint: .bottomTrailing))
-              .overlay(Rectangle().strokeBorder(Color(hex: 0x76643f), lineWidth: 1))
             }
           }
           .padding(.top, 13)
@@ -1069,25 +1089,45 @@ struct BriefingSheet: View {
           }
           VStack(spacing: 9) {
             ForEach(Array(roster.enumerated()), id: \.offset) { index, member in
-              HStack(spacing: 0) {
-                ZStack(alignment: .topLeading) {
-                  PortraitView(skin: member.skin, size: 70)
-                    .overlay(Rectangle().strokeBorder(Color(hex: 0x76643f), lineWidth: 1))
-                  Text("\(index + 1)").font(Theme.serif(11)).foregroundColor(Color(hex: 0xe9d3a3))
-                    .frame(width: 19, height: 22).background(Color(hex: 0x84362b)).padding(4)
-                }
-                VStack(alignment: .leading, spacing: 4) {
+              if compact {
+                // 竖排卡:像上文下,人像完整展示
+                VStack(spacing: 6) {
+                  ZStack(alignment: .topLeading) {
+                    PortraitView(skin: member.skin, size: 96)
+                      .overlay(Rectangle().strokeBorder(Color(hex: 0x76643f), lineWidth: 1))
+                    Text("\(index + 1)").font(Theme.serif(11)).foregroundColor(Color(hex: 0xe9d3a3))
+                      .frame(width: 19, height: 22).background(Color(hex: 0x84362b)).padding(4)
+                  }
                   Text(member.name).font(Theme.serif(16)).foregroundColor(Color(hex: 0xead7ab))
                   Text("\(boss ? PL("brief.bossRole", "关底敌将") : PL("brief.enemyRole", "遭遇敌将")) · \(L("term.chips")) \(member.stack)")
                     .font(Theme.serif(9)).foregroundColor(Color(hex: 0x9e957b))
                 }
-                .padding(.horizontal, 10).padding(.vertical, 9)
-                Spacer(minLength: 0)
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 12)
+                .background(LinearGradient(colors: [Color(hex: 0x292b21), Color(hex: 0x1c2018)],
+                                           startPoint: .top, endPoint: .bottom))
+                .overlay(Rectangle().strokeBorder(Color(hex: 0x76643f), lineWidth: 1))
+              } else {
+                HStack(spacing: 0) {
+                  ZStack(alignment: .topLeading) {
+                    PortraitView(skin: member.skin, size: 70)
+                      .overlay(Rectangle().strokeBorder(Color(hex: 0x76643f), lineWidth: 1))
+                    Text("\(index + 1)").font(Theme.serif(11)).foregroundColor(Color(hex: 0xe9d3a3))
+                      .frame(width: 19, height: 22).background(Color(hex: 0x84362b)).padding(4)
+                  }
+                  VStack(alignment: .leading, spacing: 4) {
+                    Text(member.name).font(Theme.serif(16)).foregroundColor(Color(hex: 0xead7ab))
+                    Text("\(boss ? PL("brief.bossRole", "关底敌将") : PL("brief.enemyRole", "遭遇敌将")) · \(L("term.chips")) \(member.stack)")
+                      .font(Theme.serif(9)).foregroundColor(Color(hex: 0x9e957b))
+                  }
+                  .padding(.horizontal, 10).padding(.vertical, 9)
+                  Spacer(minLength: 0)
+                }
+                .frame(minHeight: 82)
+                .background(LinearGradient(colors: [Color(hex: 0x292b21), Color(hex: 0x1c2018)],
+                                           startPoint: .topLeading, endPoint: .bottomTrailing))
+                .overlay(Rectangle().strokeBorder(Color(hex: 0x76643f), lineWidth: 1))
               }
-              .frame(minHeight: 82)
-              .background(LinearGradient(colors: [Color(hex: 0x292b21), Color(hex: 0x1c2018)],
-                                         startPoint: .topLeading, endPoint: .bottomTrailing))
-              .overlay(Rectangle().strokeBorder(Color(hex: 0x76643f), lineWidth: 1))
             }
           }
           .padding(.top, 13)

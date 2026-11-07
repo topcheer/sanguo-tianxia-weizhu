@@ -671,13 +671,14 @@ struct ActionBanner: View {
                 withAnimation(.spring(response: 0.3, dampingFraction: 0.85)) { raiseOpen.toggle() }
               } label: {
                 HStack(spacing: 4) {
-                  Text(L("action.raise")).font(Theme.serif(13, bold: true))
-                  Image(systemName: raiseOpen ? "chevron.down" : "chevron.up").font(.system(size: 10, weight: .bold))
+                  Text(L("action.raise")).font(Theme.serif(17, bold: true))
+                  Image(systemName: raiseOpen ? "chevron.down" : "chevron.up").font(.system(size: 12, weight: .bold))
                 }
                 .foregroundColor(raiseOpen ? Theme.goldLight : Theme.paperLight)
-                .padding(.horizontal, 14).padding(.vertical, 10)
+                .padding(.horizontal, 22).padding(.vertical, 10)
                 .background(raiseOpen ? Color(hex: 0x5a4a28) : Color(hex: 0x29291f))
-                .overlay(Rectangle().strokeBorder(Color(hex: 0x897345), lineWidth: 1))
+                .overlay(RoundedRectangle(cornerRadius: 3).strokeBorder(Color(hex: 0x897345), lineWidth: 1))
+                .contentShape(Rectangle())
               }
               .buttonStyle(.plain)
             }
