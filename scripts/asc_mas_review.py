@@ -140,9 +140,11 @@ def get_or_create_version(mkt):
     s, r = call("GET", f"/v1/apps/{APP_ID}/appStoreVersions?limit=20")
     if s != 200:
         print(f"::error::list versions {s} {r}"); sys.exit(1)
-    for v in r.get("data", []):
-        if v["attributes"].get("version") == mkt and v["attributes"].get("platform") == "MAC_OS":
-            return v["id"], v["attributes"].get("appStoreState")
+    cand = [v for v in r.get("data", []) if v["attributes"].get("version") == mkt]
+    mac = [v for v in cand if v["attributes"].get("platform") in ("MAC_OS", None)]
+    if mac or cand:
+        v = (mac or cand)[0]
+        return v["id"], v["attributes"].get("appStoreState")
     s, r = call("POST", "/v1/appStoreVersions",
                 {"data": {"type": "appStoreVersions",
                           "attributes": {"platform": "MAC_OS", "versionString": mkt},
@@ -153,6 +155,8 @@ def get_or_create_version(mkt):
     if s == 409:
         for v in (call("GET", f"/v1/apps/{APP_ID}/appStoreVersions?limit=20")[1].get("data", [])):
             if v["attributes"].get("version") == mkt:
+                print(f"409 -> existing version found: {v['id'][:8]} "
+                      f"platform={v['attributes'].get('platform')}")
                 return v["id"], v["attributes"].get("appStoreState")
     print(f"::error::create version {mkt}: {s} {r}"); sys.exit(1)
 
