@@ -195,7 +195,11 @@ def remove_active_submission(vid, state):
     s0, r0 = call("GET", f"/v1/appStoreVersions/{vid}")
     rel = (r0.get("data", {}).get("relationships", {}) if isinstance(r0, dict) else {})
     print(f"probe0 {s0} rel_keys={sorted(rel.keys())}")
-    subs = list((rel.get("appStoreVersionSubmissions") or {}).get("data", []) or [])
+    _one = (rel.get("appStoreVersionSubmission") or {}).get("data")  # 关系名是单数(to-one)
+    subs = [_one] if isinstance(_one, dict) and _one.get("id") else []
+    if not _one:
+        _many = (rel.get("appStoreVersionSubmissions") or {}).get("data", [])
+        subs = list(_many or [])
     if subs:
         print(f"probe0 found {len(subs)} submission link(s)")
     if not subs:
