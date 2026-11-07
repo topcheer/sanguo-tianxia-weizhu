@@ -137,12 +137,11 @@ def wait_valid_mac_build(ver, timeout_s=1500):
 
 
 def get_or_create_version(mkt):
-    s, r = call("GET", f"/v1/appStoreVersions?filter[app]={APP_ID}"
-                       f"&filter[platform]=MAC_OS&limit=20")
+    s, r = call("GET", f"/v1/apps/{APP_ID}/appStoreVersions?limit=20")
     if s != 200:
         print(f"::error::list versions {s} {r}"); sys.exit(1)
     for v in r.get("data", []):
-        if v["attributes"].get("version") == mkt:
+        if v["attributes"].get("version") == mkt and v["attributes"].get("platform") == "MAC_OS":
             return v["id"], v["attributes"].get("appStoreState")
     s, r = call("POST", "/v1/appStoreVersions",
                 {"data": {"type": "appStoreVersions",
@@ -152,8 +151,7 @@ def get_or_create_version(mkt):
     if s == 201:
         return r["data"]["id"], r["data"]["attributes"].get("appStoreState")
     if s == 409:
-        for v in (call("GET", f"/v1/appStoreVersions?filter[app]={APP_ID}"
-                              f"&filter[platform]=MAC_OS&limit=20")[1].get("data", [])):
+        for v in (call("GET", f"/v1/apps/{APP_ID}/appStoreVersions?limit=20")[1].get("data", [])):
             if v["attributes"].get("version") == mkt:
                 return v["id"], v["attributes"].get("appStoreState")
     print(f"::error::create version {mkt}: {s} {r}"); sys.exit(1)
