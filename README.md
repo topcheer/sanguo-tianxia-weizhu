@@ -5,6 +5,14 @@
 **史书只写了沙场，没写牌桌。** 你捡到一部残卷《英雄记》，记的是另一部三国——乱世英雄，白天争天下，夜里赌江山。每翻一页，乱世就重来一次；赢下牌局，就改写一段遗憾。集齐三十枚野史朱印，写卷人会在最后一页等你。
 
 
+## 多平台壳（Android / Windows / Linux）
+
+同一 web 构建产物 `dist/` 打三种壳，与 iOS/macOS 原生版并行：
+
+- **Android**：`android/`（Capacitor）。`npm run build && npx cap sync android`，JDK 21 下 `./gradlew assembleDebug` 出 APK。
+- **Windows / Linux / macOS(Electron)**：`desktop/`。tag `v*` 触发 `.github/workflows/desktop-release.yml` 三平台矩阵出包（NSIS exe / AppImage+deb / dmg）并附到 GitHub Release；注意 `productName` 必须为 ASCII（AppImage 路径安全），中文标题由 `main.js` 设置。
+- **六语言**：web 与原生共用 `native/App/Resources/Localizations/*.json` 词表（`src/i18n.js` 运行时：首启随系统 → 设置持久化 → 非中文回退中文）。
+
 ## 原生单机版（iOS / macOS）
 
 `native/` 目录内是 SwiftUI 原生移植：引擎与网页版**逐位一致**（黄金向量测试全过）、完整章节流程、野战练习场、观阵录、网页存档互通、六语言 i18n（中/日/韩/英/西/德）。详见 [native/README.md](native/README.md)。
