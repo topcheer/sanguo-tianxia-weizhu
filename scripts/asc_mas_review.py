@@ -315,9 +315,8 @@ def main():
     vid, state = get_or_create_version(mkt)
     print(f"version {mkt}: {vid[:8]} state={state}")
     if state in ("WAITING_FOR_REVIEW", "IN_REVIEW"):
-        sv, rv = call("GET", f"/v1/appStoreVersions/{vid}")
-        bound = (((rv.get("data", {}).get("relationships", {})
-                   .get("build") or {}).get("data") or {}).get("id"))
+        sv, rv = call("GET", f"/v1/appStoreVersions/{vid}/build")  # 专用关系端点(JSON:API 主资源不带 linkage)
+        bound = (rv.get("data") or {}).get("id") if isinstance(rv, dict) else None
         print(f"bound build: {bound and bound[:8]} (target {bid[:8]})")
         if bound == bid:
             print("MAS_REVIEW_OK (already WAITING_FOR_REVIEW with this build)")
