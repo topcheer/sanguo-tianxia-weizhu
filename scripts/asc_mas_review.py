@@ -145,7 +145,7 @@ def get_or_create_version(mkt):
             return v["id"], v["attributes"].get("appStoreState")
     s, r = call("POST", "/v1/appStoreVersions",
                 {"data": {"type": "appStoreVersions",
-                          "attributes": {"platform": "MAC_OS", "version": mkt},
+                          "attributes": {"platform": "MAC_OS", "versionString": mkt},
                           "relationships": {"app": {"data": {"type": "apps",
                                                              "id": APP_ID}}}}})
     if s == 201:
