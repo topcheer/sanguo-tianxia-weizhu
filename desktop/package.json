@@ -14,7 +14,7 @@
   },
   "build": {
     "appId": "dev.ggcode.san",
-    "productName": "三国：天下为注",
+    "productName": "sanguo-weizhu",
     "directories": {
       "output": "release"
     },
@@ -40,14 +40,14 @@
         "deb"
       ],
       "category": "Game",
-      "artifactName": "sanguo-weizhu-${version}-${ext}",
-      "productName": "sanguo-weizhu"
+      "artifactName": "sanguo-weizhu-${version}-${ext}"
     },
     "mac": {
       "target": [
         "dmg"
       ],
       "artifactName": "sanguo-weizhu-${version}.${ext}"
-    }
+    },
+    "executableName": "sanguo-weizhu"
   }
 }
