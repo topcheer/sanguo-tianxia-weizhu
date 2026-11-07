@@ -210,9 +210,9 @@ def remove_active_submission(vid, state):
             subs = ra.get("data", [])
     if not subs:
         # 路径B: GET_INSTANCE + include
-        sb, rb = call("GET", f"/v1/appStoreVersions/{vid}?include=appStoreVersionSubmissions")
+        sb, rb = call("GET", f"/v1/appStoreVersions/{vid}?include=appStoreVersionSubmission")
         inc = rb.get("included", []) if isinstance(rb, dict) else []
-        print(f"probeB {sb} included_types={[x.get('type') for x in inc]}")
+        print(f"probeB {sb} included={[(x.get('type'), x.get('id', '')[:8]) for x in inc]}")
         subs = [x for x in inc if x.get("type") == "appStoreVersionSubmissions"]
     if not subs:
         # 路径C: 扁平集合+filter(可能 GET_COLLECTION 403,仅作探测)
