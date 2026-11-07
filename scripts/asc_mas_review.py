@@ -199,31 +199,31 @@ def remove_active_submission(vid, state):
     if subs:
         print(f"probe0 found {len(subs)} submission link(s)")
     if not subs:
-    # 路径A: 直接关系资源
+        # 路径A: 直接关系资源
         sa, ra = call("GET", f"/v1/appStoreVersions/{vid}/appStoreVersionSubmissions?limit=5")
-      print(f"probeA {sa} n={len(ra.get('data', [])) if isinstance(ra, dict) else '?'}")
-      if sa == 200 and isinstance(ra, dict):
-          subs = ra.get("data", [])
-      if not subs:
-          # 路径B: GET_INSTANCE + include
-          sb, rb = call("GET", f"/v1/appStoreVersions/{vid}?include=appStoreVersionSubmissions")
-          inc = rb.get("included", []) if isinstance(rb, dict) else []
-          print(f"probeB {sb} included_types={[x.get('type') for x in inc]}")
-          subs = [x for x in inc if x.get("type") == "appStoreVersionSubmissions"]
-      if not subs:
-          # 路径C: 扁平集合+filter(可能 GET_COLLECTION 403,仅作探测)
-          sc, rc = call("GET", f"/v1/appStoreVersionSubmissions?filter[appStoreVersion]={vid}&limit=5")
-          print(f"probeC {sc} " + (f"n={len(rc.get('data', []))}" if isinstance(rc, dict) else ""))
-          if sc == 200 and isinstance(rc, dict):
+        print(f"probeA {sa} n={len(ra.get('data', [])) if isinstance(ra, dict) else '?'}")
+        if sa == 200 and isinstance(ra, dict):
+            subs = ra.get("data", [])
+    if not subs:
+        # 路径B: GET_INSTANCE + include
+        sb, rb = call("GET", f"/v1/appStoreVersions/{vid}?include=appStoreVersionSubmissions")
+        inc = rb.get("included", []) if isinstance(rb, dict) else []
+        print(f"probeB {sb} included_types={[x.get('type') for x in inc]}")
+        subs = [x for x in inc if x.get("type") == "appStoreVersionSubmissions"]
+    if not subs:
+        # 路径C: 扁平集合+filter(可能 GET_COLLECTION 403,仅作探测)
+        sc, rc = call("GET", f"/v1/appStoreVersionSubmissions?filter[appStoreVersion]={vid}&limit=5")
+        print(f"probeC {sc} " + (f"n={len(rc.get('data', []))}" if isinstance(rc, dict) else ""))
+        if sc == 200 and isinstance(rc, dict):
             subs = rc.get("data", [])
-      if not subs:
-          print("::warning::no submission resource found via A/B/C — cannot remove from review")
-          return
-      for sub in subs:
-          sid = sub["id"]
-          s, _ = call("DELETE", f"/v1/appStoreVersionSubmissions/{sid}")
-          print(f"remove-from-review {sid[:8]}: {s}")
-          if s in (200, 204):
+    if not subs:
+        print("::warning::no submission resource found via 0/A/B/C — cannot remove from review")
+        return
+    for sub in subs:
+        sid = sub["id"]
+        s, _ = call("DELETE", f"/v1/appStoreVersionSubmissions/{sid}")
+        print(f"remove-from-review {sid[:8]}: {s}")
+        if s in (200, 204):
             for _ in range(20):  # 等状态翻转,最多5分钟
                 time.sleep(15)
                 s2, r2 = call("GET", f"/v1/appStoreVersions/{vid}")
