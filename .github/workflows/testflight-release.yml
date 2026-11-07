@@ -15,6 +15,10 @@ on:
         description: "构建后自动挂 Ext 组并提交外测 Beta 审核"
         type: boolean
         default: true
+      submit_mas_review:
+        description: "构建后自动走 MAS 版本提审全链(版本/绑build/提交审核)"
+        type: boolean
+        default: true
   push:
     tags: ["v*"]
 
@@ -185,3 +189,18 @@ jobs:
             [ $i -eq 50 ] && { echo "::error::builds never reached VALID in 25min"; exit 1; }
             sleep 30
           done
+
+      - name: MAS review auto-submit (find-or-create version + rebind + submit)
+        if: ${{ inputs.submit_mas_review != false }}
+        env:
+          SAN_API_KEY_ID: ${{ secrets.SAN_API_KEY_ID }}
+          SAN_API_ISSUER: ${{ secrets.SAN_API_ISSUER }}
+          SAN_API_KEY_P8: ${{ secrets.SAN_API_KEY_P8 }}
+          BUILD_VER: ${{ steps.ver.outputs.ver }}
+        run: |
+          # 等 mac build VALID(脚本内部轮询 25min)→ 幂等全链:
+          # 版本 find-or-create → 移除在审 submission → whatsNew → 绑 build → 提审
+          if ! perl -e 'alarm 2400; exec @ARGV' python3 scripts/asc_mas_review.py; then
+            echo "::error::MAS review auto-submit failed (2400s watchdog)"
+            exit 1
+          fi
