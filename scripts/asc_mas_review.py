@@ -320,9 +320,9 @@ def main():
         bound = (rv.get("data") or {}).get("id") if isinstance(rv, dict) else None
         print(f"bound build: {bound and bound[:8]} (target {bid[:8]})")
         if bound != bid and bound:
-            sb2, rb2 = call("GET", f"/v1/builds/{bound}?fields[builds]=version,platform,processingState")
+            sb2, rb2 = call("GET", f"/v1/builds/{bound}")
             ba = rb2.get("data", {}).get("attributes", {}) if isinstance(rb2, dict) else {}
-            print(f"bound build attrs: {ba}")
+            print(f"bound build {bound[:8]}: http={sb2} attrs={ba} raw={json.dumps(rb2)[:300]}")
             if ba.get("version") == ver and ba.get("platform") == "MAC_OS":
                 print(f"bound build is also {ver} MAC_OS (upload id churn) - accepting")
         if bound == bid or (bound and ba.get("version") == ver):
