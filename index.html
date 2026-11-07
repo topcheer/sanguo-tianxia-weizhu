@@ -354,14 +354,18 @@
 <!-- 对局设置 -->
 <div id="settingsModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
   <div class="modal-box settings-box">
-    <p class="modal-kicker">帐中偏好</p>
-    <h3 id="settingsTitle">设 置</h3>
+    <p class="modal-kicker" data-i18n="settings.kicker">帐中偏好</p>
+    <h3 id="settingsTitle" data-i18n="settings.title">设 置</h3>
+    <div class="setting-row language-row" id="languageRow">
+      <span><b data-i18n="settings.language">语言 / Language</b><small data-i18n="settings.languageNote">章节文学文本以中文为准，其余语言陆续补全。</small></span>
+      <div class="lang-buttons" id="langButtons"></div>
+    </div>
     <label class="setting-row" for="equityAssist">
-      <span><b>局势分析</b><small>胜率 · 听牌 outs · 终局牌型概率</small></span>
+      <span><b data-i18n="settings.equityAssist">局势分析</b><small data-i18n="settings.equityAssistDesc">胜率 · 听牌 outs · 终局牌型概率</small></span>
       <input id="equityAssist" type="checkbox" role="switch" aria-describedby="equityAssistNote">
     </label>
-    <p id="equityAssistNote" class="settings-note">开启后显示在牌桌右侧。只根据你的手牌、公共牌和未弃牌对手数计算，不读取对手暗牌或未来牌序；设置会随存档保存。</p>
-    <button id="settingsClose" class="ghost" type="button">合 卷</button>
+    <p id="equityAssistNote" class="settings-note" data-i18n="settings.equityNote">开启后显示在牌桌右侧。只根据你的手牌、公共牌和未弃牌对手数计算，不读取对手暗牌或未来牌序；设置会随存档保存。</p>
+    <button id="settingsClose" class="ghost" type="button" data-i18n="common.close">合 卷</button>
   </div>
 </div>
 

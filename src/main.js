@@ -1,5 +1,6 @@
 // main.js —— 主流程:开卷 → 目录 → 翻页题记 → 天时 → 行军图 → 战役 → 结算 → 目录
 import { startBackdrop, wait } from './fx2d.js';
+import { i18n, LANGUAGES, applyTranslations } from './i18n.js';
 import { AudioFX } from './audio.js';
 import { createOpponent } from './character.js';
 import { startBattle } from './battle.js';
@@ -200,6 +201,28 @@ function closeSettings() {
   $('settingsToggle').focus({ preventScroll: true });
 }
 syncSettings();
+// 六语言:按钮组 + 切换后全量重刷静态文案(动态文案由各自模块在 language-change 时重渲染)
+function renderLangButtons() {
+  const box = $('langButtons');
+  if (!box) return;
+  box.innerHTML = '';
+  for (const { code, name } of LANGUAGES) {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'lang-btn' + (code === i18n.language ? ' active' : '');
+    b.textContent = name;
+    b.setAttribute('aria-pressed', code === i18n.language ? 'true' : 'false');
+    b.addEventListener('click', () => {
+      i18n.setLanguage(code);
+      renderLangButtons();
+      applyTranslations();
+    });
+    box.appendChild(b);
+  }
+}
+renderLangButtons();
+applyTranslations();
+window.addEventListener('app-language-change', () => renderLangButtons());
 $('settingsToggle').addEventListener('click', () => {
   syncSettings();
   $('settingsModal').classList.remove('hidden');
