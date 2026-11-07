@@ -157,14 +157,15 @@ struct BattleScreen: View {
               .padding(.top, 96).padding(.bottom, 104)
           }
         } else {
-          // 桌面:毛毡满屏(椭圆放大出四缘,消除黑底/灰绿分界),木边仅留上下缘微光
+          // 桌面:毛毡满屏(椭圆出四缘消除黑灰分界;小屏横置适中溢出,大屏更满)
+          let wide = realW > 900
           Ellipse()
             .fill(Theme.gold.opacity(0.30))
-            .frame(width: w * 1.3, height: h * 1.15)
+            .frame(width: wide ? w * 1.3 : w * 1.16, height: wide ? h * 1.15 : h * 0.98)
             .offset(y: -h * 0.02)
           Ellipse()
             .fill(LinearGradient(colors: [Color(hex: 0x34523f), Theme.felt, Color(hex: 0x2c463a)], startPoint: .top, endPoint: .bottom))
-            .frame(width: w * 1.25, height: h * 1.08)
+            .frame(width: wide ? w * 1.25 : w * 1.12, height: wide ? h * 1.08 : h * 0.92)
             .offset(y: -h * 0.02)
           // 桌布纹理暗纹
           Ellipse()
@@ -242,10 +243,16 @@ struct BattleScreen: View {
     let seedHead = "#" + (engine.config.seed.split(separator: "#").first.map(String.init) ?? engine.config.seed)
     let board = engine.board
     let boardSlots = 5 - board.count
+    // 多席竖屏防裁切:>3 席拆两行(布局参数化,席位卡复用)
+    let oppRows: [[Seat]] = opps.count > 2
+      ? [Array(opps.prefix((opps.count + 1) / 2)), Array(opps.suffix(opps.count / 2))]
+      : [Array(opps)]
+    let oppCellScale: CGFloat = opps.count > 2 ? 0.86 : 1
     return VStack(spacing: 10) {
-      // 对手行:等宽栅格,气泡槽固定高
+      // 对手行:等宽栅格,气泡槽固定高(>3 席自动两行)
+      ForEach(oppRows.indices, id: \.self) { row in
       HStack(alignment: .top, spacing: 10) {
-        ForEach(Array(opps.enumerated()), id: \.element.id) { _, seat in
+        ForEach(Array(oppRows[row].enumerated()), id: \.element.id) { _, seat in
           VStack(spacing: 4) {
             Group {
               if let bubble = seat.bubble {
@@ -287,9 +294,14 @@ struct BattleScreen: View {
           .frame(maxWidth: .infinity)
         }
       }
-      .padding(.horizontal, 10).padding(.top, 6)
+      .scaleEffect(oppRows.count > 1 ? 0.84 : 1)
+      .frame(maxWidth: oppRows.count > 1 ? 340 : nil)
+      .frame(maxWidth: .infinity)
+      .padding(.horizontal, oppRows.count > 1 ? 0 : 10)
+      }
+      .padding(.top, 6)
 
-      Spacer(minLength: 24)
+      Spacer(minLength: oppRows.count > 1 ? 10 : 24)
 
       // 底池
       HStack(spacing: 6) {

@@ -153,6 +153,17 @@ final class GameViewModel: ObservableObject {
   var debugAutoAcceptAfter: Double?
 
   func debugStartBattle(autoAcceptAfter: Double) async {
+    let args = ProcessInfo.processInfo.arguments
+    // -ggcodeDebugRoster=N (2..4):直入练兵场多对手局,验收 1vX 布局
+    if let a = args.first(where: { $0.hasPrefix("-ggcodeDebugRoster") }),
+       let n = Int(a.split(separator: "=").last.map(String.init) ?? ""), (2...4).contains(n) {
+      let arenas = GameData.shared.arenas.filter { $0["size"].int == n }
+      guard let arena = arenas.first else { return }
+      debugAutoAcceptAfter = autoAcceptAfter
+      screen = .battle
+      await startPracticeArena(arena)
+      return
+    }
     guard let chapter = GameData.shared.chapters.first(where: { !($0["map"].stringArray.isEmpty) }) else { return }
     selectedChapter = chapter
     startMarch(chapter, omenFx: "supply")
