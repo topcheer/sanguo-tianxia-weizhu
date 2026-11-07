@@ -113,7 +113,11 @@ final class AudioFX: @unchecked Sendable {
     engine.connect(src, to: engine.mainMixerNode, format: src.outputFormat(forBus: 0))
     try? engine.start()
     applyMute()
-    startVoice(Voice.Kind.wind, seed: UInt64.random(in: 1...UInt64.max))  // 常驻风声
+    // 常驻风声默认关闭(用户反馈嘈杂);演示录制需要氛围时用 -ggcodeAmbience=1 开启
+    let args = ProcessInfo.processInfo.arguments
+    if args.contains(where: { $0.hasPrefix("-ggcodeAmbience") }) {
+      startVoice(Voice.Kind.wind, seed: UInt64.random(in: 1...UInt64.max))
+    }
   }
 
   private func startVoice(_ k: Voice.Kind, seed: UInt64) {
