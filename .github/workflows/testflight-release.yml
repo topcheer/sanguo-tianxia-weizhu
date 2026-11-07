@@ -175,7 +175,7 @@ jobs:
         run: fastlane upload_mac_pkg pkg:"$RUNNER_TEMP/sanguo-weizhu-mac.pkg"
 
       - name: External beta (attach Ext group + Beta App Review)
-        if: ${{ inputs.submit_external != false }}
+        if: ${{ inputs.submit_external != false || github.event_name == 'push' }}
         env:
           SAN_API_KEY_ID: ${{ secrets.SAN_API_KEY_ID }}
           SAN_API_ISSUER: ${{ secrets.SAN_API_ISSUER }}
@@ -191,7 +191,7 @@ jobs:
           done
 
       - name: MAS review auto-submit (find-or-create version + rebind + submit)
-        if: ${{ inputs.submit_mas_review != false }}
+        if: ${{ inputs.submit_mas_review != false || github.event_name == 'push' }}
         env:
           SAN_API_KEY_ID: ${{ secrets.SAN_API_KEY_ID }}
           SAN_API_ISSUER: ${{ secrets.SAN_API_ISSUER }}
