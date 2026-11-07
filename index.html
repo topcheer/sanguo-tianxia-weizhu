@@ -53,7 +53,7 @@
     <p class="intro-era prologue-transition" id="introStep"><span>残卷</span> 英雄记 · 汉末异闻</p>
     <div class="intro-title-lock">
       <span class="intro-seal">汉</span>
-      <div><h1>三国：天下为注</h1><p class="sub">HEROES AT THE TABLE</p></div>
+      <div><h1 data-i18n="title.name">三国：天下为注</h1><p class="sub">HEROES AT THE TABLE</p></div>
     </div>
     <div class="intro-kingdoms" aria-hidden="true"><span>魏</span><i></i><span>蜀</span><i></i><span>吴</span></div>
     <div id="introNarrative" class="intro-narrative prologue-transition" aria-live="polite" aria-atomic="true">
@@ -61,11 +61,11 @@
       <p class="story" id="introStory">史书只写了沙场,没写牌桌。<br>这部残卷,记的是另一部三国。</p>
       <div class="intro-points" id="introPoints"></div>
     </div>
-    <button id="startBtn" disabled>开 卷<span>展开英雄记</span></button>
+    <button id="startBtn" disabled>开 卷<span data-i18n="title.startSub">展开英雄记</span></button>
     <div id="bootStatus" class="boot-status" data-state="loading" role="status" aria-live="polite" aria-atomic="true">
       <span class="boot-track" aria-hidden="true"><i></i></span>
       <p id="bootMessage">正在展开残卷…</p>
-      <button id="bootRetry" class="ghost hidden" type="button">重新加载</button>
+      <button id="bootRetry" class="ghost hidden" type="button" data-i18n="boot.retry">重新加载</button>
     </div>
     <button id="prologueSkip" class="intro-skip hidden">跳过背景，直接入卷</button>
     <p class="hint" id="introHint">盯住对手的手 —— 破绽比牌更值钱</p>
@@ -183,7 +183,7 @@
   <div class="map-roller top" aria-hidden="true"></div>
   <svg id="mapSvg" viewBox="0 0 1000 420" preserveAspectRatio="xMidYMid meet"></svg>
   <div class="map-roller bottom" aria-hidden="true"></div>
-  <div id="mapHint"><span>军令</span> 择亮起之处而行 <i>胜则改史 · 败亦入卷</i></div>
+  <div id="mapHint"><span data-i18n="map.badge">军令</span> <span data-i18n="map.hint">择亮起之处而行</span> <i data-i18n="map.hint2">胜则改史 · 败亦入卷</i></div>
 </div>
 
 <!-- 帐中对局 -->
@@ -243,14 +243,14 @@
     </aside>
 
     <div id="actions" class="hidden">
-      <button data-act="fold">弃牌</button>
-      <button data-act="check">过牌</button>
-      <button data-act="call">跟注</button>
-      <button data-act="raise">加注</button>
-      <button data-act="allin">全压</button>
+      <button data-act="fold" data-i18n="action.fold">弃牌</button>
+      <button data-act="check" data-i18n="action.check">过牌</button>
+      <button data-act="call" data-i18n="action.call">跟注</button>
+      <button data-act="raise" data-i18n="action.raise">加注</button>
+      <button data-act="allin" data-i18n="action.allin">全压</button>
     </div>
     <div id="raiseOpts" class="hidden"></div>
-    <button id="tauntBtn" disabled>攻 心</button>
+    <button id="tauntBtn" data-i18n="battle.gongxin" disabled>攻 心</button>
 
     <div id="banner" class="hidden"><div id="bannerMain"></div><div id="bannerSub"></div></div>
     <div id="codex"><h3>破 绽 簿</h3><ul id="codexList"><li class="empty">尚无记录 —— 盯住他的手。</li></ul></div>

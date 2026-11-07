@@ -1,5 +1,19 @@
 // onboarding.js —— 四短节开卷 + 第一次真实操作时的非阻塞引导
+// 文案从 i18n 词表读取(prologue.N.* 与 native 同源);词表未覆盖处用中文原文回退。
+import { i18n, PL } from './i18n.js';
 const $ = id => document.getElementById(id);
+
+const PROLOGUE_KEYS = ['prologue.0', 'prologue.1', 'prologue.2', 'prologue.3'];
+function prologueData(step) {
+  const base = PROLOGUE_KEYS[step] ?? `prologue.${step}`;
+  const t = k => i18n.t(`${base}.${k}`);
+  const points = [];
+  for (let i = 0; i < 4; i++) {
+    const hit = i18n.t(`${base}.p${i}`);
+    if (hit !== `${base}.p${i}`) points.push(hit);
+  }
+  return { kicker: t('kicker'), title: t('title'), text: t('text'), points };
+}
 
 const PROLOGUE = [
   {
@@ -44,14 +58,19 @@ export function createOnboarding(P, { save, onFinish, force = '' } = {}) {
   const fast = new URLSearchParams(location.search).get('fast') === '1';
   const pause = ms => new Promise(resolve => setTimeout(resolve, ms));
   const prologueElements = () => [$('introStep'), $('introNarrative')];
+  // 语言切换时开卷若仍在场,按键表重刷当前节(词表未覆盖处自然回退)
+  window.addEventListener('app-language-change', () => {
+    if (!active && $('intro') && !$('intro').classList.contains('hidden')) render();
+  });
 
   function render() {
-    const data = PROLOGUE[step];
-    $('introStep').textContent = `${data.kicker} · ${step + 1} / ${PROLOGUE.length}`;
+    const data = prologueData(step);
+    const total = PROLOGUE_KEYS.length;
+    $('introStep').textContent = `${data.kicker} · ${step + 1} / ${total}`;
     $('introStory').textContent = data.text;
     $('introLesson').textContent = data.title;
     $('introPoints').innerHTML = data.points.map(point => `<span>${point}</span>`).join('');
-    $('startBtn').innerHTML = `${step === PROLOGUE.length - 1 ? '展 开 英 雄 记' : '继 续'}<span>${step === PROLOGUE.length - 1 ? '进入残卷目录' : '点击推进 · 可随时跳过'}</span>`;
+    $('startBtn').innerHTML = `${step === PROLOGUE_KEYS.length - 1 ? PL('onboarding.open', '展 开 英 雄 记') : PL('onboarding.next', '继 续')}<span>${step === PROLOGUE_KEYS.length - 1 ? PL('onboarding.openSub', '进入残卷目录') : PL('onboarding.tapHint', '点击推进 · 可随时跳过')}</span>`;
     $('prologueSkip').classList.remove('hidden');
     $('introHint').textContent = '背景序章约三十秒；机制还会在第一次操作时分别提示';
   }
