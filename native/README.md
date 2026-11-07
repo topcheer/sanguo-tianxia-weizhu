@@ -70,7 +70,7 @@ native/
 2. macOS 黄金向量测试 → iOS 归档导出 → `fastlane pilot` 上传
 3. macOS 归档 + codesign + `productbuild` pkg → `fastlane deliver` 上传
 4. 轮询 build VALID 后执行 `scripts/asc_external_beta.py`：挂 `Ext` 外测组（公开链接）并显式 POST `betaAppReviewSubmissions`（仅挂组不会触发 Beta 审核）
-5. `scripts/asc_mas_review.py` 全自动 MAS 提审链（`submit_mas_review` 开关，默认开）：等 mac build VALID（`/v1/builds?filter[app]+filter[version]` + include preReleaseVersion 客户端匹配 MAC_OS）→ find-or-create 1.0.2 版本 → 在审则 DELETE `appStoreVersionSubmissions`（官方移出审核）→ 全 locale whatsNew → PATCH 绑 build → POST 重新提审。JWT ≤20min、余量 5min 自动重铸；401×5 快败。营销版本号自读 `project.yml`。
+5. `scripts/asc_mas_review.py` 全自动 MAS 提审链（`submit_mas_review` 开关，默认开）：等 mac build VALID（`/v1/builds?filter[app]+filter[version]` + include preReleaseVersion 客户端匹配 MAC_OS）→ 经 `/v1/apps/{id}/appStoreVersions`（扁平路径 GET_COLLECTION 403）find-or-create 版本 → 陈旧绑定则单数 include `appStoreVersionSubmission` 取 id、DELETE 移出审核 → PATCH 绑 build → **新提审流**：POST `/v1/reviewSubmissions` → **扁平 POST `/v1/reviewSubmissionItems`**（子路径 items 405）双关系挂版本 → PATCH `submitted:true`（旧 `appStoreVersionSubmissions` 端点已废弃仅剩 DELETE）。JWT ≤20min、余量 5min 重铸；401×5 快败；营销版本号自读 `project.yml`。
 
 版本节奏：`native/project.yml` 的 `MARKETING_VERSION` / `CURRENT_PROJECT_VERSION` 即所构建版本，bump 后打 tag（如 `v1.0.1-701` → build `2026110701`）。签名复用既有证书对（能复用绝不新建）；所需 secrets 前缀 `SAN_*`（p12×2、密码×2、双平台 profile、ASC API key 三件套）。
 
