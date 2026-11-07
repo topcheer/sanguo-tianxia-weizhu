@@ -683,9 +683,13 @@ struct MapScreen: View {
     return AnyView(
       GeometryReader { geo in
         let portrait = geo.size.height > geo.size.width
-        let paperW = portrait ? min(geo.size.width * 0.9, 420) : min(geo.size.width * 0.92, 1100)
-        let paperH = portrait ? min(geo.size.height * 0.58, paperW * 1.7) : paperW * 0.42
-        let centerY = geo.size.height * 0.54
+        let paperW0 = portrait ? min(geo.size.width * 0.9, 420) : min(geo.size.width * 0.92, 1100)
+        // 横屏:纸面高度受顶栏/底栏之间净空约束(否则木轴压住上下文字),按 0.42 比例回缩宽度
+        let paperH = portrait ? min(geo.size.height * 0.58, paperW0 * 1.7)
+                              : min(paperW0 * 0.42, max(160, geo.size.height - 190))
+        let paperW = portrait ? paperW0 : min(paperW0, paperH / 0.42)
+        let centerY = portrait ? geo.size.height * 0.54
+                               : max(geo.size.height * 0.5, min(geo.size.height * 0.54, 84 + paperH / 2 + 14))
         let xs = R.nodes.map { $0.x }; let ys = R.nodes.map { $0.y }
         let x0 = xs.min() ?? 0; let x1 = xs.max() ?? 1
         let y0 = ys.min() ?? 0; let y1 = ys.max() ?? 1
@@ -728,14 +732,14 @@ struct MapScreen: View {
                 VStack(alignment: .leading, spacing: 3) {
                   Text(PL("map.kicker", "军令所至")).font(Theme.serif(10)).kerning(5).foregroundColor(Color(hex: 0x81785f))
                   Text("\(PL("map.title", "行 军 图")) · \(R.chapter["name"].string ?? "")")
-                    .font(Theme.serif(28)).kerning(6).foregroundColor(Theme.goldLight)
+                    .font(Theme.serif(28)).kerning(6).lineLimit(1).minimumScaleFactor(0.6).foregroundColor(Theme.goldLight)
                 }
                 Spacer()
                 HStack(spacing: 10) {
                   HStack(spacing: 0) {
                     Text("\(L("term.chips")) ").font(Theme.serif(13)).foregroundColor(Color(hex: 0xaaa185))
                     Text("\(R.chips)").font(Theme.serif(18)).foregroundColor(Theme.goldLight)
-                    Text("  ·  \(R.marchInfo)").font(Theme.serif(13)).kerning(1).foregroundColor(Color(hex: 0xaaa185))
+                    Text("  ·  \(R.marchInfo)").font(Theme.serif(13)).kerning(1).lineLimit(1).minimumScaleFactor(0.6).foregroundColor(Color(hex: 0xaaa185))
                   }
                   .padding(.horizontal, 14).padding(.vertical, 8)
                   .background(Color(hex: 0x151910).opacity(0.73))
