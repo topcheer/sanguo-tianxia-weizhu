@@ -1,0 +1,61 @@
+name: desktop-release
+
+# Windows/Linux 桌面壳(Electron):tag v* 时三平台矩阵出包,传 GitHub Release。
+# mac 包同样产出(与 MAS 原生版并行,给非 MAS 渠道用);artifacts 始终上传,
+# Release 仅在 tag 事件创建。
+on:
+  workflow_dispatch:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: electron ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 40
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: macos-latest
+            PLAT: --mac
+          - os: windows-latest
+            PLAT: --win
+          - os: ubuntu-latest
+            PLAT: --linux
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Build web bundle
+        run: |
+          npm ci
+          npm run build
+      - name: Build desktop installer
+        working-directory: desktop
+        run: |
+          npm ci
+          npx electron-builder ${{ matrix.PLAT }} --publish never
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: desktop-${{ matrix.os }}
+          path: |
+            desktop/release/*.exe
+            desktop/release/*.dmg
+            desktop/release/*.AppImage
+            desktop/release/*.deb
+          if-no-files-found: error
+      - name: Attach to Release (tag only)
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            desktop/release/*.exe
+            desktop/release/*.dmg
+            desktop/release/*.AppImage
+            desktop/release/*.deb

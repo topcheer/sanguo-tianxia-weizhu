@@ -1,0 +1,30 @@
+{
+  "name": "sanguo-weizhu-desktop",
+  "version": "1.0.2",
+  "description": "三国：天下为注 - Windows/Linux desktop shell (Electron)",
+  "main": "main.js",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder"
+  },
+  "devDependencies": {
+    "electron": "^39.0.0",
+    "electron-builder": "^26.0.0"
+  },
+  "build": {
+    "appId": "dev.ggcode.san",
+    "productName": "三国：天下为注",
+    "directories": { "output": "release" },
+    "files": ["main.js"],
+    "extraResources": [{ "from": "../dist", "to": "dist" }],
+    "asar": true,
+    "win": { "target": ["nsis"], "artifactName": "sanguo-weizhu-${version}-setup.${ext}" },
+    "linux": {
+      "target": ["AppImage", "deb"],
+      "category": "Game",
+      "artifactName": "sanguo-weizhu-${version}-${ext}"
+    },
+    "mac": { "target": ["dmg"], "artifactName": "sanguo-weizhu-${version}.${ext}" }
+  }
+}
