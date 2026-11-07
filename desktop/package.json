@@ -1,7 +1,7 @@
 {
   "name": "sanguo-weizhu-desktop",
   "version": "1.0.2",
-  "description": "三国：天下为注 - Windows/Linux desktop shell (Electron)",
+  "description": "San Guo: Tianxia Weizhu - a Three-Kingdoms Texas hold'em saga (desktop shell)",
   "main": "main.js",
   "private": true,
   "scripts": {
@@ -49,5 +49,10 @@
       "artifactName": "sanguo-weizhu-${version}.${ext}"
     },
     "executableName": "sanguo-weizhu"
+  },
+  "homepage": "https://github.com/topcheer/sanguo-tianxia-weizhu",
+  "author": {
+    "name": "topcheer",
+    "email": "topcheer@users.noreply.github.com"
   }
 }
