@@ -358,6 +358,7 @@ struct RootView: View {
       print("[debug] args=\(args)")
       #if DEBUG
       game.debugAutoAct = args.contains { $0.hasPrefix("-ggcodeAutoAct") }
+      game.demoPace = args.contains { $0.hasPrefix("-ggcodeDemoPace") }
       #endif
       if let arg = args.first(where: { $0.hasPrefix("-ggcodeDebugResult") }) {
         game.debugShowBattleResult(win: !arg.lowercased().contains("loss"))

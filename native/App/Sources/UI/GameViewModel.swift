@@ -99,6 +99,8 @@ final class GameViewModel: ObservableObject {
   @Published var activeBattle: BattleEngine? = nil
   /// 截图调试:自动跟注/过牌(仅 DEBUG,由 -ggcodeAutoAct=1 开启)
   var debugAutoAct = false
+  /// 演示节奏:行动用人类思考延迟(-ggcodeDemoPace=1,配合录制)
+  var demoPace = false
   /// 玩家行动提示:由引擎侧 provider 直接驱动,不依赖视图 onAppear 时序
   @Published var actionPrompt: (view: ActionView, presets: [BattleEngine.BetPreset])? = nil
   private var actionContinuation: ResumeOnce<AIDecision>? = nil
@@ -110,7 +112,9 @@ final class GameViewModel: ObservableObject {
       Task { @MainActor in
         #if DEBUG
         if self.debugAutoAct {
-          try? await Task.sleep(nanoseconds: 900_000_000)
+          let base = self.demoPace ? 1.7 : 0.9
+          let jitter = self.demoPace ? Double.random(in: 0...1.3) : 0
+          try? await Task.sleep(nanoseconds: UInt64((base + jitter) * 1_000_000_000))
           let d = view.toCall > 0 ? AIDecision(type: "call") : AIDecision(type: "check")
           self.actionPrompt = nil
           self.actionContinuation = nil

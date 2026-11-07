@@ -122,37 +122,52 @@ struct BattleScreen: View {
 
   var body: some View {
     GeometryReader { geo in
-      // 小屏(横屏手机)按桌面设计画布缩放整张牌桌,保证席位/底池/行动栏都在屏内
+      // 小屏(横屏手机)按桌面设计画布缩放整张牌桌,保证席位/底池/行动栏都在屏内;
+      // 竖屏(iPhone/iPad/Duo 正面)走原生竖排布局,不再缩放桌面画布
       let realW = geo.size.width, realH = geo.size.height
-      let w = max(realW, 1180), h = max(realH, 780)
-      let scale = min(1, min(realW / w, realH / h))
+      let portrait = realW < realH
+      let w = portrait ? realW : max(realW, 1180), h = portrait ? realH : max(realH, 780)
+      let scale = portrait ? 1 : min(1, min(realW / w, realH / h))
       ZStack {
         // 背景与桌面
         LinearGradient(colors: [Color(hex: 0x0d110d), Color(hex: 0x141a12), Color(hex: 0x0d110d)], startPoint: .top, endPoint: .bottom)
-        // 桌面:椭圆木边 + 毛毡
-        Ellipse()
-          .fill(Theme.gold.opacity(0.35))
-          .frame(width: w * 0.88, height: h * 0.66)
-          .offset(y: -h * 0.02)
-        Ellipse()
-          .fill(LinearGradient(colors: [Color(hex: 0x3c5c46), Theme.felt, Color(hex: 0x2c463a)], startPoint: .top, endPoint: .bottom))
-          .frame(width: w * 0.85, height: h * 0.63)
-          .offset(y: -h * 0.02)
-        // 桌布纹理暗纹
-        Ellipse()
-          .strokeBorder(Theme.gold.opacity(0.12), lineWidth: 10)
-          .frame(width: w * 0.72, height: h * 0.5)
-          .offset(y: -h * 0.02)
-        // 落叶氛围(复刻 fx2d backdrop)
-        LeafFallView()
-          .opacity(0.85)
-          .allowsHitTesting(false)
+        if portrait {
+          // 毛毡桌面(竖版椭圆)
+          Ellipse()
+            .fill(LinearGradient(colors: [Color(hex: 0x3c5c46), Theme.felt, Color(hex: 0x2c463a)], startPoint: .top, endPoint: .bottom))
+            .frame(width: realW * 1.7, height: realH * 0.52)
+            .offset(y: -realH * 0.02)
+            .overlay(Ellipse().strokeBorder(Theme.gold.opacity(0.12), lineWidth: 10).frame(width: realW * 1.5, height: realH * 0.4).offset(y: -realH * 0.02))
+          LeafFallView().opacity(0.85).allowsHitTesting(false)
+          if let engine = game.activeBattle {
+            portraitField(engine: engine, w: realW, h: realH)
+          }
+        } else {
+          // 桌面:椭圆木边 + 毛毡
+          Ellipse()
+            .fill(Theme.gold.opacity(0.35))
+            .frame(width: w * 0.88, height: h * 0.66)
+            .offset(y: -h * 0.02)
+          Ellipse()
+            .fill(LinearGradient(colors: [Color(hex: 0x3c5c46), Theme.felt, Color(hex: 0x2c463a)], startPoint: .top, endPoint: .bottom))
+            .frame(width: w * 0.85, height: h * 0.63)
+            .offset(y: -h * 0.02)
+          // 桌布纹理暗纹
+          Ellipse()
+            .strokeBorder(Theme.gold.opacity(0.12), lineWidth: 10)
+            .frame(width: w * 0.72, height: h * 0.5)
+            .offset(y: -h * 0.02)
+          // 落叶氛围(复刻 fx2d backdrop)
+          LeafFallView()
+            .opacity(0.85)
+            .allowsHitTesting(false)
 
-        if let engine = game.activeBattle {
-          playField(engine: engine, w: w, h: h)
+          if let engine = game.activeBattle {
+            playField(engine: engine, w: w, h: h)
+          }
         }
       }
-      .frame(width: w, height: h)
+      .frame(width: portrait ? realW : w, height: portrait ? realH : h)
       .scaleEffect(scale)
       .modifier(ShakeEffect(travel: shakePower, shakes: 3, animatableData: shakeTrigger))
       .frame(width: realW, height: realH)
@@ -190,11 +205,157 @@ struct BattleScreen: View {
     }
   }
 
-  @ViewBuilder
+  // 竖版牌桌(iPhone/iPad 竖屏/Duo):真·自适应堆叠,不缩放画布。
+  // 结构:对手行(上) → 底池+公共牌(中) → 英雄区(下);行动栏/信息条由 fieldChrome 提供。
+  private func portraitField(engine: BattleEngine, w: Double, h: Double) -> some View {
+    let opps = engine.opponents
+    let pot = engine.H.map { potTotal($0.seats) } ?? 0
+    let seedHead = "#" + (engine.config.seed.split(separator: "#").first.map(String.init) ?? engine.config.seed)
+    let board = engine.board
+    let boardSlots = 5 - board.count
+    return VStack(spacing: 6) {
+      // 对手行
+      HStack(alignment: .top, spacing: 8) {
+        ForEach(Array(opps.enumerated()), id: \.element.id) { _, seat in
+          VStack(spacing: 3) {
+            if let bubble = seat.bubble {
+              Text(bubble).font(Theme.serif(10)).foregroundColor(Theme.paper)
+                .padding(.horizontal, 6).padding(.vertical, 4)
+                .background(Theme.lacquer.opacity(0.96))
+                .overlay(RoundedRectangle(cornerRadius: 3).strokeBorder(Theme.gold.opacity(0.6), lineWidth: 1))
+                .lineLimit(2).multilineTextAlignment(.center).frame(maxWidth: .infinity)
+            }
+            HStack(spacing: 2) {
+              ForEach(Array(seat.hole.enumerated()), id: \.offset) { _, cid in
+                if seat.showdownName != nil { CardView(id: cid) } else { CardBackView() }
+              }
+              if let sd = seat.showdownName {
+                VStack(spacing: 1) {
+                  Text(sd).font(Theme.serif(9, bold: true)).foregroundColor(seat.showdownVerdict == "win" ? Theme.goldLight : Theme.paperDim).lineLimit(1)
+                  if seat.showdownVerdict != nil {
+                    Text(seat.showdownVerdict == "win" ? "胜" : "负").font(Theme.serif(8))
+                      .foregroundColor(Theme.inkDeep)
+                      .padding(.horizontal, 3)
+                      .background(seat.showdownVerdict == "win" ? Theme.goldLight : Theme.muted)
+                  }
+                }
+              }
+            }
+            .frame(height: 40)
+            SeatPlate(seat: seat, engine: engine, isBoss: engine.config.boss)
+              .onTapGesture { engine.selectedSeat = seat.id }
+              .overlay(
+                RoundedRectangle(cornerRadius: 2)
+                  .strokeBorder(engine.selectedSeat == seat.id && opps.count > 1 ? Theme.goldLight : .clear, lineWidth: 1.5)
+              )
+            if seat.bet > 0, engine.H != nil {
+              HStack(spacing: 3) {
+                ChipStack(count: seat.bet, tone: "ebony")
+                Text("\(seat.bet)").font(Theme.serif(10)).foregroundColor(Theme.paperDim)
+              }
+            } else { Color.clear.frame(height: 18) }
+          }
+          .frame(maxWidth: .infinity)
+        }
+      }
+      .padding(.horizontal, 10).padding(.top, 4)
+
+      Spacer(minLength: 4)
+
+      // 底池
+      HStack(spacing: 6) {
+        ChipStack(count: pot, tone: "pot")
+        Text("\(pot)").font(Theme.serif(15, bold: true)).foregroundColor(Theme.goldLight)
+      }
+      .potPulse(pot)
+
+      // 公共牌(大号)+ 牌堆/种子
+      HStack(spacing: 8) {
+        VStack(spacing: 3) {
+          ZStack { ForEach(0..<3, id: \.self) { i in CardBackView().offset(x: CGFloat(i) * 1.2, y: CGFloat(-i) * 1.2) } }
+          Text(seedHead)
+            .font(.system(size: 8, design: .monospaced)).foregroundColor(Theme.muted)
+        }
+        Spacer()
+        HStack(spacing: 7) {
+          ForEach(Array(board.enumerated()), id: \.offset) { _, cid in
+            CardView(id: cid, big: true)
+          }
+          ForEach(0..<boardSlots, id: \.self) { _ in
+            RoundedRectangle(cornerRadius: 7).fill(Color.black.opacity(0.18))
+              .overlay(RoundedRectangle(cornerRadius: 7).strokeBorder(Theme.gold.opacity(0.25), lineWidth: 1))
+              .frame(width: 48, height: 68)
+          }
+        }
+        Spacer()
+        if let hero = engine.seats.first(where: { $0.isHero }), hero.bet > 0, engine.H != nil {
+          HStack(spacing: 3) {
+            ChipStack(count: hero.bet, tone: "ivory")
+            Text("\(hero.bet)").font(Theme.serif(10)).foregroundColor(Theme.paperDim)
+          }
+        } else { Color.clear.frame(width: 60) }
+      }
+      .padding(.horizontal, 14)
+
+      Spacer(minLength: 4)
+
+      // 英雄区
+      heroArea(engine: engine)
+        .padding(.bottom, 6)
+    }
+    // 横幅(复用桌面样式,居中覆盖)
+    .overlay {
+      if let b = banner {
+        VStack(spacing: 5) {
+          Text(b.0).font(Theme.serif(24, bold: true)).kerning(4).foregroundColor(Theme.goldLight)
+            .shadow(color: .black.opacity(0.8), radius: 4, y: 2)
+          if !b.1.isEmpty {
+            Text(b.1).font(Theme.serif(13)).foregroundColor(Theme.paper).multilineTextAlignment(.center)
+          }
+        }
+        .padding(.horizontal, 24).padding(.vertical, 14)
+        .background(Theme.inkDeep.opacity(0.82))
+        .overlay(RoundedRectangle(cornerRadius: 4).strokeBorder(Theme.gold.opacity(0.6), lineWidth: 1))
+        .transition(.asymmetric(insertion: .scale(scale: 0.72).combined(with: .opacity), removal: .opacity))
+      }
+    }
+    // 顶部信息条
+    .safeAreaInset(edge: .top) { topBar(engine: engine) }
+    // 底部行动区
+    .safeAreaInset(edge: .bottom) {
+      VStack(spacing: 6) {
+        infoLine(engine: engine)
+        ActionBanner()
+      }
+      .padding(.horizontal, 14).padding(.bottom, 10)
+      .background(Theme.inkDeep.opacity(0.9))
+    }
+    .onReceive(engine.eventBridge.bannerPub) { b in
+      withAnimation { banner = b }
+      let allin = b.0.contains(L("action.allin")) || b.1.contains(L("action.allin"))
+      shakePower = allin ? 11 : 5
+      withAnimation(.easeOut(duration: 0.5)) { shakeTrigger += 1 }
+      if allin { AudioFX.shared.heartStart() } else { AudioFX.shared.chip() }
+      Task {
+        try? await Task.sleep(nanoseconds: 2_100_000_000)
+        withAnimation { if banner?.0 == b.0 && banner?.1 == b.1 { banner = nil } }
+      }
+    }
+    .onReceive(engine.eventBridge.codexPub) { entry in
+      codexEntries.insert(entry, at: 0)
+      if codexEntries.count > 8 { codexEntries.removeLast() }
+    }
+    .onAppear {
+      engine.clock = { seconds in
+        try? await Task.sleep(nanoseconds: UInt64(seconds * 1_000_000_000))
+      }
+    }
+  }
+
   private func playField(engine: BattleEngine, w: Double, h: Double) -> some View {
     let playH = h * 0.86 // 牌面区域(底部留给行动栏)
     let opps = engine.opponents
-    ZStack(alignment: .topLeading) {
+    return ZStack(alignment: .topLeading) {
       // 对手席位
       ForEach(Array(opps.enumerated()), id: \.element.id) { index, seat in
         let spot = opponentSpot(index, opps.count)
