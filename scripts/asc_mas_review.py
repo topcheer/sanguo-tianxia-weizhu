@@ -315,10 +315,17 @@ def main():
     vid, state = get_or_create_version(mkt)
     print(f"version {mkt}: {vid[:8]} state={state}")
     if state in ("WAITING_FOR_REVIEW", "IN_REVIEW"):
+        ba = {}
         sv, rv = call("GET", f"/v1/appStoreVersions/{vid}/build")  # 专用关系端点(JSON:API 主资源不带 linkage)
         bound = (rv.get("data") or {}).get("id") if isinstance(rv, dict) else None
         print(f"bound build: {bound and bound[:8]} (target {bid[:8]})")
-        if bound == bid:
+        if bound != bid and bound:
+            sb2, rb2 = call("GET", f"/v1/builds/{bound}?fields[builds]=version,platform,processingState")
+            ba = rb2.get("data", {}).get("attributes", {}) if isinstance(rb2, dict) else {}
+            print(f"bound build attrs: {ba}")
+            if ba.get("version") == ver and ba.get("platform") == "MAC_OS":
+                print(f"bound build is also {ver} MAC_OS (upload id churn) - accepting")
+        if bound == bid or (bound and ba.get("version") == ver):
             print("MAS_REVIEW_OK (already WAITING_FOR_REVIEW with this build)")
             print("MAS_REVIEW_OK")
             return
