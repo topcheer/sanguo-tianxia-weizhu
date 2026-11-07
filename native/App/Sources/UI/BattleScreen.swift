@@ -316,10 +316,10 @@ struct BattleScreen: View {
 
       Spacer(minLength: 24)
 
-      // 公共牌
+      // 公共牌(新牌从上方中央飞入翻开,与桌面版 DealtCard 同源)
       HStack(spacing: 6) {
-        ForEach(Array(board.enumerated()), id: \.offset) { _, cid in
-          CardView(id: cid, big: true)
+        ForEach(Array(board.enumerated()), id: \.offset) { i, cid in
+          DealtCard(card: cid, fromX: CGFloat(i - 2) * 14, fromY: -46, delay: Double(i % 3) * 0.10)
         }
         ForEach(0..<boardSlots, id: \.self) { _ in
           RoundedRectangle(cornerRadius: 7).fill(Color.black.opacity(0.18))
@@ -677,6 +677,7 @@ struct ActionBanner: View {
             actionButton(L("action.fold"), danger: true) { game.submitPlayerAction(.init(type: "fold")) }
             actionButton(view.toCall >= view.stack ? "\(L("action.allinCall")) \(view.stack)" : "\(L("action.call")) \(view.toCall)") { game.submitPlayerAction(.init(type: "call")) }
           } else {
+            actionButton(L("action.fold"), danger: true) { game.submitPlayerAction(.init(type: "fold")) }
             actionButton(L("action.check")) { game.submitPlayerAction(.init(type: "check")) }
           }
           Spacer()
@@ -721,6 +722,7 @@ struct ActionBanner: View {
           actionButton(L("action.fold"), danger: true) { game.submitPlayerAction(.init(type: "fold")) }
           actionButton(view.toCall >= view.stack ? "\(L("action.allinCall")) \(view.stack)" : "\(L("action.call")) \(view.toCall)") { game.submitPlayerAction(.init(type: "call")) }
         } else {
+          actionButton(L("action.fold"), danger: true) { game.submitPlayerAction(.init(type: "fold")) }
           actionButton(L("action.check")) { game.submitPlayerAction(.init(type: "check")) }
         }
         ForEach(Array(prompt.presets.enumerated()), id: \.offset) { _, p in

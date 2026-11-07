@@ -15,7 +15,7 @@ public struct PracticeRecord: Codable {
   public var won: Int
 }
 public struct Settings: Codable {
-  public var equityAssist: Bool = false
+  public var equityAssist: Bool = true
 }
 public struct StoryState: Codable {
   public var seen: [String: Int] = [:]
