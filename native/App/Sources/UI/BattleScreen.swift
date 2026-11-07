@@ -6,6 +6,12 @@ import Combine
 
 // MARK: - 扑克牌
 
+#if os(iOS)
+private let battleScreenWidth: CGFloat = UIScreen.main.bounds.width
+#else
+private let battleScreenWidth: CGFloat = 1180
+#endif
+
 struct CardView: View {
   let id: Int
   var big = false
@@ -148,6 +154,7 @@ struct BattleScreen: View {
           LeafFallView().opacity(0.7).allowsHitTesting(false)
           if let engine = game.activeBattle {
             portraitField(engine: engine, w: realW, h: realH)
+              .padding(.top, 96).padding(.bottom, 104)
           }
         } else {
           // 桌面:椭圆木边 + 毛毡
@@ -171,6 +178,22 @@ struct BattleScreen: View {
 
           if let engine = game.activeBattle {
             playField(engine: engine, w: w, h: h)
+          }
+        }
+        // 顶部信息条 + 底部行动区(ZStack 内显式布局,提案即屏宽,免 safeAreaInset 提案漂移)
+        VStack(spacing: 0) {
+          if let engine = game.activeBattle {
+            topBar(engine: engine, width: geo.size.width)
+              .padding(.top, 52)
+            Spacer(minLength: 0)
+            VStack(spacing: 6) {
+              infoLine(engine: engine)
+                .frame(width: geo.size.width - 28, alignment: .leading)
+              ActionBanner(barWidth: geo.size.width - 28)
+            }
+            .frame(width: geo.size.width, alignment: .leading)
+            .padding(.bottom, 8)
+            .background(Theme.inkDeep.opacity(0.9))
           }
         }
       }
@@ -313,15 +336,6 @@ struct BattleScreen: View {
         .overlay(RoundedRectangle(cornerRadius: 4).strokeBorder(Theme.gold.opacity(0.6), lineWidth: 1))
         .transition(.asymmetric(insertion: .scale(scale: 0.72).combined(with: .opacity), removal: .opacity))
       }
-    }
-    .safeAreaInset(edge: .top) { topBar(engine: engine) }
-    .safeAreaInset(edge: .bottom) {
-      VStack(spacing: 6) {
-        infoLine(engine: engine)
-        ActionBanner()
-      }
-      .padding(.horizontal, 14).padding(.bottom, 10)
-      .background(Theme.inkDeep.opacity(0.9))
     }
     .onReceive(engine.eventBridge.bannerPub) { b in
       withAnimation { banner = b }
@@ -477,19 +491,7 @@ struct BattleScreen: View {
       }
       #endif
     }
-    // 顶部信息条
-    .safeAreaInset(edge: .top) {
-      topBar(engine: engine)
-    }
-    // 底部行动区
-    .safeAreaInset(edge: .bottom) {
-      VStack(spacing: 6) {
-        infoLine(engine: engine)
-        ActionBanner()
-      }
-      .padding(.horizontal, 14).padding(.bottom, 10)
-      .background(Theme.inkDeep.opacity(0.9))
-    }
+    // 顶/底信息与行动条由外层 RootView 级 safeAreaInset 统一提供(此处重复曾致 542.7 宽提案越界裁切)
     .onReceive(engine.eventBridge.bannerPub) { b in
       withAnimation { banner = b }
       // 全押级横幅:屏震 + 心跳(复刻 fx2d.shake / heartStart)
@@ -513,9 +515,9 @@ struct BattleScreen: View {
     }
   }
 
-  private func topBar(engine: BattleEngine) -> some View {
-    GeometryReader { g in
-      if g.size.width < 760 {
+  private func topBar(engine: BattleEngine, width barW: CGFloat) -> some View {
+    Group {
+      if barW < 760 {
         // 竖版:胜率药丸 + 单一墨钮抽屉(同心/验牌收进 Menu,零溢出)
         HStack(spacing: 8) {
           if store.progress.settings.equityAssist, let r = engine.latestOdds {
@@ -529,6 +531,7 @@ struct BattleScreen: View {
             .fixedSize()
           }
           Spacer(minLength: 4)
+          SfxToggleButton()
           Menu {
             Button {
               _ = engine.taunt()
@@ -553,8 +556,10 @@ struct BattleScreen: View {
         }
         .padding(.horizontal, 10).padding(.vertical, 6)
         .background(Theme.inkDeep.opacity(0.7))
-
+        .frame(width: barW, alignment: .leading)
+      } else {
         topBarFull(engine: engine)
+          .frame(width: barW, alignment: .leading)
       }
     }
   }
@@ -571,6 +576,7 @@ struct BattleScreen: View {
       .buttonStyle(.plain)
       .disabled(engine.taunted || engine.H == nil)
       Button { verifyOpen = true } label: { InkButton(title: L("battle.verify")) }.buttonStyle(.plain)
+      SfxToggleButton()
     }
     .padding(.horizontal, 16).padding(.vertical, 6)
     .background(Theme.inkDeep.opacity(0.7))
@@ -617,11 +623,13 @@ struct BattleScreen: View {
 struct ActionBanner: View {
   @ObservedObject var game = GameViewModel.shared
   @State private var raiseOpen = false
+  var barWidth: CGFloat = 402
 
   var body: some View {
-    GeometryReader { g in
-      if g.size.width < 760 { compact } else { full }
+    Group {
+      if barWidth < 760 { compact } else { full }
     }
+    .frame(width: barWidth, alignment: .leading)
     .frame(minHeight: 44)
   }
 

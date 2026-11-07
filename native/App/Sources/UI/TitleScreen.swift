@@ -159,6 +159,10 @@ struct TitleScreen: View {
         }
       }
     }
+    .overlay(alignment: .topTrailing) {
+      SfxToggleButton()
+        .padding(.trailing, 16).padding(.top, 62)
+    }
   }
 
   // MARK: - 主栏

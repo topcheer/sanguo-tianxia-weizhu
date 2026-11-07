@@ -59,6 +59,8 @@ struct CodexScreen: View {
   @ObservedObject var game = GameViewModel.shared
   @ObservedObject var store = ProgressStore.shared
   @ObservedObject var l10n = L10n.shared
+  @Environment(\.horizontalSizeClass) private var hSize
+  private var horizontalCompact: Bool { hSize == .compact }
 
   var body: some View {
     ZStack {
@@ -80,6 +82,7 @@ struct CodexScreen: View {
             Button { game.openApocrypha() } label: {
               Text("\(L("apoc.entry"))\(store.progress.apocWins > 0 ? " · \(L("apoc.won")) \(store.progress.apocWins)" : "")")
                 .font(Theme.serif(15)).kerning(2).foregroundColor(Theme.paperLight)
+                .lineLimit(1).minimumScaleFactor(0.7)
                 .padding(.horizontal, 20).padding(.vertical, 10)
                 .overlay(Rectangle().strokeBorder(Color(hex: 0x897345), lineWidth: 1))
             }.buttonStyle(.plain).padding(.top, 22)
@@ -96,8 +99,8 @@ struct CodexScreen: View {
   }
 
   private var mast: some View {
-    HStack(alignment: .center, spacing: 26) {
-      HStack(spacing: 16) {
+    VStack(spacing: 0) {
+      HStack(alignment: .center, spacing: 16) {
         Text(PL("codex.seal", "卷")).font(Theme.serif(25)).foregroundColor(Color(hex: 0xd9bd8e))
           .frame(width: 42, height: 52)
           .background(Color(hex: 0x82352b))
@@ -106,39 +109,95 @@ struct CodexScreen: View {
           Text(PL("codex.title", "英 雄 记")).font(Theme.serif(31)).kerning(8).foregroundColor(Theme.goldLight)
           Text(PL("codex.sub", "以牌为刃 · 重写意难平")).font(Theme.serif(11)).kerning(3).lineSpacing(4).foregroundColor(Color(hex: 0x8f8a73))
         }
-      }
-      Spacer()
-      Text("\(L("codex.progress")) \(store.yeshiCount()) / \(GameData.shared.normalIds.count)")
-        .font(Theme.serif(13)).foregroundColor(Color(hex: 0xaaa185)).fixedSize()
-      HStack(spacing: 8) {
-        ForEach([("codex.annals", "观阵录", Sheet.annals),
-                 ("codex.save", "存档", Sheet.save),
-                 ("codex.settings", "设置", Sheet.settings)], id: \.0) { key, zh, sheet in
-          Button { game.sheet = sheet } label: {
-            Text(PL(key, zh)).font(Theme.serif(12)).kerning(2).foregroundColor(Theme.paperLight)
-              .padding(.horizontal, 14).padding(.vertical, 10)
-              .background(Color(hex: 0x29291f))
-              .overlay(Rectangle().strokeBorder(Color(hex: 0x897345), lineWidth: 1))
-          }.buttonStyle(.plain)
+        Spacer()
+        if horizontalCompact {
+          HStack(spacing: 8) {
+            SfxToggleButton()
+            codexMenu
+          }
+        } else {
+          Text("\(L("codex.progress")) \(store.yeshiCount()) / \(GameData.shared.normalIds.count)")
+            .font(Theme.serif(13)).foregroundColor(Color(hex: 0xaaa185)).fixedSize()
+          HStack(spacing: 8) {
+            SfxToggleButton()
+            codexButtons
+          }
         }
+      }
+      if horizontalCompact {
+        HStack(spacing: 8) {
+          Text("\(L("codex.progress")) \(store.yeshiCount()) / \(GameData.shared.normalIds.count)")
+            .font(Theme.serif(12)).foregroundColor(Color(hex: 0xaaa185))
+          Spacer()
+        }
+        .padding(.top, 10)
       }
     }
     .padding(.bottom, 20)
     .overlay(alignment: .bottom) { Rectangle().fill(Color(hex: 0x615538)).frame(height: 1) }
   }
 
+  private var codexButtons: some View {
+    HStack(spacing: 8) {
+      ForEach([("codex.annals", "观阵录", Sheet.annals),
+               ("codex.save", "存档", Sheet.save),
+               ("codex.settings", "设置", Sheet.settings)], id: \.0) { key, zh, sheet in
+        Button { game.sheet = sheet } label: {
+          Text(PL(key, zh)).font(Theme.serif(12)).kerning(2).foregroundColor(Theme.paperLight)
+            .padding(.horizontal, 14).padding(.vertical, 10)
+            .background(Color(hex: 0x29291f))
+            .overlay(Rectangle().strokeBorder(Color(hex: 0x897345), lineWidth: 1))
+        }.buttonStyle(.plain)
+      }
+    }
+  }
+
+  private var codexMenu: some View {
+    Menu {
+      ForEach([("codex.annals", "观阵录", Sheet.annals),
+               ("codex.save", "存档", Sheet.save),
+               ("codex.settings", "设置", Sheet.settings)], id: \.0) { key, zh, sheet in
+        Button { game.sheet = sheet } label: { Label(PL(key, zh), systemImage: key == "codex.annals" ? "books.vertical" : key == "codex.save" ? "tray.full" : "gearshape") }
+      }
+    } label: {
+      Image(systemName: "line.3.horizontal")
+        .font(Theme.serif(15)).foregroundColor(Theme.paperLight)
+        .frame(width: 42, height: 40)
+        .background(Color(hex: 0x29291f))
+        .overlay(Rectangle().strokeBorder(Color(hex: 0x897345), lineWidth: 1))
+    }
+  }
+
   private var legend: some View {
-    HStack(spacing: 20) {
-      ForEach([("○", "mark.unread", "未读"), ("原", "mark.history", "原卷已录"),
-               ("野", "mark.yeshi", "野史已改"), ("全", "mark.both", "两卷皆录")], id: \.0) { mark, key, zh in
-        HStack(spacing: 5) {
-          Text(mark).font(Theme.serif(11)).foregroundColor(Color(hex: 0xb49b6a))
-          Text(PL(key, zh)).font(Theme.serif(11)).foregroundColor(Color(hex: 0x777461))
+    let items = [("○", "mark.unread", "未读"), ("原", "mark.history", "原卷已录"),
+                 ("野", "mark.yeshi", "野史已改"), ("全", "mark.both", "两卷皆录")]
+    return Group {
+      if horizontalCompact {
+        VStack(alignment: .leading, spacing: 7) {
+          LazyVGrid(columns: [GridItem(.adaptive(minimum: 104), alignment: .leading)], alignment: .leading, spacing: 6) {
+            ForEach(items, id: \.0) { mark, key, zh in
+              HStack(spacing: 5) {
+                Text(mark).font(Theme.serif(11)).foregroundColor(Color(hex: 0xb49b6a))
+                Text(PL(key, zh)).font(Theme.serif(11)).foregroundColor(Color(hex: 0x777461)).lineLimit(1)
+              }
+            }
+          }
+          Text(PL("codex.motto", "不必每页皆胜，败亦成章"))
+            .font(Theme.serif(11)).lineSpacing(4).foregroundColor(Color(hex: 0x8b8066))
+        }
+      } else {
+        HStack(spacing: 20) {
+          ForEach(items, id: \.0) { mark, key, zh in
+            HStack(spacing: 5) {
+              Text(mark).font(Theme.serif(11)).foregroundColor(Color(hex: 0xb49b6a))
+              Text(PL(key, zh)).font(Theme.serif(11)).foregroundColor(Color(hex: 0x777461))
+            }
+          }
+          Spacer()
+          Text(PL("codex.motto", "不必每页皆胜，败亦成章"))
+            .font(Theme.serif(11)).lineSpacing(4).foregroundColor(Color(hex: 0x8b8066))
         }
       }
-      Spacer()
-      Text(PL("codex.motto", "不必每页皆胜，败亦成章"))
-        .font(Theme.serif(11)).lineSpacing(4).foregroundColor(Color(hex: 0x8b8066))
     }
     .padding(.top, 13)
   }
@@ -147,24 +206,34 @@ struct CodexScreen: View {
     let unlocked = store.scrollUnlocked(s)
     let title = s == 5 ? L("scroll.lastPage")
       : "\(L("scroll.volume"))\(String(["一", "二", "三", "四"][s - 1])) · \(L("scroll.\(s)"))"
-    return HStack(spacing: 0) {
-      Text(title + (unlocked ? "" : " 🔒"))
-        .font(Theme.serif(16)).kerning(3).foregroundColor(Color(hex: 0xc5ae79))
-        .lineSpacing(6)
-        .frame(width: 170, alignment: .leading)
-        .padding(.horizontal, 20).padding(.vertical, 18)
-        .overlay(alignment: .trailing) { Rectangle().fill(Color(hex: 0x4c4734)).frame(width: 1) }
-      LazyVGrid(columns: [GridItem(.adaptive(minimum: 132), spacing: 8, alignment: .leading)],
-                alignment: .leading, spacing: 8) {
-        ForEach(Array(GameData.shared.chapters.filter { $0["scroll"].int == s }.enumerated()), id: \.offset) { _, c in
-          if unlocked {
-            Button { game.openChapter(c) } label: { chipBody(c) }.buttonStyle(.plain)
-          } else {
-            chipBody(c)
-          }
+    let titleText = Text(title + (unlocked ? "" : " 🔒"))
+      .font(Theme.serif(16)).kerning(3).foregroundColor(Color(hex: 0xc5ae79))
+      .lineSpacing(6)
+    let grid = LazyVGrid(columns: [GridItem(.adaptive(minimum: horizontalCompact ? 252 : 132), spacing: 8, alignment: .leading)],
+              alignment: .leading, spacing: 8) {
+      ForEach(Array(GameData.shared.chapters.filter { $0["scroll"].int == s }.enumerated()), id: \.offset) { _, c in
+        if unlocked {
+          Button { game.openChapter(c) } label: { chipBody(c) }.buttonStyle(.plain)
+        } else {
+          chipBody(c)
         }
       }
-      .padding(14)
+    }
+    return Group {
+      if horizontalCompact {
+        VStack(alignment: .leading, spacing: 10) {
+          titleText.padding(.horizontal, 16).padding(.top, 14)
+          grid.padding(.horizontal, 14).padding(.bottom, 14)
+        }
+      } else {
+        HStack(spacing: 0) {
+          titleText
+            .frame(width: 170, alignment: .leading)
+            .padding(.horizontal, 20).padding(.vertical, 18)
+            .overlay(alignment: .trailing) { Rectangle().fill(Color(hex: 0x4c4734)).frame(width: 1) }
+          grid.padding(14)
+        }
+      }
     }
     .frame(minHeight: 92)
     .background(Color(hex: 0x1c1f17).opacity(0.93))
@@ -197,7 +266,7 @@ struct CodexScreen: View {
         .foregroundColor(yeshi ? Color(hex: 0x94392c) : Color(hex: 0x6b6757))
         .frame(width: 24, height: 24)
         .overlay(Rectangle().strokeBorder(yeshi ? Color(hex: 0xa34b39) : Color(hex: 0x8f856b), lineWidth: 1))
-      Text(c["name"].string ?? "").font(Theme.serif(15)).kerning(2).lineSpacing(4).lineLimit(1)
+      Text(c["name"].string ?? "").font(Theme.serif(15)).kerning(2).lineSpacing(4).lineLimit(1).minimumScaleFactor(0.7)
       Spacer(minLength: 0)
     }
     .foregroundColor(fg)
@@ -210,30 +279,42 @@ struct CodexScreen: View {
 
   private var practiceGate: some View {
     Button { game.enterPractice() } label: {
-      HStack(spacing: 20) {
-        HStack(spacing: 0) {
-          ForEach(Array(["commander", "soldier", "advisor"].enumerated()), id: \.offset) { i, skin in
-            PortraitView(skin: skin, size: 74)
-              .overlay(Rectangle().strokeBorder(Color(hex: 0x6c5c3c), lineWidth: 1))
-              .offset(x: i == 0 ? 0 : -22)
-              .zIndex(Double(i))
+      let portraits = HStack(spacing: 0) {
+        ForEach(Array(["commander", "soldier", "advisor"].enumerated()), id: \.offset) { i, skin in
+          PortraitView(skin: skin, size: 74)
+            .overlay(Rectangle().strokeBorder(Color(hex: 0x6c5c3c), lineWidth: 1))
+            .offset(x: i == 0 ? 0 : -22)
+            .zIndex(Double(i))
+        }
+      }
+      let texts = VStack(alignment: .leading, spacing: 7) {
+        Text(L("practice.entry")).font(Theme.serif(19)).kerning(3).foregroundColor(Color(hex: 0xe8d8b2))
+        Text(PL("practice.entrySub", "野战练兵场 · 与正史各卷并列，永不上锁"))
+          .font(Theme.serif(11)).kerning(2).lineSpacing(4).foregroundColor(Color(hex: 0x8f8a73))
+      }
+      let goPanel = VStack(spacing: 3) {
+        Text(PL("practice.go", "点 兵")).font(Theme.serif(15)).kerning(5).foregroundColor(Color(hex: 0x141109))
+        Text("33 \(L("practice.tables"))").font(Theme.serif(9)).kerning(2)
+          .foregroundColor(Color(hex: 0x141109)).opacity(0.75)
+      }
+      .padding(.horizontal, 18).padding(.vertical, 12)
+      .background(LinearGradient(colors: [Color(hex: 0xd8bd85), Color(hex: 0xb2914f)],
+                                 startPoint: .top, endPoint: .bottom))
+      .overlay(Rectangle().strokeBorder(Color(hex: 0xe8d3a0), lineWidth: 1))
+      return Group {
+        if horizontalCompact {
+          VStack(alignment: .leading, spacing: 12) {
+            HStack(alignment: .center, spacing: 16) { portraits.frame(width: 112); texts }
+            goPanel.frame(maxWidth: .infinity)
+          }
+        } else {
+          HStack(spacing: 20) {
+            portraits
+            texts
+            Spacer()
+            goPanel
           }
         }
-        VStack(alignment: .leading, spacing: 7) {
-          Text(L("practice.entry")).font(Theme.serif(19)).kerning(3).foregroundColor(Color(hex: 0xe8d8b2))
-          Text(PL("practice.entrySub", "野战练兵场 · 与正史各卷并列，永不上锁"))
-            .font(Theme.serif(11)).kerning(2).foregroundColor(Color(hex: 0x8f8a73))
-        }
-        Spacer()
-        VStack(spacing: 3) {
-          Text(PL("practice.go", "点 兵")).font(Theme.serif(15)).kerning(5).foregroundColor(Color(hex: 0x141109))
-          Text("33 \(L("practice.tables"))").font(Theme.serif(9)).kerning(2)
-            .foregroundColor(Color(hex: 0x141109)).opacity(0.75)
-        }
-        .padding(.horizontal, 18).padding(.vertical, 12)
-        .background(LinearGradient(colors: [Color(hex: 0xd8bd85), Color(hex: 0xb2914f)],
-                                   startPoint: .top, endPoint: .bottom))
-        .overlay(Rectangle().strokeBorder(Color(hex: 0xe8d3a0), lineWidth: 1))
       }
       .padding(.horizontal, 22).padding(.vertical, 16)
       .background(LinearGradient(colors: [Color(hex: 0x2a2417), Color(hex: 0x1c2015), Color(hex: 0x241f13)],
@@ -335,7 +416,7 @@ struct ChapterPageScreen: View {
                 .font(Theme.serif(12)).kerning(4).foregroundColor(Color(hex: 0xa38b61))
             }
             .padding(.top, 44).padding(.bottom, 35)
-            .frame(width: 68)
+            .frame(width: geo.size.width < 620 ? 44 : 68)
             .background(Color(hex: 0x43392a))
             .overlay(alignment: .trailing) { Rectangle().fill(Color(hex: 0x796746)).frame(width: 5) }
             // 正文
@@ -440,7 +521,7 @@ struct ChapterPageScreen: View {
                   }
                   .padding(.top, 20)
                 }
-                .padding(.top, 34).padding(.horizontal, 58).padding(.bottom, 24)
+                .padding(.top, 34).padding(.horizontal, geo.size.width < 620 ? 20 : 58).padding(.bottom, 24)
                 .frame(maxWidth: .infinity)
               }
               // 页脚:故人(固定在按钮之上,同原版)
@@ -458,6 +539,7 @@ struct ChapterPageScreen: View {
               }
               // 底部按钮条
               HStack(spacing: 12) {
+                SfxToggleButton()
                 Spacer()
                 if altShow {
                   Button {
@@ -570,7 +652,11 @@ struct OmenSheet: View {
         .padding(.top, 22)
       }
       .padding(.horizontal, 34).padding(.vertical, 30)
+      #if os(iOS)
+      .frame(width: min(570, UIScreen.main.bounds.width * 0.96))
+      #else
       .frame(width: 570)
+      #endif
       .background(LinearGradient(colors: [Color(hex: 0x25271c), Color(hex: 0x171a13)],
                                  startPoint: .topLeading, endPoint: .bottomTrailing))
       .overlay(Rectangle().strokeBorder(Color(hex: 0x8c7548), lineWidth: 1))
@@ -592,35 +678,73 @@ struct MapScreen: View {
     let available = Set(game.availableNodes())
     return AnyView(
       GeometryReader { geo in
-        let paperW = min(geo.size.width * 0.92, 1100)
-        let paperH = paperW * 0.42
+        let portrait = geo.size.height > geo.size.width
+        let paperW = portrait ? min(geo.size.width * 0.9, 420) : min(geo.size.width * 0.92, 1100)
+        let paperH = portrait ? min(geo.size.height * 0.58, paperW * 1.7) : paperW * 0.42
         let centerY = geo.size.height * 0.54
+        let xs = R.nodes.map { $0.x }; let ys = R.nodes.map { $0.y }
+        let x0 = xs.min() ?? 0; let x1 = xs.max() ?? 1
+        let y0 = ys.min() ?? 0; let y1 = ys.max() ?? 1
+        // 竖屏:转置映射,横向进军改纵向铺开(归一化到节点实际范围)
+        let px: (MarchNode) -> CGFloat = { n in
+          portrait ? paperW - 40 - (n.y - y0) / max(y1 - y0, 1) * (paperW - 80) : n.x
+        }
+        let py: (MarchNode) -> CGFloat = { n in
+          portrait ? 46 + (n.x - x0) / max(x1 - x0, 1) * (paperH - 92) : n.y
+        }
         ZStack {
           Theme.inkDeep
           RadialGradient(colors: [Color(hex: 0x253021).opacity(0.60), Color(hex: 0x0b100b).opacity(0.87)],
                          center: .center, startRadius: 60,
                          endRadius: max(geo.size.width, geo.size.height) * 0.72)
-          // 顶栏
-          HStack(alignment: .bottom) {
-            VStack(alignment: .leading, spacing: 3) {
-              Text(PL("map.kicker", "军令所至")).font(Theme.serif(10)).kerning(5).foregroundColor(Color(hex: 0x81785f))
-              Text("\(PL("map.title", "行 军 图")) · \(R.chapter["name"].string ?? "")")
-                .font(Theme.serif(28)).kerning(6).foregroundColor(Theme.goldLight)
+          // 顶栏(竖屏:标题与筹码分两行)
+          Group {
+            if portrait {
+              VStack(alignment: .leading, spacing: 8) {
+                VStack(alignment: .leading, spacing: 3) {
+                  Text(PL("map.kicker", "军令所至")).font(Theme.serif(10)).kerning(5).foregroundColor(Color(hex: 0x81785f))
+                  Text("\(PL("map.title", "行 军 图")) · \(R.chapter["name"].string ?? "")")
+                    .font(Theme.serif(24)).kerning(5).lineLimit(1).minimumScaleFactor(0.7).foregroundColor(Theme.goldLight)
+                }
+                HStack(spacing: 10) {
+                  HStack(spacing: 0) {
+                    Text("\(L("term.chips")) ").font(Theme.serif(13)).foregroundColor(Color(hex: 0xaaa185))
+                    Text("\(R.chips)").font(Theme.serif(18)).foregroundColor(Theme.goldLight)
+                    Text("  ·  \(R.marchInfo)").font(Theme.serif(13)).kerning(1).lineLimit(1).minimumScaleFactor(0.7).foregroundColor(Color(hex: 0xaaa185))
+                  }
+                  .padding(.horizontal, 14).padding(.vertical, 8)
+                  .background(Color(hex: 0x151910).opacity(0.73))
+                  .overlay(Rectangle().strokeBorder(Color(hex: 0x514a35), lineWidth: 1))
+                  Spacer(minLength: 0)
+                  SfxToggleButton()
+                }
+              }
+            } else {
+              HStack(alignment: .bottom) {
+                VStack(alignment: .leading, spacing: 3) {
+                  Text(PL("map.kicker", "军令所至")).font(Theme.serif(10)).kerning(5).foregroundColor(Color(hex: 0x81785f))
+                  Text("\(PL("map.title", "行 军 图")) · \(R.chapter["name"].string ?? "")")
+                    .font(Theme.serif(28)).kerning(6).foregroundColor(Theme.goldLight)
+                }
+                Spacer()
+                HStack(spacing: 10) {
+                  HStack(spacing: 0) {
+                    Text("\(L("term.chips")) ").font(Theme.serif(13)).foregroundColor(Color(hex: 0xaaa185))
+                    Text("\(R.chips)").font(Theme.serif(18)).foregroundColor(Theme.goldLight)
+                    Text("  ·  \(R.marchInfo)").font(Theme.serif(13)).kerning(1).foregroundColor(Color(hex: 0xaaa185))
+                  }
+                  .padding(.horizontal, 14).padding(.vertical, 8)
+                  .background(Color(hex: 0x151910).opacity(0.73))
+                  .overlay(Rectangle().strokeBorder(Color(hex: 0x514a35), lineWidth: 1))
+                  SfxToggleButton()
+                }
+              }
             }
-            Spacer()
-            HStack(spacing: 0) {
-              Text("\(L("term.chips")) ").font(Theme.serif(13)).foregroundColor(Color(hex: 0xaaa185))
-              Text("\(R.chips)").font(Theme.serif(18)).foregroundColor(Theme.goldLight)
-              Text("  ·  \(R.marchInfo)").font(Theme.serif(13)).kerning(1).foregroundColor(Color(hex: 0xaaa185))
-            }
-            .padding(.horizontal, 14).padding(.vertical, 8)
-            .background(Color(hex: 0x151910).opacity(0.73))
-            .overlay(Rectangle().strokeBorder(Color(hex: 0x514a35), lineWidth: 1))
           }
           .frame(width: min(1100, geo.size.width * 0.92))
           .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
           .padding(.top, 23)
-          // 卷轴
+          // 卷轴(竖屏:纵向卷;横屏:横向卷)
           ZStack {
             ZStack(alignment: .topLeading) {
               MarchTerrainCanvas()
@@ -628,10 +752,14 @@ struct MapScreen: View {
                 for n in R.nodes {
                   for nid in n.next {
                     guard let m = R.nodes.first(where: { $0.id == nid }) else { continue }
+                    let a = CGPoint(x: px(n), y: py(n))
+                    let b = CGPoint(x: px(m), y: py(m))
+                    let ctrl = portrait
+                      ? CGPoint(x: (a.x + b.x) / 2 + 24, y: (a.y + b.y) / 2)
+                      : CGPoint(x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 - 26)
                     var p = Path()
-                    p.move(to: CGPoint(x: n.x, y: n.y))
-                    p.addQuadCurve(to: CGPoint(x: m.x, y: m.y),
-                                   control: CGPoint(x: (n.x + m.x) / 2, y: (n.y + m.y) / 2 - 26))
+                    p.move(to: a)
+                    p.addQuadCurve(to: b, control: ctrl)
                     ctx.stroke(p, with: .color(n.done ? Color(hex: 0x8e3d30).opacity(0.72)
                                                       : Color(hex: 0x826d46).opacity(0.55)),
                                style: StrokeStyle(lineWidth: 3, dash: n.done ? [] : [7, 7]))
@@ -642,51 +770,65 @@ struct MapScreen: View {
                 let isAvail = available.contains(node.id) && !node.done
                 Button { Task { await game.pickNode(node) } } label: {
                   MapNodeView(node: node, available: isAvail, isCurrent: R.current == node.id)
+                    .scaleEffect(portrait ? 0.82 : 1)
                 }
                 .buttonStyle(.plain).disabled(!isAvail)
-                .position(x: node.x, y: node.y)
+                .position(x: px(node), y: py(node))
               }
             }
-            .frame(width: 1000, height: 420)
-            .scaleEffect(paperW / 1000, anchor: .topLeading)
+            .frame(width: portrait ? paperW : 1000, height: portrait ? paperH : 420)
+            .scaleEffect(portrait ? 1 : paperW / 1000, anchor: .topLeading)
             .frame(width: paperW, height: paperH, alignment: .topLeading)
             .clipped()
             .background(Color(hex: 0xcbbc96))
             .overlay(PaperTexture(opacity: 0.10))
             .overlay(Rectangle().strokeBorder(Color(hex: 0xd8c69d), lineWidth: 1))
             .shadow(color: .black.opacity(0.55), radius: 28, y: 20)
-            // 木轴(比纸面宽 60)
-            VStack(spacing: 0) {
-              RollerBar().frame(width: paperW + 60, height: 20).offset(y: -13)
-              Spacer()
-              RollerBar().frame(width: paperW + 60, height: 20).offset(y: 7)
+            // 木轴(比纸面宽 60;竖屏改纵轴)
+            if portrait {
+              ZStack {
+                RollerBar().frame(width: paperH + 60, height: 20).rotationEffect(.degrees(90))
+                  .offset(x: -(paperW / 2 + 17))
+                RollerBar().frame(width: paperH + 60, height: 20).rotationEffect(.degrees(90))
+                  .offset(x: paperW / 2 + 17)
+              }
+              .frame(width: paperW + 60, height: paperH)
+            } else {
+              VStack(spacing: 0) {
+                RollerBar().frame(width: paperW + 60, height: 20).offset(y: -13)
+                Spacer()
+                RollerBar().frame(width: paperW + 60, height: 20).offset(y: 7)
+              }
+              .frame(width: paperW + 60, height: paperH)
             }
-            .frame(width: paperW + 60, height: paperH)
           }
           .frame(width: paperW, height: paperH)
           .position(x: geo.size.width / 2, y: centerY)
-          // 底部军令提示
+          // 底部:返回钮 + 军令提示,同一 HStack 防窄屏重叠
           HStack(spacing: 12) {
-            Text(PL("map.badge", "军令"))
-              .font(Theme.serif(12)).foregroundColor(Color(hex: 0xd6b683))
-              .padding(.horizontal, 7).padding(.vertical, 4)
-              .background(Color(hex: 0x79352b))
-              .overlay(Rectangle().strokeBorder(Color(hex: 0xa25e45), lineWidth: 1))
-            Text(PL("map.hint", "择亮起之处而行")).font(Theme.serif(12)).kerning(2).foregroundColor(Color(hex: 0x9d957a))
+            Button { game.showCodex() } label: {
+              Text(L("common.back")).font(Theme.serif(12)).kerning(3).foregroundColor(Color(hex: 0x9d957a))
+                .padding(.horizontal, 12).padding(.vertical, 8)
+                .overlay(Rectangle().strokeBorder(Color(hex: 0x514a35), lineWidth: 1))
+            }
+            .buttonStyle(.plain)
+            .fixedSize()
+            Group {
+              Text(PL("map.badge", "军令"))
+                .font(Theme.serif(12)).foregroundColor(Color(hex: 0xd6b683))
+                .padding(.horizontal, 7).padding(.vertical, 4)
+                .background(Color(hex: 0x79352b))
+                .overlay(Rectangle().strokeBorder(Color(hex: 0xa25e45), lineWidth: 1))
+              Text(PL("map.hint", "择亮起之处而行")).font(Theme.serif(12)).kerning(2).foregroundColor(Color(hex: 0x9d957a)).lineLimit(1).minimumScaleFactor(0.6)
+            }
+            .fixedSize()
             Text("· " + PL("map.hint2", "胜则改史 · 败亦入卷"))
               .font(Theme.serif(12)).kerning(2).foregroundColor(Color(hex: 0x696b58))
+              .lineLimit(1).minimumScaleFactor(0.6)
+            Spacer(minLength: 0)
           }
           .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
-          .padding(.bottom, 22)
-          // 返回
-          Button { game.showCodex() } label: {
-            Text(L("common.back")).font(Theme.serif(12)).kerning(3).foregroundColor(Color(hex: 0x9d957a))
-              .padding(.horizontal, 12).padding(.vertical, 8)
-              .overlay(Rectangle().strokeBorder(Color(hex: 0x514a35), lineWidth: 1))
-          }
-          .buttonStyle(.plain)
-          .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomLeading)
-          .padding(.leading, 20).padding(.bottom, 18)
+          .padding(.leading, 20).padding(.trailing, 16).padding(.bottom, 18)
         }
       }
     )
@@ -812,35 +954,47 @@ struct BriefingSheet: View {
     let coords = practice
       ? "\(PL("brief.place", "战地")) · \(arena?["place"].string ?? "") · \(roster.count + 1) \(PL("brief.players", "人同桌"))"
       : "\(PL("brief.place", "战地")) · \(place) · \(chapter?["year"].string ?? "") · \(boss ? PL("brief.bossMeta", "关底决胜 · 胜则改页") : PL("brief.skirmishMeta", "行军遭遇 · 败亦入卷"))"
+    let compact = geo.size.width < 620
 
     return VStack(spacing: 0) {
-      HStack(alignment: .top, spacing: 24) {
-        VStack(alignment: .leading, spacing: 0) {
-          Text(kicker).font(Theme.serif(10)).kerning(3).foregroundColor(Color(hex: 0x8f4334))
-          HStack(alignment: .center, spacing: 16) {
-            Text(title)
-              .font(Theme.serif(min(48, max(30, geo.size.width * 0.036)))).kerning(3)
-              .foregroundColor(Color(hex: 0x2f2b20))
-              .lineLimit(2).minimumScaleFactor(0.6)
-            Text(PL("brief.seal", "战"))
-              .font(Theme.serif(27)).foregroundColor(Color(hex: 0xa13c30))
-              .frame(width: 44, height: 51)
-              .overlay(Rectangle().strokeBorder(Color(hex: 0xa13c30), lineWidth: 3).padding(1))
-              .rotationEffect(.degrees(-6)).opacity(0.7)
-          }
-          .padding(.top, 8)
-          Text(coords).font(Theme.serif(11)).kerning(1)
-            .foregroundColor(Color(hex: 0x6f624a)).padding(.top, 9).lineLimit(2)
+      let headerLeft = VStack(alignment: .leading, spacing: 0) {
+        Text(kicker).font(Theme.serif(10)).kerning(3).foregroundColor(Color(hex: 0x8f4334))
+        HStack(alignment: .center, spacing: 16) {
+          Text(title)
+            .font(Theme.serif(compact ? 34 : min(48, max(30, geo.size.width * 0.036)))).kerning(3)
+            .foregroundColor(Color(hex: 0x2f2b20))
+            .lineLimit(2).minimumScaleFactor(0.6)
+          Text(PL("brief.seal", "战"))
+            .font(Theme.serif(27)).foregroundColor(Color(hex: 0xa13c30))
+            .frame(width: 44, height: 51)
+            .overlay(Rectangle().strokeBorder(Color(hex: 0xa13c30), lineWidth: 3).padding(1))
+            .rotationEffect(.degrees(-6)).opacity(0.7)
         }
-        Spacer(minLength: 0)
-        Text(source).font(Theme.serif(10)).lineSpacing(5)
-          .foregroundColor(Color(hex: 0x7e7056))
-          .multilineTextAlignment(.trailing)
-          .frame(width: 240, alignment: .trailing)
+        .padding(.top, 8)
+        Text(coords).font(Theme.serif(11)).kerning(1)
+          .foregroundColor(Color(hex: 0x6f624a)).padding(.top, 9).lineLimit(2)
+      }
+      let sourceText = Text(source).font(Theme.serif(10)).lineSpacing(5)
+        .foregroundColor(Color(hex: 0x7e7056))
+      Group {
+        if compact {
+          VStack(alignment: .leading, spacing: 0) {
+            headerLeft
+            sourceText.multilineTextAlignment(.leading).lineLimit(4).frame(maxWidth: .infinity, alignment: .leading).padding(.top, 10)
+          }
+        } else {
+          HStack(alignment: .top, spacing: 24) {
+            headerLeft
+            Spacer(minLength: 0)
+            sourceText.multilineTextAlignment(.trailing).frame(width: 240, alignment: .trailing)
+          }
+        }
       }
       .padding(.bottom, 15)
       .overlay(alignment: .bottom) { Rectangle().fill(Color(hex: 0x9d895d).opacity(0.5)).frame(height: 1) }
-      HStack(alignment: .top, spacing: 28) {
+      Group {
+        if compact {
+          VStack(alignment: .leading, spacing: 16) {
         VStack(alignment: .leading, spacing: 0) {
           HStack(spacing: 10) {
             Text(PL("brief.vsTag", "对 阵")).font(Theme.serif(12)).kerning(2).foregroundColor(Color(hex: 0xe6d4ac))
@@ -881,9 +1035,10 @@ struct BriefingSheet: View {
               .padding(.top, 12)
           }
         }
-        .frame(width: 300, alignment: .leading)
-        .padding(.trailing, 25)
-        .overlay(alignment: .trailing) { Rectangle().fill(Color(hex: 0x9d895d).opacity(0.4)).frame(width: 1) }
+        .frame(width: compact ? nil : 300, alignment: .leading)
+        .padding(.trailing, compact ? 0 : 25)
+        .overlay(alignment: .trailing) { if !compact { Rectangle().fill(Color(hex: 0x9d895d).opacity(0.4)).frame(width: 1) } }
+            Rectangle().fill(Color(hex: 0x9d895d).opacity(0.4)).frame(height: 1)
         VStack(alignment: .leading, spacing: 0) {
           HStack(spacing: 10) {
             Text(PL("brief.whyTag", "起 因")).font(Theme.serif(12)).kerning(2).foregroundColor(Color(hex: 0xe6d4ac))
@@ -903,6 +1058,73 @@ struct BriefingSheet: View {
           .padding(.top, 19)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
+          }
+        } else {
+          HStack(alignment: .top, spacing: 28) {
+        VStack(alignment: .leading, spacing: 0) {
+          HStack(spacing: 10) {
+            Text(PL("brief.vsTag", "对 阵")).font(Theme.serif(12)).kerning(2).foregroundColor(Color(hex: 0xe6d4ac))
+              .padding(.horizontal, 7).padding(.vertical, 3).background(tagRed)
+            Text(PL("brief.vsTitle", "此席与谁争锋")).font(Theme.serif(12)).kerning(1).foregroundColor(Color(hex: 0x5f513a))
+          }
+          VStack(spacing: 9) {
+            ForEach(Array(roster.enumerated()), id: \.offset) { index, member in
+              HStack(spacing: 0) {
+                ZStack(alignment: .topLeading) {
+                  PortraitView(skin: member.skin, size: 70)
+                    .overlay(Rectangle().strokeBorder(Color(hex: 0x76643f), lineWidth: 1))
+                  Text("\(index + 1)").font(Theme.serif(11)).foregroundColor(Color(hex: 0xe9d3a3))
+                    .frame(width: 19, height: 22).background(Color(hex: 0x84362b)).padding(4)
+                }
+                VStack(alignment: .leading, spacing: 4) {
+                  Text(member.name).font(Theme.serif(16)).foregroundColor(Color(hex: 0xead7ab))
+                  Text("\(boss ? PL("brief.bossRole", "关底敌将") : PL("brief.enemyRole", "遭遇敌将")) · \(L("term.chips")) \(member.stack)")
+                    .font(Theme.serif(9)).foregroundColor(Color(hex: 0x9e957b))
+                }
+                .padding(.horizontal, 10).padding(.vertical, 9)
+                Spacer(minLength: 0)
+              }
+              .frame(minHeight: 82)
+              .background(LinearGradient(colors: [Color(hex: 0x292b21), Color(hex: 0x1c2018)],
+                                         startPoint: .topLeading, endPoint: .bottomTrailing))
+              .overlay(Rectangle().strokeBorder(Color(hex: 0x76643f), lineWidth: 1))
+            }
+          }
+          .padding(.top, 13)
+          if !ruleText.isEmpty {
+            Text(PL("brief.rulePrefix", "本回战法 · ") + ruleText)
+              .font(Theme.serif(11)).lineSpacing(6).foregroundColor(Color(hex: 0x813b30))
+              .fixedSize(horizontal: false, vertical: true)
+              .padding(.horizontal, 11).padding(.vertical, 9)
+              .background(Color(hex: 0xa34c35).opacity(0.06))
+              .overlay(alignment: .leading) { Rectangle().fill(Color(hex: 0x9d4737)).frame(width: 2) }
+              .padding(.top, 12)
+          }
+        }
+        .frame(width: compact ? nil : 300, alignment: .leading)
+        .padding(.trailing, compact ? 0 : 25)
+        .overlay(alignment: .trailing) { if !compact { Rectangle().fill(Color(hex: 0x9d895d).opacity(0.4)).frame(width: 1) } }
+        VStack(alignment: .leading, spacing: 0) {
+          HStack(spacing: 10) {
+            Text(PL("brief.whyTag", "起 因")).font(Theme.serif(12)).kerning(2).foregroundColor(Color(hex: 0xe6d4ac))
+              .padding(.horizontal, 7).padding(.vertical, 3).background(tagRed)
+            Text(PL("brief.whyTitle", "为何非战不可")).font(Theme.serif(12)).kerning(1).foregroundColor(Color(hex: 0x5f513a))
+          }
+          Text(why).font(Theme.serif(17)).lineSpacing(12).kerning(1)
+            .foregroundColor(Color(hex: 0x3d3628))
+            .fixedSize(horizontal: false, vertical: true)
+            .padding(.top, 12)
+          HStack(alignment: .top, spacing: 15) {
+            stakesBox(tag: PL("brief.winTag", "胜 利"), title: PL("brief.winTitle", "此局之后"), body: win,
+                      tint: Color(hex: 0x5f6d4e), border: Color(hex: 0x6c7955))
+            stakesBox(tag: PL("brief.lossTag", "负 则"), title: PL("brief.lossTitle", "所失为何"), body: loss,
+                      tint: tagRed, border: Color(hex: 0xa14c3c))
+          }
+          .padding(.top, 19)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+          }
+        }
       }
       .padding(.vertical, 20)
       HStack(spacing: 10) {

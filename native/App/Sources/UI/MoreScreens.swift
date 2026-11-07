@@ -60,6 +60,10 @@ struct PracticeScreen: View {
         }
       }
     }
+    .overlay(alignment: .topTrailing) {
+      SfxToggleButton()
+        .padding(.trailing, 16).padding(.top, 62)
+    }
   }
 
   private func sizeOfTier(_ tier: String) -> Int {

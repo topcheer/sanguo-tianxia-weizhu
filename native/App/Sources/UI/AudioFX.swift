@@ -3,6 +3,7 @@
 
 import AVFoundation
 import Foundation
+import SwiftUI
 
 #if canImport(AppKit)
 import AppKit
@@ -77,7 +78,15 @@ final class AudioFX: @unchecked Sendable {
   private let lock = NSLock()
   private var voices: [Voice] = []
   private var heartTimer: Timer? = nil
-  var muted = false
+  var muted = UserDefaults.standard.bool(forKey: "app.sfxMuted") {
+    didSet { UserDefaults.standard.set(muted, forKey: "app.sfxMuted") }
+  }
+
+  /// 静音开关:混音器输出直接归零(常驻风声一并静默)
+  func applyMute() {
+    guard started else { return }
+    engine.mainMixerNode.outputVolume = muted ? 0 : 1
+  }
 
   /// 首次用户交互后调用(iOS 需激活 audio session)。
   func resume() {
@@ -103,6 +112,7 @@ final class AudioFX: @unchecked Sendable {
     engine.attach(src)
     engine.connect(src, to: engine.mainMixerNode, format: src.outputFormat(forBus: 0))
     try? engine.start()
+    applyMute()
     startVoice(Voice.Kind.wind, seed: UInt64.random(in: 1...UInt64.max))  // 常驻风声
   }
 
@@ -165,5 +175,34 @@ final class AudioFX: @unchecked Sendable {
   func heartStop() {
     heartTimer?.invalidate()
     heartTimer = nil
+  }
+}
+
+/// 音效开关的可观察门(UI 各屏开关绑定);持久化由 AudioFX.muted 负责。
+final class SfxGate: ObservableObject {
+  static let shared = SfxGate()
+  @Published var muted: Bool = AudioFX.shared.muted {
+    didSet {
+      AudioFX.shared.muted = muted
+      AudioFX.shared.applyMute()
+    }
+  }
+}
+
+/// 各屏通用的音效开关小钮。
+struct SfxToggleButton: View {
+  @ObservedObject var gate = SfxGate.shared
+  var body: some View {
+    Button { gate.muted.toggle() } label: {
+      Image(systemName: gate.muted ? "speaker.slash" : "speaker.wave.2")
+        .font(.system(size: 12, weight: .semibold))
+        .foregroundColor(gate.muted ? Theme.muted : Theme.goldLight)
+        .frame(width: 30, height: 26)
+        .background(Color(hex: 0x29291f))
+        .overlay(Rectangle().strokeBorder(Color(hex: 0x897345), lineWidth: 1))
+    }
+    .buttonStyle(.plain)
+    .fixedSize()
+    .accessibilityLabel(gate.muted ? "音效关" : "音效开")
   }
 }
