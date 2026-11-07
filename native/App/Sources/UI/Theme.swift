@@ -48,16 +48,19 @@ struct InkButton: View {
   var subtitle: String? = nil
   var prominent = false
   var danger = false
+  /// 紧凑变体:竖屏行动栏空间受限时用(字号/内边距同步缩小)
+  var compact = false
   var body: some View {
     VStack(spacing: 3) {
       Text(title)
-        .font(Theme.serif(17, bold: true))
+        .font(compact ? Theme.serif(14, bold: true) : Theme.serif(17, bold: true))
+        .lineLimit(1).minimumScaleFactor(0.6).multilineTextAlignment(.center)
       if let subtitle {
-        Text(subtitle).font(Theme.serif(10)).opacity(0.75)
+        Text(subtitle).font(Theme.serif(9)).opacity(0.75).lineLimit(1).minimumScaleFactor(0.7)
       }
     }
     .foregroundColor(danger ? Theme.cinnabarLight : (prominent ? Color(hex: 0xf0dfb8) : Theme.paperLight))
-    .padding(.horizontal, 22).padding(.vertical, 10)
+    .padding(.horizontal, compact ? 12 : 22).padding(.vertical, compact ? 7 : 10)
     .background(danger ? Color(hex: 0x2a1a16) : (prominent ? Theme.cinnabar : Color(hex: 0x29291f)))
     .overlay(RoundedRectangle(cornerRadius: 3).strokeBorder(danger ? Color(hex: 0x8a4a3e) : (prominent ? Color(hex: 0xb16b4f) : Color(hex: 0x897345)), lineWidth: 1))
     .contentShape(Rectangle())

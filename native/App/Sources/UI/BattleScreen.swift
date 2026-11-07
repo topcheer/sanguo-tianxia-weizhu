@@ -154,7 +154,8 @@ struct BattleScreen: View {
           LeafFallView().opacity(0.7).allowsHitTesting(false)
           if let engine = game.activeBattle {
             portraitField(engine: engine, w: realW, h: realH)
-              .padding(.top, 96).padding(.bottom, 104)
+              .padding(.top, 92)
+              .padding(.bottom, 118)
           }
         } else {
           // 桌面:毛毡满屏(椭圆出四缘消除黑灰分界;小屏横置适中溢出,大屏更满)
@@ -181,24 +182,24 @@ struct BattleScreen: View {
             playField(engine: engine, w: w, h: h)
           }
         }
-        // 顶部信息条 + 底部行动区(ZStack 内显式布局,提案即屏宽,免 safeAreaInset 提案漂移)
-        VStack(spacing: 0) {
-          if let engine = game.activeBattle {
-            topBar(engine: engine, width: geo.size.width)
-              .padding(.top, 52)
-            Spacer(minLength: 0)
-            VStack(spacing: 6) {
-              infoLine(engine: engine)
-                .frame(width: geo.size.width - 28, alignment: .leading)
-              ActionBanner(barWidth: geo.size.width - 28)
-            }
-            .frame(width: geo.size.width, alignment: .leading)
-            .padding(.bottom, 8)
-            .background(Theme.inkDeep.opacity(0.9))
-          }
-        }
       }
       .frame(width: portrait ? realW : w, height: portrait ? realH : h)
+      // 顶/底栏:ZStack 内显式布局(底栏 compact 按钮后总高≈100,104 让位足够)
+      VStack(spacing: 0) {
+        if let engine = game.activeBattle {
+          topBar(engine: engine, width: geo.size.width)
+            .padding(.top, 52)
+          Spacer(minLength: 0)
+          VStack(spacing: 6) {
+            infoLine(engine: engine)
+              .frame(width: geo.size.width - 28, alignment: .leading)
+            ActionBanner(barWidth: geo.size.width - 28)
+          }
+          .padding(.horizontal, 14).padding(.bottom, 6)
+          .frame(width: geo.size.width, alignment: .leading)
+          .background(Theme.inkDeep.opacity(0.95))
+        }
+      }
       .scaleEffect(scale)
       .modifier(ShakeEffect(travel: shakePower, shakes: 3, animatableData: shakeTrigger))
       .frame(width: realW, height: realH)
@@ -683,11 +684,11 @@ struct ActionBanner: View {
                 withAnimation(.spring(response: 0.3, dampingFraction: 0.85)) { raiseOpen.toggle() }
               } label: {
                 HStack(spacing: 4) {
-                  Text(L("action.raise")).font(Theme.serif(17, bold: true))
-                  Image(systemName: raiseOpen ? "chevron.down" : "chevron.up").font(.system(size: 12, weight: .bold))
+                  Text(L("action.raise")).font(barWidth < 500 ? Theme.serif(14, bold: true) : Theme.serif(17, bold: true))
+                  Image(systemName: raiseOpen ? "chevron.down" : "chevron.up").font(.system(size: barWidth < 500 ? 10 : 12, weight: .bold))
                 }
                 .foregroundColor(raiseOpen ? Theme.goldLight : Theme.paperLight)
-                .padding(.horizontal, 22).padding(.vertical, 10)
+                .padding(.horizontal, barWidth < 500 ? 12 : 22).padding(.vertical, barWidth < 500 ? 7 : 10)
                 .background(raiseOpen ? Color(hex: 0x5a4a28) : Color(hex: 0x29291f))
                 .overlay(RoundedRectangle(cornerRadius: 3).strokeBorder(Color(hex: 0x897345), lineWidth: 1))
                 .contentShape(Rectangle())
@@ -736,7 +737,7 @@ struct ActionBanner: View {
 
   private func actionButton(_ label: String, prominent: Bool = false, danger: Bool = false, action: @escaping () -> Void) -> some View {
     Button(action: action) {
-      InkButton(title: label, prominent: prominent, danger: danger)
+      InkButton(title: label, prominent: prominent, danger: danger, compact: barWidth < 500)
     }.buttonStyle(.plain)
   }
 }
