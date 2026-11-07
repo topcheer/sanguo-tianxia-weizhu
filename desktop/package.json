@@ -31,22 +31,19 @@
     "win": {
       "target": [
         "nsis"
-      ],
-      "artifactName": "sanguo-weizhu-${version}-setup.${ext}"
+      ]
     },
     "linux": {
       "target": [
         "AppImage",
         "deb"
       ],
-      "category": "Game",
-      "artifactName": "sanguo-weizhu-${version}-${ext}"
+      "category": "Game"
     },
     "mac": {
       "target": [
         "dmg"
-      ],
-      "artifactName": "sanguo-weizhu-${version}.${ext}"
+      ]
     },
     "executableName": "sanguo-weizhu"
   },
