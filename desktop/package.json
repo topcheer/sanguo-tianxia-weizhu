@@ -15,16 +15,39 @@
   "build": {
     "appId": "dev.ggcode.san",
     "productName": "三国：天下为注",
-    "directories": { "output": "release" },
-    "files": ["main.js"],
-    "extraResources": [{ "from": "../dist", "to": "dist" }],
-    "asar": true,
-    "win": { "target": ["nsis"], "artifactName": "sanguo-weizhu-${version}-setup.${ext}" },
-    "linux": {
-      "target": ["AppImage", "deb"],
-      "category": "Game",
-      "artifactName": "sanguo-weizhu-${version}-${ext}"
+    "directories": {
+      "output": "release"
     },
-    "mac": { "target": ["dmg"], "artifactName": "sanguo-weizhu-${version}.${ext}" }
+    "files": [
+      "main.js"
+    ],
+    "extraResources": [
+      {
+        "from": "../dist",
+        "to": "dist"
+      }
+    ],
+    "asar": true,
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "artifactName": "sanguo-weizhu-${version}-setup.${ext}"
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ],
+      "category": "Game",
+      "artifactName": "sanguo-weizhu-${version}-${ext}",
+      "productName": "sanguo-weizhu"
+    },
+    "mac": {
+      "target": [
+        "dmg"
+      ],
+      "artifactName": "sanguo-weizhu-${version}.${ext}"
+    }
   }
 }
