@@ -132,13 +132,20 @@ struct BattleScreen: View {
         // 背景与桌面
         LinearGradient(colors: [Color(hex: 0x0d110d), Color(hex: 0x141a12), Color(hex: 0x0d110d)], startPoint: .top, endPoint: .bottom)
         if portrait {
-          // 毛毡桌面(竖版椭圆)
+          // 竖版:收敛的桌面弧(只做氛围,不与元素抢位)
+          Ellipse()
+            .fill(Theme.gold.opacity(0.28))
+            .frame(width: realW * 1.35, height: realH * 0.44)
+            .offset(y: realH * 0.04)
           Ellipse()
             .fill(LinearGradient(colors: [Color(hex: 0x3c5c46), Theme.felt, Color(hex: 0x2c463a)], startPoint: .top, endPoint: .bottom))
-            .frame(width: realW * 1.7, height: realH * 0.52)
-            .offset(y: -realH * 0.02)
-            .overlay(Ellipse().strokeBorder(Theme.gold.opacity(0.12), lineWidth: 10).frame(width: realW * 1.5, height: realH * 0.4).offset(y: -realH * 0.02))
-          LeafFallView().opacity(0.85).allowsHitTesting(false)
+            .frame(width: realW * 1.3, height: realH * 0.42)
+            .offset(y: realH * 0.04)
+          Ellipse()
+            .strokeBorder(Theme.gold.opacity(0.12), lineWidth: 10)
+            .frame(width: realW * 1.15, height: realH * 0.36)
+            .offset(y: realH * 0.04)
+          LeafFallView().opacity(0.7).allowsHitTesting(false)
           if let engine = game.activeBattle {
             portraitField(engine: engine, w: realW, h: realH)
           }
@@ -205,105 +212,93 @@ struct BattleScreen: View {
     }
   }
 
-  // 竖版牌桌(iPhone/iPad 竖屏/Duo):真·自适应堆叠,不缩放画布。
-  // 结构:对手行(上) → 底池+公共牌(中) → 英雄区(下);行动栏/信息条由 fieldChrome 提供。
+  // 竖版牌桌:对手三席等宽栅格(气泡固定槽防跳)→ 底池/公共牌居中 → 英雄区;桌面弧只做氛围。
   private func portraitField(engine: BattleEngine, w: Double, h: Double) -> some View {
     let opps = engine.opponents
     let pot = engine.H.map { potTotal($0.seats) } ?? 0
     let seedHead = "#" + (engine.config.seed.split(separator: "#").first.map(String.init) ?? engine.config.seed)
     let board = engine.board
     let boardSlots = 5 - board.count
-    return VStack(spacing: 6) {
-      // 对手行
-      HStack(alignment: .top, spacing: 8) {
+    return VStack(spacing: 10) {
+      // 对手行:等宽栅格,气泡槽固定高
+      HStack(alignment: .top, spacing: 10) {
         ForEach(Array(opps.enumerated()), id: \.element.id) { _, seat in
-          VStack(spacing: 3) {
-            if let bubble = seat.bubble {
-              Text(bubble).font(Theme.serif(10)).foregroundColor(Theme.paper)
-                .padding(.horizontal, 6).padding(.vertical, 4)
-                .background(Theme.lacquer.opacity(0.96))
-                .overlay(RoundedRectangle(cornerRadius: 3).strokeBorder(Theme.gold.opacity(0.6), lineWidth: 1))
-                .lineLimit(2).multilineTextAlignment(.center).frame(maxWidth: .infinity)
+          VStack(spacing: 4) {
+            Group {
+              if let bubble = seat.bubble {
+                Text(bubble).font(Theme.serif(9)).foregroundColor(Theme.paper)
+                  .padding(.horizontal, 5).padding(.vertical, 3)
+                  .background(Theme.lacquer.opacity(0.96))
+                  .overlay(RoundedRectangle(cornerRadius: 3).strokeBorder(Theme.gold.opacity(0.6), lineWidth: 1))
+                  .lineLimit(2).multilineTextAlignment(.center)
+                  .frame(minHeight: 24)
+              } else {
+                Color.clear.frame(height: 24)
+              }
             }
+            .frame(maxWidth: .infinity)
             HStack(spacing: 2) {
               ForEach(Array(seat.hole.enumerated()), id: \.offset) { _, cid in
                 if seat.showdownName != nil { CardView(id: cid) } else { CardBackView() }
               }
-              if let sd = seat.showdownName {
-                VStack(spacing: 1) {
-                  Text(sd).font(Theme.serif(9, bold: true)).foregroundColor(seat.showdownVerdict == "win" ? Theme.goldLight : Theme.paperDim).lineLimit(1)
-                  if seat.showdownVerdict != nil {
-                    Text(seat.showdownVerdict == "win" ? "胜" : "负").font(Theme.serif(8))
-                      .foregroundColor(Theme.inkDeep)
-                      .padding(.horizontal, 3)
-                      .background(seat.showdownVerdict == "win" ? Theme.goldLight : Theme.muted)
-                  }
-                }
-              }
             }
-            .frame(height: 40)
+            .frame(height: 34)
             SeatPlate(seat: seat, engine: engine, isBoss: engine.config.boss)
               .onTapGesture { engine.selectedSeat = seat.id }
               .overlay(
                 RoundedRectangle(cornerRadius: 2)
                   .strokeBorder(engine.selectedSeat == seat.id && opps.count > 1 ? Theme.goldLight : .clear, lineWidth: 1.5)
               )
-            if seat.bet > 0, engine.H != nil {
-              HStack(spacing: 3) {
-                ChipStack(count: seat.bet, tone: "ebony")
-                Text("\(seat.bet)").font(Theme.serif(10)).foregroundColor(Theme.paperDim)
+            Group {
+              if seat.bet > 0, engine.H != nil {
+                HStack(spacing: 2) {
+                  ChipStack(count: seat.bet, tone: "ebony")
+                  Text("\(seat.bet)").font(Theme.serif(9)).foregroundColor(Theme.paperDim)
+                }
+              } else {
+                Color.clear.frame(height: 16)
               }
-            } else { Color.clear.frame(height: 18) }
+            }
+            .frame(minHeight: 16)
           }
           .frame(maxWidth: .infinity)
         }
       }
-      .padding(.horizontal, 10).padding(.top, 4)
+      .padding(.horizontal, 10).padding(.top, 6)
 
-      Spacer(minLength: 4)
+      Spacer(minLength: 24)
 
       // 底池
       HStack(spacing: 6) {
         ChipStack(count: pot, tone: "pot")
-        Text("\(pot)").font(Theme.serif(15, bold: true)).foregroundColor(Theme.goldLight)
+        Text("\(pot)").font(Theme.serif(14, bold: true)).foregroundColor(Theme.goldLight)
       }
       .potPulse(pot)
+      Spacer().frame(height: 18)
 
-      // 公共牌(大号)+ 牌堆/种子
-      HStack(spacing: 8) {
-        VStack(spacing: 3) {
-          ZStack { ForEach(0..<3, id: \.self) { i in CardBackView().offset(x: CGFloat(i) * 1.2, y: CGFloat(-i) * 1.2) } }
-          Text(seedHead)
-            .font(.system(size: 8, design: .monospaced)).foregroundColor(Theme.muted)
+      Spacer(minLength: 24)
+
+      // 公共牌
+      HStack(spacing: 6) {
+        ForEach(Array(board.enumerated()), id: \.offset) { _, cid in
+          CardView(id: cid, big: true)
         }
-        Spacer()
-        HStack(spacing: 7) {
-          ForEach(Array(board.enumerated()), id: \.offset) { _, cid in
-            CardView(id: cid, big: true)
-          }
-          ForEach(0..<boardSlots, id: \.self) { _ in
-            RoundedRectangle(cornerRadius: 7).fill(Color.black.opacity(0.18))
-              .overlay(RoundedRectangle(cornerRadius: 7).strokeBorder(Theme.gold.opacity(0.25), lineWidth: 1))
-              .frame(width: 48, height: 68)
-          }
+        ForEach(0..<boardSlots, id: \.self) { _ in
+          RoundedRectangle(cornerRadius: 7).fill(Color.black.opacity(0.18))
+            .overlay(RoundedRectangle(cornerRadius: 7).strokeBorder(Theme.gold.opacity(0.25), lineWidth: 1))
+            .frame(width: 48, height: 68)
         }
-        Spacer()
-        if let hero = engine.seats.first(where: { $0.isHero }), hero.bet > 0, engine.H != nil {
-          HStack(spacing: 3) {
-            ChipStack(count: hero.bet, tone: "ivory")
-            Text("\(hero.bet)").font(Theme.serif(10)).foregroundColor(Theme.paperDim)
-          }
-        } else { Color.clear.frame(width: 60) }
       }
-      .padding(.horizontal, 14)
 
-      Spacer(minLength: 4)
+      Spacer(minLength: 6)
 
       // 英雄区
       heroArea(engine: engine)
-        .padding(.bottom, 6)
+        .padding(.bottom, 8)
     }
-    // 横幅(复用桌面样式,居中覆盖)
+    .padding(.horizontal, 4)
+    .frame(maxWidth: .infinity, maxHeight: .infinity)
+    // 横幅
     .overlay {
       if let b = banner {
         VStack(spacing: 5) {
@@ -319,9 +314,7 @@ struct BattleScreen: View {
         .transition(.asymmetric(insertion: .scale(scale: 0.72).combined(with: .opacity), removal: .opacity))
       }
     }
-    // 顶部信息条
     .safeAreaInset(edge: .top) { topBar(engine: engine) }
-    // 底部行动区
     .safeAreaInset(edge: .bottom) {
       VStack(spacing: 6) {
         infoLine(engine: engine)
@@ -521,6 +514,52 @@ struct BattleScreen: View {
   }
 
   private func topBar(engine: BattleEngine) -> some View {
+    GeometryReader { g in
+      if g.size.width < 760 {
+        // 竖版:胜率药丸 + 单一墨钮抽屉(同心/验牌收进 Menu,零溢出)
+        HStack(spacing: 8) {
+          if store.progress.settings.equityAssist, let r = engine.latestOdds {
+            HStack(spacing: 4) {
+              Text(L("odds.equity")).font(Theme.serif(9)).foregroundColor(Theme.muted)
+              Text(String(format: "%.1f%%", r.equity.e * 100)).font(Theme.serif(13, bold: true)).foregroundColor(Theme.goldLight)
+            }
+            .padding(.horizontal, 7).padding(.vertical, 5)
+            .background(Theme.ink.opacity(0.85))
+            .overlay(RoundedRectangle(cornerRadius: 3).strokeBorder(Theme.gold.opacity(0.35), lineWidth: 1))
+            .fixedSize()
+          }
+          Spacer(minLength: 4)
+          Menu {
+            Button {
+              _ = engine.taunt()
+            } label: {
+              Label(engine.config.zhiZi ? L("battle.zhiZi") : L("battle.gongxin"), systemImage: "bubble.left")
+            }
+            .disabled(engine.taunted || engine.H == nil)
+            Button {
+              verifyOpen = true
+            } label: {
+              Label(L("battle.verify"), systemImage: "checkmark.seal")
+            }
+          } label: {
+            Image(systemName: "circle.grid.2x2")
+              .font(.system(size: 13, weight: .semibold))
+              .foregroundColor(Theme.paperLight)
+              .frame(width: 30, height: 26)
+              .background(Color(hex: 0x29291f))
+              .overlay(Rectangle().strokeBorder(Color(hex: 0x897345), lineWidth: 1))
+          }
+          .fixedSize()
+        }
+        .padding(.horizontal, 10).padding(.vertical, 6)
+        .background(Theme.inkDeep.opacity(0.7))
+
+        topBarFull(engine: engine)
+      }
+    }
+  }
+
+  private func topBarFull(engine: BattleEngine) -> some View {
     HStack(spacing: 12) {
       if store.progress.settings.equityAssist {
         OddsPanel(result: engine.latestOdds)
@@ -538,15 +577,17 @@ struct BattleScreen: View {
   }
 
   private func infoLine(engine: BattleEngine) -> some View {
-    HStack(spacing: 14) {
-      Text("\(String(format: L("battle.handLabel"), engine.handNum)) · \(L("battle.blinds")) \(engine.blinds[0])/\(engine.blinds[1])")
-        .font(Theme.serif(12)).foregroundColor(Theme.paperDim)
+    VStack(alignment: .leading, spacing: 2) {
+      HStack(spacing: 10) {
+        Text("\(String(format: L("battle.handLabel"), engine.handNum)) · \(L("battle.blinds")) \(engine.blinds[0])/\(engine.blinds[1])")
+          .font(Theme.serif(11)).foregroundColor(Theme.paperDim)
+        Spacer()
+        if engine.opponents.count > 1 {
+          Text("\(engine.seats.count)\(L("practice.sizeN"))").font(Theme.serif(11)).foregroundColor(Theme.muted)
+        }
+      }
       Text("\(L("odds.currentHand")) \(engine.H != nil ? madeName(engine.hero.hole, engine.board) : "—")")
         .font(Theme.serif(12)).foregroundColor(Theme.paper)
-      Spacer()
-      if engine.opponents.count > 1 {
-        Text("\(engine.seats.count)\(L("practice.sizeN"))").font(Theme.serif(11)).foregroundColor(Theme.muted)
-      }
     }
   }
 
@@ -575,8 +616,80 @@ struct BattleScreen: View {
 
 struct ActionBanner: View {
   @ObservedObject var game = GameViewModel.shared
+  @State private var raiseOpen = false
 
   var body: some View {
+    GeometryReader { g in
+      if g.size.width < 760 { compact } else { full }
+    }
+    .frame(minHeight: 44)
+  }
+
+  // 竖版:主操作一行大按钮;加注档位收进上拉面板,All-in 独立红钮
+  private var compact: some View {
+    VStack(spacing: 0) {
+      if raiseOpen, let prompt = game.actionPrompt {
+        VStack(spacing: 6) {
+          ForEach(Array(prompt.presets.enumerated()), id: \.offset) { _, p in
+            Button { game.submitPlayerAction(.init(type: "raise", amount: p.amount)); withAnimation(.spring(response: 0.3, dampingFraction: 0.85)) { raiseOpen = false } } label: {
+              HStack {
+                Text(p.label).font(Theme.serif(12)).foregroundColor(Theme.muted)
+                Spacer()
+                Text("\(p.amount)").font(Theme.serif(15, bold: true)).foregroundColor(Theme.goldLight)
+              }
+              .padding(.horizontal, 14).padding(.vertical, 10)
+              .background(Theme.ink.opacity(0.95))
+              .overlay(RoundedRectangle(cornerRadius: 3).strokeBorder(Theme.gold.opacity(0.45), lineWidth: 1))
+            }
+            .buttonStyle(.plain)
+          }
+        }
+        .padding(.horizontal, 12)
+        .transition(.move(edge: .bottom).combined(with: .opacity))
+      }
+      HStack(spacing: 8) {
+        if let prompt = game.actionPrompt {
+          let view = prompt.view
+          if view.toCall > 0 {
+            actionButton(L("action.fold"), danger: true) { game.submitPlayerAction(.init(type: "fold")) }
+            actionButton(view.toCall >= view.stack ? "\(L("action.allinCall")) \(view.stack)" : "\(L("action.call")) \(view.toCall)") { game.submitPlayerAction(.init(type: "call")) }
+          } else {
+            actionButton(L("action.check")) { game.submitPlayerAction(.init(type: "check")) }
+          }
+          Spacer()
+          if view.stack > 0 && view.canRaise {
+            if !prompt.presets.isEmpty {
+              Button {
+                withAnimation(.spring(response: 0.3, dampingFraction: 0.85)) { raiseOpen.toggle() }
+              } label: {
+                HStack(spacing: 4) {
+                  Text(L("action.raise")).font(Theme.serif(13, bold: true))
+                  Image(systemName: raiseOpen ? "chevron.down" : "chevron.up").font(.system(size: 10, weight: .bold))
+                }
+                .foregroundColor(raiseOpen ? Theme.goldLight : Theme.paperLight)
+                .padding(.horizontal, 14).padding(.vertical, 10)
+                .background(raiseOpen ? Color(hex: 0x5a4a28) : Color(hex: 0x29291f))
+                .overlay(Rectangle().strokeBorder(Color(hex: 0x897345), lineWidth: 1))
+              }
+              .buttonStyle(.plain)
+            }
+            actionButton("\(L("action.allin")) \(view.stack)", prominent: true) { game.submitPlayerAction(.init(type: "allin")); withAnimation { raiseOpen = false } }
+          } else {
+            Spacer()
+          }
+        } else {
+          Text(game.activeBattle?.spectate == true ? L("battle.spectating") : " ")
+            .font(Theme.serif(12)).foregroundColor(Theme.muted)
+          Spacer()
+        }
+      }
+      .padding(.horizontal, 12)
+    }
+    .background(Theme.inkDeep.opacity(0.9))
+    .animation(.spring(response: 0.3, dampingFraction: 0.85), value: raiseOpen)
+  }
+
+  private var full: some View {
     HStack(spacing: 10) {
       if let prompt = game.actionPrompt {
         let view = prompt.view
