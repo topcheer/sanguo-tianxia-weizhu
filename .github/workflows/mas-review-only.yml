@@ -54,7 +54,13 @@ jobs:
           BUILD_VER: ${{ inputs.build_ver }}
           SAN_VERSION: ${{ inputs.san_version }}
         run: |
-          if ! perl -e 'alarm 2400; exec @ARGV' python3 scripts/asc_mas_review.py; then
-            echo "::error::MAS review chain failed (2400s watchdog)"
+          perl -e 'alarm 2400; exec @ARGV' python3 scripts/asc_mas_review.py
+          rc=$?
+          if [ $rc -eq 2 ]; then
+            echo "MAS_RETRY_LATER (version in review blocks; will re-dispatch)"
+            exit 0
+          fi
+          if [ $rc -ne 0 ]; then
+            echo "::error::MAS review chain failed rc=$rc (2400s watchdog)"
             exit 1
           fi

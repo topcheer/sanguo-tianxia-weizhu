@@ -176,10 +176,14 @@ def get_or_create_version(mkt):
             for v in r3.get("data", []):
                 if v["attributes"].get("version") == mkt:
                     return v["id"], v["attributes"].get("appStoreState")
-        dump = [(v["id"][:8], v["attributes"].get("version"),
+        dump = [(v["id"][:8], v["attributes"].get("versionString") or v["attributes"].get("version"),
                  v["attributes"].get("platform"), v["attributes"].get("appStoreState"))
                 for v in (r2.get("data", []) if s2 == 200 else [])]
         print(f"version list dump: {dump}")
+        if blockers:
+            print("MAS_RETRY_LATER: in-review version blocks creation; "
+                  "will succeed once Apple flips its state (approve/reject)")
+            sys.exit(2)
     print(f"::error::create version {mkt}: {s} {r}"); sys.exit(1)
 
 
@@ -187,31 +191,39 @@ def remove_active_submission(vid, state):
     if state not in ("WAITING_FOR_REVIEW", "IN_REVIEW"):
         return
     subs = []
+    # 路径0: 版本资源自身 relationships 块(GET_INSTANCE 允许)
+    s0, r0 = call("GET", f"/v1/appStoreVersions/{vid}")
+    rel = (r0.get("data", {}).get("relationships", {}) if isinstance(r0, dict) else {})
+    print(f"probe0 {s0} rel_keys={sorted(rel.keys())}")
+    subs = list((rel.get("appStoreVersionSubmissions") or {}).get("data", []) or [])
+    if subs:
+        print(f"probe0 found {len(subs)} submission link(s)")
+    if not subs:
     # 路径A: 直接关系资源
-    sa, ra = call("GET", f"/v1/appStoreVersions/{vid}/appStoreVersionSubmissions?limit=5")
-    print(f"probeA {sa} n={len(ra.get('data', [])) if isinstance(ra, dict) else '?'}")
-    if sa == 200 and isinstance(ra, dict):
-        subs = ra.get("data", [])
-    if not subs:
-        # 路径B: GET_INSTANCE + include
-        sb, rb = call("GET", f"/v1/appStoreVersions/{vid}?include=appStoreVersionSubmissions")
-        inc = rb.get("included", []) if isinstance(rb, dict) else []
-        print(f"probeB {sb} included_types={[x.get('type') for x in inc]}")
-        subs = [x for x in inc if x.get("type") == "appStoreVersionSubmissions"]
-    if not subs:
-        # 路径C: 扁平集合+filter(可能 GET_COLLECTION 403,仅作探测)
-        sc, rc = call("GET", f"/v1/appStoreVersionSubmissions?filter[appStoreVersion]={vid}&limit=5")
-        print(f"probeC {sc} " + (f"n={len(rc.get('data', []))}" if isinstance(rc, dict) else ""))
-        if sc == 200 and isinstance(rc, dict):
+        sa, ra = call("GET", f"/v1/appStoreVersions/{vid}/appStoreVersionSubmissions?limit=5")
+      print(f"probeA {sa} n={len(ra.get('data', [])) if isinstance(ra, dict) else '?'}")
+      if sa == 200 and isinstance(ra, dict):
+          subs = ra.get("data", [])
+      if not subs:
+          # 路径B: GET_INSTANCE + include
+          sb, rb = call("GET", f"/v1/appStoreVersions/{vid}?include=appStoreVersionSubmissions")
+          inc = rb.get("included", []) if isinstance(rb, dict) else []
+          print(f"probeB {sb} included_types={[x.get('type') for x in inc]}")
+          subs = [x for x in inc if x.get("type") == "appStoreVersionSubmissions"]
+      if not subs:
+          # 路径C: 扁平集合+filter(可能 GET_COLLECTION 403,仅作探测)
+          sc, rc = call("GET", f"/v1/appStoreVersionSubmissions?filter[appStoreVersion]={vid}&limit=5")
+          print(f"probeC {sc} " + (f"n={len(rc.get('data', []))}" if isinstance(rc, dict) else ""))
+          if sc == 200 and isinstance(rc, dict):
             subs = rc.get("data", [])
-    if not subs:
-        print("::warning::no submission resource found via A/B/C — cannot remove from review")
-        return
-    for sub in subs:
-        sid = sub["id"]
-        s, _ = call("DELETE", f"/v1/appStoreVersionSubmissions/{sid}")
-        print(f"remove-from-review {sid[:8]}: {s}")
-        if s in (200, 204):
+      if not subs:
+          print("::warning::no submission resource found via A/B/C — cannot remove from review")
+          return
+      for sub in subs:
+          sid = sub["id"]
+          s, _ = call("DELETE", f"/v1/appStoreVersionSubmissions/{sid}")
+          print(f"remove-from-review {sid[:8]}: {s}")
+          if s in (200, 204):
             for _ in range(20):  # 等状态翻转,最多5分钟
                 time.sleep(15)
                 s2, r2 = call("GET", f"/v1/appStoreVersions/{vid}")
@@ -251,17 +263,32 @@ def bind_build(vid, bid):
 
 
 def submit(vid):
-    s, r = call("POST", "/v1/appStoreVersionSubmissions",
-                {"data": {"relationships": {"appStoreVersion": {
-                    "data": {"type": "appStoreVersions", "id": vid}}}}})
-    if s == 201:
-        print(f"submitted for review: {r['data']['id'][:8]}")
-        return True
-    if s in (409,) or (s == 422 and "state" in json.dumps(r).lower()):
-        print(f"already in submission flow: {s}")
-        return True
-    print(f"::error::submit: {s} {r}")
-    return False
+    """reviewSubmissions 新流程(ggcode 实证;旧 appStoreVersionSubmissions 已废弃 403)。"""
+    s, r = call("GET", f"/v1/reviewSubmissions?filter[app]={APP_ID}"
+                       f"&filter[platform]=MAC_OS&filter[state]=PREPARE_FOR_SUBMISSION&limit=5")
+    rsid = r["data"][0]["id"] if s == 200 and r.get("data") else None
+    if not rsid:
+        s, r = call("POST", "/v1/reviewSubmissions",
+                    {"data": {"type": "reviewSubmissions",
+                              "attributes": {"platform": "MAC_OS"},
+                              "relationships": {"app": {"data": {"type": "apps",
+                                                                 "id": APP_ID}}}}})
+        rsid = r["data"]["id"] if s == 201 else None
+        print(f"create reviewSubmission: {s} {rsid and rsid[:8]}")
+    if not rsid:
+        print(f"::error::no reviewSubmission: {s} {json.dumps(r)[:300]}")
+        return False
+    s, _ = call("POST", f"/v1/reviewSubmissions/{rsid}/items",
+                {"data": {"type": "reviewSubmissionItems", "attributes": {},
+                          "relationships": {"appStoreVersion": {
+                              "data": {"type": "appStoreVersions", "id": vid}}}}})
+    print(f"attach item: {s}")
+    s, r = call("PATCH", f"/v1/reviewSubmissions/{rsid}",
+                {"data": {"type": "reviewSubmissions", "id": rsid,
+                          "attributes": {"submitted": True}}})
+    st = r.get("data", {}).get("attributes", {}).get("state") if isinstance(r, dict) else None
+    print(f"submit patch: {s} state={st}")
+    return st == "WAITING_FOR_REVIEW"
 
 
 def main():
