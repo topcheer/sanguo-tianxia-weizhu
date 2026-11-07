@@ -1,0 +1,42 @@
+name: mas-review-only
+
+# 备用重跑路径:build 已上传(号已占)而 MAS 提审步失败时,仅重跑提审链。
+# 不归档、不上传、不动版本号/tag;直接跑 scripts/asc_mas_review.py。
+on:
+  workflow_dispatch:
+    inputs:
+      build_ver:
+        description: "CFBundleVersion (e.g. 2026110704)"
+        required: true
+        default: "2026110704"
+      san_version:
+        description: "marketing version (空=自读 project.yml)"
+        required: false
+        default: ""
+
+permissions:
+  contents: read
+
+concurrency:
+  group: mas-review-only
+  cancel-in-progress: false
+
+jobs:
+  submit:
+    name: MAS review chain only (macos)
+    runs-on: macos-latest
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run asc_mas_review.py
+        env:
+          SAN_API_KEY_ID: ${{ secrets.SAN_API_KEY_ID }}
+          SAN_API_ISSUER: ${{ secrets.SAN_API_ISSUER }}
+          SAN_API_KEY_P8: ${{ secrets.SAN_API_KEY_P8 }}
+          BUILD_VER: ${{ inputs.build_ver }}
+          SAN_VERSION: ${{ inputs.san_version }}
+        run: |
+          if ! perl -e 'alarm 2400; exec @ARGV' python3 scripts/asc_mas_review.py; then
+            echo "::error::MAS review chain failed (2400s watchdog)"
+            exit 1
+          fi
