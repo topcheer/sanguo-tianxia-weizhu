@@ -137,6 +137,10 @@ def wait_valid_mac_build(ver, timeout_s=1500):
 
 
 def get_or_create_version(mkt):
+    body = {"data": {"type": "appStoreVersions",
+                     "attributes": {"platform": "MAC_OS", "versionString": mkt},
+                     "relationships": {"app": {"data": {"type": "apps",
+                                                        "id": APP_ID}}}}}
     s, r = call("GET", f"/v1/apps/{APP_ID}/appStoreVersions?limit=20")
     if s != 200:
         print(f"::error::list versions {s} {r}"); sys.exit(1)
@@ -145,19 +149,37 @@ def get_or_create_version(mkt):
     if mac or cand:
         v = (mac or cand)[0]
         return v["id"], v["attributes"].get("appStoreState")
-    s, r = call("POST", "/v1/appStoreVersions",
-                {"data": {"type": "appStoreVersions",
-                          "attributes": {"platform": "MAC_OS", "versionString": mkt},
-                          "relationships": {"app": {"data": {"type": "apps",
-                                                             "id": APP_ID}}}}})
+    s, r = call("POST", "/v1/appStoreVersions", body)
     if s == 201:
         return r["data"]["id"], r["data"]["attributes"].get("appStoreState")
     if s == 409:
-        for v in (call("GET", f"/v1/apps/{APP_ID}/appStoreVersions?limit=20")[1].get("data", [])):
+        # 重复 -> 再列一次(可能 deliver 自动建的占位此轮才可见)
+        s2, r2 = call("GET", f"/v1/apps/{APP_ID}/appStoreVersions?limit=20")
+        for v in r2.get("data", []):
             if v["attributes"].get("version") == mkt:
                 print(f"409 -> existing version found: {v['id'][:8]} "
                       f"platform={v['attributes'].get('platform')}")
                 return v["id"], v["attributes"].get("appStoreState")
+        # "cannot create a new version in the current state": 同平台在审版本阻塞
+        # -> 把在审旧版本移出审核(官方 remove-from-review),再重试 CREATE 一次
+        blockers = [v for v in r2.get("data", [])
+                    if v["attributes"].get("appStoreState") in ("WAITING_FOR_REVIEW", "IN_REVIEW")]
+        if blockers:
+            b = blockers[0]
+            print(f"unblock: v{b['attributes'].get('version')} ({b['id'][:8]}) "
+                  f"{b['attributes'].get('appStoreState')} -> remove from review")
+            remove_active_submission(b["id"], b["attributes"].get("appStoreState"))
+            s, r = call("POST", "/v1/appStoreVersions", body)
+            if s == 201:
+                return r["data"]["id"], r["data"]["attributes"].get("appStoreState")
+            s3, r3 = call("GET", f"/v1/apps/{APP_ID}/appStoreVersions?limit=20")
+            for v in r3.get("data", []):
+                if v["attributes"].get("version") == mkt:
+                    return v["id"], v["attributes"].get("appStoreState")
+        dump = [(v["id"][:8], v["attributes"].get("version"),
+                 v["attributes"].get("platform"), v["attributes"].get("appStoreState"))
+                for v in (r2.get("data", []) if s2 == 200 else [])]
+        print(f"version list dump: {dump}")
     print(f"::error::create version {mkt}: {s} {r}"); sys.exit(1)
 
 
