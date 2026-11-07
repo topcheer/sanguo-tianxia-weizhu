@@ -144,7 +144,7 @@ def get_or_create_version(mkt):
     s, r = call("GET", f"/v1/apps/{APP_ID}/appStoreVersions?limit=20")
     if s != 200:
         print(f"::error::list versions {s} {r}"); sys.exit(1)
-    cand = [v for v in r.get("data", []) if v["attributes"].get("version") == mkt]
+    cand = [v for v in r.get("data", []) if (v["attributes"].get("versionString") or v["attributes"].get("version")) == mkt]
     mac = [v for v in cand if v["attributes"].get("platform") in ("MAC_OS", None)]
     if mac or cand:
         v = (mac or cand)[0]
@@ -156,7 +156,7 @@ def get_or_create_version(mkt):
         # 重复 -> 再列一次(可能 deliver 自动建的占位此轮才可见)
         s2, r2 = call("GET", f"/v1/apps/{APP_ID}/appStoreVersions?limit=20")
         for v in r2.get("data", []):
-            if v["attributes"].get("version") == mkt:
+            if (v["attributes"].get("versionString") or v["attributes"].get("version")) == mkt:
                 print(f"409 -> existing version found: {v['id'][:8]} "
                       f"platform={v['attributes'].get('platform')}")
                 return v["id"], v["attributes"].get("appStoreState")
@@ -174,7 +174,7 @@ def get_or_create_version(mkt):
                 return r["data"]["id"], r["data"]["attributes"].get("appStoreState")
             s3, r3 = call("GET", f"/v1/apps/{APP_ID}/appStoreVersions?limit=20")
             for v in r3.get("data", []):
-                if v["attributes"].get("version") == mkt:
+                if (v["attributes"].get("versionString") or v["attributes"].get("version")) == mkt:
                     return v["id"], v["attributes"].get("appStoreState")
         dump = [(v["id"][:8], v["attributes"].get("versionString") or v["attributes"].get("version"),
                  v["attributes"].get("platform"), v["attributes"].get("appStoreState"))
@@ -314,6 +314,18 @@ def main():
     print(f"mac build {ver} VALID: {bid[:8]}")
     vid, state = get_or_create_version(mkt)
     print(f"version {mkt}: {vid[:8]} state={state}")
+    if state in ("WAITING_FOR_REVIEW", "IN_REVIEW"):
+        sv, rv = call("GET", f"/v1/appStoreVersions/{vid}")
+        bound = (((rv.get("data", {}).get("relationships", {})
+                   .get("build") or {}).get("data") or {}).get("id"))
+        print(f"bound build: {bound and bound[:8]} (target {bid[:8]})")
+        if bound == bid:
+            print("MAS_REVIEW_OK (already WAITING_FOR_REVIEW with this build)")
+            print("MAS_REVIEW_OK")
+            return
+        print(f"::warning::in review but bound to {bound} != {bid}; cannot rebind in review state")
+        print("MAS_RETRY_LATER: waiting for review outcome to rebind")
+        sys.exit(2)
     if state in ("READY_FOR_SALE", "PENDING_DEVELOPER_RELEASE", "PROCESSING_FOR_APP_STORE"):
         print(f"::error::version {mkt} already released - nothing to submit")
         sys.exit(1)
