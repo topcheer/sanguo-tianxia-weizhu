@@ -1004,23 +1004,23 @@ struct BriefingSheet: View {
           VStack(spacing: 9) {
             ForEach(Array(roster.enumerated()), id: \.offset) { index, member in
               if compact {
-                // 竖排卡:像上文下,人像完整展示
+                // 竖排卡:像上文下,人像完整展示;纸面浅底与卷面同族
                 VStack(spacing: 6) {
                   ZStack(alignment: .topLeading) {
                     PortraitView(skin: member.skin, size: 96)
-                      .overlay(Rectangle().strokeBorder(Color(hex: 0x76643f), lineWidth: 1))
-                    Text("\(index + 1)").font(Theme.serif(11)).foregroundColor(Color(hex: 0xe9d3a3))
-                      .frame(width: 19, height: 22).background(Color(hex: 0x84362b)).padding(4)
+                      .overlay(Rectangle().strokeBorder(Color(hex: 0x8a7550), lineWidth: 1))
+                    Text("\(index + 1)").font(Theme.serif(11)).foregroundColor(Color(hex: 0xf0dfb8))
+                      .frame(width: 19, height: 22).background(Color(hex: 0xa34c35)).padding(4)
                   }
-                  Text(member.name).font(Theme.serif(16)).foregroundColor(Color(hex: 0xead7ab))
+                  Text(member.name).font(Theme.serif(16)).foregroundColor(Color(hex: 0x4a3d2a))
                   Text("\(boss ? PL("brief.bossRole", "关底敌将") : PL("brief.enemyRole", "遭遇敌将")) · \(L("term.chips")) \(member.stack)")
-                    .font(Theme.serif(9)).foregroundColor(Color(hex: 0x9e957b))
+                    .font(Theme.serif(9)).foregroundColor(Color(hex: 0x84704e))
                 }
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 12)
-                .background(LinearGradient(colors: [Color(hex: 0x292b21), Color(hex: 0x1c2018)],
+                .background(LinearGradient(colors: [Color(hex: 0xdccfa9), Color(hex: 0xd2c49d)],
                                            startPoint: .top, endPoint: .bottom))
-                .overlay(Rectangle().strokeBorder(Color(hex: 0x76643f), lineWidth: 1))
+                .overlay(Rectangle().strokeBorder(Color(hex: 0x9d895d).opacity(0.55), lineWidth: 1))
               } else {
                 HStack(spacing: 0) {
                   ZStack(alignment: .topLeading) {
@@ -1090,23 +1090,23 @@ struct BriefingSheet: View {
           VStack(spacing: 9) {
             ForEach(Array(roster.enumerated()), id: \.offset) { index, member in
               if compact {
-                // 竖排卡:像上文下,人像完整展示
+                // 竖排卡:像上文下,人像完整展示;纸面浅底与卷面同族
                 VStack(spacing: 6) {
                   ZStack(alignment: .topLeading) {
                     PortraitView(skin: member.skin, size: 96)
-                      .overlay(Rectangle().strokeBorder(Color(hex: 0x76643f), lineWidth: 1))
-                    Text("\(index + 1)").font(Theme.serif(11)).foregroundColor(Color(hex: 0xe9d3a3))
-                      .frame(width: 19, height: 22).background(Color(hex: 0x84362b)).padding(4)
+                      .overlay(Rectangle().strokeBorder(Color(hex: 0x8a7550), lineWidth: 1))
+                    Text("\(index + 1)").font(Theme.serif(11)).foregroundColor(Color(hex: 0xf0dfb8))
+                      .frame(width: 19, height: 22).background(Color(hex: 0xa34c35)).padding(4)
                   }
-                  Text(member.name).font(Theme.serif(16)).foregroundColor(Color(hex: 0xead7ab))
+                  Text(member.name).font(Theme.serif(16)).foregroundColor(Color(hex: 0x4a3d2a))
                   Text("\(boss ? PL("brief.bossRole", "关底敌将") : PL("brief.enemyRole", "遭遇敌将")) · \(L("term.chips")) \(member.stack)")
-                    .font(Theme.serif(9)).foregroundColor(Color(hex: 0x9e957b))
+                    .font(Theme.serif(9)).foregroundColor(Color(hex: 0x84704e))
                 }
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 12)
-                .background(LinearGradient(colors: [Color(hex: 0x292b21), Color(hex: 0x1c2018)],
+                .background(LinearGradient(colors: [Color(hex: 0xdccfa9), Color(hex: 0xd2c49d)],
                                            startPoint: .top, endPoint: .bottom))
-                .overlay(Rectangle().strokeBorder(Color(hex: 0x76643f), lineWidth: 1))
+                .overlay(Rectangle().strokeBorder(Color(hex: 0x9d895d).opacity(0.55), lineWidth: 1))
               } else {
                 HStack(spacing: 0) {
                   ZStack(alignment: .topLeading) {

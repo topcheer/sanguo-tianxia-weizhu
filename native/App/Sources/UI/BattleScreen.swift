@@ -157,19 +157,19 @@ struct BattleScreen: View {
               .padding(.top, 96).padding(.bottom, 104)
           }
         } else {
-          // 桌面:椭圆木边 + 毛毡
+          // 桌面:毛毡满屏(椭圆放大出四缘,消除黑底/灰绿分界),木边仅留上下缘微光
           Ellipse()
-            .fill(Theme.gold.opacity(0.35))
-            .frame(width: w * 0.88, height: h * 0.66)
+            .fill(Theme.gold.opacity(0.30))
+            .frame(width: w * 1.3, height: h * 1.15)
             .offset(y: -h * 0.02)
           Ellipse()
-            .fill(LinearGradient(colors: [Color(hex: 0x3c5c46), Theme.felt, Color(hex: 0x2c463a)], startPoint: .top, endPoint: .bottom))
-            .frame(width: w * 0.85, height: h * 0.63)
+            .fill(LinearGradient(colors: [Color(hex: 0x34523f), Theme.felt, Color(hex: 0x2c463a)], startPoint: .top, endPoint: .bottom))
+            .frame(width: w * 1.25, height: h * 1.08)
             .offset(y: -h * 0.02)
           // 桌布纹理暗纹
           Ellipse()
-            .strokeBorder(Theme.gold.opacity(0.12), lineWidth: 10)
-            .frame(width: w * 0.72, height: h * 0.5)
+            .strokeBorder(Theme.gold.opacity(0.10), lineWidth: 10)
+            .frame(width: w * 1.1, height: h * 0.9)
             .offset(y: -h * 0.02)
           // 落叶氛围(复刻 fx2d backdrop)
           LeafFallView()
