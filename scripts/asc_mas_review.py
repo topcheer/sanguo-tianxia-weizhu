@@ -329,9 +329,14 @@ def main():
             print("MAS_REVIEW_OK (already WAITING_FOR_REVIEW with this build)")
             print("MAS_REVIEW_OK")
             return
-        print(f"::warning::in review but bound to {bound} != {bid}; cannot rebind in review state")
-        print("MAS_RETRY_LATER: waiting for review outcome to rebind")
-        sys.exit(2)
+        print(f"::warning::in review bound to stale build {bound} - removing from review")
+        remove_active_submission(vid, state)
+        sv2, rv2 = call("GET", f"/v1/appStoreVersions/{vid}")
+        state = rv2.get("data", {}).get("attributes", {}).get("appStoreState")
+        print(f"post-remove state: {state}")
+        if state in ("WAITING_FOR_REVIEW", "IN_REVIEW"):
+            print("MAS_RETRY_LATER: still in review after removal attempt")
+            sys.exit(2)
     if state in ("READY_FOR_SALE", "PENDING_DEVELOPER_RELEASE", "PROCESSING_FOR_APP_STORE"):
         print(f"::error::version {mkt} already released - nothing to submit")
         sys.exit(1)
