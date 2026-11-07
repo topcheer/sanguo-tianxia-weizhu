@@ -254,7 +254,8 @@ def patch_whats_new(vid, text):
         s, _ = call("PATCH", f"/v1/appStoreVersionLocalizations/{lid}",
                     {"data": {"type": "appStoreVersionLocalizations", "id": lid,
                               "attributes": {"whatsNewText": text}}})
-        print(f"whatsNew [{loc['attributes'].get('locale')}]: {s}")
+        print(f"whatsNew [{loc['attributes'].get('locale')}]: {s}"
+              + (" (state forbids edit; skipped)" if s != 200 else ""))
 
 
 def bind_build(vid, bid):
@@ -267,31 +268,48 @@ def bind_build(vid, bid):
 
 
 def submit(vid):
-    """reviewSubmissions 新流程(ggcode 实证;旧 appStoreVersionSubmissions 已废弃 403)。"""
+    """reviewSubmissions 新流程(ggcode 实证;旧 appStoreVersionSubmissions 仅剩 DELETE)。"""
+    # 全量列(不带 state 过滤):取消后旧对象可能滞留非 PREPARE 态,取最新可用
     s, r = call("GET", f"/v1/reviewSubmissions?filter[app]={APP_ID}"
-                       f"&filter[platform]=MAC_OS&filter[state]=PREPARE_FOR_SUBMISSION&limit=5")
-    rsid = r["data"][0]["id"] if s == 200 and r.get("data") else None
+                       f"&filter[platform]=MAC_OS&limit=10")
+    rsid = None
+    if s == 200 and isinstance(r, dict):
+        items = r.get("data", [])
+        print(f"reviewSubmissions: {[(x['id'][:8], x['attributes'].get('state')) for x in items]}")
+        prep = [x for x in items if x["attributes"].get("state") == "PREPARE_FOR_SUBMISSION"]
+        if prep:
+            rsid = prep[-1]["id"]
     if not rsid:
         s, r = call("POST", "/v1/reviewSubmissions",
                     {"data": {"type": "reviewSubmissions",
                               "attributes": {"platform": "MAC_OS"},
                               "relationships": {"app": {"data": {"type": "apps",
                                                                  "id": APP_ID}}}}})
-        rsid = r["data"]["id"] if s == 201 else None
-        print(f"create reviewSubmission: {s} {rsid and rsid[:8]}")
+        print(f"create reviewSubmission: {s} {json.dumps(r)[:200]}")
+        rsid = r["data"]["id"] if s == 201 and isinstance(r, dict) else None
+        if not rsid and s in (409, 422):
+            s, r = call("GET", f"/v1/reviewSubmissions?filter[app]={APP_ID}"
+                               f"&filter[platform]=MAC_OS&limit=10")
+            items = r.get("data", []) if isinstance(r, dict) else []
+            live = [x for x in items if x["attributes"].get("state") not in
+                    ("CANCELED", "COMPLETED", None)]
+            if live:
+                rsid = live[-1]["id"]
+                print(f"409 -> reuse live reviewSubmission {rsid[:8]} "
+                      f"state={live[-1]['attributes'].get('state')}")
     if not rsid:
-        print(f"::error::no reviewSubmission: {s} {json.dumps(r)[:300]}")
+        print(f"::error::no reviewSubmission obtainable")
         return False
-    s, _ = call("POST", f"/v1/reviewSubmissions/{rsid}/items",
+    s, r = call("POST", f"/v1/reviewSubmissions/{rsid}/items",
                 {"data": {"type": "reviewSubmissionItems", "attributes": {},
                           "relationships": {"appStoreVersion": {
                               "data": {"type": "appStoreVersions", "id": vid}}}}})
-    print(f"attach item: {s}")
+    print(f"attach item: {s} {json.dumps(r)[:200]}")
     s, r = call("PATCH", f"/v1/reviewSubmissions/{rsid}",
                 {"data": {"type": "reviewSubmissions", "id": rsid,
                           "attributes": {"submitted": True}}})
     st = r.get("data", {}).get("attributes", {}).get("state") if isinstance(r, dict) else None
-    print(f"submit patch: {s} state={st}")
+    print(f"submit patch: {s} state={st} {json.dumps(r)[:200]}")
     return st == "WAITING_FOR_REVIEW"
 
 
