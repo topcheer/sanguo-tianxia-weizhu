@@ -179,7 +179,7 @@ struct BattleScreen: View {
           // 桌面画布(1180×780 设计稿):满屏缩放;设计稿已为行动栏预留顶部席位区/底部 14%,
           // 工具栏以真实尺寸覆盖在预留区上,不再占用额外纵向空间
           if let engine = game.activeBattle {
-            playField(engine: engine, w: w, h: h)
+            playField(engine: engine, w: w, h: h, hideHero: !wide)
               .frame(width: w, height: h)
               .scaleEffect(min(1, min(realW / w, realH / h)))
               .frame(width: realW, height: realH)
@@ -193,6 +193,13 @@ struct BattleScreen: View {
           topBar(engine: engine, width: geo.size.width)
             .padding(.top, portrait ? 52 : 10)
           Spacer(minLength: 0)
+          if !portrait && realW <= 900 {
+            // 窄屏横屏:己方牌区专属行(真实尺寸,置于信息行之上,永不遮挡)
+            heroArea(engine: engine)
+              .padding(.horizontal, 14)
+              .frame(maxWidth: .infinity)
+              .background(Theme.inkDeep.opacity(0.55))
+          }
           VStack(spacing: 6) {
             infoLine(engine: engine)
               .frame(width: geo.size.width - 28, alignment: .leading)
@@ -374,8 +381,8 @@ struct BattleScreen: View {
     }
   }
 
-  private func playField(engine: BattleEngine, w: Double, h: Double) -> some View {
-    let playH = h * 0.86 // 牌面区域(底部留给行动栏)
+  private func playField(engine: BattleEngine, w: Double, h: Double, hideHero: Bool = false) -> some View {
+    let playH = hideHero ? h * 0.90 : h * 0.86 // 牌面区域(桌面版底部留给行动栏;抽离 hero 的窄屏用满)
     let opps = engine.opponents
     return ZStack(alignment: .topLeading) {
       // 对手席位
@@ -469,9 +476,11 @@ struct BattleScreen: View {
         }
       }
 
-      // 玩家区(底部)
-      heroArea(engine: engine)
-        .position(x: w * 0.5, y: playH * 0.97)
+      // 玩家区(底部;窄屏横屏时抽离到画布外的专属行,避免被行动栏遮挡)
+      if !hideHero {
+        heroArea(engine: engine)
+          .position(x: w * 0.5, y: playH * 0.97)
+      }
 
       // 横幅
       if let b = banner {
