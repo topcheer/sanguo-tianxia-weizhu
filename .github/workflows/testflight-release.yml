@@ -154,10 +154,11 @@ jobs:
             echo "::error::macOS archive failed (1500s watchdog)"; exit 1
           fi
           APP="$RUNNER_TEMP/SanMac.xcarchive/Products/Applications/sanguo-weizhu.app"
-          codesign -f -vvv --keychain "san_ci.keychain" \
-            --entitlements "$GITHUB_WORKSPACE/native/App/San-macOS.entitlements" \
-            --sign "Apple Distribution: Junjun Zhang (EGZFS7M525)" \
-            --options runtime --timestamp "$APP" 2>&1 | tail -5
+          # ITMS-90886 修复:不再手动 codesign -f 重签。Xcode Release 归档已按
+          # CODE_SIGN_ENTITLEMENTS + Mac AppStore profile 正确签名(含 profile 注入的
+          # application-identifier);手动重签只带 entitlements 文件会丢该键,导致
+          # 签名与 profile 不匹配。这里仅校验归档签名完好:
+          codesign -vvv "$APP" 2>&1 | tail -3
           if ! perl -e 'alarm 300; exec @ARGV' productbuild --component "$APP" /Applications \
             --sign "3rd Party Mac Developer Installer: Junjun Zhang (EGZFS7M525)" \
             --keychain "san_ci.keychain" \
