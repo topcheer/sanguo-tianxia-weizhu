@@ -15,6 +15,7 @@
   "build": {
     "appId": "dev.ggcode.san",
     "productName": "sanguo-weizhu",
+    "icon": "../assets/icons/icon-512.png",
     "directories": {
       "output": "release"
     },
@@ -25,6 +26,10 @@
       {
         "from": "../dist",
         "to": "dist"
+      },
+      {
+        "from": "../assets/icons",
+        "to": "icons"
       }
     ],
     "asar": true,

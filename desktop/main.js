@@ -8,11 +8,15 @@ const path = require('path');
 const isMac = process.platform === 'darwin';
 
 function createWindow() {
+  // 运行时窗口/任务栏图标:macOS 系统自带;win/linux 用打包内 resources/icons
+  const iconPath = isMac ? undefined :
+    path.join(process.resourcesPath || '', 'icons', 'icon-512.png');
   const win = new BrowserWindow({
     width: 1440,
     height: 900,
     minWidth: 1024,
     minHeight: 640,
+    ...(iconPath && require('fs').existsSync(iconPath) ? { icon: iconPath } : {}),
     backgroundColor: '#0d110d',
     title: '三国：天下为注',
     autoHideMenuBar: !isMac,
