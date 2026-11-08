@@ -48,6 +48,45 @@
 **新增功能 (1.0.4)**
 > 六语言全面本地化;存档导入导出修复;全屏支持(F11);竖版界面重设计。
 
+
+## 多语言 Store Listings(Partner Center 每市场一列,直接照抄)
+
+### 名称(六市场)
+
+| 市场 | Store Name |
+|---|---|
+| zh-CN | 三国：天下为注 |
+| en-US | Three Kingdoms: The Realm at Stake |
+| ja-JP | 三国志：天下を賭けて |
+| ko-KR | 삼국：천하를 걸고 |
+| es-ES | Tres Reinos: El Imperio en Juego |
+| de-DE | Drei Reiche: Das Reich auf dem Spiel |
+
+> 设计:主关键词《三国》当地通行译名做前缀保搜索;副题统一"天下+押注习语"结构
+> (at stake / を賭けて / 걸고 / en juego / auf dem Spiel 均双关"押上赌桌/悬而未决")。
+
+### 简介(zh-CN 基准,上表名 + 下文各语言翻译)
+
+- zh-CN:史书只写了沙场,没写牌桌。三国题材叙事德州扑克单机游戏:四卷五十回,128 位史实武将六维心性,赢下关底改写一页史书,兵败亦入卷。神态破绽读人、天时开卷择时、种子可验证重放。六语言,完全离线,无内购无广告。
+- en-US:The histories record the battlefield, never the card table. A Three-Kingdoms narrative Texas hold'em saga: four scrolls, fifty chapters, 128 historical generals with six-trait personas. Win the final gate to rewrite a page of history; even defeat enters the record. Read tells, choose heaven's timing, replay seeded deals bit-exact. Six languages, fully offline, no IAP, no ads.
+- ja-JP:史書は戦場だけを記し、卓上を記さなかった。三国志を題材にしたノベルティ・テキサスホールデム:四巻五十回、128 名の史実武将が六次元の心性を持つ。関底を制して一頁の歴史を書き換え、敗北さえ巻に刻まれる。表情の「読み」、天時の選択、シード検証可能なリプレイ。六言語対応、完全オフライン、課金・広告なし。
+- ko-KR:사서는 전장만 적었고, 판은 적지 않았다. 삼국을 소재로 한 서사형 텍사스 홀덤: 4권 50회, 128명 사실 무장의 6차원 심성. 관저를 이기면 한 페이지의 역사를 다시 쓰고, 패배도 권에 남는다. 텔 읽기, 천시 선택, 시드 검증 리플레이. 6개 언어, 완전 오프라인, 인앱 결제·광고 없음.
+- es-ES:Las crónicas cuentan el campo de batalla, jamás la mesa de cartas. Un saga narrativa de Texas hold'em ambientada en los Tres Reinos: cuatro rollos, cincuenta capítulos y 128 generales históricos con personalidades de seis rasgos. Gana la puerta final para reescribir una página de la historia; hasta la derrota queda registrada. Lee los gestos, elige el momento del cielo, repite partidas verificables. Seis idiomas, sin conexión, sin compras ni anuncios.
+- de-DE:Die Chroniken berichten vom Schlachtfeld, nie vom Kartentisch. Eine erzählerische Texas-Hold'em-Saga im Zeichen der Drei Reiche: vier Rollen, fünfzig Kapitel, 128 historische Generäle mit Sechs-Züge-Personas. Gewinne das letzte Tor, um eine Seite der Geschichte umzuschreiben; selbst die Niederlage geht in die Chronik ein. Lies die Gesten, wähle die Zeit des Himmels, spiele nachvollziehbare Partien. Sechs Sprachen, komplett offline, keine Käufe, keine Werbung.
+
+### 关键词(逗号分隔,各市场)
+
+- zh-CN: 三国,扑克,德州扑克,策略,卡牌,单机,离线,叙事
+- en-US: three kingdoms, poker, texas holdem, strategy, cards, offline, story
+- ja-JP: 三国志,ポーカー,テキサスホールデム,ストーリー,オフライン,カード
+- ko-KR: 삼국,포커,홀덤,전략,카드,오프라인,스토리
+- es-ES: tres reinos, poker, texas holdem, estrategia, cartas, offline
+- de-DE: drei reiche, poker, texas holdem, strategie, karten, offline
+
+### 新增功能(1.0.4,各市场同义)
+
+六语言全面本地化;存档导入导出修复;全屏支持(F11);竖版界面重设计。
+
 ## 年龄评级 (IARC 问卷要点)
 
 - 赌博: **模拟/教学性牌类** —— 问答选取"不涉及真实货币赌博;虚构筹码的卡牌游戏"
