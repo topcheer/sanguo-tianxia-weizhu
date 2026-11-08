@@ -209,6 +209,7 @@ final class GameViewModel: ObservableObject {
         }
       }
     case "practice": screen = .practice
+    case "battle": debugBattle() // 截图/验收直达:野战牌桌(跳过战书确认)
     case "settings": screen = .codex; sheet = .settings
     case "save": screen = .codex; sheet = .save
     case "annals": screen = .codex; sheet = .annals
@@ -763,6 +764,41 @@ final class GameViewModel: ObservableObject {
   }
 
   // MARK: 残卷无终稿
+
+  /// 截图/验收直达:固定种子野战牌桌。跳过战书 continuation,玩家侧行动栏保持等待态。
+  func debugBattle() {
+    guard let arena = GameData.shared.arenas.first else { return }
+    let roster = arena["roster"].array.map(Dyn.init)
+    let members = roster.enumerated().map { (index, m) -> BattleOpponentConfig in
+      let gen = GameData.shared.general(m["gen"].string)
+      return BattleOpponentConfig(
+        id: m["id"].string ?? (index == 0 ? "opponent" : "opponent-\(index + 1)"),
+        name: m["name"].string ?? L("battle.oppDefault"),
+        gen: m["gen"].string,
+        stack: m["stack"].int ?? arena["stack"].int ?? 1000,
+        traits: m["traits"].dict.compactMapValues { ($0 as? NSNumber)?.intValue },
+        morale: 0,
+        skin: gen?["skin"].string ?? m["skin"].string ?? "soldier"
+      )
+    }
+    var config = BattleConfig(opponents: members, seed: "D3BUG1#practice#\(arena["id"].string ?? "")")
+    config.playerStack = arena["stack"].int ?? 1000
+    config.blinds0 = arena["blinds"].intArray.count == 2 ? arena["blinds"].intArray : [10, 20]
+    config.escalateEvery = arena["escalate"].int ?? 6
+    let engine = BattleEngine(config: config)
+    engine.playerActionProvider = { [weak self] view, presets in
+      guard let self else { return AIDecision(type: "check") }
+      return await self.awaitPlayerAction(view, presets)
+    }
+    engine.oddsEnabled = { ProgressStore.shared.progress.settings.equityAssist }
+    engine.onEvent = { _ in }
+    activeBattle = engine
+    screen = .battle
+    Task.detached { [weak engine] in
+      guard let engine else { return }
+      await engine.run()
+    }
+  }
 
   func openApocrypha() {
     var rng = SystemRng()
