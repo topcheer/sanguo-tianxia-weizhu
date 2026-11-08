@@ -6,7 +6,7 @@ name: desktop-release
 on:
   workflow_dispatch:
   push:
-    tags: ["v*"]
+    tags: ["desk-*"]  # 勿用 v* 前缀:会误触发 testflight-release 全链(iOS 版本号撞车)
 
 permissions:
   contents: write
