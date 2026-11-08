@@ -279,12 +279,11 @@ struct CodexScreen: View {
 
   private var practiceGate: some View {
     Button { game.enterPractice() } label: {
-      let portraits = HStack(spacing: 0) {
-        ForEach(Array(["commander", "soldier", "advisor"].enumerated()), id: \.offset) { i, skin in
+      // 叠像:负间距叠放,布局宽即真实视觉宽(74*3-22*2=178),无需 offset 硬夹
+      let portraits = HStack(spacing: -22) {
+        ForEach(Array(["commander", "soldier", "advisor"].enumerated()), id: \.offset) { _, skin in
           PortraitView(skin: skin, size: 74)
             .overlay(Rectangle().strokeBorder(Color(hex: 0x6c5c3c), lineWidth: 1))
-            .offset(x: i == 0 ? 0 : -22)
-            .zIndex(Double(i))
         }
       }
       let texts = VStack(alignment: .leading, spacing: 7) {
@@ -303,9 +302,14 @@ struct CodexScreen: View {
       .overlay(Rectangle().strokeBorder(Color(hex: 0xe8d3a0), lineWidth: 1))
       return Group {
         if horizontalCompact {
-          VStack(alignment: .leading, spacing: 12) {
-            HStack(alignment: .center, spacing: 16) { portraits.frame(width: 112); texts }
-            goPanel.frame(maxWidth: .infinity)
+          // 竖版:叠像独占一行居中,文字与点兵钮并排居下一行
+          VStack(alignment: .center, spacing: 14) {
+            portraits
+            HStack(alignment: .center, spacing: 12) {
+              texts
+              Spacer(minLength: 0)
+              goPanel
+            }
           }
         } else {
           HStack(spacing: 20) {
