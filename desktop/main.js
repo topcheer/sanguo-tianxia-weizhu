@@ -1,5 +1,7 @@
 // main.js —— Electron 桌面壳:直接加载 web 构建产物 dist/(完全离线)。
 // 窗口基准 1440x900,与 macOS 原生版一致;深色底避免启动闪白。
+// 全屏:窗口菜单「切换全屏」,快捷键 F11(Windows/Linux) / Cmd+Ctrl+F(macOS),由 Electron
+// togglefullscreen 角色自动绑定(菜单栏隐藏时快捷键依然生效)。
 const { app, BrowserWindow, Menu } = require('electron');
 const path = require('path');
 
@@ -32,7 +34,17 @@ app.whenReady().then(() => {
     { role: 'fileMenu' },
     { role: 'editMenu' },
     { role: 'viewMenu' },
-    { role: 'windowMenu' },
+    {
+      role: 'windowMenu',
+      submenu: [
+        { role: 'minimize' },
+        { role: 'zoom' },
+        { type: 'separator' },
+        { role: 'togglefullscreen' }, // 切换全屏:F11 / Cmd+Ctrl+F
+        ...(isMac ? [{ type: 'separator' }, { role: 'bringAllToFront' }] : []),
+        { role: 'close' },
+      ],
+    },
   ]));
   createWindow();
   app.on('activate', () => {
