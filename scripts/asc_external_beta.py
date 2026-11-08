@@ -73,9 +73,20 @@ def call(method, path, body=None, retry=3):
 def main():
     ver = os.environ.get("BUILD_VER", "")
     group = os.environ.get("BETA_GROUP", "Ext")
-    s, r = call("GET", f"/v1/builds?filter[app]={APP_ID}&filter[version]={ver}&limit=20")
+    # builds 顶层 attributes 无 platform;须 include=preReleaseVersion 从关系取
+    # (asc_mas_review.py 同坑注释:"client-side platform match - include=preReleaseVersion")
+    s, r = call("GET", f"/v1/builds?filter[app]={APP_ID}&filter[version]={ver}"
+                       "&include=preReleaseVersion&limit=20")
     if s != 200:
         print(f"::error::list builds {s} {r}"); sys.exit(1)
+    prv = {inc["id"]: inc["attributes"].get("platform", "?")
+           for inc in r.get("included", []) if inc.get("type") == "preReleaseVersions"}
+
+    def platform_of(b):
+        rid = ((b.get("relationships", {}).get("preReleaseVersion") or {})
+               .get("data") or {}).get("id")
+        return prv.get(rid, "?")
+
     builds = [b for b in r.get("data", []) if b["attributes"].get("processingState") == "VALID"]
     if not builds:
         print(f"::error::no VALID builds for {ver} (states: " +
@@ -85,13 +96,15 @@ def main():
     # 否则先到的一方提交完就收口,晚到的 mac build 永远没人挂组/提审(1.0.3 实际发生)。
     # BETA_PLATFORMS 可收窄(如拆分发布:mac 版本被在审阻塞时先发 IOS,如 1.0.4)。
     required = {p.strip().upper() for p in os.environ.get("BETA_PLATFORMS", "IOS,MAC_OS").split(",") if p.strip()}
-    plats = {b["attributes"].get("platform") for b in builds}
+    plats = {platform_of(b) for b in builds}
     missing = required - plats
     if missing:
         print(f"::error::VALID builds missing platforms {sorted(missing)} "
               f"(have {sorted(plats)}); waiting for {'+'.join(sorted(required))}")
         sys.exit(1)
-    builds = [b for b in builds if b["attributes"].get("platform") in required]
+    builds = [b for b in builds if platform_of(b) in required]
+    for b in builds:
+        b["attributes"]["platform"] = platform_of(b)
     s, r = call("GET", f"/v1/betaGroups?filter[name]={group}&limit=5")
     gid = r["data"][0]["id"] if s == 200 and r.get("data") else None
     if not gid:
