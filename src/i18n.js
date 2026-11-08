@@ -65,6 +65,11 @@ export function applyTranslations(root = document) {
     const key = el.dataset.i18n;
     if (el.dataset.i18nOrig == null) el.dataset.i18nOrig = el.textContent;
     el.textContent = i18n.t(key) !== key ? i18n.t(key) : el.dataset.i18nOrig;
+    // 标题字符数驱动自适应字号(CSS: clamp 上限 = 88vw / --title-ch);
+    // 长标题(如 en "Three Kingdoms: All In")自动缩号不溢出,短标题(中文)不受影响。
+    if (key === 'title.name') {
+      el.style.setProperty('--title-ch', String(Math.max(1, Math.round(el.textContent.length * 1.18))));
+    }
   });
   root.querySelectorAll('[data-i18n-ph]').forEach((el) => {
     const key = el.dataset.i18nPh;

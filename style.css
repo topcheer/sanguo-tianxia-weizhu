@@ -38,7 +38,7 @@ button.ghost:hover { border-color: #b7a578; }
 .intro-era span { display: inline-block; margin-right: 12px; padding: 4px 8px; color: #d9caa7; border: 1px solid #88734b; letter-spacing: .25em; }
 .intro-title-lock { display: flex; align-items: center; gap: 26px; }
 .intro-seal { display: flex; align-items: center; justify-content: center; width: 56px; height: 82px; color: #e3c9a0; background: #8d332b; border: 2px solid #b95c48; outline: 1px solid #6e2b25; outline-offset: -6px; font-family: var(--serif); font-size: 38px; box-shadow: 8px 10px 30px #0005; transform: rotate(-2deg); }
-#intro h1 { font-family: var(--serif); font-size: clamp(48px, 5.6vw, 80px); font-weight: 400; line-height: 1.05; letter-spacing: .14em; color: #e5d8b7; text-shadow: 0 5px 0 #171911, 0 12px 40px #0008; white-space: nowrap; }
+#intro h1 { font-family: var(--serif); font-size: clamp(34px, min(5.6vw, calc(88vw / var(--title-ch, 8))), 80px); font-weight: 400; line-height: 1.05; letter-spacing: .14em; color: #e5d8b7; text-shadow: 0 5px 0 #171911, 0 12px 40px #0008; white-space: nowrap; }
 #intro .sub { margin-top: 13px; color: #8c876f; font: 11px Georgia, serif; letter-spacing: .52em; }
 .intro-kingdoms { position: absolute; right: 6%; top: 82px; display: flex; align-items: center; gap: 16px; color: #b4a57e; font-family: var(--serif); font-size: 24px; }
 .intro-kingdoms span { display: flex; align-items: center; justify-content: center; width: 54px; height: 54px; border: 1px solid #736748; border-radius: 50%; background: #1d2118aa; }
