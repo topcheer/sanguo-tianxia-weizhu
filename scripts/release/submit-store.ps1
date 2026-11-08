@@ -38,18 +38,20 @@ if ($ResumeSubmissionId) {
   $subId = $ResumeSubmissionId
   Write-Host "resuming explicit submission $subId (-ResumeSubmissionId)"
   $sub = Invoke-RestMethod -Method Get -Headers $hdr -Uri "$api/v1.0/my/applications/$ProductId/submissions/$subId"
-} elseif ($app.pendingApplicationSubmission) {
-  # Store API surfaces a blocked draft as "pendingApplicationSubmission" on
-  # the application resource (not "inFlightSubmissionId") - verified against
-  # the app JSON logged by run 41968716223. Resuming it instead of creating
-  # avoids the 409 Conflict create-submission rejects with.
-  $subId = $app.pendingApplicationSubmission.id
-  Write-Host "pending submission $subId found; resuming it instead of creating a new one"
-  $sub = Invoke-RestMethod -Method Get -Headers $hdr -Uri "$api/v1.0/my/applications/$ProductId/submissions/$subId"
-} elseif ($app.inFlightSubmissionId) {
-  $subId = $app.inFlightSubmissionId
-  Write-Host "in-flight submission $subId found; resuming it instead of creating a new one"
-  $sub = Invoke-RestMethod -Method Get -Headers $hdr -Uri "$api/v1.0/my/applications/$ProductId/submissions/$subId"
+} elseif ($app.pendingApplicationSubmission -or $app.inFlightSubmissionId) {
+  # 2026-11-08 san 规则:存在在审/待处理 submission 时跳过版本发布(exit 0),
+  # 不动在审提交(首提 Certification 期间干扰会弄脏它)。FORCE_RESUME=1 可
+  # 强制走原 resume 流程(用于接手上次失败遗留的 draft)。
+  $blocker = if ($app.pendingApplicationSubmission) { $app.pendingApplicationSubmission.id } else { $app.inFlightSubmissionId }
+  if ($env:FORCE_RESUME -eq "1") {
+    $subId = $blocker
+    Write-Host "FORCE_RESUME=1: resuming submission $subId"
+    $sub = Invoke-RestMethod -Method Get -Headers $hdr -Uri "$api/v1.0/my/applications/$ProductId/submissions/$subId"
+  } else {
+    Write-Host "SKIP_STORE_SUBMIT: submission $blocker already in flight/pending; "
+    Write-Host "not touching it (re-run with FORCE_RESUME=1 to resume a stale draft)"
+    exit 0
+  }
 } else {
   # Create-submission takes no request body; a non-empty JSON body would be
   # parsed as a draft submission and rejected ("The size of Listings must be
