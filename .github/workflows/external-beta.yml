@@ -30,13 +30,16 @@ jobs:
         run: |
           TAG="${GITHUB_REF_NAME#beta-}"
           VER="${TAG%%-*}"
-          PLATS="${TAG#*-}"; PLATS="${PLATS:-ios,macos}"
-          case "$PLATS" in
-            ios) PLATS="IOS";;
-            macos) PLATS="MAC_OS";;
-            ios,macos|macos,ios) PLATS="IOS,MAC_OS";;
-            *) echo "::error::bad platforms in tag: $PLATS (use ios|macos|ios,macos)"; exit 1;;
-          esac
+          # 逐词提取 ios/macos(容忍 -r2 等重试后缀)
+          P_WORDS=""
+          for w in $(echo "$TAG" | tr ',' ' ' | tr '-' ' '); do
+            case "$w" in
+              ios) P_WORDS="$P_WORDS IOS,";;
+              macos) P_WORDS="$P_WORDS MAC_OS,";;
+            esac
+          done
+          PLATS="${P_WORDS%,}"
+          [ -n "$PLATS" ] || { echo "::error::no ios/macos word in tag: $TAG"; exit 1; }
           echo "ver=$VER" >> "$GITHUB_OUTPUT"
           echo "plats=$PLATS" >> "$GITHUB_OUTPUT"
           echo "beta submit: build=$VER platforms=$PLATS"
