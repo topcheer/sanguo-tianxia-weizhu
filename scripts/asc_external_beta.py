@@ -81,14 +81,17 @@ def main():
         print(f"::error::no VALID builds for {ver} (states: " +
               ",".join(b["attributes"].get("processingState", "?") for b in r.get("data", [])) + ")")
         sys.exit(1)
-    # 双平台齐备门禁:iOS 与 macOS 各须有 VALID build 才继续。
+    # 双平台齐备门禁:所需平台(默认 iOS+macOS)各须有 VALID build 才继续。
     # 否则先到的一方提交完就收口,晚到的 mac build 永远没人挂组/提审(1.0.3 实际发生)。
+    # BETA_PLATFORMS 可收窄(如拆分发布:mac 版本被在审阻塞时先发 IOS,如 1.0.4)。
+    required = {p.strip().upper() for p in os.environ.get("BETA_PLATFORMS", "IOS,MAC_OS").split(",") if p.strip()}
     plats = {b["attributes"].get("platform") for b in builds}
-    missing = {"IOS", "MAC_OS"} - plats
+    missing = required - plats
     if missing:
         print(f"::error::VALID builds missing platforms {sorted(missing)} "
-              f"(have {sorted(plats)}); waiting for both iOS+macOS")
+              f"(have {sorted(plats)}); waiting for {'+'.join(sorted(required))}")
         sys.exit(1)
+    builds = [b for b in builds if b["attributes"].get("platform") in required]
     s, r = call("GET", f"/v1/betaGroups?filter[name]={group}&limit=5")
     gid = r["data"][0]["id"] if s == 200 and r.get("data") else None
     if not gid:

@@ -1,0 +1,48 @@
+name: external-beta
+
+# 单独挂 Ext 组 + 提交 Beta 外测审核(dispatch-only)。
+# 用途:拆分发布——mac 版本被在审版本阻塞时(iOS 先行,如 v1.0.4/2026110803),
+# 用本 workflow 单独提交 iOS 外测;mac 等 Apple 审核翻转后随下个 tag 全链补齐。
+
+on:
+  workflow_dispatch:
+    inputs:
+      build_ver:
+        description: "CFBundleVersion (e.g. 2026110803)"
+        required: true
+        type: string
+      platforms:
+        description: "逗号分隔:IOS / MAC_OS / IOS,MAC_OS"
+        required: false
+        default: "IOS,MAC_OS"
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: external-beta
+  cancel-in-progress: false
+
+jobs:
+  beta:
+    name: attach Ext + beta review (macos)
+    runs-on: macos-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: External beta (attach Ext group + Beta App Review)
+        env:
+          SAN_API_KEY_ID: ${{ secrets.SAN_API_KEY_ID }}
+          SAN_API_ISSUER: ${{ secrets.SAN_API_ISSUER }}
+          SAN_API_KEY_P8: ${{ secrets.SAN_API_KEY_P8 }}
+          BUILD_VER: ${{ inputs.build_ver }}
+          BETA_PLATFORMS: ${{ inputs.platforms }}
+        run: |
+          for i in $(seq 1 50); do
+            OUT=$(python3 scripts/asc_external_beta.py 2>&1) && { echo "$OUT"; exit 0; }
+            echo "attempt $i: $OUT" | tail -2
+            [ $i -eq 50 ] && { echo "::error::builds never became ready in 25min"; exit 1; }
+            sleep 30
+          done
