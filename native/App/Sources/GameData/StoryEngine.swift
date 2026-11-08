@@ -6,7 +6,7 @@ public let SPEAKERS: [String: String] = [
 ]
 
 public func speakerName(_ id: String) -> String {
-  if let s = SPEAKERS[id] { return s }
+  if let s = SPEAKERS[id] { return PL("speaker.\(id)", s) }
   if let g = GameData.shared.general(id) { return g["name"].string ?? id }
   return id
 }

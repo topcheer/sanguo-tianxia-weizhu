@@ -273,7 +273,7 @@ struct TitleScreen: View {
         }
         .buttonStyle(.plain)
         .accessibilityIdentifier("title.continue")
-        .accessibilityLabel(step < 3 ? "继续" : "展开英雄记")
+        .accessibilityLabel(step < 3 ? PL("prologue.next", "继续") : PL("prologue.open", "展开英雄记"))
 
         Button { game.enterGame() } label: {
           Text(PL("prologue.skip", "跳过背景，直接入卷"))
@@ -285,7 +285,7 @@ struct TitleScreen: View {
         }
         .buttonStyle(.plain)
         .accessibilityIdentifier("title.skip")
-        .accessibilityLabel("跳过背景，直接入卷")
+        .accessibilityLabel(PL("prologue.skip", "跳过背景，直接入卷"))
         .offset(y: 14)   // .intro-skip { margin-top: 14px }
       }
       .padding(.top, m.buttonTop)

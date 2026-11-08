@@ -219,3 +219,11 @@ zh.json 有 `term.hand.0-8`(牌型名)/`term.trait.0-5`(六维名)但代码直�
 | 系统级 CFBundleDisplayName | 🈯 保留中文品牌名;如需本地化可后续加 InfoPlist.strings | — |
 
 终检基准(全绿):五语言缺 key 0 / ko 裸嵌 0 / en-es-de 汉字 0 / macOS 9/9 / iOS BUILD / en+de 模拟器目检。
+
+## 轴 3 复扫结论(2026-11-08 终态)
+修复后复扫 171 处命中,全部归档:
+- 保留清单内:英雄记竖排/中原江东美术字/武占位/魏蜀吴印章/卷帙有尽竖排页脚/胜负章与音效标签(跨行 PL 参数)/codex 按钮与图例(PL 元组默认)/TitleScreen 序章固件默认数组
+- 引擎内部(非显示路径):TRAITS/BANDS/HAND_NAMES/APOC 常量(UI 层已反查 L)/Table·Poker 断言消息(开发者诊断)/bossTraits 内部键/L10n 语言自称
+- 数据缺失兜底(异常路径才触发):playerName "你"/tells 缺省文案/battleResultInfo opponent
+- 专名保留:诸葛亮(化身模式)
+- 本轮新修:StoryEngine SPEAKERS 说话人名(speaker.* 4 key×5 语言)/TitleScreen 序章按钮 accessibilityLabel×2
