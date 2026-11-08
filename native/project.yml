@@ -36,7 +36,7 @@ targets:
         PRODUCT_MODULE_NAME: SanguoWeizhu
         CODE_SIGN_IDENTITY: "-"
         SUPPORTS_MACCATALYST: false
-        CURRENT_PROJECT_VERSION: "2026110802"
+        CURRENT_PROJECT_VERSION: "2026110803"
         DEVELOPMENT_TEAM: EGZFS7M525
       configs:
         Release:
@@ -74,7 +74,7 @@ targets:
         PRODUCT_NAME: sanguo-weizhu
         PRODUCT_MODULE_NAME: SanguoWeizhu
         TARGETED_DEVICE_FAMILY: "1,2"
-        CURRENT_PROJECT_VERSION: "2026110802"
+        CURRENT_PROJECT_VERSION: "2026110803"
         CODE_SIGN_STYLE: Automatic
         CODE_SIGNING_ALLOWED: "NO"
         DEVELOPMENT_TEAM: EGZFS7M525

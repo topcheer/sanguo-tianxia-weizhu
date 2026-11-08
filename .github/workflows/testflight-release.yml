@@ -167,6 +167,20 @@ jobs:
           fi
           ls -la "$RUNNER_TEMP/sanguo-weizhu-mac.pkg"
 
+      - name: Clear stale mac review submission (unblock version creation)
+        # 上版 MAS auto-submit 的在审版本会堵死 deliver 建新版本
+        # ("cannot create a new version of the App in the current state");
+        # 撤回非本次版本(幂等,无在审则 no-op)
+        env:
+          SAN_API_KEY_ID: ${{ secrets.SAN_API_KEY_ID }}
+          SAN_API_ISSUER: ${{ secrets.SAN_API_ISSUER }}
+          SAN_API_KEY_P8: ${{ secrets.SAN_API_KEY_P8 }}
+          SAN_KEY_NOTE: ${{ null }}
+        run: |
+          MVER=$(python3 -c "import re;s=open('native/project.yml').read();m=re.search(r'MARKETING_VERSION: \"([^\"]+)\"',s);print(m.group(1))")
+          echo "marketing version: $MVER"
+          SAN_VERSION="$MVER" python3 scripts/asc_clear_stale_review.py
+
       - name: Upload macOS pkg (fastlane deliver)
         working-directory: native/ios
         env:
