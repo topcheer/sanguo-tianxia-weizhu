@@ -1011,9 +1011,9 @@ struct BriefingSheet: View {
           VStack(alignment: .leading, spacing: 16) {
         VStack(alignment: .leading, spacing: 0) {
           HStack(spacing: 10) {
-            Text(PL("brief.vsTag", "对 阵")).font(Theme.serif(12)).kerning(2).foregroundColor(Color(hex: 0xe6d4ac))
+            Text(PL("brief.vsTag", "对 阵")).font(Theme.serif(12)).kerning(2).foregroundColor(Color(hex: 0xe6d4ac)).lineLimit(1).minimumScaleFactor(0.7)
               .padding(.horizontal, 7).padding(.vertical, 3).background(tagRed)
-            Text(PL("brief.vsTitle", "此席与谁争锋")).font(Theme.serif(12)).kerning(1).foregroundColor(Color(hex: 0x5f513a))
+            Text(PL("brief.vsTitle", "此席与谁争锋")).font(Theme.serif(12)).kerning(1).foregroundColor(Color(hex: 0x5f513a)).lineLimit(1).minimumScaleFactor(0.7)
           }
           VStack(spacing: 9) {
             ForEach(Array(roster.enumerated()), id: \.offset) { index, member in
@@ -1075,9 +1075,9 @@ struct BriefingSheet: View {
             Rectangle().fill(Color(hex: 0x9d895d).opacity(0.4)).frame(height: 1)
         VStack(alignment: .leading, spacing: 0) {
           HStack(spacing: 10) {
-            Text(PL("brief.whyTag", "起 因")).font(Theme.serif(12)).kerning(2).foregroundColor(Color(hex: 0xe6d4ac))
+            Text(PL("brief.whyTag", "起 因")).font(Theme.serif(12)).kerning(2).foregroundColor(Color(hex: 0xe6d4ac)).lineLimit(1).minimumScaleFactor(0.7)
               .padding(.horizontal, 7).padding(.vertical, 3).background(tagRed)
-            Text(PL("brief.whyTitle", "为何非战不可")).font(Theme.serif(12)).kerning(1).foregroundColor(Color(hex: 0x5f513a))
+            Text(PL("brief.whyTitle", "为何非战不可")).font(Theme.serif(12)).kerning(1).foregroundColor(Color(hex: 0x5f513a)).lineLimit(1).minimumScaleFactor(0.7)
           }
           Text(why).font(Theme.serif(17)).lineSpacing(12).kerning(1)
             .foregroundColor(Color(hex: 0x3d3628))
@@ -1097,9 +1097,9 @@ struct BriefingSheet: View {
           HStack(alignment: .top, spacing: 28) {
         VStack(alignment: .leading, spacing: 0) {
           HStack(spacing: 10) {
-            Text(PL("brief.vsTag", "对 阵")).font(Theme.serif(12)).kerning(2).foregroundColor(Color(hex: 0xe6d4ac))
+            Text(PL("brief.vsTag", "对 阵")).font(Theme.serif(12)).kerning(2).foregroundColor(Color(hex: 0xe6d4ac)).lineLimit(1).minimumScaleFactor(0.7)
               .padding(.horizontal, 7).padding(.vertical, 3).background(tagRed)
-            Text(PL("brief.vsTitle", "此席与谁争锋")).font(Theme.serif(12)).kerning(1).foregroundColor(Color(hex: 0x5f513a))
+            Text(PL("brief.vsTitle", "此席与谁争锋")).font(Theme.serif(12)).kerning(1).foregroundColor(Color(hex: 0x5f513a)).lineLimit(1).minimumScaleFactor(0.7)
           }
           VStack(spacing: 9) {
             ForEach(Array(roster.enumerated()), id: \.offset) { index, member in
@@ -1160,9 +1160,9 @@ struct BriefingSheet: View {
         .overlay(alignment: .trailing) { if !compact { Rectangle().fill(Color(hex: 0x9d895d).opacity(0.4)).frame(width: 1) } }
         VStack(alignment: .leading, spacing: 0) {
           HStack(spacing: 10) {
-            Text(PL("brief.whyTag", "起 因")).font(Theme.serif(12)).kerning(2).foregroundColor(Color(hex: 0xe6d4ac))
+            Text(PL("brief.whyTag", "起 因")).font(Theme.serif(12)).kerning(2).foregroundColor(Color(hex: 0xe6d4ac)).lineLimit(1).minimumScaleFactor(0.7)
               .padding(.horizontal, 7).padding(.vertical, 3).background(tagRed)
-            Text(PL("brief.whyTitle", "为何非战不可")).font(Theme.serif(12)).kerning(1).foregroundColor(Color(hex: 0x5f513a))
+            Text(PL("brief.whyTitle", "为何非战不可")).font(Theme.serif(12)).kerning(1).foregroundColor(Color(hex: 0x5f513a)).lineLimit(1).minimumScaleFactor(0.7)
           }
           Text(why).font(Theme.serif(17)).lineSpacing(12).kerning(1)
             .foregroundColor(Color(hex: 0x3d3628))
@@ -1190,10 +1190,10 @@ struct BriefingSheet: View {
         Spacer()
         Button { game.pendingBriefing?(true) } label: {
           VStack(spacing: 3) {
-            Text(PL("brief.enterNow", "击 鼓 入 席")).font(Theme.serif(18)).kerning(3)
+            Text(PL("brief.enterNow", "击 鼓 入 席")).font(Theme.serif(18)).kerning(3).lineLimit(1).minimumScaleFactor(0.8)
               .foregroundColor(Color(hex: 0xf0dfb8))
             Text("\(PL("brief.enterSub", "进入牌桌")) · \(PL("brief.vs", "对战"))\(opponentLabel)")
-              .font(Theme.serif(9)).kerning(1).foregroundColor(Color(hex: 0xd1af82))
+              .font(Theme.serif(9)).kerning(1).foregroundColor(Color(hex: 0xd1af82)).lineLimit(1).minimumScaleFactor(0.7)
           }
           .frame(minWidth: 190)
           .padding(.horizontal, 17).padding(.vertical, 9)
@@ -1220,9 +1220,11 @@ struct BriefingSheet: View {
   private func stakesBox(tag: String, title: String, body: String, tint: Color, border: Color) -> some View {
     VStack(alignment: .leading, spacing: 0) {
       HStack(spacing: 10) {
-        Text(tag).font(Theme.serif(12)).kerning(2).foregroundColor(Color(hex: 0xe6d4ac))
+        Text(tag).font(Theme.serif(12)).kerning(2).foregroundColor(Color(hex: 0xe6d4ac)).lineLimit(1).minimumScaleFactor(0.7)
+          .lineLimit(1).minimumScaleFactor(0.7)
           .padding(.horizontal, 7).padding(.vertical, 3).background(tint)
-        Text(title).font(Theme.serif(12)).kerning(1).foregroundColor(Color(hex: 0x5f513a))
+        Text(title).font(Theme.serif(12)).kerning(1).foregroundColor(Color(hex: 0x5f513a)).lineLimit(1).minimumScaleFactor(0.7)
+          .lineLimit(1).minimumScaleFactor(0.7)
       }
       Text(body).font(Theme.serif(12)).lineSpacing(8)
         .foregroundColor(Color(hex: 0x514735))
@@ -1417,8 +1419,10 @@ struct TraitGridView: View {
           let ti = TRAITS.firstIndex(of: item.trait) ?? 0
           Text(TRAITS.firstIndex(of: item.trait).map { L("term.trait.\($0)") } ?? item.trait)
             .font(Theme.serif(13)).foregroundColor(Theme.gold)
+            .lineLimit(1).minimumScaleFactor(0.6)
           Text("\(Int(item.value))").font(Theme.serif(15, bold: true)).foregroundColor(Theme.paperLight)
           Text(L("term.band.\(ti).\(item.band)")).font(Theme.serif(9)).foregroundColor(Theme.muted)
+            .lineLimit(1).minimumScaleFactor(0.6)
         }
         .frame(maxWidth: .infinity)
         .padding(.vertical, 6)
