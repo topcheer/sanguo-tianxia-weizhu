@@ -16,6 +16,8 @@ function createWindow() {
     height: 900,
     minWidth: 1024,
     minHeight: 640,
+    fullscreen: !isMac, // win/linux 启动即全屏(原生全屏无标题栏无边框);mac 走系统习惯
+    fullscreenable: true,
     ...(iconPath && require('fs').existsSync(iconPath) ? { icon: iconPath } : {}),
     backgroundColor: '#0d110d',
     title: '三国：天下为注',
