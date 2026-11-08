@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>三国·天下为注 — 全端截图志</title>
+<style>
+  :root{
+    --ink:#0d110d; --ink2:#161a13; --paper:#e8d8b2; --gold:#c9a86a;
+    --gold-dim:#8c7548; --line:#3a3527; --muted:#8f8a73;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    background:var(--ink); color:var(--paper);
+    font-family:"Songti SC","Noto Serif SC","Noto Serif CJK SC",serif;
+    min-height:100vh;
+  }
+  header{
+    text-align:center; padding:44px 20px 28px;
+    border-bottom:1px solid var(--line);
+    background:linear-gradient(180deg,#11150f 0%,var(--ink) 100%);
+  }
+  header h1{font-size:clamp(24px,4vw,40px); letter-spacing:.35em; color:var(--gold); font-weight:600}
+  header .sub{margin-top:12px; font-size:13px; letter-spacing:.2em; color:var(--muted)}
+  header .seal{
+    display:inline-block; margin:0 14px 0 6px; width:34px; height:34px; line-height:34px;
+    border:1px solid var(--gold-dim); color:var(--gold); font-size:15px; vertical-align:-8px;
+  }
+  /* ── 泳道 ── */
+  .lane{max-width:1200px; margin:0 auto; padding:38px 20px 10px}
+  .lane-head{display:flex; align-items:baseline; gap:14px; margin-bottom:16px}
+  .lane-head h2{font-size:20px; letter-spacing:.25em; color:var(--gold)}
+  .lane-head .tag{font-size:12px; color:var(--muted); letter-spacing:.1em}
+  .lane-head .count{margin-left:auto; font-size:12px; color:var(--gold-dim); letter-spacing:.15em}
+  .stage{
+    position:relative; border:1px solid var(--line); background:var(--ink2);
+    overflow:hidden; border-radius:4px;
+  }
+  .viewport{display:flex; transition:transform .55s cubic-bezier(.22,.61,.36,1); touch-action:pan-y}
+  .slide{flex:0 0 100%; display:flex; align-items:center; justify-content:center; padding:18px; min-height:0}
+  .slide img{max-width:100%; max-height:66vh; object-fit:contain; border:1px solid var(--line);
+    box-shadow:0 8px 40px rgba(0,0,0,.5); user-select:none; -webkit-user-drag:none}
+  .lane.desktop .slide img{max-height:54vh}
+  .caption{
+    position:absolute; left:0; right:0; bottom:0; padding:10px 64px;
+    text-align:center; font-size:13px; letter-spacing:.12em; color:var(--muted);
+    background:linear-gradient(0deg,rgba(13,17,13,.92),transparent); pointer-events:none;
+  }
+  .nav{
+    position:absolute; top:50%; transform:translateY(-50%);
+    width:44px; height:44px; border:1px solid var(--gold-dim); background:rgba(13,17,13,.75);
+    color:var(--gold); font-size:20px; cursor:pointer; z-index:2;
+    display:flex; align-items:center; justify-content:center; transition:.2s;
+  }
+  .nav:hover{background:var(--gold); color:var(--ink)}
+  .nav.prev{left:10px} .nav.next{right:10px}
+  .dots{display:flex; justify-content:center; gap:8px; padding:12px 0 4px}
+  .dots button{
+    width:8px; height:8px; border-radius:50%; border:1px solid var(--gold-dim);
+    background:transparent; cursor:pointer; padding:0; transition:.2s;
+  }
+  .dots button.on{background:var(--gold); border-color:var(--gold)}
+  footer{
+    text-align:center; padding:36px 20px 44px; color:var(--muted);
+    font-size:12px; letter-spacing:.2em; border-top:1px solid var(--line); margin-top:30px;
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1><span class="seal">注</span>三国 · 天下为注</h1>
+  <div class="sub">史书只写了沙场，没写牌桌 —— 全端截图志</div>
+</header>
+
+<div id="lanes"></div>
+
+<footer>iOS · iPadOS · macOS / Web · 六语言 · TestFlight 1.0.x</footer>
+
+<script>
+const LANES = [
+  { id:'iphone', name:'iPhone 竖版', tag:'iOS · 402pt 竖屏主形态 · 六语言', h:'66vh',
+    shots:[
+      ['iphone/01-battle-zh.jpg','牌局 · 底池/公共牌/行动栏（中）'],
+      ['iphone/07-brief-zh.jpg','战书 · 击鼓入席/胜负所失（中）'],
+      ['iphone/03-codex-top-zh.jpg','残卷目录 · 卷一至卷五（中）'],
+      ['iphone/04-codex-field-zh.jpg','目录底部 · 野卷练兵场入口卡（中）'],
+      ['iphone/05-chapter-zh.jpg','章节详情 · 关卡选择（中）'],
+      ['iphone/06-map-en.jpg','行军图 · 择亮处而行（英）'],
+      ['iphone/02-title-en.jpg','标题页 · 序章（英）'],
+      ['iphone/08-brief-de.jpg','战书 · Herausforderung（德）'],
+      ['iphone/09-brief-ja.jpg','戦書 · 撃鼓入席（日）'],
+      ['iphone/10-brief-ko.jpg','전서 · 북을 울려 입장（韩）'],
+    ]},
+  { id:'ipad', name:'iPad', tag:'iPadOS · regular width 宽分支布局', h:'66vh',
+    shots:[
+      ['ipad/01-battle-zh.jpg','牌局 · 宽版牌桌（中）'],
+      ['ipad/02-codex-field-zh.jpg','目录底部 · 野卷卡宽分支单行（中）'],
+      ['ipad/03-chapter-zh.jpg','章节详情 · 网格目录（中）'],
+    ]},
+  { id:'desktop', name:'桌面端', tag:'macOS · Electron 壳 + Web 版 · 1440×900 基准', h:'54vh', desktop:true,
+    shots:[
+      ['desktop/01-electron-title.jpg','Electron 桌面壳 · 全屏标题页'],
+      ['desktop/02-web-battle.jpg','Web 版 · 摊牌时刻'],
+      ['desktop/03-web-map.jpg','Web 版 · 行军图'],
+      ['desktop/04-web-chapter.jpg','Web 版 · 章节页'],
+    ]},
+];
+
+const root = document.getElementById('lanes');
+const carousels = [];
+
+LANES.forEach(lane => {
+  const el = document.createElement('div');
+  el.className = 'lane' + (lane.desktop ? ' desktop' : '');
+  el.innerHTML = `
+    <div class="lane-head"><h2>${lane.name}</h2><span class="tag">${lane.tag}</span>
+      <span class="count"></span></div>
+    <div class="stage">
+      <button class="nav prev" aria-label="上一张">‹</button>
+      <div class="viewport" style="--h:${lane.h}">
+        ${lane.shots.map(([src]) =>
+          `<div class="slide"><img loading="lazy" src="shots/${src.replace('.png','.jpg')}"></div>`).join('')}
+      </div>
+      <div class="caption"></div>
+      <button class="nav next" aria-label="下一张">›</button>
+    </div>
+    <div class="dots">${lane.shots.map(() => '<button></button>').join('')}</div>`;
+  root.appendChild(el);
+
+  const vp = el.querySelector('.viewport');
+  const cap = el.querySelector('.caption');
+  const dots = [...el.querySelectorAll('.dots button')];
+  const count = el.querySelector('.count');
+  const N = lane.shots.length;
+  let i = 0, timer;
+
+  function go(n, user){
+    i = (n + N) % N;
+    vp.style.transform = `translateX(-${i*100}%)`;
+    dots.forEach((d,k)=>d.classList.toggle('on',k===i));
+    cap.textContent = lane.shots[i][1];
+    count.textContent = `${i+1} / ${N}`;
+    if(user){ clearInterval(timer); autoplay(); }
+  }
+  const autoplay = () => timer = setInterval(()=>go(i+1), 8000);
+  el.querySelector('.prev').onclick = ()=>go(i-1,true);
+  el.querySelector('.next').onclick = ()=>go(i+1,true);
+  dots.forEach((d,k)=>d.onclick = ()=>go(k,true));
+
+  // 触摸滑动
+  let x0=null;
+  vp.addEventListener('touchstart',e=>x0=e.touches[0].clientX,{passive:true});
+  vp.addEventListener('touchend',e=>{
+    if(x0===null)return;
+    const dx=e.changedTouches[0].clientX-x0;
+    if(Math.abs(dx)>40) go(i+(dx<0?1:-1),true);
+    x0=null;
+  });
+  // 键盘(跨泳道:每泳道可聚焦)
+  el.tabIndex=0;
+  el.addEventListener('keydown',e=>{
+    if(e.key==='ArrowLeft')go(i-1,true);
+    if(e.key==='ArrowRight')go(i+1,true);
+  });
+  // 悬停暂停
+  el.querySelector('.stage').addEventListener('mouseenter',()=>clearInterval(timer));
+  el.querySelector('.stage').addEventListener('mouseleave',autoplay);
+
+  go(0); autoplay();
+  carousels.push(el);
+});
+</script>
+</body>
+</html>
