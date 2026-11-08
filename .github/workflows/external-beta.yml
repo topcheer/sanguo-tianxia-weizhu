@@ -1,21 +1,14 @@
 name: external-beta
 
-# 单独挂 Ext 组 + 提交 Beta 外测审核(dispatch-only)。
+# 单独挂 Ext 组 + 提交 Beta 外测审核(tag 触发:beta-<buildver>-<platforms>)。
 # 用途:拆分发布——mac 版本被在审版本阻塞时(iOS 先行,如 v1.0.4/2026110803),
-# 用本 workflow 单独提交 iOS 外测;mac 等 Apple 审核翻转后随下个 tag 全链补齐。
+# 本 workflow 单独提交已上传 build 的外测;mac 等 Apple 审核翻转后随下个 tag 全链补齐。
+# tag 示例: beta-2026110803-ios(单平台) / beta-2026110804-ios,macos(双平台)。
+# 注:本仓默认分支为 main(web 流),dispatch 要求默认分支可见,故用 tag 触发(与主链同机制)。
 
 on:
-  workflow_dispatch:
-    inputs:
-      build_ver:
-        description: "CFBundleVersion (e.g. 2026110803)"
-        required: true
-        type: string
-      platforms:
-        description: "逗号分隔:IOS / MAC_OS / IOS,MAC_OS"
-        required: false
-        default: "IOS,MAC_OS"
-        type: string
+  push:
+    tags: ["beta-*"]
 
 permissions:
   contents: read
@@ -32,13 +25,29 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Parse tag
+        id: args
+        run: |
+          TAG="${GITHUB_REF_NAME#beta-}"
+          VER="${TAG%%-*}"
+          PLATS="${TAG#*-}"; PLATS="${PLATS:-ios,macos}"
+          case "$PLATS" in
+            ios) PLATS="IOS";;
+            macos) PLATS="MAC_OS";;
+            ios,macos|macos,ios) PLATS="IOS,MAC_OS";;
+            *) echo "::error::bad platforms in tag: $PLATS (use ios|macos|ios,macos)"; exit 1;;
+          esac
+          echo "ver=$VER" >> "$GITHUB_OUTPUT"
+          echo "plats=$PLATS" >> "$GITHUB_OUTPUT"
+          echo "beta submit: build=$VER platforms=$PLATS"
+
       - name: External beta (attach Ext group + Beta App Review)
         env:
           SAN_API_KEY_ID: ${{ secrets.SAN_API_KEY_ID }}
           SAN_API_ISSUER: ${{ secrets.SAN_API_ISSUER }}
           SAN_API_KEY_P8: ${{ secrets.SAN_API_KEY_P8 }}
-          BUILD_VER: ${{ inputs.build_ver }}
-          BETA_PLATFORMS: ${{ inputs.platforms }}
+          BUILD_VER: ${{ steps.args.outputs.ver }}
+          BETA_PLATFORMS: ${{ steps.args.outputs.plats }}
         run: |
           for i in $(seq 1 50); do
             OUT=$(python3 scripts/asc_external_beta.py 2>&1) && { echo "$OUT"; exit 0; }
