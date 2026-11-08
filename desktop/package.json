@@ -1,6 +1,6 @@
 {
   "name": "sanguo-weizhu-desktop",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "San Guo: Tianxia Weizhu - a Three-Kingdoms Texas hold'em saga (desktop shell)",
   "main": "main.js",
   "private": true,
