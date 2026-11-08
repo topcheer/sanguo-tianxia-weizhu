@@ -952,7 +952,9 @@ struct BriefingSheet: View {
     }()
     let roster = rosterForBriefing(practice: practice, boss: boss)
     let lead = roster.first
-    let opponentLabel = roster.count > 1 ? "\(lead?.name ?? "") 等 \(roster.count) 将" : (lead?.name ?? "")
+    let opponentLabel = roster.count > 1
+      ? String(format: L("brief.andNMore"), (lead?.name ?? ""), roster.count)
+      : (lead?.name ?? "")
     let kicker: String = practice
       ? "\(arena?["year"].string ?? "") · \(arena?["name"].string ?? "") · \(PL("brief.practiceKicker", "野战战书"))"
       : "\(chapter?["year"].string ?? PL("brief.deepScroll", "残卷深处")) · \(chapter?["name"].string ?? "") · \(boss ? PL("brief.bossKicker2", "关底战书") : PL("brief.skirmishKicker2", "遭遇战书"))"
@@ -1411,7 +1413,9 @@ struct TraitGridView: View {
     return HStack(spacing: 10) {
       ForEach(labels, id: \.trait) { item in
         VStack(spacing: 2) {
-          Text(item.trait).font(Theme.serif(13)).foregroundColor(Theme.gold)
+          // 六维名本地化:引擎存 zh 名,UI 反查 term.trait.N
+          Text(TRAITS.firstIndex(of: item.trait).map { L("term.trait.\($0)") } ?? item.trait)
+            .font(Theme.serif(13)).foregroundColor(Theme.gold)
           Text("\(Int(item.value))").font(Theme.serif(15, bold: true)).foregroundColor(Theme.paperLight)
           Text(item.label).font(Theme.serif(9)).foregroundColor(Theme.muted)
         }

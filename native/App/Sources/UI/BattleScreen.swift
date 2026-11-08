@@ -409,9 +409,13 @@ struct BattleScreen: View {
             }
             if let sd = seat.showdownName {
               VStack(spacing: 1) {
-                Text(sd).font(Theme.serif(10, bold: true)).foregroundColor(seat.showdownVerdict == "win" ? Theme.goldLight : Theme.paperDim)
+                // 牌型名本地化:引擎存 zh 名(bit-identical 约束),UI 反查 term.hand.N
+                Text(HAND_NAMES.firstIndex(of: sd).map { L("term.hand.\($0)") } ?? sd)
+                  .font(Theme.serif(10, bold: true)).foregroundColor(seat.showdownVerdict == "win" ? Theme.goldLight : Theme.paperDim)
                 if seat.showdownVerdict != nil {
-                  Text(seat.showdownVerdict == "win" ? "胜" : "负").font(Theme.serif(9))
+                  Text(PL(seat.showdownVerdict == "win" ? "verdict.win" : "verdict.loss",
+                          seat.showdownVerdict == "win" ? "胜" : "负"))
+                    .font(Theme.serif(9))
                     .foregroundColor(Theme.inkDeep)
                     .padding(.horizontal, 3)
                     .background(seat.showdownVerdict == "win" ? Theme.goldLight : Theme.muted)

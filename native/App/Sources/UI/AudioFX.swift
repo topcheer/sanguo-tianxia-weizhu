@@ -207,6 +207,7 @@ struct SfxToggleButton: View {
     }
     .buttonStyle(.plain)
     .fixedSize()
-    .accessibilityLabel(gate.muted ? "音效关" : "音效开")
+    .accessibilityLabel(PL(gate.muted ? "audio.muted" : "audio.on",
+                           gate.muted ? "音效关" : "音效开"))
   }
 }
