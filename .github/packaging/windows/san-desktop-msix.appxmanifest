@@ -31,6 +31,6 @@
         Square150x150Logo="Assets\Square150x150Logo.png"
         Square44x44Logo="Assets\Square44x44Logo.png"
         AppListEntry="default"/>
-    </uap:VisualElements>
+    </Application>
   </Applications>
 </Package>
