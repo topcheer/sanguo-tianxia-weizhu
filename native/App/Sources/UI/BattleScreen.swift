@@ -415,7 +415,7 @@ struct BattleScreen: View {
                 if seat.showdownVerdict != nil {
                   Text(PL(seat.showdownVerdict == "win" ? "verdict.win" : "verdict.loss",
                           seat.showdownVerdict == "win" ? "胜" : "负"))
-                    .font(Theme.serif(9))
+                    .font(Theme.serif(9)).lineLimit(1).minimumScaleFactor(0.6)
                     .foregroundColor(Theme.inkDeep)
                     .padding(.horizontal, 3)
                     .background(seat.showdownVerdict == "win" ? Theme.goldLight : Theme.muted)

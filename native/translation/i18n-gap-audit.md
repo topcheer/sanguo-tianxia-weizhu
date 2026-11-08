@@ -227,3 +227,4 @@ zh.json 有 `term.hand.0-8`(牌型名)/`term.trait.0-5`(六维名)但代码直�
 - 数据缺失兜底(异常路径才触发):playerName "你"/tells 缺省文案/battleResultInfo opponent
 - 专名保留:诸葛亮(化身模式)
 - 本轮新修:StoryEngine SPEAKERS 说话人名(speaker.* 4 key×5 语言)/TitleScreen 序章按钮 accessibilityLabel×2
+- 宽度收敛: 510ed29(15 处)+本提交(9 处:verdict 章/codex 三钮/野卷卡标题+点兵钮+33 行/标题主钮+副题/map kicker 等),InkButton 内置 0.6 防护确认覆盖 resultContinue/Back;验证矩阵 es/ja/ko brief+五语言 codex+三语言 map 截图通过

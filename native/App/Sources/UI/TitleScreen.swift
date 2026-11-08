@@ -256,10 +256,10 @@ struct TitleScreen: View {
         Button { advance() } label: {
           VStack(spacing: 4) {
             Text(step < 3 ? PL("prologue.next", "继 续") : PL("prologue.open", "展 开 英 雄 记"))
-              .font(Theme.serif(m.buttonFont)).kerning(2)
+              .font(Theme.serif(m.buttonFont)).kerning(2).lineLimit(1).minimumScaleFactor(0.8)
               .foregroundColor(Color(hex: 0xf0dfb8))
             Text(step < 3 ? PL("prologue.nextSub", "点击推进 · 可随时跳过") : PL("prologue.openSub", "进入残卷目录"))
-              .font(Theme.serif(10)).kerning(2.8)
+              .font(Theme.serif(10)).kerning(2.8).lineLimit(1).minimumScaleFactor(0.7)
               .foregroundColor(Color(hex: 0xc9a887))
           }
           .frame(minWidth: m.buttonMinW)

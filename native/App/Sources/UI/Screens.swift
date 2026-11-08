@@ -144,6 +144,7 @@ struct CodexScreen: View {
                ("codex.settings", "设置", Sheet.settings)], id: \.0) { key, zh, sheet in
         Button { game.sheet = sheet } label: {
           Text(PL(key, zh)).font(Theme.serif(12)).kerning(2).foregroundColor(Theme.paperLight)
+            .lineLimit(1).minimumScaleFactor(0.7)
             .padding(.horizontal, 14).padding(.vertical, 10)
             .background(Color(hex: 0x29291f))
             .overlay(Rectangle().strokeBorder(Color(hex: 0x897345), lineWidth: 1))
@@ -288,12 +289,15 @@ struct CodexScreen: View {
       }
       let texts = VStack(alignment: .leading, spacing: 7) {
         Text(L("practice.entry")).font(Theme.serif(19)).kerning(3).foregroundColor(Color(hex: 0xe8d8b2))
+          .lineLimit(1).minimumScaleFactor(0.7)
         Text(PL("practice.entrySub", "野战练兵场 · 与正史各卷并列，永不上锁"))
           .font(Theme.serif(11)).kerning(2).lineSpacing(4).foregroundColor(Color(hex: 0x8f8a73))
       }
       let goPanel = VStack(spacing: 3) {
         Text(PL("practice.go", "点 兵")).font(Theme.serif(15)).kerning(5).foregroundColor(Color(hex: 0x141109))
+          .lineLimit(1).minimumScaleFactor(0.7)
         Text("33 \(L("practice.tables"))").font(Theme.serif(9)).kerning(2)
+          .lineLimit(1).minimumScaleFactor(0.7)
           .foregroundColor(Color(hex: 0x141109)).opacity(0.75)
       }
       .padding(.horizontal, 18).padding(.vertical, 12)
@@ -714,7 +718,7 @@ struct MapScreen: View {
             if portrait {
               VStack(alignment: .leading, spacing: 8) {
                 VStack(alignment: .leading, spacing: 3) {
-                  Text(PL("map.kicker", "军令所至")).font(Theme.serif(10)).kerning(5).foregroundColor(Color(hex: 0x81785f))
+                  Text(PL("map.kicker", "军令所至")).font(Theme.serif(10)).kerning(5).foregroundColor(Color(hex: 0x81785f)).lineLimit(1).minimumScaleFactor(0.7)
                   Text("\(PL("map.title", "行 军 图")) · \(R.chapter["name"].string ?? "")")
                     .font(Theme.serif(24)).kerning(5).lineLimit(1).minimumScaleFactor(0.7).foregroundColor(Theme.goldLight)
                 }
@@ -734,7 +738,7 @@ struct MapScreen: View {
             } else {
               HStack(alignment: .bottom) {
                 VStack(alignment: .leading, spacing: 3) {
-                  Text(PL("map.kicker", "军令所至")).font(Theme.serif(10)).kerning(5).foregroundColor(Color(hex: 0x81785f))
+                  Text(PL("map.kicker", "军令所至")).font(Theme.serif(10)).kerning(5).foregroundColor(Color(hex: 0x81785f)).lineLimit(1).minimumScaleFactor(0.7)
                   Text("\(PL("map.title", "行 军 图")) · \(R.chapter["name"].string ?? "")")
                     .font(Theme.serif(28)).kerning(6).lineLimit(1).minimumScaleFactor(0.6).foregroundColor(Theme.goldLight)
                 }
@@ -835,7 +839,7 @@ struct MapScreen: View {
             }
             .fixedSize()
             Text("· " + PL("map.hint2", "胜则改史 · 败亦入卷"))
-              .font(Theme.serif(12)).kerning(2).foregroundColor(Color(hex: 0x696b58))
+              .font(Theme.serif(12)).kerning(2).foregroundColor(Color(hex: 0x696b58)).lineLimit(1).minimumScaleFactor(0.7)
               .lineLimit(1).minimumScaleFactor(0.6)
             Spacer(minLength: 0)
           }
