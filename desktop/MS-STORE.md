@@ -33,16 +33,15 @@ Description
 看牌,也看人;争先,也借天时。
 
 Product features(逐条添加)
-· 叙事德州扑克:四卷五十回,每一手都可能改写一页史书
-· 128 位史实武将:六维心性驱动各自的下注风格
-· 神态与破绽:武将表情泄露强弱,也会作假——摊牌后破绽簿验证你的读人
-· 天时系统:开卷择时,风向影响牌局
-· 攻心:每手可激将一次,挑动敌将心性
-· 种子可验证:每局洗牌有种子,重放逐位一致
-· 水墨美学:毛毡桌面、宣纸卷轴、朱印题字
-· 六语言:中文/English/日本語/한국어/Español/Deutsch
-· 完全离线单机,无内购,无广告
-
+四卷五十回，都有史籍底稿与演义边界
+故人记得你的胜负，也记得你的选择
+胜则改写，败亦入卷
+大关改写后，下一卷才会展开
+过牌／跟注：控制代价
+加注／全压：逼对手做难选的决定
+破绽：强未必强，弱未必弱
+攻心：张飞易怒，司马懿不动如山
+行军：军资相随，途中选择会留下后果
 
 What's new (1.0.4)
 六语言全面本地化;存档导入导出修复;启动即全屏;竖版界面重设计。
@@ -58,16 +57,15 @@ Description
 The histories record the battlefield, never the card table. San Guo: Tianxia Weizhu is a Three-Kingdoms narrative Texas hold'em saga: four scrolls, fifty chapters, and 128 historical generals with six-trait personas. Win the final gate to rewrite a page of history; even defeat enters the record. Read the cards — and read the people.
 
 Product features
-· Narrative Texas hold'em: four scrolls, fifty chapters — every hand can rewrite a page of history
-· 128 historical generals, each with six-trait personas driving their betting style
-· Tells and weaknesses: expressions leak strength, but can lie — the weakness ledger verifies your reads after showdown
-· Heaven's timing: pick an omen before each chapter; the wind shifts the game
-· Heart strike: once per hand, provoke a rival's temperament
-· Verifiable seeds: every deal is seeded; replays are bit-exact
-· Ink-wash aesthetics: felt table, rice-paper scrolls, vermilion seals
-· Six languages: 中文/English/日本語/한국어/Español/Deutsch
-· Fully offline single-player. No IAP, no ads.
-
+Four volumes, fifty chapters, each with historical sources and the bounds of the romance
+Old friends remember your wins—and your choices
+Victory rewrites; defeat also enters the scroll
+Only after a major chapter is rewritten does the next volume unfold
+Check/Call: control the cost
+Bet/All-In: force the hard decision
+Tell: strong may not be strong, weak may not be weak
+Goading: Zhang Fei is quick to anger; Sima Yi is immovable as a mountain
+The march: your war chest follows you; choices along the way leave consequences
 
 What's new (1.0.4)
 Full localization in six languages; save import/export fixes; launch fullscreen; redesigned portrait UI.
@@ -83,16 +81,15 @@ Description
 史書は戦場だけを記し、卓上を記さなかった。『三国志:天下を賭けて』は三国志を題材にしたノベルティ・テキサスホールデム:四巻五十回、128 名の史実武将が六次元の心性を持ち、同じ一枚の牌が歴史の一頁を書き換える。関底を制せば原巻は野史に、敗北さえ巻に刻まれる。牌を読み、人を読む。
 
 Product features
-· ノベルティ・テキサスホールデム:四巻五十回、每一局が歴史の一頁を書き換える
-· 128 名の史実武将:六次元の心性がそれぞれの賭け筋を駆動
-· 表情と破綻:強弱を漏らす表情は、偽装でもある——ショーダウン後の「破綻簿」が読みを検証
-· 天時システム:開巻時に天時を選び、風向きが牌局を左右
-· 攻心:一局に一度、敵将の心性を挑発
-· シード検証:毎局シード付き、リプレイは完全一致
-· 水墨の美学:フェルトの卓、巻子、朱印
-· 六言語対応:中文/English/日本語/한국어/Español/Deutsch
-· 完全オフライン単機、課金・広告なし
-
+全四巻五十回、いずれも史籍の底本と演義の境界を持つ
+かつての者たちはあなたの勝負も、あなたの選択も覚えている
+勝てば書き換え、敗れても巻に入る
+大関を書き換えてこそ、次の巻が開ける
+チェック／コール：代価を制御する
+レイズ／オールイン：相手に苦しい選択を迫る
+テル：強きは必ずしも強からず、弱きは必ずしも弱からず
+攻心：張飛は怒りやすく、司馬懿は山のごとく動じない
+行軍：軍資金は供をし、道中の選択は後に残る
 
 What's new (1.0.4)
 六言語の完全ローカライズ;セーブの导入導出修正;起動時フルスクリーン;縦画面 UI の再設計。
@@ -108,16 +105,15 @@ Description
 사서는 전장만 적었고, 판은 적지 않았다. 『삼국: 천하를 걸고』는 삼국을 소재로 한 서사형 텍사스 홀덤: 4권 50회, 128명의 사실 무장이 6차원 심성을 지니며, 같은 판이 역사의 한 페이지를 다시 쓴다. 관저를 이기면 원권은 야사로 바뀌고, 패배조차 권에 남는다. 패를 읽고, 사람을 읽어라.
 
 Product features
-· 서사형 텍사스 홀덤: 4권 50회, 매 판이 역사의 한 페이지를 다시 쓴다
-· 128명 사실 무장: 6차원 심성이 각자의 베팅 스타일을 움직인다
-· 텔과 파례: 표정은 강약을 새지만 거짓일 수도 — 쇼다운 후 파례 노트가 판단을 검증
-· 천시 시스템: 권을 열기 전 천시를 고르고, 바람이 판을 바꾼다
-· 공심: 판마다 한 번, 적장의 심성을 건드린다
-· 시드 검증: 매국 시드, 리플레이 완전 일치
-· 수묵 미학: 펠트 테이블, 두루마리, 주인
-· 6개 언어: 中文/English/日本語/한국어/Español/Deutsch
-· 완전 오프라인 싱글, 인앱 결제·광고 없음
-
+사권 오십 회, 모두 사료의 초고와 연의의 경계가 있다
+옛 사람들은 당신의 승패를 기억하고, 당신의 선택도 기억한다
+이기면 고쳐 쓰고, 져도 책에 남는다
+큰 관문이 바뀌어야 다음 권이 펼쳐진다
+체크/콜: 비용을 통제한다
+레이즈/올인: 상대에게 어려운 결정을 강요한다
+텔: 강한 자가 반드시 강하지 않고, 약한 자가 반드시 약하지 않다
+공심: 장비는 쉽게 성내고, 사마의는 산처럼 움직이지 않는다
+행군: 군자금이 따라오고, 도중의 선택이 결과를 남긴다
 
 What's new (1.0.4)
 6개 언어 전면 현지화; 세이브 가져오기/내보내기 수정; 시작 시 전체 화면; 세로 화면 UI 재설계.
@@ -133,16 +129,15 @@ Description
 Las crónicas cuentan el campo de batalla, jamás la mesa de cartas. «Tres Reinos: El Imperio en Juego» es una saga narrativa de Texas hold'em ambientada en los Tres Reinos: cuatro rollos, cincuenta capítulos y 128 generales históricos con personalidades de seis rasgos. Gana la puerta final para reescribir una página de la historia; hasta la derrota queda registrada. Lee las cartas — y lee a la gente.
 
 Product features
-· Texas hold'em narrativo: cuatro rollos, cincuenta capítulos — cada mano puede reescribir una página de la historia
-· 128 generales históricos con personalidades de seis rasgos que dirigen su estilo de apuesta
-· Gestos y debilidades: las expresiones delatan la fuerza, pero también mienten — el libro de debilidades verifica tus lecturas tras el showdown
-· Momento del cielo: elige un presagio antes de cada capítulo; el viento cambia la partida
-· Golpe al corazón: una vez por mano, provoca el temperamento del rival
-· Semillas verificables: cada reparto tiene semilla; las repeticiones son exactas
-· Estética de tinta: tapete de fieltro, pergaminos de arroz, sellos bermellón
-· Seis idiomas: 中文/English/日本語/한국어/Español/Deutsch
-· Un jugador totalmente offline. Sin compras, sin anuncios.
-
+Cuatro rollos y cincuenta capítulos, todos con un fondo histórico y un límite de la leyenda
+Los antiguos recuerdan tus victorias y derrotas, y también tus decisiones
+La victoria reescribe, la derrota también entra en el rollo
+Solo tras reescribir el gran desafío se despliega el siguiente rollo
+Pasar / igualar: controla el coste
+Subir / all-in: obliga al rival a decidir bajo presión
+Tell: fuerte no siempre es fuerte, débil no siempre es débil
+Provocación: Zhang Fei es colérico, Sima Yi es inamovible como una montaña
+Marcha: el arca de guerra te acompaña; las decisiones del camino dejan consecuencias
 
 What's new (1.0.4)
 Localización completa en seis idiomas; correcciones de importación/exportación de partidas; pantalla completa al iniciar; rediseño de la interfaz vertical.
@@ -158,16 +153,15 @@ Description
 Die Chroniken berichten vom Schlachtfeld, nie vom Kartentisch. „Drei Reiche: Das Reich auf dem Spiel" ist eine erzählerische Texas-Hold'em-Saga im Zeichen der Drei Reiche: vier Rollen, fünfzig Kapitel und 128 historische Generäle mit Sechs-Züge-Personas. Gewinne das letzte Tor, um eine Seite der Geschichte umzuschreiben; selbst die Niederlage geht in die Chronik ein. Lies die Karten — und lies die Menschen.
 
 Product features
-· Erzählerisches Texas Hold'em: vier Rollen, fünfzig Kapitel — jede Hand kann eine Seite der Geschichte umschreiben
-· 128 historische Generäle mit Sechs-Züge-Personas, die ihren Spielstil prägen
-· Gesten und Schwächen: Mienenspiel verrät Stärke, kann aber täuschen — das Schwächebuch prüft deine Deutungen nach dem Showdown
-· Zeit des Himmels: wähle ein Omen vor jedem Kapitel; der Wind dreht das Blatt
-· Herzstoß: einmal pro Hand das Gemüt des Gegners reizen
-· Nachvollziehbare Seeds: jede Austeilung ist geseedet, Wiederholungen stimmen bitgenau
-· Tusch-Ästhetik: Filztisch, Reispapierrollen, Zinnober-Siegel
-· Sechs Sprachen: 中文/English/日本語/한국어/Español/Deutsch
-· Komplett offline. Keine Käufe, keine Werbung.
-
+Vier Bände, fünfzig Kapitel – jedes mit historischer Vorlage und den Grenzen der Romanfassung
+Die Alten erinnern sich an deine Siege und Niederlagen – und an deine Entscheidungen
+Sieg schreibt um, Niederlage geht ins Buch ein
+Erst nach der Umwandlung des großen Gefechts öffnet sich der nächste Band
+Schieben / Mitgehen: den Preis kontrollieren
+Erhöhen / All-In: den Gegner zu einer schweren Entscheidung zwingen
+Tell: Stark ist nicht immer stark, schwach nicht immer schwach
+Anstacheln: Zhang Fei ist jähzornig, Sima Yi bleibt unerschütterlich wie ein Berg
+Der Marsch: Die Kriegskasse folgt dir, und Entscheidungen unterwegs hinterlassen Folgen
 
 What's new (1.0.4)
 Vollständige Lokalisierung in sechs Sprachen; Korrekturen beim Speicher-Import/Export; Vollbild beim Start; überarbeitetes Hochformat-UI.
