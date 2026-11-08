@@ -1,22 +1,14 @@
 name: msix-store
 
-# Manual MSIX build for Microsoft Store submission (ggcode msix-store.yml 配方移植).
-# Identity values come from Partner Center -> App management -> App identity:
-#   identity_name : "Package/Identity Name"
-#   publisher     : "Publisher ID" (CN=...)
-# The produced .msix is UNSIGNED on purpose: Partner Center re-signs on ingestion.
+# Build MSIX for Microsoft Store (ggcode msix-store.yml 配方移植,Electron 适配).
+# 触发: tag build-msix-<ver> (如 build-msix-1.0.4.0)。
+# 注: 本仓默认分支 main(web 流),workflow_dispatch 对非默认分支不可见(同 external-beta 教训)。
+# Identity: secrets SAN_MSIX_IDENTITY_NAME / SAN_MSIX_PUBLISHER (Partner Center
+# App identity)。未配置时用占位值构建【仅验证 pipeline/包结构,不可提交 Store】——
+# 产物文件名带 -placeholder 标记。
 on:
-  workflow_dispatch:
-    inputs:
-      version:
-        description: "Four-part package version (e.g. 1.0.4.0)"
-        required: true
-      identity_name:
-        description: "Partner Center Package/Identity Name"
-        required: true
-      publisher:
-        description: "Partner Center Publisher ID (CN=...)"
-        required: true
+  push:
+    tags: ["build-msix-*"]
 
 permissions:
   contents: read
@@ -33,9 +25,43 @@ jobs:
         with:
           node-version: 24
 
+      - name: Resolve identity (real from secrets, or placeholder)
+        id: idn
+        shell: pwsh
+        env:
+          SAN_MSIX_IDENTITY_NAME: ${{ secrets.SAN_MSIX_IDENTITY_NAME }}
+          SAN_MSIX_PUBLISHER: ${{ secrets.SAN_MSIX_PUBLISHER }}
+        run: |
+          $name = $env:SAN_MSIX_IDENTITY_NAME
+          $pub = $env:SAN_MSIX_PUBLISHER
+          $ph = $false
+          if (-not $name -or -not $pub) {
+            $name = "GuangGuangAIStudio.SanGuoTianxiaWeizhu"
+            $pub = "CN=PLACEHOLDER-CONFIGURE-SAN_MSIX_SECRETS"
+            $ph = $true
+            Write-Host "::warning::SAN_MSIX secrets not set - building PLACEHOLDER identity (validation only, not submittable)"
+          }
+          "name=$name" >> $env:GITHUB_OUTPUT
+          "pub=$pub" >> $env:GITHUB_OUTPUT
+          "ph=$ph" >> $env:GITHUB_OUTPUT
+
+      - name: Resolve version from tag (build-msix-1.0.4.0 -> 1.0.4.0)
+        id: ver
+        shell: pwsh
+        run: |
+          $v = "${{ github.ref_name }}".Replace("build-msix-","")
+          if ($v -notmatch '^\d+\.\d+\.\d+(\.\d+)?$') { throw "unparseable version: $v" }
+          if ($v.Split('.').Count -eq 3) { $v = "$v.0" }
+          "version=$v" >> $env:GITHUB_OUTPUT
+
       - name: Build MSIX package
         shell: pwsh
-        run: .\scripts\release\build-desktop-msix.ps1 -Version "${{ github.event.inputs.version }}" -OutputDir dist -IdentityName "${{ github.event.inputs.identity_name }}" -Publisher "${{ github.event.inputs.publisher }}" -Archs "x64"
+        run: .\scripts\release\build-desktop-msix.ps1 -Version "${{ steps.ver.outputs.version }}" -OutputDir dist -IdentityName "${{ steps.idn.outputs.name }}" -Publisher "${{ steps.idn.outputs.pub }}" -Archs "x64"
+
+      - name: Mark placeholder build
+        if: ${{ steps.idn.outputs.ph == 'true' }}
+        shell: pwsh
+        run: Get-ChildItem dist\*.msix | Rename-Item -NewName { $_.Name -replace '\.msix$', '-placeholder.msix' }
 
       - name: Upload MSIX artifact
         uses: actions/upload-artifact@v4
