@@ -59,12 +59,13 @@ let BANDS: [String: [(Double, String)]] = [
   "心性": [(80, "不动如山"), (60, "沉稳"), (40, "常人"), (0, "易燃易爆")],
 ]
 
-public struct TraitLabel { public var trait: String; public var value: Double; public var label: String }
+public struct TraitLabel { public var trait: String; public var value: Double; public var label: String; public var band: Int = 0 }
 
 public func describeTraits(_ traits: [String: Int]) -> [TraitLabel] {
   TRAITS.map { t in
     let v = tValue(traits, t)
-    let label = BANDS[t]!.first { v >= $0.0 }!.1
-    return TraitLabel(trait: t, value: v, label: label)
+    let bands = BANDS[t]!
+    let bi = bands.firstIndex { v >= $0.0 } ?? bands.count - 1
+    return TraitLabel(trait: t, value: v, label: bands[bi].1, band: bi)
   }
 }

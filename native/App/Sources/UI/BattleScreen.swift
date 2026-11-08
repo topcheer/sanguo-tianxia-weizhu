@@ -784,7 +784,7 @@ struct OddsPanel: View {
           stat(L("odds.tie"), String(format: "%.1f%%", r.equity.tie * 100), Theme.paper)
           stat(L("odds.current"), r.currentName, Theme.paper)
           ForEach(Array(r.draws.prefix(2).enumerated()), id: \.offset) { _, d in
-            stat(d.name, "\(d.outs.count) \(L("odds.outs"))", Theme.jade.opacity(0.95))
+            stat(HAND_NAMES.firstIndex(of: d.name).map { L("term.hand.\($0)") } ?? d.name, "\(d.outs.count) \(L("odds.outs"))", Theme.jade.opacity(0.95))
           }
         }
         .padding(.horizontal, 10).padding(.vertical, 6)

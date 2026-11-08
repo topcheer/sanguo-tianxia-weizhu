@@ -1413,11 +1413,12 @@ struct TraitGridView: View {
     return HStack(spacing: 10) {
       ForEach(labels, id: \.trait) { item in
         VStack(spacing: 2) {
-          // 六维名本地化:引擎存 zh 名,UI 反查 term.trait.N
+          // 六维名/档位词本地化:引擎存 zh 名,UI 反查 term.trait.N / term.band.N.M
+          let ti = TRAITS.firstIndex(of: item.trait) ?? 0
           Text(TRAITS.firstIndex(of: item.trait).map { L("term.trait.\($0)") } ?? item.trait)
             .font(Theme.serif(13)).foregroundColor(Theme.gold)
           Text("\(Int(item.value))").font(Theme.serif(15, bold: true)).foregroundColor(Theme.paperLight)
-          Text(item.label).font(Theme.serif(9)).foregroundColor(Theme.muted)
+          Text(L("term.band.\(ti).\(item.band)")).font(Theme.serif(9)).foregroundColor(Theme.muted)
         }
         .frame(maxWidth: .infinity)
         .padding(.vertical, 6)

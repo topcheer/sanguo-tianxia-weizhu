@@ -200,3 +200,22 @@ zh.json 有 `term.hand.0-8`(牌型名)/`term.trait.0-5`(六维名)但代码直�
 ## 合法同形(勿修)
 - ja 297 条同值: 人名(gen.*.name)/地名/年号/卷名,简日同形历史词
 - ko Hanja 括注: 국사(國士) 式注释属韩语历史文本惯例
+
+## 修复状态(2026-11-08 收口)
+
+| 缺口 | 处置 | 位置 |
+|---|---|---|
+| A 57 PL key | ✅ 已修:zh+五语言补译(含术语对齐) | 9528cb5 |
+| A2 de 60 brief | ✅ 已修:五章节战书整块德译 | 9528cb5 |
+| A3 ko 40 裸嵌 | ✅ 已修:逐词修补(판/행방/권력 등) | 9528cb5 |
+| A4 en/es Mei坞 | ✅ 已修:Meiwu | 9528cb5 |
+| B term.hand/term.trait 死 key | ✅ 已修:BattleScreen 摊牌名+Odds 面板/Screens 六维名反查接线 | 9528cb5 |
+| B 外传内容(apoc.*) | ✅ 已修:36 专名/文案 key×5 语言;Encounters 生成处 L 化(RNG 顺序不变,golden 零断言验证) | 本提交 |
+| B BANDS 24 档位词 | ✅ 已修:term.band.{t}.{b}×5 语言;TraitLabel 加 band 序,TraitGrid 接线 | 本提交 |
+| B2 音效开关/等N将/胜负章 | ✅ 已修 | 9528cb5 |
+| C 装饰字(英雄记/中原江东/武/App 名) | 🈯 保留中文(用户决策:印章/美术字美学) | — |
+| ja 297 同值 | ✅ 接受:人名/地名/年号/卷名简日同形;长句(>12字,非 source/era)终检 0 嫌疑 | — |
+| ko Hanja 括注 | ✅ 接受:韩语历史文本惯例 | — |
+| 系统级 CFBundleDisplayName | 🈯 保留中文品牌名;如需本地化可后续加 InfoPlist.strings | — |
+
+终检基准(全绿):五语言缺 key 0 / ko 裸嵌 0 / en-es-de 汉字 0 / macOS 9/9 / iOS BUILD / en+de 模拟器目检。
