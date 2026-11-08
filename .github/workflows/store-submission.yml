@@ -1,0 +1,64 @@
+name: store-submission
+
+# Build MSIX and submit to Microsoft Store via Submission API (ggcode 配方移植).
+# 触发: tag store-<ver>-msix (如 store-1.0.4.0-msix)。
+# 注: 本仓默认分支为 main(web 流),workflow_dispatch 对非默认分支 workflow 不可见,
+#     故用 tag 触发(同 external-beta 教训)。
+# Required repo secrets (Partner Center + Azure AD app registration, 见 desktop/MS-STORE.md):
+#   SAN_STORE_TENANT_ID / SAN_STORE_CLIENT_ID / SAN_STORE_CLIENT_SECRET / SAN_STORE_PRODUCT_ID
+#   SAN_MSIX_IDENTITY_NAME / SAN_MSIX_PUBLISHER (App identity, 每次 dispatch 免填)
+on:
+  push:
+    tags: ["store-*-msix"]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: store-submission
+  cancel-in-progress: false
+
+jobs:
+  build-and-submit:
+    name: Build + submit to Store
+    runs-on: windows-latest
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Resolve version from tag (store-1.0.4.0-msix -> 1.0.4.0)
+        id: ver
+        shell: pwsh
+        run: |
+          $v = "${{ github.ref_name }}".Replace("store-","").Replace("-msix","")
+          if ($v -notmatch '^\d+\.\d+\.\d+(\.\d+)?$') { throw "unparseable version: $v" }
+          if ($v.Split('.').Count -eq 3) { $v = "$v.0" }
+          "version=$v" >> $env:GITHUB_OUTPUT
+          Write-Host "store submission version: $v"
+
+      - name: Build MSIX package
+        shell: pwsh
+        env:
+          SAN_MSIX_IDENTITY_NAME: ${{ secrets.SAN_MSIX_IDENTITY_NAME }}
+          SAN_MSIX_PUBLISHER: ${{ secrets.SAN_MSIX_PUBLISHER }}
+        run: .\scripts\release\build-desktop-msix.ps1 -Version "${{ steps.ver.outputs.version }}" -OutputDir dist -IdentityName "$env:SAN_MSIX_IDENTITY_NAME" -Publisher "$env:SAN_MSIX_PUBLISHER" -Archs "x64"
+
+      - name: Submit to Microsoft Store
+        shell: pwsh
+        env:
+          TENANT: ${{ secrets.SAN_STORE_TENANT_ID }}
+          CLIENT: ${{ secrets.SAN_STORE_CLIENT_ID }}
+          SECRET: ${{ secrets.SAN_STORE_CLIENT_SECRET }}
+          PRODUCT: ${{ secrets.SAN_STORE_PRODUCT_ID }}
+        run: .\scripts\release\submit-store.ps1 -TenantId $env:TENANT -ClientId $env:CLIENT -ClientSecret $env:SECRET -ProductId "$env:PRODUCT" -PackageDir dist
+
+      - name: Keep packages as artifact (audit trail)
+        uses: actions/upload-artifact@v4
+        with:
+          name: submitted-msix
+          path: dist/*.msix
+          if-no-files-found: error

@@ -13,11 +13,17 @@
 
 ## 包(Submission → Packages)
 
-- **上传格式**: Store 接受 `.msix/.msixupload/.appxupload`。当前 CI 产物是 NSIS `.exe`,
-  两条路径二选一:
-  1. **推荐**: `electron-builder --win msix` 直接出 MSIX —— 在 package.json `build.win.target` 加 `"msix"`
-     (需要 Windows 机器或 CI 加 target 重跑;MSIX 需设 `identityName` 与 Partner Center 保留名一致)
-  2. 替代: NSIS exe + [MSIX Packaging Tool](https://learn.microsoft.com/windows/msix/packaging-tool/mpt-create-converted-package)(Store 分发的 Win32 转打包,零代码)
+- **上传格式**: `.msix`(Partner Center 摄取时重签,提交包无需开发者签名)。
+- **Pipeline 已就绪(ggcode desktop 配方移植)**:
+  - `scripts/release/build-desktop-msix.ps1`: web bundle → electron-builder win-unpacked →
+    stage(Assets 商店图标自动从 icon-512 生成 + appxmanifest 模板)→ makeappx 出未签名 .msix
+  - `scripts/release/submit-store.ps1`: Store Submission API 全链(挂起 draft 恢复/Azure Blob
+    上传/priceId=Free/deviceFamilies 初始化/commit 空 JSON——10 轮踩坑修复原样保留)
+  - `msix-store.yml`(dispatch 仅构建)/`store-submission.yml`(tag `store-<ver>-msix` 构建+提交)
+- **一次性 secrets(6 个)**: `SAN_STORE_TENANT_ID / SAN_STORE_CLIENT_ID /
+  SAN_STORE_CLIENT_SECRET / SAN_STORE_PRODUCT_ID / SAN_MSIX_IDENTITY_NAME / SAN_MSIX_PUBLISHER`
+  —— Azure AD 建 app registration(权限 manage.devcenter)取前四,Partner Center
+  App identity 页取后二。详见 ggcode 仓 STORE_SUBMISSION.md 同名章节。
 - **版本**: 桌面壳已对齐 **1.0.4** (tag v1.0.4-804-desktop, artifact "sanguo-weizhu Setup 1.0.4.exe")
 
 ## Listing 文案(中文市场)

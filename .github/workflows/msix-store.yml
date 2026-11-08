@@ -1,0 +1,45 @@
+name: msix-store
+
+# Manual MSIX build for Microsoft Store submission (ggcode msix-store.yml 配方移植).
+# Identity values come from Partner Center -> App management -> App identity:
+#   identity_name : "Package/Identity Name"
+#   publisher     : "Publisher ID" (CN=...)
+# The produced .msix is UNSIGNED on purpose: Partner Center re-signs on ingestion.
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Four-part package version (e.g. 1.0.4.0)"
+        required: true
+      identity_name:
+        description: "Partner Center Package/Identity Name"
+        required: true
+      publisher:
+        description: "Partner Center Publisher ID (CN=...)"
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  build-msix:
+    name: Build MSIX (x64)
+    runs-on: windows-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Build MSIX package
+        shell: pwsh
+        run: .\scripts\release\build-desktop-msix.ps1 -Version "${{ github.event.inputs.version }}" -OutputDir dist -IdentityName "${{ github.event.inputs.identity_name }}" -Publisher "${{ github.event.inputs.publisher }}" -Archs "x64"
+
+      - name: Upload MSIX artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: msix-x64
+          path: dist/*.msix
+          if-no-files-found: error
