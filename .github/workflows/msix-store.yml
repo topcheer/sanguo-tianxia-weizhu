@@ -50,6 +50,7 @@ jobs:
         shell: pwsh
         run: |
           $v = "${{ github.ref_name }}".Replace("build-msix-","")
+          $v = $v -replace '-r\d+$', ''  # 剥重试后缀(build-msix-1.0.4.0-r3 -> 1.0.4.0)
           if ($v -notmatch '^\d+\.\d+\.\d+(\.\d+)?$') { throw "unparseable version: $v" }
           if ($v.Split('.').Count -eq 3) { $v = "$v.0" }
           "version=$v" >> $env:GITHUB_OUTPUT
