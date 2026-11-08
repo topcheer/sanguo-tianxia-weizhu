@@ -1,21 +1,47 @@
 // Progress.swift —— 进度模型(与 Web 版 localStorage 存档同构,可互导)。
+// 容错解码:合成 Codable 不理会默认值,web 版稀疏存档(缺键/浅对象)会 keyNotFound;
+// 各 struct 手写 init(from:) 用 decodeIfPresent+默认值,缺键回退默认(web normalizeProgress 同口径)。
 import Foundation
 
 public struct AnnalTell: Codable {
   public var n: Int = 0
   public var hit: Int = 0
+  public init() {}
+  public init(from decoder: Decoder) throws {
+    let c = try decoder.container(keyedBy: CodingKeys.self)
+    n = try c.decodeIfPresent(Int.self, forKey: .n) ?? 0
+    hit = try c.decodeIfPresent(Int.self, forKey: .hit) ?? 0
+  }
 }
 public struct Annal: Codable {
   public var seen: Int = 0
   public var won: Int = 0
   public var tells: [String: AnnalTell] = [:]
+  public init() {}
+  public init(from decoder: Decoder) throws {
+    let c = try decoder.container(keyedBy: CodingKeys.self)
+    seen = try c.decodeIfPresent(Int.self, forKey: .seen) ?? 0
+    won = try c.decodeIfPresent(Int.self, forKey: .won) ?? 0
+    tells = try c.decodeIfPresent([String: AnnalTell].self, forKey: .tells) ?? [:]
+  }
 }
 public struct PracticeRecord: Codable {
   public var seen: Int
   public var won: Int
+  public init(seen: Int, won: Int) { self.seen = seen; self.won = won }
+  public init(from decoder: Decoder) throws {
+    let c = try decoder.container(keyedBy: CodingKeys.self)
+    seen = try c.decodeIfPresent(Int.self, forKey: .seen) ?? 0
+    won = try c.decodeIfPresent(Int.self, forKey: .won) ?? 0
+  }
 }
 public struct Settings: Codable {
   public var equityAssist: Bool = true
+  public init() {}
+  public init(from decoder: Decoder) throws {
+    let c = try decoder.container(keyedBy: CodingKeys.self)
+    equityAssist = try c.decodeIfPresent(Bool.self, forKey: .equityAssist) ?? true
+  }
 }
 public struct StoryState: Codable {
   public var seen: [String: Int] = [:]
@@ -23,12 +49,29 @@ public struct StoryState: Codable {
   public var facts: [String: Bool] = [:]
   public var clues: [String: Bool] = [:]
   public var outcomes: [String: String] = [:]
+  public init() {}
+  public init(from decoder: Decoder) throws {
+    let c = try decoder.container(keyedBy: CodingKeys.self)
+    seen = try c.decodeIfPresent([String: Int].self, forKey: .seen) ?? [:]
+    choices = try c.decodeIfPresent([String: String].self, forKey: .choices) ?? [:]
+    facts = try c.decodeIfPresent([String: Bool].self, forKey: .facts) ?? [:]
+    clues = try c.decodeIfPresent([String: Bool].self, forKey: .clues) ?? [:]
+    outcomes = try c.decodeIfPresent([String: String].self, forKey: .outcomes) ?? [:]
+  }
 }
 public struct TutorialState: Codable {
   public var version: Int = 1
   public var introDone: Bool = false
   public var steps: [String: Bool] = [:]
   public var skipped: Bool = false
+  public init() {}
+  public init(from decoder: Decoder) throws {
+    let c = try decoder.container(keyedBy: CodingKeys.self)
+    version = try c.decodeIfPresent(Int.self, forKey: .version) ?? 1
+    introDone = try c.decodeIfPresent(Bool.self, forKey: .introDone) ?? false
+    steps = try c.decodeIfPresent([String: Bool].self, forKey: .steps) ?? [:]
+    skipped = try c.decodeIfPresent(Bool.self, forKey: .skipped) ?? false
+  }
 }
 
 public struct Progress: Codable {
@@ -42,6 +85,20 @@ public struct Progress: Codable {
   public var settings = Settings()
   public var story = StoryState()
   public var tutorial = TutorialState()
+  public init() {}
+  public init(from decoder: Decoder) throws {
+    let c = try decoder.container(keyedBy: CodingKeys.self)
+    version = try c.decodeIfPresent(Int.self, forKey: .version) ?? 2
+    pages = try c.decodeIfPresent([String: String].self, forKey: .pages) ?? [:]
+    endings = try c.decodeIfPresent([String].self, forKey: .endings) ?? []
+    annals = try c.decodeIfPresent([String: Annal].self, forKey: .annals) ?? [:]
+    practice = try c.decodeIfPresent([String: PracticeRecord].self, forKey: .practice) ?? [:]
+    flags = try c.decodeIfPresent([String: String].self, forKey: .flags) ?? [:]
+    apocWins = try c.decodeIfPresent(Int.self, forKey: .apocWins) ?? 0
+    settings = try c.decodeIfPresent(Settings.self, forKey: .settings) ?? Settings()
+    story = try c.decodeIfPresent(StoryState.self, forKey: .story) ?? StoryState()
+    tutorial = try c.decodeIfPresent(TutorialState.self, forKey: .tutorial) ?? TutorialState()
+  }
 }
 
 public let SAVE_KEY_VERSION = 2
@@ -92,24 +149,36 @@ public final class ProgressStore: ObservableObject {
   }
 
   /// 校验并读取 Web/本作 JSON 存档;返回摘要(确认覆盖用)。
+  /// 接受三种形态(与 web save-transfer.js 同口径):
+  /// ① {format,formatVersion,exportedAt,data} 本作包装 ② {data:Progress} 裸包裹 ③ 顶层即 Progress(至少含一个已知键)。
+  /// 稀疏对象(缺键)合法:各 struct 容错解码(见文件头注),缺键回退默认值。
   public static func readWebSave(_ data: Data) throws -> (progress: Progress, exportedAt: Date?) {
-    struct Payload: Codable {
-      let format: String?
-      let formatVersion: Int?
-      let exportedAt: Date?
-      let data: Progress?
-    }
-    guard let payload = try? JSONDecoder().decode(Payload.self, from: data) else {
+    guard let obj = try? JSONSerialization.jsonObject(with: data) as? [String: Any] else {
       throw EngineError.message(L("save.invalid"))
     }
-    if payload.format != nil {
-      guard payload.format == SAVE_FORMAT, payload.formatVersion == 1, payload.data != nil else {
+    var raw = obj
+    var exportedAt: Date? = nil
+    if let format = obj["format"] as? String {
+      guard format == SAVE_FORMAT, (obj["formatVersion"] as? Int) == 1, let inner = obj["data"] as? [String: Any] else {
         throw EngineError.message(L("save.invalid"))
       }
-      return (normalize(payload.data!), payload.exportedAt)
+      raw = inner
+      if let iso = obj["exportedAt"] as? String {
+        exportedAt = ISO8601DateFormatter().date(from: iso)
+      }
+    } else if let inner = obj["data"] as? [String: Any] {
+      raw = inner
     }
-    guard let raw = payload.data else { throw EngineError.message(L("save.invalid")) }
-    return (normalize(raw), nil)
+    // 已知键校验:防任意 JSON 被吞成空白进度
+    let known: Set<String> = ["version", "pages", "endings", "annals", "practice", "flags", "apocWins", "settings", "story", "tutorial"]
+    guard !known.isDisjoint(with: raw.keys) else {
+      throw EngineError.message(L("save.invalid"))
+    }
+    guard let rawData = try? JSONSerialization.data(withJSONObject: raw),
+          let progress = try? JSONDecoder().decode(Progress.self, from: rawData) else {
+      throw EngineError.message(L("save.invalid"))
+    }
+    return (normalize(progress), exportedAt)
   }
 
   public static func normalize(_ p: Progress) -> Progress {
