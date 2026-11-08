@@ -43,8 +43,6 @@ Product features(逐条添加)
 · 六语言:中文/English/日本語/한국어/Español/Deutsch
 · 完全离线单机,无内购,无广告
 
-Search terms
-三国,扑克,德州扑克,策略,卡牌,单机,离线,叙事
 
 What's new (1.0.4)
 六语言全面本地化;存档导入导出修复;启动即全屏;竖版界面重设计。
@@ -70,8 +68,6 @@ Product features
 · Six languages: 中文/English/日本語/한국어/Español/Deutsch
 · Fully offline single-player. No IAP, no ads.
 
-Search terms
-three kingdoms, poker, texas holdem, strategy, cards, offline, story
 
 What's new (1.0.4)
 Full localization in six languages; save import/export fixes; launch fullscreen; redesigned portrait UI.
@@ -97,8 +93,6 @@ Product features
 · 六言語対応:中文/English/日本語/한국어/Español/Deutsch
 · 完全オフライン単機、課金・広告なし
 
-Search terms
-三国志,ポーカー,テキサスホールデム,ストーリー,オフライン,カード
 
 What's new (1.0.4)
 六言語の完全ローカライズ;セーブの导入導出修正;起動時フルスクリーン;縦画面 UI の再設計。
@@ -124,8 +118,6 @@ Product features
 · 6개 언어: 中文/English/日本語/한국어/Español/Deutsch
 · 완전 오프라인 싱글, 인앱 결제·광고 없음
 
-Search terms
-삼국,포커,홀덤,전략,카드,오프라인,스토리
 
 What's new (1.0.4)
 6개 언어 전면 현지화; 세이브 가져오기/내보내기 수정; 시작 시 전체 화면; 세로 화면 UI 재설계.
@@ -151,8 +143,6 @@ Product features
 · Seis idiomas: 中文/English/日本語/한국어/Español/Deutsch
 · Un jugador totalmente offline. Sin compras, sin anuncios.
 
-Search terms
-tres reinos, poker, texas holdem, estrategia, cartas, offline
 
 What's new (1.0.4)
 Localización completa en seis idiomas; correcciones de importación/exportación de partidas; pantalla completa al iniciar; rediseño de la interfaz vertical.
@@ -178,8 +168,6 @@ Product features
 · Sechs Sprachen: 中文/English/日本語/한국어/Español/Deutsch
 · Komplett offline. Keine Käufe, keine Werbung.
 
-Search terms
-drei reiche, poker, texas holdem, strategie, karten, offline
 
 What's new (1.0.4)
 Vollständige Lokalisierung in sechs Sprachen; Korrekturen beim Speicher-Import/Export; Vollbild beim Start; überarbeitetes Hochformat-UI.
