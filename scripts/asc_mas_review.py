@@ -188,7 +188,10 @@ def get_or_create_version(mkt):
 
 
 def remove_active_submission(vid, state):
-    if state not in ("WAITING_FOR_REVIEW", "IN_REVIEW"):
+    # Apple 状态机:仅 WAITING_FOR_REVIEW 允许开发者撤回;IN_REVIEW 撤回会被拒
+    if state != "WAITING_FOR_REVIEW":
+        print(f"remove_from_review skipped: state={state} "
+              "(only WAITING_FOR_REVIEW is removable; IN_REVIEW must run its course)")
         return
     subs = []
     # 路径0: 版本资源自身 relationships 块(GET_INSTANCE 允许)

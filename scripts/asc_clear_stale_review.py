@@ -8,9 +8,10 @@
 
 本脚本(幂等,纯 stdlib):
   1. 列出 MAC_OS 平台 appStoreVersions
-  2. 对 state ∈ {WAITING_FOR_REVIEW, IN_REVIEW, DEVELOPER_REJECTED 之外的在审态}
-     且 versionString != SAN_VERSION 的版本:DELETE 其 appStoreVersionSubmission
-     (官方 remove-from-review),轮询至状态翻转(最长 120s)
+  2. 对 state == WAITING_FOR_REVIEW 且 versionString != SAN_VERSION 的版本:
+     DELETE 其 appStoreVersionSubmission(官方 remove-from-review),轮询至状态翻转(最长 120s)
+  3. IN_REVIEW 状态**不允许撤回**(Apple 状态机禁止,DELETE 会 409/403)——
+     跳过并警告,等 Apple 审核翻转后下轮发版自然通过
 
 Env: SAN_API_KEY_ID / SAN_API_ISSUER / SAN_API_KEY_P8
      SAN_VERSION = 本次发布的营销版本(如 1.0.4);旧版本在审即撤回
@@ -36,11 +37,20 @@ def main():
     s, r = call("GET", f"/v1/apps/{APP_ID}/appStoreVersions?filter[platform]=MAC_OS&limit=20")
     if s != 200:
         print(f"::error::list versions {s}"); sys.exit(1)
-    stale = [v for v in r.get("data", [])
-             if v["attributes"].get("versionString") != keep
-             and v["attributes"].get("appStoreState") in {"WAITING_FOR_REVIEW", "IN_REVIEW"}]
+    blocked = [v for v in r.get("data", [])
+               if v["attributes"].get("versionString") != keep
+               and v["attributes"].get("appStoreState") in {"WAITING_FOR_REVIEW", "IN_REVIEW"}]
+    stale = [v for v in blocked if v["attributes"].get("appStoreState") == "WAITING_FOR_REVIEW"]
+    for v in blocked:
+        if v["attributes"].get("appStoreState") == "IN_REVIEW":
+            print(f"::warning::v{v['attributes'].get('versionString')} is IN_REVIEW — "
+                  "Apple forbids removal; skipping (will unblock when review completes)")
     if not stale:
-        print("no stale mac review submissions; nothing to do"); return
+        if blocked:
+            print("only IN_REVIEW blockers remain; nothing removable")
+        else:
+            print("no stale mac review submissions; nothing to do")
+        return
     for v in stale:
         ver = v["attributes"]["versionString"]; vid = v["id"]
         s2, r2 = call("GET", f"/v1/appStoreVersions/{vid}/appStoreVersionSubmissions?limit=1")
