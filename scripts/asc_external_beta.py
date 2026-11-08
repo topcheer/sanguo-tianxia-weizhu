@@ -81,6 +81,14 @@ def main():
         print(f"::error::no VALID builds for {ver} (states: " +
               ",".join(b["attributes"].get("processingState", "?") for b in r.get("data", [])) + ")")
         sys.exit(1)
+    # 双平台齐备门禁:iOS 与 macOS 各须有 VALID build 才继续。
+    # 否则先到的一方提交完就收口,晚到的 mac build 永远没人挂组/提审(1.0.3 实际发生)。
+    plats = {b["attributes"].get("platform") for b in builds}
+    missing = {"IOS", "MAC_OS"} - plats
+    if missing:
+        print(f"::error::VALID builds missing platforms {sorted(missing)} "
+              f"(have {sorted(plats)}); waiting for both iOS+macOS")
+        sys.exit(1)
     s, r = call("GET", f"/v1/betaGroups?filter[name]={group}&limit=5")
     gid = r["data"][0]["id"] if s == 200 and r.get("data") else None
     if not gid:
@@ -89,19 +97,24 @@ def main():
     have = {b["id"] for b in r.get("data", [])}
     for b in builds:
         bid = b["id"]
+        plat = b["attributes"].get("platform", "?")
         if bid not in have:
             s, _ = call("POST", f"/v1/betaGroups/{gid}/relationships/builds",
                         {"data": [{"type": "builds", "id": bid}]})
-            print(f"attach {bid[:8]} -> {group}: {s}" + (" (already attached)" if s in (409,) else ""))
+            print(f"attach {plat} {bid[:8]} -> {group}: {s}" + (" (already attached)" if s == 409 else ""))
+            if s not in (200, 201, 409):
+                print(f"::error::attach {plat} {bid[:8]} failed {s}"); sys.exit(1)
         s, r = call("GET", f"/v1/betaAppReviewSubmissions?filter[build]={bid}&limit=5")
         states = [x["attributes"].get("betaReviewState") for x in r.get("data", [])]
         if states:
-            print(f"build {bid[:8]} review already: {states}")
+            print(f"build {plat} {bid[:8]} review already: {states}")
             continue
         s, _ = call("POST", "/v1/betaAppReviewSubmissions",
                     {"data": {"type": "betaAppReviewSubmissions",
                               "relationships": {"build": {"data": {"type": "builds", "id": bid}}}}})
-        print(f"submit {bid[:8]} for beta review: {s}" + (" (already submitted)" if s == 422 else ""))
+        print(f"submit {plat} {bid[:8]} for beta review: {s}" + (" (already submitted)" if s == 422 else ""))
+        if s not in (201, 422):
+            print(f"::error::submit {plat} {bid[:8]} failed {s}"); sys.exit(1)
     print("EXTERNAL_BETA_OK")
 
 
