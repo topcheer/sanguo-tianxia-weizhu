@@ -1,6 +1,7 @@
 // generals.js —— 武将档案库:姓名只是入口,牌风才是本人
 // 每条档案:tells 签名破绽(强/弱) / barks 台词(开场/被激/暴怒/得意/爆冷/免疫) / skin 造型键 / bio 小传
 // 章节以 boss.gen 引用;境遇变化只改属性包,档案复用。配方由 chapters.lint.mjs 把守。
+import { localizeGeneral } from './i18n.js';
 
 export const GENERALS = {
   lvbu: {
@@ -793,4 +794,4 @@ export const GENERALS = {
   },
 };
 
-export const getGeneral = id => (id ? GENERALS[id] || null : null);
+export const getGeneral = id => (id && GENERALS[id] ? localizeGeneral(GENERALS[id], id) : null);

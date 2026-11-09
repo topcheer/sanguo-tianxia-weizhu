@@ -1,6 +1,7 @@
 // briefing.js —— 每场牌局前的史诗战书;只呈现与返回选择,不写剧情结果
 import { briefingFor } from './story-data/runtime.js';
 import { portraitImage } from './portrait.js';
+import { t, localizeChapter } from './i18n.js';
 
 const $ = id => document.getElementById(id);
 
@@ -94,31 +95,47 @@ export function createBattleBriefing({ audio, reduced = false } = {}) {
     const text = brief.battle;
     const opponentLabel = roster.length > 1 ? `${primary.name} 等 ${roster.length} 将` : primary.name;
 
+    const currentLang = document.documentElement.getAttribute('lang') || 'zh-CN';
+    const seal = $('briefingSeal');
+    if (seal) seal.textContent = currentLang === 'en' ? 'WAR' : (currentLang === 'ja' ? '戦' : (currentLang === 'zh-TW' ? '戰' : '战'));
+
     if (practice) {
-      $('briefingKicker').textContent = `${practice.year} · ${practice.name} · 野战战书`;
-      $('briefingRound').textContent = `${roster.length + 1} 人同桌 · 军资各 ${roster[0].stack}`;
-      $('briefingBack').textContent = '返回选关';
+      $('briefingKicker').textContent = `${practice.year || ''} · ${practice.name} · ${t('briefing.typePractice') || '野战战书'}`;
+      $('briefingRound').textContent = t('briefing.roundPractice', { count: roster.length + 1, stack: roster[0].stack }) || `${roster.length + 1} 人同桌 · 军资各 ${roster[0].stack}`;
+      $('briefingBack').textContent = t('briefing.backSelect') || '返回选关';
     } else {
-      $('briefingKicker').textContent = `${chapter.year || '残卷深处'} · ${chapter.name} · ${revive ? '回马战书' : boss ? '关底战书' : '遭遇战书'}`;
-      $('briefingRound').textContent = revive ? '七进七出 · 回马再战' : rounds > 1 ? `第 ${round} / ${rounds} 阵 · 军资相随` : boss ? '关底决胜 · 胜则改页' : '行军遭遇 · 败亦入卷';
-      $('briefingBack').textContent = '返回行军';
+      const kickerType = revive ? (t('briefing.typeRevive') || '回马战书') : boss ? (t('briefing.typeBoss') || '关底战书') : (t('briefing.typeSkirmish') || '遭遇战书');
+      $('briefingKicker').textContent = `${chapter.year || t('toc.deepScroll') || '残卷深处'} · ${chapter.name} · ${kickerType}`;
+      $('briefingRound').textContent = revive
+        ? (t('briefing.roundRevive') || '七进七出 · 回马再战')
+        : rounds > 1
+          ? (t('briefing.roundMulti', { round, rounds }) || `第 ${round} / ${rounds} 阵 · 军资相随`)
+          : boss
+            ? (t('briefing.roundBoss') || '关底决胜 · 胜则改页')
+            : (t('briefing.roundSkirmish') || '行军遭遇 · 败亦入卷');
+      $('briefingBack').textContent = t('briefing.backMarch') || '返回行军';
     }
     $('briefingEra').textContent = brief.era;
     $('briefingSource').textContent = brief.source;
     title.textContent = text.title;
-    $('briefingPlace').textContent = `战地 · ${practice ? practice.place : node.name}`;
+    const placeName = practice ? practice.place : (node.name || '');
+    $('briefingPlace').textContent = t('briefing.battleground', { place: placeName }) || `战地 · ${placeName}`;
     $('briefingReason').textContent = text.why;
     $('briefingWin').textContent = text.win;
     $('briefingLoss').textContent = text.loss;
     const ruleText = practice ? practice.ruleText : chapter.ruleText;
     $('briefingRule').textContent = ruleText || '';
     $('briefingRule').classList.toggle('hidden', !ruleText);
-    $('briefingEnterDetail').textContent = `进入牌桌 · 对战${opponentLabel}`;
-    $('briefingRoster').innerHTML = roster.map((member, index) => `
+    $('briefingEnterDetail').textContent = t('briefing.enterDetail', { opponent: opponentLabel }) || `进入牌桌 · 对战${opponentLabel}`;
+    $('briefingRoster').innerHTML = roster.map((member, index) => {
+      const enemyType = practice ? (t('briefing.enemyPractice') || '野战敌将') : boss ? (t('briefing.enemyBoss') || '关底敌将') : (t('briefing.enemySkirmish') || '遭遇敌将');
+      const chipTxt = t('briefing.chips', { stack: member.stack }) || `军资 ${member.stack}`;
+      return `
       <article class="briefing-enemy">
         <div class="briefing-enemy-art">${portraitImage(member.skin)}<span>${index + 1}</span></div>
-        <div><b>${member.name}</b><small>${practice ? '野战敌将' : boss ? '关底敌将' : '遭遇敌将'} · 军资 ${member.stack}</small></div>
-      </article>`).join('');
+        <div><b>${member.name}</b><small>${enemyType} · ${chipTxt}</small></div>
+      </article>`;
+    }).join('');
 
     const backgrounds = [...document.querySelectorAll('.screen')]
       .filter(screen => !screen.classList.contains('hidden'))

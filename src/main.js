@@ -1,6 +1,5 @@
 // main.js —— 主流程:开卷 → 目录 → 翻页题记 → 天时 → 行军图 → 战役 → 结算 → 目录
 import { startBackdrop, wait } from './fx2d.js';
-import { i18n, LANGUAGES, applyTranslations } from './i18n.js';
 import { AudioFX } from './audio.js';
 import { createOpponent } from './character.js';
 import { startBattle } from './battle.js';
@@ -25,6 +24,7 @@ import { createOddsPanel } from './odds-panel.js';
 import {
   storyFor, mapSceneFor, introFor, outcomeFor, markSceneSeen, sceneSeen, choiceFor,
 } from './story-engine.js';
+import { t, getLocale, setLocale, translatePage, onLocaleChange } from './i18n.js';
 
 const $ = id => document.getElementById(id);
 window.addEventListener('error', e => { $('errBox').textContent += e.message + '\n'; });
@@ -35,6 +35,27 @@ initRuntimeInfo();
 watchRuntimeVersion();
 document.getElementById('forceRefresh')?.addEventListener('click', () => { void forceReloadLatest(); });
 initFullscreen($('fullscreenToggle'));
+
+// 初始化多语言界面与切换监听
+translatePage();
+document.querySelectorAll('.lang-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const locale = btn.dataset.locale;
+    setLocale(locale);
+  });
+});
+onLocaleChange(() => {
+  if (!$('scroll').classList.contains('hidden')) {
+    SC.renderCodex(P, openChapterPage, enterPractice);
+  }
+  if ($('page') && !$('page').classList.contains('hidden') && currentChapter) {
+    renderChapterPage(currentChapter);
+  }
+  if ($('practice') && !$('practice').classList.contains('hidden')) {
+    renderPractice(P, startPracticeArena);
+  }
+});
+
 const audio = new AudioFX();
 const oppChar = createOpponent($('oppChar'));
 const oddsPanel = createOddsPanel();
@@ -47,13 +68,13 @@ const ui = {
   setStacks(you, opp) { $('youStack').textContent = you; oppChar.setStack(opp); },
   setPot(n) { $('potNum').textContent = n; },
   setBlind(t) { $('blindLabel').textContent = t; },
-  setHand(t) { $('handLabel').textContent = '当前牌型 ' + t; },
+  setHand(str) { $('handLabel').textContent = t('poker.handDesc.lead') + ' ' + (str || t('poker.handDesc.none')); },
   setSeed(t) { $('seedVal').textContent = t; },
   setTilt(n) { oppChar.setTilt(n); },
-  setPlayerName(n) { $('youName').textContent = n || '你'; },
-  setTauntLabel(t) { $('tauntBtn').textContent = t || '攻 心'; },
+  setPlayerName(n) { $('youName').textContent = n || t('app.playerName', { default: '你' }); },
+  setTauntLabel(lbl) { $('tauntBtn').textContent = lbl || t('poker.actions.taunt'); },
   enableTaunt(v) { $('tauntBtn').disabled = !v; },
-  clearCodex() { $('codexList').innerHTML = '<li class="empty">尚无记录 —— 盯住他的手。</li>'; },
+  clearCodex() { $('codexList').innerHTML = `<li class="empty">${t('battle.emptyLog')}</li>`; },
   codexAdd(html) {
     const list = $('codexList');
     list.querySelector('.empty')?.remove();
@@ -98,9 +119,11 @@ const ui = {
       for (const b of fresh) {
         const act = b.dataset.act;
         b.style.display = vis[act] ? '' : 'none';
-        if (act === 'call') b.innerHTML = toCall >= stack ? `全压跟注 <b>${stack}</b>` : `跟注 <b>${toCall}</b>`;
-        if (act === 'raise') b.textContent = toCall > 0 ? '加注' : '下注';
-        if (act === 'allin') b.innerHTML = `全 压 <b>${stack}</b>`;
+        if (act === 'fold') b.textContent = t('poker.actions.fold');
+        if (act === 'check') b.textContent = t('poker.actions.check');
+        if (act === 'call') b.innerHTML = toCall >= stack ? `${t('poker.actions.allInCall')} <b>${stack}</b>` : `${t('poker.actions.call')} <b>${toCall}</b>`;
+        if (act === 'raise') b.textContent = toCall > 0 ? t('poker.actions.raise') : t('poker.actions.bet');
+        if (act === 'allin') b.innerHTML = `${t('poker.actions.allIn')} <b>${stack}</b>`;
         b.addEventListener('click', () => {
           if (act === 'raise') {
             raiseOpts.innerHTML = '';
@@ -112,7 +135,7 @@ const ui = {
               raiseOpts.appendChild(pb);
             }
             const cancel = document.createElement('button');
-            cancel.textContent = '返回';
+            cancel.textContent = t('poker.actions.cancel');
             cancel.addEventListener('click', () => raiseOpts.classList.add('hidden'));
             raiseOpts.appendChild(cancel);
           } else {
@@ -201,28 +224,6 @@ function closeSettings() {
   $('settingsToggle').focus({ preventScroll: true });
 }
 syncSettings();
-// 六语言:按钮组 + 切换后全量重刷静态文案(动态文案由各自模块在 language-change 时重渲染)
-function renderLangButtons() {
-  const box = $('langButtons');
-  if (!box) return;
-  box.innerHTML = '';
-  for (const { code, name } of LANGUAGES) {
-    const b = document.createElement('button');
-    b.type = 'button';
-    b.className = 'lang-btn' + (code === i18n.language ? ' active' : '');
-    b.textContent = name;
-    b.setAttribute('aria-pressed', code === i18n.language ? 'true' : 'false');
-    b.addEventListener('click', () => {
-      i18n.setLanguage(code);
-      renderLangButtons();
-      applyTranslations();
-    });
-    box.appendChild(b);
-  }
-}
-renderLangButtons();
-applyTranslations();
-window.addEventListener('app-language-change', () => renderLangButtons());
 $('settingsToggle').addEventListener('click', () => {
   syncSettings();
   $('settingsModal').classList.remove('hidden');
@@ -337,7 +338,9 @@ function enterPractice() {
   renderPractice(P, startPracticeArena);
 }
 
+let currentChapter = null;
 function renderChapterPage(chapter) {
+  currentChapter = chapter;
   const ov = SC.causalFor(P, chapter); // 页间因果:前页改写,此页题记随变
   const alt = chapter.id === 'wuzhangyuan' && SC.isYeshi(SC.pageState(P, 'wuzhangyuan'));
   const begin = (asZhuge) => async () => {
@@ -417,7 +420,8 @@ function startMarch(chapter, omenFx, { asZhuge = false } = {}) {
       R.current = R.nodes[targetIndex - 1]?.id || null;
     }
   }
-  $('marchTitle').textContent = `行 军 图 · ${chapter.name}`;
+  const mapTitle = t('map.title') || '行 军 图';
+  $('marchTitle').textContent = `${mapTitle} · ${chapter.name}`;
   show('map');
   map.render();
   onboarding.tip('map');

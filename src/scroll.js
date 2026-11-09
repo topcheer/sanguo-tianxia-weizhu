@@ -6,6 +6,7 @@ import { normalizeStoryState, coldOpenFor, storyFor, speakerName, outcomeVariant
 import { chapterEncounters } from './encounters.js';
 import { renderPracticeGate } from './practice.js';
 import { briefingFor } from './story-data/runtime.js';
+import { t, localizeChapter } from './i18n.js';
 
 const $ = id => document.getElementById(id);
 export const SAVE_KEY = 'yxj_v1';
@@ -69,16 +70,20 @@ export function finaleUnlocked(p) {
 
 // ---------------- 目录 ----------------
 const STATE_MARK = { unread: '○', history: '原', yeshi: '野', yeshiB: '野', yeshiAB: '全' };
+const STATE_MARK_EN = { unread: '○', history: 'L', yeshi: 'F', yeshiB: 'F', yeshiAB: '★' };
 // onPractice:野战练习场入口(与正史各卷并列,永不上锁)
 export function renderCodex(p, onPick, onPractice = null) {
-  $('codexProgress').innerHTML =
-    `已改写 <b>${yeshiCount(p)}</b> / ${NORMAL_IDS.length} 页` +
-    (finaleUnlocked(p) ? ' · <b class="gold">最后一页已现</b>' : '');
+  const currentLang = document.documentElement.getAttribute('lang') || 'zh-CN';
+  const progressText = t('scroll.rewrittenCount', { count: yeshiCount(p), total: NORMAL_IDS.length }) || `已改写 <b>${yeshiCount(p)}</b> / ${NORMAL_IDS.length} 页`;
+  const finaleText = finaleUnlocked(p) ? ` · <b class="gold">${t('scroll.finaleUnlocked') || '最后一页已现'}</b>` : '';
+  $('codexProgress').innerHTML = progressText + finaleText;
   const apoc = $('apocBtn');
   if (apoc) { // 残卷无终稿:通关(问过写卷人)后开放
     const open = !!(p.endings && p.endings.length);
     apoc.style.display = open ? '' : 'none';
-    apoc.textContent = `残卷无终稿${p.apocWins ? ` · 已胜 ${p.apocWins} 页` : ''}`;
+    const apocTitle = t('scroll.apocryphaTitle') || '残卷无终稿';
+    const apocWins = p.apocWins ? ` · ${t('scroll.apocryphaWins', { count: p.apocWins }) || `已胜 ${p.apocWins} 页`}` : '';
+    apoc.textContent = `${apocTitle}${apocWins}`;
   }
   const box = $('scrollList');
   box.innerHTML = '';
@@ -87,17 +92,19 @@ export function renderCodex(p, onPick, onPractice = null) {
     const group = document.createElement('div');
     group.className = 'scrollGroup' + (unlocked ? '' : ' locked');
     group.dataset.scroll = s;
-    const title = s === 5 ? '最后一页' : `卷${'一二三四'[s - 1]} · ${SCROLLS[s - 1]}`;
+    const scrollKeys = ['scroll1', 'scroll2', 'scroll3', 'scroll4'];
+    const title = s === 5 ? (t('toc.lastPage') || '最后一页') : (t(`toc.${scrollKeys[s - 1]}`) || `卷${'一二三四'[s - 1]} · ${SCROLLS[s - 1]}`);
     group.innerHTML = `<h3 class="scrollHead">${unlocked ? title : title + ' 🔒'}</h3>`;
     const row = document.createElement('div');
     row.className = 'chips';
     for (const c of CHAPTERS.filter(c => c.scroll === s)) {
+      const locChap = getChapter(c.id) || c;
       const st = pageState(p, c.id);
       const b = document.createElement('button');
       b.className = `chip st-${isYeshi(st) ? 'yeshi' : st}` + (unlocked ? '' : ' locked');
       b.dataset.ch = c.id;
-      b.innerHTML = `<i>${STATE_MARK[st] || '○'}</i>${c.name}`;
-      if (unlocked) b.addEventListener('click', () => onPick(c));
+      b.innerHTML = `<i>${(currentLang === 'en' ? STATE_MARK_EN : STATE_MARK)[st] || '○'}</i>${locChap.name}`;
+      if (unlocked) b.addEventListener('click', () => onPick(locChap));
       row.appendChild(b);
     }
     group.appendChild(row);
@@ -108,8 +115,9 @@ export function renderCodex(p, onPick, onPractice = null) {
 
 // ---------------- 翻页题记 ----------------
 // opts: { premise, note } 因果覆盖;{ alt: { label, start } } 追加入口(执子之手)
-export function renderPage(chapter, onStart, onBack, opts = {}) {
-  $('pageYear').textContent = chapter.year ? chapter.year : '残卷深处';
+export function renderPage(rawChapter, onStart, onBack, opts = {}) {
+  const chapter = localizeChapter(rawChapter);
+  $('pageYear').textContent = chapter.year ? chapter.year : (t('toc.deepScroll') || '残卷深处');
   $('pageName').textContent = chapter.name;
   $('pagePremise').textContent = opts.premise || chapter.premise;
   const brief = briefingFor(chapter);
@@ -136,9 +144,20 @@ export function renderPage(chapter, onStart, onBack, opts = {}) {
   $('pageObjective').classList.toggle('hidden', !story?.objective);
   const siblings = CHAPTERS.filter(c => c.scroll === chapter.scroll);
   const ordinal = siblings.findIndex(c => c.id === chapter.id) + 1;
-  $('pageFolio').textContent = chapter.apocrypha ? '无终稿 · 随机外传'
-    : chapter.type === 'finale' ? '最后一页 · 写卷人'
-      : `卷${'一二三四'[chapter.scroll - 1] || ''} · 第 ${ordinal} 回`;
+  const scrollRoman = ['I', 'II', 'III', 'IV'][chapter.scroll - 1] || chapter.scroll;
+  const scrollKanji = ['一', '二', '三', '四'][chapter.scroll - 1] || chapter.scroll;
+  const currentLang = document.documentElement.getAttribute('lang') || 'zh-CN';
+
+  if (chapter.apocrypha) {
+    $('pageFolio').textContent = t('page.folioApocrypha') || '无终稿 · 随机外传';
+  } else if (chapter.type === 'finale') {
+    $('pageFolio').textContent = t('page.folioFinale') || '最后一页 · 写卷人';
+  } else {
+    $('pageFolio').textContent = t('page.folio', {
+      scroll: currentLang === 'en' ? scrollRoman : scrollKanji,
+      ordinal
+    }) || `卷${scrollKanji} · 第 ${ordinal} 回`;
+  }
   const route = $('pageRoute');
   route.innerHTML = '';
   (chapter.map || []).forEach((place, i) => {
@@ -148,14 +167,34 @@ export function renderPage(chapter, onStart, onBack, opts = {}) {
   const start = $('openPage'), back = $('pageBack'), alt = $('pageAlt');
   const s2 = start.cloneNode(true), b2 = back.cloneNode(true), a2 = alt.cloneNode(true);
   start.replaceWith(s2); back.replaceWith(b2); alt.replaceWith(a2);
+  s2.textContent = t('page.depart') || '启 程';
+  b2.textContent = t('page.back') || '回目录';
   s2.addEventListener('click', onStart);
   b2.addEventListener('click', onBack);
   if (opts.alt) {
     a2.classList.remove('hidden');
-    a2.textContent = opts.alt.label;
+    a2.textContent = opts.alt.label || t('page.alt');
     a2.addEventListener('click', opts.alt.start);
   } else {
     a2.classList.add('hidden');
+  }
+  const pageSeal = $('pageDividerSeal');
+  if (pageSeal) pageSeal.textContent = currentLang === 'en' ? 'IF' : '若';
+  const pageStamp = $('pageStamp');
+  if (pageStamp) pageStamp.textContent = currentLang === 'en' ? 'FATE' : '改';
+  const histLabel = $('pageHistoryLabel');
+  if (histLabel) histLabel.textContent = t('page.historyLabel') || '史实底稿';
+  const adaptLabel = $('pageAdaptationLabel');
+  if (adaptLabel) adaptLabel.textContent = t('page.adaptationLabel') || '演义与改写';
+  const pageSpine = $('pageSpine');
+  if (pageSpine) {
+    if (currentLang === 'en') {
+      pageSpine.innerHTML = '<span>H</span><span>E</span><span>R</span><span>O</span><span>E</span><span>S</span>';
+    } else if (currentLang === 'zh-TW' || currentLang === 'ja') {
+      pageSpine.innerHTML = '<span>英</span><span>雄</span><span>記</span>';
+    } else {
+      pageSpine.innerHTML = '<span>英</span><span>雄</span><span>记</span>';
+    }
   }
 }
 
@@ -172,13 +211,19 @@ export function causalFor(p, chapter) {
 // ---------------- 天时三选 ----------------
 export function pickOmen(chapter, FX) {
   const box = $('omenBox');
-  box.innerHTML = `<h3>天 时</h3><p class="ev-story">${chapter.year || '残卷'} · ${chapter.name}<br>临行前,择一天时。</p><div class="ev-opts"></div>`;
+  const omenTitle = t('omen.title') || '天 时';
+  const omenPrompt = t('omen.prompt') || '临行前，择一天时。';
+  const yearText = chapter.year || t('toc.deepScroll') || '残卷';
+  box.innerHTML = `<h3>${omenTitle}</h3><p class="ev-story">${yearText} · ${chapter.name}<br>${omenPrompt}</p><div class="ev-opts"></div>`;
   const opts = box.querySelector('.ev-opts');
   $('omenModal').classList.remove('hidden');
   return new Promise(resolve => {
     for (const o of chapter.omens) {
       const b = document.createElement('button');
-      b.innerHTML = `${o.n} <b>${FX[o.fx].desc}</b>`;
+      const fxData = FX[o.fx] || {};
+      const fxDesc = t(`fx.${o.fx}.desc`) || fxData.desc || '';
+      const fxLabel = t(`fx.${o.fx}.label`) || o.n;
+      b.innerHTML = `${fxLabel} <b>${fxDesc}</b>`;
       b.dataset.fx = o.fx;
       b.addEventListener('click', () => { $('omenModal').classList.add('hidden'); resolve(o.fx); });
       opts.appendChild(b);
@@ -199,19 +244,22 @@ export function settle(chapter, { win, annotation, yeshiExtra, storyOutcome = nu
   hook.textContent = ''; clue.textContent = '';
   modal.classList.remove('hidden');
   choices.innerHTML = '';
+  const currentLang = document.documentElement.getAttribute('lang') || 'zh-CN';
   return new Promise(resolve => {
     const done = r => { modal.classList.add('hidden'); resolve(r); };
     if (win) {
-      stamp.textContent = '改'; stamp.className = 'stamp seal';
-      title.textContent = '你改写了这一页';
+      stamp.textContent = currentLang === 'en' ? 'FATE' : '改'; stamp.className = 'stamp seal';
+      title.textContent = t('settle.winTitle') || '你改写了这一页';
       title.style.color = '#e9d9b0';
-      his.innerHTML = `<s>原卷:${chapter.history}</s>`;
+      const origScrollLabel = t('settle.originalScroll') || '原卷';
+      const yeshiLabel = t('settle.unofficialHistory') || '野史';
+      his.innerHTML = `<s>${origScrollLabel}:${chapter.history}</s>`;
       note.textContent = '';
-      retry.style.display = 'none'; home.textContent = '回 目 录';
+      retry.style.display = 'none'; home.textContent = t('settle.home') || '回 目 录';
       const showYeshi = (text, key) => {
         const variant = outcomeVariant(storyOutcome, key);
         const outcomeText = chapter.rule?.choice && !variant ? text : (variant?.text || storyOutcome?.text || text);
-        ye.textContent = '野史:' + outcomeText;
+        ye.textContent = `${yeshiLabel}:` + outcomeText;
         ye.style.display = '';
         hook.textContent = variant?.hook || storyOutcome?.hook || '';
         note.textContent = yeshiExtra || '';
@@ -219,7 +267,7 @@ export function settle(chapter, { win, annotation, yeshiExtra, storyOutcome = nu
         home.onclick = () => done({ r: 'home', yeshiKey: key });
         nextButton.classList.toggle('hidden', !next);
         if (next) {
-          nextButton.textContent = `续读 · ${next.name}`;
+          nextButton.textContent = t('settle.continueNext', { name: next.name }) || `续读 · ${next.name}`;
           nextButton.onclick = () => done({ r: 'next', yeshiKey: key });
         }
       };
@@ -235,16 +283,17 @@ export function settle(chapter, { win, annotation, yeshiExtra, storyOutcome = nu
         showYeshi(chapter.yeshi, 'yeshi');
       }
     } else {
-      stamp.textContent = '史'; stamp.className = 'stamp dim';
-      title.textContent = '这一页,兵败';
+      stamp.textContent = currentLang === 'en' ? 'LORE' : '史'; stamp.className = 'stamp dim';
+      title.textContent = t('settle.lossTitle') || '这一页,兵败';
       title.style.color = '#c85a4a';
-      his.innerHTML = `原卷:${chapter.history}`;
+      const origScrollLabel = t('settle.originalScroll') || '原卷';
+      his.innerHTML = `${origScrollLabel}:${chapter.history}`;
       ye.style.display = 'none';
       hook.textContent = '';
       clue.textContent = storyOutcome?.clue || '';
       note.textContent = annotation || chapter.defeat;
-      retry.style.display = ''; retry.textContent = '翻页重开';
-      home.textContent = '回 目 录';
+      retry.style.display = ''; retry.textContent = t('settle.retry') || '翻页重开';
+      home.textContent = t('settle.home') || '回 目 录';
       retry.onclick = () => done({ r: 'retry' });
       home.onclick = () => done({ r: 'home' });
     }

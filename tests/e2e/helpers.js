@@ -10,6 +10,11 @@ export async function waitAppReady(page) {
 
 // 开卷:带参数进入,点「开卷」。默认落到残卷目录;?chapter= 时落到题记页
 export async function newGame(page, params = '') {
+  if (!params.includes('lang=') && !params.includes('locale=')) {
+    await page.addInitScript(() => {
+      try { localStorage.removeItem('sanguo_poker_language'); } catch {}
+    });
+  }
   const withTutorialDefault = params.includes('tutorial=') ? params : `${params}${params ? '&' : ''}tutorial=0`;
   await page.goto('/?' + withTutorialDefault);
   await waitAppReady(page);

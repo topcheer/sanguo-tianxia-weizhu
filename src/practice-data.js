@@ -6,7 +6,8 @@
 //   why 起因 / win 胜则 / loss 负则(均 12..170 字) / ruleText 规则说明(可空)
 //   stack 军资(全员等额,50 的倍数) / blinds [小盲,大盲] / escalate 每 N 手升盲
 //   opponents 对手 { gen 武将键, title 名号(≤6字), traits 六维 } 1..7 人,同桌不重复
-import { GENERALS } from './generals.js';
+import { GENERALS, getGeneral } from './generals.js';
+import { localizePracticeArena } from './i18n.js';
 
 const T = (武勇, 智谋, 诈术, 胆识, 耐性, 心性) => ({ 武勇, 智谋, 诈术, 胆识, 耐性, 心性 });
 
@@ -549,18 +550,20 @@ export const PRACTICE_TIERS = [
 ];
 
 export function getArena(id) {
-  return PRACTICE_ARENAS.find(arena => arena.id === id) || null;
+  const found = PRACTICE_ARENAS.find(arena => arena.id === id);
+  return found ? localizePracticeArena(found) : null;
 }
 
 // 牌桌所需阵容:武将档案 + 名号 + 等额军资 + 六维(供人格生成)
 export function arenaRoster(arena) {
-  return arena.opponents.map((member, index) => {
-    const gen = GENERALS[member.gen];
+  const locArena = localizePracticeArena(arena);
+  return locArena.opponents.map((member, index) => {
+    const gen = getGeneral(member.gen) || GENERALS[member.gen];
     return {
       id: index === 0 ? 'opponent' : `opponent-${index + 1}`,
       gen: member.gen,
       name: `${gen.name} · ${member.title}`,
-      stack: arena.stack,
+      stack: locArena.stack,
       traits: member.traits,
       skin: gen.skin,
     };
@@ -569,9 +572,10 @@ export function arenaRoster(arena) {
 
 // 战书所需文本:与章节战书同构,briefing 以 practice 模式直读
 export function practiceBrief(arena) {
+  const a = localizePracticeArena(arena);
   return {
-    year: arena.year, name: arena.name, place: arena.place, ruleText: arena.ruleText,
-    era: arena.era, source: arena.source, lead: arena.lead,
-    battle: { title: arena.btitle, why: arena.why, win: arena.win, loss: arena.loss },
+    year: a.year, name: a.name, place: a.place, ruleText: a.ruleText,
+    era: a.era, source: a.source, lead: a.lead,
+    battle: { title: a.btitle, why: a.why, win: a.win, loss: a.loss },
   };
 }

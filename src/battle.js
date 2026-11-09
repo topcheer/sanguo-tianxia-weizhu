@@ -7,6 +7,7 @@ import { POSE, renderSeatRoles } from './character.js';
 import { tellCategory, tellLine, INTENT_NOTES } from './tell-lines.js';
 import { battleBeatsFor, speakerName } from './story-engine.js';
 import { createOddsCalculator } from './odds-client.js';
+import { t } from './i18n.js';
 
 const $ = id => document.getElementById(id);
 const SLOTS = {
@@ -419,7 +420,8 @@ export function startBattle(opts) {
         const extra = Math.max(view.minRaise, Math.round(view.pot * f / 5) * 5);
         const amount = Math.min(view.stack, view.toCall + extra);
         if (amount > view.toCall && !presets.some(p => p.amount === amount)) {
-          presets.push({ label: f === 0.5 ? '½ 底池' : f === 1 ? '1 底池' : '2 底池', amount });
+          const potTxt = t('battle.pot');
+          presets.push({ label: f === 0.5 ? `½ ${potTxt}` : f === 1 ? `1 ${potTxt}` : `2 ${potTxt}`, amount });
         }
       }
     }
@@ -560,9 +562,10 @@ export function startBattle(opts) {
     const winner = T.liveSeats(G.H.seats)[0];
     const pot = T.potTotal(G.H.seats);
     const settled = T.settleHand(G.H);
-    if (winner.isHero && opponents.length === 1) ui.banner('他弃牌了', `底池 ${pot}`);
-    else if (hero.folded && opponents.length === 1) ui.banner('你弃牌了', `底池 ${pot}`);
-    else ui.banner(`${winner.name} 收池`, `底池 ${pot}`);
+    const potLbl = t('battle.pot');
+    if (winner.isHero && opponents.length === 1) ui.banner(t('poker.actions.fold'), `${potLbl} ${pot}`);
+    else if (hero.folded && opponents.length === 1) ui.banner(t('poker.actions.fold'), `${potLbl} ${pot}`);
+    else ui.banner(`${winner.name}`, `${potLbl} ${pot}`);
     await awardPots(settled);
     updateMorale();
     await wait(0.5);

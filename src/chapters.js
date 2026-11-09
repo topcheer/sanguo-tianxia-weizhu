@@ -1,4 +1,5 @@
 // chapters.js —— 《英雄记总目》:残卷四卷五十回 + 最后一页
+import { localizeChapter, t } from './i18n.js';
 // 内容宪法:加一回 = 加一条数据,零代码。schema 由 tests/content/chapters.lint.mjs 把守。
 //
 // 字段配方:
@@ -871,6 +872,9 @@ export const CHAPTERS = [
   },
 ];
 
-export const getChapter = id => CHAPTERS.find(c => c.id === id);
+export const getChapter = id => {
+  const found = CHAPTERS.find(c => c.id === id);
+  return found ? localizeChapter(found) : undefined;
+};
 export const GATE_IDS = CHAPTERS.filter(c => c.gate && c.scroll < 5).map(c => c.id);
 export const NORMAL_IDS = CHAPTERS.filter(c => c.scroll < 5).map(c => c.id);

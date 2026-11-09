@@ -1,11 +1,29 @@
 // poker.js —— 牌堆、洗牌(种子可验)、牌型评估、单挑 AI
 // 牌的表示:id = rank * 4 + suit。rank 0..12 即 2..A;suit 0♠ 1♥ 2♦ 3♣
 import { PREFLOP_EQUITY } from './preflop.js';
+import { t } from './i18n.js';
 
 export const SUITS = ['♠', '♥', '♦', '♣'];
 export const SUIT_RED = [false, true, true, false];
 export const RANKS = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
 export const HAND_NAMES = ['高牌', '一对', '两对', '三条', '顺子', '同花', '葫芦', '四条', '同花顺'];
+export const HAND_KEYS = [
+  'highCard',
+  'pair',
+  'twoPair',
+  'threeOfAKind',
+  'straight',
+  'flush',
+  'fullHouse',
+  'fourOfAKind',
+  'straightFlush',
+];
+
+export function getHandName(cat) {
+  const key = HAND_KEYS[cat];
+  if (!key) return HAND_NAMES[cat] || '';
+  return t(`poker.hands.${key}`) || HAND_NAMES[cat];
+}
 
 export function hashSeed(str) {
   let h = 2166136261 >>> 0;
@@ -95,7 +113,7 @@ export function evaluate7(ids) {
             if (!best || compareScore(score, best.score) > 0) best = { score, best5: hand };
           }
   best.cat = best.score[0];
-  best.name = HAND_NAMES[best.cat];
+  best.name = getHandName(best.cat);
   return best;
 }
 
@@ -106,9 +124,9 @@ export function madeName(hole, board) {
   const cnt = new Map();
   for (const id of ids) cnt.set(rankOf(id), (cnt.get(rankOf(id)) || 0) + 1);
   const mx = Math.max(...cnt.values());
-  if (mx >= 3) return '三条';
-  if (mx === 2) return '一对';
-  return '高牌';
+  if (mx >= 3) return getHandName(3);
+  if (mx === 2) return getHandName(1);
+  return getHandName(0);
 }
 
 // ---------- 起手牌强度 0..1 ----------

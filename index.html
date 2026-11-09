@@ -38,6 +38,17 @@
 <canvas id="backdrop"></canvas>
 <div id="paperGrain" aria-hidden="true"></div>
 
+<!-- 语言切换器 -->
+<nav id="langBar" class="lang-bar" aria-label="语言选择 Language Selection">
+  <button type="button" class="lang-btn active" data-locale="zh-CN">简</button>
+  <button type="button" class="lang-btn" data-locale="zh-TW">繁</button>
+  <button type="button" class="lang-btn" data-locale="ja">日</button>
+  <button type="button" class="lang-btn" data-locale="en">EN</button>
+  <button type="button" class="lang-btn" data-locale="ko">한</button>
+  <button type="button" class="lang-btn" data-locale="es">ES</button>
+  <button type="button" class="lang-btn" data-locale="de">DE</button>
+</nav>
+
 <!-- 开卷:汉末残卷 -->
 <div id="intro" class="screen">
   <div class="intro-landscape" aria-hidden="true">
@@ -53,7 +64,7 @@
     <p class="intro-era prologue-transition" id="introStep"><span>残卷</span> 英雄记 · 汉末异闻</p>
     <div class="intro-title-lock">
       <span class="intro-seal">汉</span>
-      <div><h1 data-i18n="title.name">三国：天下为注</h1><p class="sub">HEROES AT THE TABLE</p></div>
+      <div><h1>三国：天下为注</h1><p class="sub">HEROES AT THE TABLE</p></div>
     </div>
     <div class="intro-kingdoms" aria-hidden="true"><span>魏</span><i></i><span>蜀</span><i></i><span>吴</span></div>
     <div id="introNarrative" class="intro-narrative prologue-transition" aria-live="polite" aria-atomic="true">
@@ -61,11 +72,11 @@
       <p class="story" id="introStory">史书只写了沙场,没写牌桌。<br>这部残卷,记的是另一部三国。</p>
       <div class="intro-points" id="introPoints"></div>
     </div>
-    <button id="startBtn" disabled>开 卷<span data-i18n="title.startSub">展开英雄记</span></button>
+    <button id="startBtn" disabled>开 卷<span>展开英雄记</span></button>
     <div id="bootStatus" class="boot-status" data-state="loading" role="status" aria-live="polite" aria-atomic="true">
       <span class="boot-track" aria-hidden="true"><i></i></span>
       <p id="bootMessage">正在展开残卷…</p>
-      <button id="bootRetry" class="ghost hidden" type="button" data-i18n="boot.retry">重新加载</button>
+      <button id="bootRetry" class="ghost hidden" type="button">重新加载</button>
     </div>
     <button id="prologueSkip" class="intro-skip hidden">跳过背景，直接入卷</button>
     <p class="hint" id="introHint">盯住对手的手 —— 破绽比牌更值钱</p>
@@ -76,17 +87,17 @@
 <!-- 残卷目录 -->
 <div id="scroll" class="screen hidden">
   <header class="scroll-mast">
-    <div class="scroll-title-wrap"><span class="title-seal">卷</span><div><h2 class="screen-title">英 雄 记</h2><p class="screen-subtitle">以牌为刃 · 重写意难平</p></div></div>
+    <div class="scroll-title-wrap"><span class="title-seal" id="scrollTitleSeal">卷</span><div><h2 class="screen-title" data-i18n="toc.codexTitle">英 雄 记</h2><p class="screen-subtitle" data-i18n="app.subtitle">以牌为刃 · 重写意难平</p></div></div>
     <p class="runinfo" id="codexProgress"></p>
     <div id="codexTools">
-      <button id="annalsBtn" class="ghost">观 阵 录</button>
-      <button id="saveBtn" class="ghost">存 档</button>
+      <button id="annalsBtn" class="ghost" data-i18n="annals.title">观 阵 录</button>
+      <button id="saveBtn" class="ghost" data-i18n="save.title">存 档</button>
       <button id="pwaInstallBtn" class="ghost hidden" type="button">安装 App</button>
-      <button id="replayIntroBtn" class="ghost">重 温 开 卷</button>
+      <button id="replayIntroBtn" class="ghost" data-i18n="app.replayIntro">重 温 开 卷</button>
       <button id="apocBtn" class="ghost" style="display:none">残卷无终稿</button>
     </div>
   </header>
-  <div class="codex-legend"><span><i>○</i> 未读</span><span><i>原</i> 原卷已录</span><span><i>野</i> 野史已成</span><b>不必每页皆胜,败亦成章</b></div>
+  <div class="codex-legend" id="codexLegend"><span><i>○</i> <span data-i18n="scroll.unread">未读</span></span><span><i data-i18n="scroll.loreTag">原</i> <span data-i18n="scroll.lore">原卷已录</span></span><span><i data-i18n="scroll.fateTag">野</i> <span data-i18n="scroll.fate">野史已成</span></span><b data-i18n="scroll.legendMotto">不必每页皆胜,败亦成章</b></div>
   <div id="chapterLoadStatus" class="chapter-load-status hidden" data-state="loading" role="status" aria-live="polite" aria-atomic="true">
     <span id="chapterLoadMessage"></span>
     <button id="chapterLoadRetry" class="ghost hidden" type="button">重试</button>
@@ -109,32 +120,32 @@
       <header class="briefing-header briefing-reveal">
         <div class="briefing-heading">
           <p id="briefingKicker"></p>
-          <div class="briefing-title-line"><h2 id="briefingTitle" tabindex="-1"></h2><span class="briefing-seal" aria-hidden="true">战</span></div>
+          <div class="briefing-title-line"><h2 id="briefingTitle" tabindex="-1"></h2><span class="briefing-seal" id="briefingSeal" aria-hidden="true">战</span></div>
           <p class="briefing-coordinates"><span id="briefingPlace"></span><i>·</i><span id="briefingEra"></span><i>·</i><span id="briefingRound"></span></p>
         </div>
         <p class="briefing-source" id="briefingSource"></p>
       </header>
       <div class="briefing-body">
-        <aside class="briefing-opponents briefing-reveal" aria-label="当场敌阵">
-          <h3><span>对 阵</span>此席与谁争锋</h3>
+        <aside class="briefing-opponents briefing-reveal" aria-label="当场敌阵" data-i18n-aria="briefing.opponentsAria">
+          <h3><span data-i18n="briefing.opponents">对 阵</span><span data-i18n="briefing.opponentsSub">此席与谁争锋</span></h3>
           <div id="briefingRoster" class="briefing-roster"></div>
           <p id="briefingRule" class="briefing-rule hidden"></p>
         </aside>
         <div class="briefing-story briefing-reveal">
           <section class="briefing-reason">
-            <h3><span>起 因</span>为何非战不可</h3>
+            <h3><span data-i18n="briefing.reason">起 因</span><span data-i18n="briefing.reasonSub">为何非战不可</span></h3>
             <p id="briefingReason"></p>
           </section>
           <div class="briefing-stakes">
-            <section class="briefing-win"><h3><span>胜 则</span>此局之后</h3><p id="briefingWin"></p></section>
-            <section class="briefing-loss"><h3><span>负 则</span>所失为何</h3><p id="briefingLoss"></p></section>
+            <section class="briefing-win"><h3><span data-i18n="briefing.win">胜 则</span><span data-i18n="briefing.winSub">此局之后</span></h3><p id="briefingWin"></p></section>
+            <section class="briefing-loss"><h3><span data-i18n="briefing.loss">负 则</span><span data-i18n="briefing.lossSub">所失为何</span></h3><p id="briefingLoss"></p></section>
           </div>
         </div>
       </div>
       <footer class="briefing-actions briefing-reveal">
-        <button id="briefingSkip" class="ghost">略过展卷<small>保留全部战书</small></button>
-        <button id="briefingBack" class="ghost">返回行军</button>
-        <button id="briefingEnter">击鼓入席<small id="briefingEnterDetail"></small></button>
+        <button id="briefingSkip" class="ghost"><span data-i18n="briefing.skip">略过展卷</span><small data-i18n="briefing.skipSub">保留全部战书</small></button>
+        <button id="briefingBack" class="ghost" data-i18n="briefing.backMarch">返回行军</button>
+        <button id="briefingEnter"><span data-i18n="briefing.enter">击鼓入席</span><small id="briefingEnterDetail"></small></button>
       </footer>
     </article>
   </div>
@@ -143,18 +154,18 @@
 <!-- 翻页题记 -->
 <div id="page" class="screen hidden">
   <div class="page-book">
-    <div class="page-spine" aria-hidden="true"><span>英</span><span>雄</span><span>记</span></div>
+    <div class="page-spine" aria-hidden="true" id="pageSpine"><span>英</span><span>雄</span><span>记</span></div>
     <div class="page-content">
       <div class="page-inner">
         <p class="page-folio" id="pageFolio">残卷章回</p>
         <p class="page-year" id="pageYear"></p>
         <h2 class="page-name" id="pageName"></h2>
-        <div class="page-divider"><i></i><span>若</span><i></i></div>
+        <div class="page-divider"><i></i><span id="pageDividerSeal">若</span><i></i></div>
         <p class="page-premise" id="pagePremise"></p>
         <section class="page-history" id="pageHistory" aria-label="本回史实与改编">
-          <div class="page-history-heading"><span>史实底稿</span><b id="pageEra"></b><small id="pageSource"></small></div>
+          <div class="page-history-heading"><span id="pageHistoryLabel" data-i18n="page.historyLabel">史实底稿</span><b id="pageEra"></b><small id="pageSource"></small></div>
           <p id="pageRecord"></p>
-          <div class="page-adaptation"><span>演义与改写</span><p id="pageAdaptation"></p></div>
+          <div class="page-adaptation"><span id="pageAdaptationLabel" data-i18n="page.adaptationLabel">演义与改写</span><p id="pageAdaptation"></p></div>
           <p class="page-lead" id="pageLead"></p>
         </section>
         <div class="page-cast" id="pageCast"></div>
@@ -165,25 +176,25 @@
         <div id="pageRoute" class="page-route"></div>
       </div>
       <div class="page-actions">
-        <button id="openPage">启 程</button>
-        <button id="pageAlt" class="ghost hidden">执子之手</button>
-        <button id="pageBack" class="ghost">回目录</button>
+        <button id="openPage" data-i18n="page.depart">启 程</button>
+        <button id="pageAlt" class="ghost hidden" data-i18n="page.alt">执子之手</button>
+        <button id="pageBack" class="ghost" data-i18n="page.back">回目录</button>
       </div>
     </div>
-    <span class="page-stamp" aria-hidden="true">改</span>
+    <span class="page-stamp" aria-hidden="true" id="pageStamp" data-i18n="page.stamp">改</span>
   </div>
 </div>
 
 <!-- 行军图 -->
 <div id="map" class="screen hidden">
   <header class="map-mast">
-    <div><p class="map-kicker">军令所至</p><h2 class="screen-title" id="marchTitle">行 军 图</h2></div>
-    <p class="runinfo">军资 <b id="runChips">1000</b> <span class="sep">·</span> <span id="marchInfo"></span></p>
+    <div><p class="map-kicker" data-i18n="map.kicker">军令所至</p><h2 class="screen-title" id="marchTitle" data-i18n="map.title">行 军 图</h2></div>
+    <p class="runinfo"><span data-i18n="map.chest">军资</span> <b id="runChips">1000</b> <span class="sep">·</span> <span id="marchInfo"></span></p>
   </header>
   <div class="map-roller top" aria-hidden="true"></div>
   <svg id="mapSvg" viewBox="0 0 1000 420" preserveAspectRatio="xMidYMid meet"></svg>
   <div class="map-roller bottom" aria-hidden="true"></div>
-  <div id="mapHint"><span data-i18n="map.badge">军令</span> <span data-i18n="map.hint">择亮起之处而行</span> <i data-i18n="map.hint2">胜则改史 · 败亦入卷</i></div>
+  <div id="mapHint"><span data-i18n="map.order">军令</span> <span data-i18n="map.hintText">择亮起之处而行</span> <i data-i18n="map.hintSub">胜则改史 · 败亦入卷</i></div>
 </div>
 
 <!-- 帐中对局 -->
@@ -192,34 +203,34 @@
     <div class="tent-lines" aria-hidden="true"></div>
     <div id="oppChar"></div>
     <div id="table">
-      <div class="felt-emblem">天下为注<span>一 局 定 三 分</span></div>
+      <div class="felt-emblem" id="feltEmblem"><span id="feltMain" data-i18n="battle.emblemMain">天下为注</span><span id="feltSub" data-i18n="battle.emblemSub">一 局 定 三 分</span></div>
       <div id="cardLayer"></div>
       <div class="stack" id="stPot"></div>
       <div class="stack" id="stBetP"></div>
       <div class="stack" id="stBetO"></div>
       <div class="stack" id="stStackP"></div>
       <div class="stack" id="stStackO"></div>
-      <div id="deckEl"><div class="back-sig">汉</div></div>
+      <div id="deckEl"><div class="back-sig" id="deckSig">汉</div></div>
       <div id="dealerBtn">庄</div>
     </div>
 
     <div id="youPlate" class="plate">
-      <span id="playerRoles" class="seat-roles hidden" aria-label="你的席位角色"></span>
-      <span class="pname" id="youName">你</span>
+      <span id="playerRoles" class="seat-roles hidden" aria-label="你的席位角色" data-i18n-aria="battle.seatRoles"></span>
+      <span class="pname" id="youName" data-i18n="battle.you">你</span>
       <span class="pstack" id="youStack">1000</span>
-      <span id="playerFoldStatus" class="player-fold-status hidden">已弃牌 · 观战</span>
+      <span id="playerFoldStatus" class="player-fold-status hidden" data-i18n="battle.folded">已弃牌 · 观战</span>
     </div>
-    <div id="potLabel">底 池 <b id="potNum">0</b></div>
+    <div id="potLabel"><span id="potLabelText" data-i18n="battle.pot">底 池</span> <b id="potNum">0</b></div>
     <div id="blindLabel"></div>
     <div id="handLabel">当前牌型 —</div>
     <div id="luckLabel"><span class="dot"></span>运势 · 平</div>
     <div id="seedLabel">种子 <b id="seedVal">—</b> <a id="verifyBtn">验牌</a></div>
-    <div id="playerCardsHint" class="hidden">点击手牌可拿起看</div>
+    <div id="playerCardsHint" class="hidden" data-i18n="battle.cardsHint">点击手牌可拿起看</div>
 
-    <aside id="oddsPanel" class="hidden" data-state="idle" aria-label="局势分析">
-      <div class="odds-panel-heading"><h3>局 势</h3><span id="oddsStatus">等待手牌</span></div>
+    <aside id="oddsPanel" class="hidden" data-state="idle" aria-label="局势分析" data-i18n-aria="odds.aria">
+      <div class="odds-panel-heading"><h3 data-i18n="odds.heading">局 势</h3><span id="oddsStatus">等待手牌</span></div>
       <div class="odds-primary" aria-live="polite" aria-atomic="true">
-        <div class="odds-win-block"><span>胜率</span><strong id="oddsWin">—</strong></div>
+        <div class="odds-win-block"><span data-i18n="odds.winRate">胜率</span><strong id="oddsWin">—</strong></div>
         <div class="odds-submetrics">
           <span>平分 <b id="oddsTie">—</b></span>
           <span id="oddsShareWrap">期望份额 <b id="oddsShare">—</b></span>
@@ -243,14 +254,14 @@
     </aside>
 
     <div id="actions" class="hidden">
-      <button data-act="fold" data-i18n="action.fold">弃牌</button>
-      <button data-act="check" data-i18n="action.check">过牌</button>
-      <button data-act="call" data-i18n="action.call">跟注</button>
-      <button data-act="raise" data-i18n="action.raise">加注</button>
-      <button data-act="allin" data-i18n="action.allin">全压</button>
+      <button data-act="fold">弃牌</button>
+      <button data-act="check">过牌</button>
+      <button data-act="call">跟注</button>
+      <button data-act="raise">加注</button>
+      <button data-act="allin">全压</button>
     </div>
     <div id="raiseOpts" class="hidden"></div>
-    <button id="tauntBtn" data-i18n="battle.gongxin" disabled>攻 心</button>
+    <button id="tauntBtn" disabled>攻 心</button>
 
     <div id="banner" class="hidden"><div id="bannerMain"></div><div id="bannerSub"></div></div>
     <div id="codex"><h3>破 绽 簿</h3><ul id="codexList"><li class="empty">尚无记录 —— 盯住他的手。</li></ul></div>
@@ -267,19 +278,19 @@
 <!-- 验牌弹窗 -->
 <div id="seedModal" class="modal hidden">
   <div class="modal-box">
-    <p class="modal-kicker">写卷人规矩一</p>
-    <h3>本手牌序验证</h3>
-    <p class="seedline">种子 <b id="modalSeed">—</b> · 牌堆自上而下:</p>
+    <p class="modal-kicker" data-i18n="seed.kicker">写卷人规矩一</p>
+    <h3 data-i18n="seed.title">本手牌序验证</h3>
+    <p class="seedline"><span data-i18n="seed.seedLabel">种子</span> <b id="modalSeed">—</b> · <span data-i18n="seed.deckDesc">牌堆自上而下:</span></p>
     <div id="deckOrder"></div>
-    <p class="seedline dim">同一枚种子,永远洗出同一副牌。牌可验,史可改。</p>
-    <button id="closeSeed">关 闭</button>
+    <p class="seedline dim" data-i18n="seed.motto">同一枚种子,永远洗出同一副牌。牌可验,史可改。</p>
+    <button id="closeSeed" data-i18n="seed.close">关 闭</button>
   </div>
 </div>
 
 <!-- 朱批结算:改写 / 兵败 -->
 <div id="settle" class="modal hidden">
   <div class="modal-box endbox">
-    <p class="modal-kicker">写卷人朱批</p>
+    <p class="modal-kicker" data-i18n="settle.kicker">写卷人朱批</p>
     <div id="settleStamp" class="stamp">改</div>
     <h2 id="settleTitle"></h2>
     <p id="settleHistory" class="annals"></p>
@@ -288,35 +299,35 @@
     <p id="settleClue" class="settle-clue"></p>
     <div id="settleChoices" class="ev-opts"></div>
     <p id="settleNote" class="note-line"></p>
-    <div class="end-actions"><button id="settleRetry">翻 页 重 开</button><button id="settleNext" class="hidden">续读下一回</button><button id="settleHome" class="ghost">回 目 录</button></div>
+    <div class="end-actions"><button id="settleRetry" data-i18n="settle.retry">翻 页 重 开</button><button id="settleNext" class="hidden" data-i18n="settle.next">续读下一回</button><button id="settleHome" class="ghost" data-i18n="settle.home">回 目 录</button></div>
   </div>
 </div>
 
 <!-- 终局:写卷人三问 -->
 <div id="finale" class="modal hidden">
   <div class="modal-box endbox">
-    <p class="modal-kicker">残卷终章</p>
-    <h2>最后一页</h2>
-    <p class="annals dim" id="finaleMemory">他推开手边的笔,看着你:「这一页,由你署名。」</p>
+    <p class="modal-kicker" data-i18n="finale.kicker">残卷终章</p>
+    <h2 data-i18n="finale.title">最后一页</h2>
+    <p class="annals dim" id="finaleMemory" data-i18n="finale.memory">他推开手边的笔,看着你:「这一页,由你署名。」</p>
     <div id="finaleQ" class="ev-opts"></div>
     <p id="finaleText" class="annals gold"></p>
-    <button id="finaleHome">合 上 残 卷</button>
+    <button id="finaleHome" data-i18n="finale.close">合 上 残 卷</button>
   </div>
 </div>
 
 <!-- 野战练习场:与正史并列的全屏点兵台 -->
 <div id="practice" class="screen hidden">
   <header class="practice-mast">
-    <div class="practice-title-wrap"><span class="title-seal practice-seal">野</span>
-      <div><h2 class="screen-title">野战练习场</h2><p class="screen-subtitle">沙场点兵 · 不载史册</p></div>
+    <div class="practice-title-wrap"><span class="title-seal practice-seal" id="practiceSeal">野</span>
+      <div><h2 class="screen-title" data-i18n="practice.title">野战练习场</h2><p class="screen-subtitle" data-i18n="practice.subtitle">沙场点兵 · 不载史册</p></div>
     </div>
     <div class="practice-mast-side">
       <p class="runinfo" id="practiceStats"></p>
-      <button id="practiceBack" class="ghost" type="button">回 目 录</button>
+      <button id="practiceBack" class="ghost" type="button" data-i18n="practice.returnMenu">回 目 录</button>
     </div>
   </header>
   <div class="practice-scroll">
-    <p class="practice-lead">残卷之外，另有沙场。三十三处典故，点兵即战——军资等额，胜负随手，不动正卷一页。</p>
+    <p class="practice-lead" data-i18n="practice.lead">残卷之外，另有沙场。三十三处典故，点兵即战——军资等额，胜负随手，不动正卷一页。</p>
     <div id="practiceList"></div>
   </div>
 </div>
@@ -324,30 +335,30 @@
 <!-- 观阵录(列传) -->
 <div id="annalsModal" class="modal hidden">
   <div class="modal-box annalsbox">
-    <div class="annals-heading"><div><p class="modal-kicker">识将 · 识牌</p><h3>观 阵 录</h3></div><span>见过,才有破绽可寻</span></div>
+    <div class="annals-heading"><div><p class="modal-kicker" data-i18n="annals.kicker">识将 · 识牌</p><h3 data-i18n="annals.title">观 阵 录</h3></div><span data-i18n="annals.sub">见过,才有破绽可寻</span></div>
     <div id="annalsBox"></div>
-    <button id="annalsClose">合 卷</button>
+    <button id="annalsClose" data-i18n="annals.close">合 卷</button>
   </div>
 </div>
 
 <!-- 存档备份:导出下载,导入先校验摘要再确认覆盖 -->
 <div id="saveModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="saveTitle">
   <div class="modal-box save-box">
-    <p class="modal-kicker">残卷行囊</p>
-    <h3 id="saveTitle">存档备份</h3>
-    <p class="save-intro">导出可长期保存的 JSON 文件。导入会先展示摘要，确认后才覆盖当前浏览器里的进度。</p>
+    <p class="modal-kicker" data-i18n="save.kicker">残卷行囊</p>
+    <h3 id="saveTitle" data-i18n="save.title">存档备份</h3>
+    <p class="save-intro" data-i18n="save.intro">导出可长期保存的 JSON 文件。导入会先展示摘要，确认后才覆盖当前浏览器里的进度。</p>
     <div class="save-transfer-actions">
-      <button id="saveExport" type="button">导出当前存档</button>
-      <button id="saveImportChoose" class="ghost" type="button">选择导入文件</button>
+      <button id="saveExport" type="button" data-i18n="save.export">导出当前存档</button>
+      <button id="saveImportChoose" class="ghost" type="button" data-i18n="save.import">选择导入文件</button>
       <input id="saveImportInput" type="file" accept=".json,application/json" hidden>
     </div>
     <div id="saveImportPreview" class="save-import-preview hidden">
       <p id="saveImportSummary"></p>
-      <p class="save-warning">确认后将覆盖当前进度；未结算的行军和牌局不包含在存档中。</p>
-      <button id="saveImportConfirm" type="button">覆盖并导入</button>
+      <p class="save-warning" data-i18n="save.warning">确认后将覆盖当前进度；未结算的行军和牌局不包含在存档中。</p>
+      <button id="saveImportConfirm" type="button" data-i18n="save.confirm">覆盖并导入</button>
     </div>
     <p id="saveMessage" class="save-message" role="status" aria-live="polite"></p>
-    <button id="saveClose" class="ghost" type="button">合 卷</button>
+    <button id="saveClose" class="ghost" type="button" data-i18n="save.close">合 卷</button>
   </div>
 </div>
 
@@ -356,29 +367,25 @@
   <div class="modal-box settings-box">
     <p class="modal-kicker" data-i18n="settings.kicker">帐中偏好</p>
     <h3 id="settingsTitle" data-i18n="settings.title">设 置</h3>
-    <div class="setting-row language-row" id="languageRow">
-      <span><b data-i18n="settings.language">语言 / Language</b><small data-i18n="settings.languageNote">章节文学文本以中文为准，其余语言陆续补全。</small></span>
-      <div class="lang-buttons" id="langButtons"></div>
-    </div>
     <label class="setting-row" for="equityAssist">
-      <span><b data-i18n="settings.equityAssist">局势分析</b><small data-i18n="settings.equityAssistDesc">胜率 · 听牌 outs · 终局牌型概率</small></span>
+      <span><b data-i18n="settings.equityTitle">局势分析</b><small data-i18n="settings.equitySub">胜率 · 听牌 outs · 终局牌型概率</small></span>
       <input id="equityAssist" type="checkbox" role="switch" aria-describedby="equityAssistNote">
     </label>
     <p id="equityAssistNote" class="settings-note" data-i18n="settings.equityNote">开启后显示在牌桌右侧。只根据你的手牌、公共牌和未弃牌对手数计算，不读取对手暗牌或未来牌序；设置会随存档保存。</p>
-    <button id="settingsClose" class="ghost" type="button" data-i18n="common.close">合 卷</button>
+    <button id="settingsClose" class="ghost" type="button" data-i18n="settings.close">合 卷</button>
   </div>
 </div>
 
 <aside id="coachmark" class="coachmark hidden" aria-live="polite">
-  <p class="coach-kicker">残卷初解</p><h3 id="coachTitle"></h3><p id="coachText"></p>
-  <div><button id="coachClose">知道了</button><button id="coachNever" class="ghost">不再提示</button></div>
+  <p class="coach-kicker" data-i18n="coach.kicker">残卷初解</p><h3 id="coachTitle"></h3><p id="coachText"></p>
+  <div><button id="coachClose" data-i18n="coach.ack">知道了</button><button id="coachNever" class="ghost" data-i18n="coach.never">不再提示</button></div>
 </aside>
 
 <div id="errBox"></div>
 <footer id="appVersion" class="app-version" aria-label="应用版本与服务器启动时间">
   <span id="versionNumber">v…</span><span aria-hidden="true">·</span><time id="serverStartedAt">启动时间读取中…</time>
   <button id="fullscreenToggle" class="fullscreen-toggle" type="button" aria-label="进入全屏" aria-pressed="false" title="进入浏览器全屏">全 屏</button>
-  <button id="settingsToggle" class="settings-toggle" type="button" title="对局设置">设 置</button>
+  <button id="settingsToggle" class="settings-toggle" type="button" title="对局设置" data-i18n="settings.title">设 置</button>
   <button id="forceRefresh" class="force-refresh" type="button" title="重新校验当前页面与核心程序,并刷新页面">强制刷新</button>
 </footer>
 <!-- data-cfasync 豁免 Cloudflare Rocket Loader。引导脚本不依赖任何业务模块：
@@ -425,6 +432,23 @@
     setMessage('error', '残卷加载未完成，请检查网络后重试。', true);
     console.error('应用模块加载失败', error);
   });
+})();
+</script>
+<!-- 站点统计(xiaowenz 自托管 GA-lite):内联 snippet 照抄 xiaowenz-content/ops/多站打点接入-agent指南.md。
+     core 挂掉时本站必须完全不受影响;禁止改为外链 .js / 加重试 / 删 DNT 与 try-catch。 -->
+<script>
+(function(){
+  if (navigator.doNotTrack === '1') return;           // 尊重 DNT，必须保留
+  var send = function(){
+    try {
+      var b = JSON.stringify({path: location.pathname, referrer: document.referrer});
+      if (navigator.sendBeacon('https://core.xiaowenz.com/api/pv', b)) return;
+      fetch('https://core.xiaowenz.com/api/pv', {method:'POST', body:b, keepalive:true, mode:'no-cors'});
+    } catch(e) {}                                      // 静默失败，必须保留
+  };
+  if (document.visibilityState === 'prerender')
+    addEventListener('visibilitychange', function(){ if(document.visibilityState==='visible') send(); }, {once:true});
+  else send();
 })();
 </script>
 </body>

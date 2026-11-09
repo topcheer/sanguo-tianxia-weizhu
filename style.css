@@ -1040,16 +1040,123 @@ button.ghost:hover { border-color: #b7a578; }
 .update-toast button { padding: 6px 14px; font-size: 13px; letter-spacing: .3em; }
 @keyframes update-toast-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-/* 语言选择按钮组(i18n) */
-.language-row { align-items: center; }
-.lang-buttons { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+/* ================= 多语言支持 (i18n) 样式适配 ================= */
+:root[data-lang="zh-TW"], html[lang="zh-TW"] {
+  --serif: "Noto Serif CJK TC", "LiSong Pro", "Songti TC", "BiauKai", serif;
+  --song: "Noto Serif CJK TC", "Songti TC", "LiSong Pro", serif;
+}
+
+:root[data-lang="ja"], html[lang="ja"] {
+  --serif: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif CJK JP", serif;
+  --song: "Yu Mincho", "Noto Serif CJK JP", serif;
+}
+
+:root[data-lang="en"], html[lang="en"] {
+  --serif: "Cinzel", "Baskerville", "Georgia", "Times New Roman", serif;
+  --song: "Georgia", "Baskerville", "Times New Roman", serif;
+}
+
+:root[data-lang="en"] button {
+  letter-spacing: 0.08em;
+}
+:root[data-lang="en"] .screen-title {
+  letter-spacing: 0.05em !important;
+}
+:root[data-lang="en"] .page-name {
+  letter-spacing: 0.03em !important;
+  text-indent: 0 !important;
+  text-transform: uppercase;
+  font-size: clamp(28px, 4.2vw, 44px) !important;
+  line-height: 1.25 !important;
+}
+:root[data-lang="ja"] .page-name {
+  letter-spacing: 0.08em !important;
+  text-indent: 0.08em !important;
+}
+:root[data-lang="en"] .page-spine {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+}
+:root[data-lang="en"] .page-stamp {
+  font-size: 18px !important;
+  font-weight: 700;
+}
+:root[data-lang="en"] .intro-foot,
+:root[data-lang="en"] .art-caption {
+  writing-mode: horizontal-tb !important;
+  letter-spacing: normal !important;
+}
+
+/* Pseudo-elements multi-language localization */
+:root[data-lang="en"] .page-lead::before { content: 'PROLOGUE · '; }
+:root[data-lang="ja"] .page-lead::before { content: '前置き · '; }
+:root[data-lang="zh-TW"] .page-lead::before { content: '承前 · '; }
+:root[data-lang="zh-CN"] .page-lead::before { content: '承前 · '; }
+
+:root[data-lang="en"] .page-cast span::before { content: 'COMRADE · '; }
+:root[data-lang="ja"] .page-cast span::before { content: '盟友 · '; }
+:root[data-lang="zh-TW"] .page-cast span::before { content: '故人 · '; }
+:root[data-lang="zh-CN"] .page-cast span::before { content: '故人 · '; }
+
+:root[data-lang="en"] .page-objective::before { content: 'OBJECTIVE · '; }
+:root[data-lang="ja"] .page-objective::before { content: '本頁目標 · '; }
+:root[data-lang="zh-TW"] .page-objective::before { content: '本回目標 · '; }
+:root[data-lang="zh-CN"] .page-objective::before { content: '本回目标 · '; }
+
+:root[data-lang="en"] .briefing-rule::before { content: 'SPECIAL RULE · '; }
+:root[data-lang="ja"] .briefing-rule::before { content: '本局戦法 · '; }
+:root[data-lang="zh-TW"] .briefing-rule::before { content: '本回戰法 · '; }
+:root[data-lang="zh-CN"] .briefing-rule::before { content: '本回战法 · '; }
+
+:root[data-lang="en"] .page-spine::after { content: "CHRONICLE"; letter-spacing: 0.12em; font-size: 10px; margin-bottom: 24px; }
+:root[data-lang="ja"] .page-spine::after { content: "残巻"; }
+:root[data-lang="zh-TW"] .page-spine::after { content: "殘卷"; }
+:root[data-lang="zh-CN"] .page-spine::after { content: "残卷"; }
+
+body:has(#battle:not(.hidden)) #langBar {
+  display: none;
+}
+
+@media (min-width: 641px) {
+  .practice-mast {
+    padding-right: 155px;
+  }
+}
+
+.lang-bar {
+  position: fixed;
+  top: 14px;
+  right: 18px;
+  z-index: 95;
+  display: inline-flex;
+  gap: 4px;
+  background: #141712d0;
+  border: 1px solid #77623a88;
+  border-radius: 4px;
+  padding: 3px 5px;
+  box-shadow: 0 4px 16px #0008;
+  backdrop-filter: blur(4px);
+}
 .lang-btn {
-  font: inherit; font-size: 12px; letter-spacing: 1px;
-  padding: 5px 10px; cursor: pointer;
-  color: var(--paper-dim, #b7ae93); background: transparent;
-  border: 1px solid #5a5138; border-radius: 3px;
+  background: transparent;
+  border: 1px solid transparent;
+  color: #a49779;
+  font-family: var(--serif);
+  font-size: 12px;
+  padding: 2px 8px;
+  letter-spacing: 0.05em;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all .2s;
 }
-.lang-btn:hover { color: #e6d9b0; border-color: #8b7c4f; }
+.lang-btn:hover {
+  color: #f1e2c3;
+  border-color: #8c7349;
+}
 .lang-btn.active {
-  color: #1c160c; background: #b3924d; border-color: #b3924d; font-weight: 700;
+  background: #79352b;
+  color: #faeed4;
+  border-color: #ba5d49;
+  font-weight: bold;
 }
+

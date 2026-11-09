@@ -11,6 +11,7 @@
     "lint:content": "node tests/content/chapters.lint.mjs && node tests/content/practice.lint.mjs && node tests/content/tell-lines.lint.mjs",
     "eval:ai": "node tests/ai-eval/run.mjs",
     "gen:preflop": "node scripts/generate-preflop-table.mjs",
+    "gen:locales": "node scripts/generate-generals-locales.mjs && node scripts/generate-chapters-locales.mjs && node scripts/generate-practice-locales.mjs && node scripts/generate-tells-locales.mjs && node scripts/generate-briefings-locales.mjs && node scripts/generate-stories-locales.mjs",
     "gen:og": "node scripts/generate-og-card.mjs",
     "gen:pwa": "node scripts/generate-pwa-assets.mjs",
     "test:e2e": "playwright test"
@@ -20,10 +21,12 @@
   "license": "ISC",
   "type": "module",
   "devDependencies": {
-    "@capacitor/android": "^8.6.0",
-    "@capacitor/cli": "^8.6.0",
-    "@capacitor/core": "^8.6.0",
     "@playwright/test": "^1.64.1",
-    "esbuild": "^0.28.2"
+    "esbuild": "^0.28.2",
+    "@capacitor/android": "^8.6.0",
+    "@capacitor/cli": "^8.6.0"
+  },
+  "dependencies": {
+    "@capacitor/core": "^8.6.0"
   }
 }

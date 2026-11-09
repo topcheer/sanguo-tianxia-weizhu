@@ -16,6 +16,6 @@ export default defineConfig({
     command: 'npm start',
     url: 'http://127.0.0.1:8619/index.html',
     reuseExistingServer: true,
-    timeout: 15_000,
+    timeout: 60_000,
   },
 });

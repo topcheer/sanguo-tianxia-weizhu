@@ -1,4 +1,5 @@
 // tell-lines.js —— 破绽台词池:信息长在人物身上。
+import { localizeTells, localizeIntentNotes } from './i18n.js';
 // 席位气泡两层:台词层(他说漏嘴的话)+注解层(generals.js 的 tells 动作文案+识破履历)。
 // 六类别:strongTrue 真强 / strongFake 装强 / weakTrue 真弱 / weakFake 装弱
 //        bluffLeak 诈唬线泄露(恒真) / trapLeak 埋伏泄露(恒真)
@@ -232,9 +233,15 @@ export function tellCategory(shown, actual) {
 }
 
 export function tellLine({ genId, category, traits, rng = Math.random } = {}) {
-  const pool = (FAMOUS[genId]?.[category]) || ARCHETYPE[archetypeOf(traits)]?.[category];
+  const { named, defaults } = localizeTells(FAMOUS, ARCHETYPE);
+  const pool = (named[genId]?.[category]) || defaults[archetypeOf(traits)]?.[category];
   if (!pool || !pool.length) return '……';
   return pool[Math.floor(rng() * pool.length)];
+}
+
+export function getIntentNote(type) {
+  const notes = localizeIntentNotes(INTENT_NOTES);
+  return notes[type] || INTENT_NOTES[type];
 }
 
 // 供内容校验(tests/content/tell-lines.lint.mjs)与调试导出

@@ -1,11 +1,26 @@
 // story-engine.js —— 无 DOM 的剧本解析：条件、场景、入场与牌局拍点
-import { STORY_DATA } from './story-data/runtime.js';
-import { GENERALS } from './generals.js';
+import { STORY_DATA, getLocalizedStory } from './story-data/runtime.js';
+import { GENERALS, getGeneral } from './generals.js';
+import { getLocale } from './i18n.js';
 
 export const SPEAKERS = {
   narrator: '旁白', writer: '写卷人', you: '你', unknown: '？？？',
 };
-export const speakerName = id => SPEAKERS[id] || GENERALS[id]?.name || id;
+
+const LOCALIZED_SPEAKERS = {
+  'zh-CN': { narrator: '旁白', writer: '写卷人', you: '你', unknown: '？？？' },
+  'zh-TW': { narrator: '旁白', writer: '寫卷人', you: '你', unknown: '？？？' },
+  ja: { narrator: '語り手', writer: '筆記者', you: '貴殿', unknown: '？？？' },
+  en: { narrator: 'Narrator', writer: 'Chronicler', you: 'You', unknown: '???' },
+};
+
+export const speakerName = id => {
+  const lang = getLocale();
+  const dict = LOCALIZED_SPEAKERS[lang] || LOCALIZED_SPEAKERS['zh-CN'];
+  if (dict[id]) return dict[id];
+  const g = getGeneral(id) || GENERALS[id];
+  return g?.name || id;
+};
 
 export const createStoryState = () => ({
   seen: {}, choices: {}, facts: {}, clues: {}, outcomes: {},
@@ -20,7 +35,12 @@ export function normalizeStoryState(value = {}) {
   return base;
 }
 
-export const storyFor = chapter => STORY_DATA[typeof chapter === 'string' ? chapter : chapter?.id] || null;
+export const storyFor = chapter => {
+  const id = typeof chapter === 'string' ? chapter : chapter?.id;
+  if (!id) return null;
+  const scroll = typeof chapter === 'object' ? chapter?.scroll : undefined;
+  return getLocalizedStory(id, scroll) || STORY_DATA[id] || null;
+};
 
 const isYeshi = state => ['yeshi', 'yeshiB', 'yeshiAB'].includes(state);
 
@@ -74,7 +94,7 @@ export function mapSceneFor(chapter, node) {
 
 export function introFor(chapter, cfg, ctx = {}) {
   const story = storyFor(chapter);
-  const entries = story?.intros?.[cfg.gen] || story?.intros?.[cfg.name] || [];
+  const entries = story?.intros?.[cfg.gen] || story?.intros?.[cfg.name] || (cfg.name === '写卷人' ? (story?.intros?.writer || story?.intros?.['写卷人']) : undefined) || [];
   const list = Array.isArray(entries) ? entries : [entries];
   return list.find(entry => matchesWhen(entry.when, ctx)) || list.find(entry => !entry.when) || {};
 }
