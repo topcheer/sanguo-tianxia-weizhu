@@ -10,12 +10,12 @@ import { PRACTICE_LOCALES } from './locales/practice/index.js';
 import { TELL_LOCALES, INTENT_NOTES_LOCALES } from './locales/tells/index.js';
 import { BRIEFING_LOCALES } from './locales/briefings/index.js';
 import { STORY_LOCALES } from './locales/stories/index.js';
-import zhJson from '../native/App/Resources/Localizations/zh.json';
-import jaJson from '../native/App/Resources/Localizations/ja.json';
-import koJson from '../native/App/Resources/Localizations/ko.json';
-import enJson from '../native/App/Resources/Localizations/en.json';
-import esJson from '../native/App/Resources/Localizations/es.json';
-import deJson from '../native/App/Resources/Localizations/de.json';
+import zhJson from '../native/App/Resources/Localizations/zh.json' with { type: 'json' };
+import jaJson from '../native/App/Resources/Localizations/ja.json' with { type: 'json' };
+import koJson from '../native/App/Resources/Localizations/ko.json' with { type: 'json' };
+import enJson from '../native/App/Resources/Localizations/en.json' with { type: 'json' };
+import esJson from '../native/App/Resources/Localizations/es.json' with { type: 'json' };
+import deJson from '../native/App/Resources/Localizations/de.json' with { type: 'json' };
 
 export const SUPPORTED_LOCALES = ['zh-CN', 'zh-TW', 'ja', 'en', 'ko', 'es', 'de'];
 
@@ -137,6 +137,10 @@ export function translatePage() {
   for (const el of document.querySelectorAll('[data-i18n-aria]')) {
     const key = el.getAttribute('data-i18n-aria');
     if (key) el.setAttribute('aria-label', t(key));
+  }
+  for (const el of document.querySelectorAll('[data-i18n-placeholder]')) {
+    const key = el.getAttribute('data-i18n-placeholder');
+    if (key) el.setAttribute('placeholder', t(key));
   }
 
   const activeLangBtn = document.querySelector(`.lang-btn[data-locale="${currentLocale}"]`);

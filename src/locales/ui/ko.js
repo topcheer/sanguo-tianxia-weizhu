@@ -145,6 +145,7 @@ export default {
     export: '현재 세이브 내보내기', import: '가져올 파일 선택',
     warning: '확인 후 현재 진행 상황을 덮어씁니다; 정산되지 않은 행군과 판은 세이브에 포함되지 않습니다.',
     confirm: '덮어쓰고 가져오기', close: '합 권',
+    paste: '붙여넣어 가져오기(파일 선택이 안 될 때)', pastePlaceholder: '여기에 세이브 JSON 텍스트를 붙여넣기…', pasteConfirm: '해석 후 미리보기',
   },
   settings: {
     kicker: '장중 기호', title: '설 정',

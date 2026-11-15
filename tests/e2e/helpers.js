@@ -9,14 +9,18 @@ export async function waitAppReady(page) {
 }
 
 // 开卷:带参数进入,点「开卷」。默认落到残卷目录;?chapter= 时落到题记页
+// 注:我方引擎首启按系统语言选语言(navigator.languages,无头浏览器=en-US),
+//     与上游测试的中文断言冲突——未显式指定 lang 时默认钉 zh-CN,测试确定性优先。
 export async function newGame(page, params = '') {
-  if (!params.includes('lang=') && !params.includes('locale=')) {
+  const langPinned = params.includes('lang=') || params.includes('locale=');
+  if (!langPinned) {
     await page.addInitScript(() => {
-      try { localStorage.removeItem('sanguo_poker_language'); } catch {}
+      try { localStorage.removeItem('sanguo_poker_language'); localStorage.removeItem('app.language'); } catch {}
     });
   }
   const withTutorialDefault = params.includes('tutorial=') ? params : `${params}${params ? '&' : ''}tutorial=0`;
-  await page.goto('/?' + withTutorialDefault);
+  const target = langPinned ? withTutorialDefault : `${withTutorialDefault}${withTutorialDefault ? '&' : ''}lang=zh-CN`;
+  await page.goto('/?' + target);
   await waitAppReady(page);
   await page.click('#startBtn');
   await expect(page.locator('#scroll:not(.hidden), #page:not(.hidden)').first()).toBeVisible();

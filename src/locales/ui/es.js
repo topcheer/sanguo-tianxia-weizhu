@@ -142,6 +142,7 @@ export default {
     export: 'Exportar partida', import: 'Elegir archivo',
     warning: 'Tras confirmar se sobrescribirá el progreso; marchas y partidas sin resolver no se incluyen.',
     confirm: 'Sobrescribir e importar', close: 'Cerrar el rollo',
+    paste: 'Importar pegando (si falla el selector)', pastePlaceholder: 'Pega aquí el JSON de la partida…', pasteConfirm: 'Analizar y previsualizar',
   },
   settings: {
     kicker: 'Preferencias', title: 'Ajustes',

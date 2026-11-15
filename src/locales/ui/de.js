@@ -142,6 +142,7 @@ export default {
     export: 'Spielstand exportieren', import: 'Datei wählen',
     warning: 'Nach Bestätigung wird der Fortschritt überschrieben; laufende Märsche und Partien sind nicht enthalten.',
     confirm: 'Überschreiben und importieren', close: 'Rolle schließen',
+    paste: 'Import per Einfügen (falls Dateiauswahl scheitert)', pastePlaceholder: 'JSON-Speicherstand hier einfügen…', pasteConfirm: 'Analysieren und Vorschau',
   },
   settings: {
     kicker: 'Vorlieben im Zelt', title: 'Einstellungen',

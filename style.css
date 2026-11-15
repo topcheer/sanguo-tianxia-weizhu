@@ -577,6 +577,10 @@ button.ghost:hover { border-color: #b7a578; }
 .save-intro { margin-top: 15px; color: #a9a184; font-size: 12px; line-height: 1.9; letter-spacing: .05em; }
 .save-transfer-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px; }
 .save-transfer-actions button { padding: 11px 12px; font-size: 13px; }
+.save-transfer-actions .wide { grid-column: 1 / -1; }
+.save-paste { margin-top: 12px; }
+.save-paste textarea { display: block; box-sizing: border-box; width: 100%; padding: 10px 12px; color: #c9bb96; background: #171b14; border: 1px solid #6b5b39; font: 12px/1.7 var(--serif); letter-spacing: .03em; resize: vertical; }
+#savePasteConfirm { margin-top: 8px; padding: 9px 18px; font-size: 12px; }
 .save-import-preview { margin-top: 18px; padding: 13px 15px; color: #c9bb96; background: #171b14; border: 1px solid #6b5b39; }
 #saveImportSummary { font-size: 13px; line-height: 1.8; }
 .save-warning { margin-top: 9px; color: #b08c72; font-size: 11px; line-height: 1.7; }

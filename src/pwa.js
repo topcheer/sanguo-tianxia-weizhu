@@ -1,9 +1,10 @@
 // pwa.js —— 安装入口与 Service Worker 注册;安装能力缺失时不影响网页流程。
+export const isStandalone = () => window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+export const isIos = () => /iPhone|iPad|iPod/.test(navigator.userAgent);
+
 export function initPwa() {
   const button = document.getElementById('pwaInstallBtn');
   let deferredPrompt = null;
-  const standalone = () => window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
-  const ios = /iPhone|iPad|iPod/.test(navigator.userAgent);
 
   function notice(text) {
     const el = document.createElement('div');
@@ -14,12 +15,12 @@ export function initPwa() {
     setTimeout(() => el.remove(), 5000);
   }
 
-  if (ios && !standalone()) {
+  if (isIos() && !isStandalone()) {
     button.textContent = '添加到主屏幕';
     button.classList.remove('hidden');
   }
   window.addEventListener('beforeinstallprompt', event => {
-    if (standalone()) return;
+    if (isStandalone()) return;
     event.preventDefault();
     deferredPrompt = event;
     button.textContent = '安装 App';
@@ -30,10 +31,10 @@ export function initPwa() {
     button.classList.add('hidden');
     notice('残卷已安装到设备，可从应用图标打开。');
   });
-  if (standalone()) button.classList.add('hidden');
+  if (isStandalone()) button.classList.add('hidden');
 
   button.addEventListener('click', async () => {
-    if (ios) {
+    if (isIos()) {
       notice('请在 Safari 中点击“分享”，再选择“添加到主屏幕”。');
       return;
     }

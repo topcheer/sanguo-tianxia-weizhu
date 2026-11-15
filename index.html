@@ -350,7 +350,12 @@
     <div class="save-transfer-actions">
       <button id="saveExport" type="button" data-i18n="save.export">导出当前存档</button>
       <button id="saveImportChoose" class="ghost" type="button" data-i18n="save.import">选择导入文件</button>
+      <button id="savePaste" class="ghost wide" type="button" data-i18n="save.paste">粘贴导入</button>
       <input id="saveImportInput" type="file" accept=".json,application/json" hidden>
+    </div>
+    <div id="savePasteBox" class="save-paste hidden">
+      <textarea id="savePasteArea" rows="5" spellcheck="false" data-i18n-placeholder="save.pastePlaceholder" data-i18n-aria="save.paste"></textarea>
+      <button id="savePasteConfirm" type="button" data-i18n="save.pasteConfirm">解析并预览</button>
     </div>
     <div id="saveImportPreview" class="save-import-preview hidden">
       <p id="saveImportSummary"></p>
