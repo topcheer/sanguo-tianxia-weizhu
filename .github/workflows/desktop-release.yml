@@ -20,7 +20,7 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - os: macos-latest
+          - os: macos-15  # 显式钉版逃离 macos-latest 拥堵池(807 发版排队15min被平台取消x2实测)
             PLAT: --mac
           - os: windows-latest
             PLAT: --win
