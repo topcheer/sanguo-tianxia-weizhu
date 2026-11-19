@@ -241,6 +241,21 @@ def remove_active_submission(vid, state):
             print("::warning::version still in review state after removal")
 
 
+def call_retry(method, path, body=None, delays=(20, 60)):
+    """ASC 传播时滞兑底:刚创建的版本短窗内 whatsNew 编辑/挂 item 会 409
+    ENTITY_STATE_INVALID(状态尚未传播开),指数退避重试即自愈(807 发版实测)。
+    仅对 409+ENTITY_STATE_INVALID 重试,其余立即返回。"""
+    s, r = call(method, path, body)
+    for i, d in enumerate(delays):
+        if s != 409 or "ENTITY_STATE_INVALID" not in json.dumps(r):
+            return s, r
+        print(f"409 propagation race on {path.split('?')[0]} "
+              f"(attempt {i + 2}/{len(delays) + 1}); retry in {d}s")
+        time.sleep(d)
+        s, r = call(method, path, body)
+    return s, r
+
+
 def patch_whats_new(vid, text):
     s, r = call("GET", f"/v1/appStoreVersions/{vid}/appStoreVersionLocalizations?limit=30")
     locs = r.get("data", []) if s == 200 else []
@@ -254,7 +269,7 @@ def patch_whats_new(vid, text):
             print(f"::warning::create en-US localization: {s}")
     for loc in locs:
         lid = loc["id"]
-        s, _ = call("PATCH", f"/v1/appStoreVersionLocalizations/{lid}",
+        s, _ = call_retry("PATCH", f"/v1/appStoreVersionLocalizations/{lid}",
                     {"data": {"type": "appStoreVersionLocalizations", "id": lid,
                               "attributes": {"whatsNewText": text}}})
         print(f"whatsNew [{loc['attributes'].get('locale')}]: {s}"
@@ -304,7 +319,7 @@ def submit(vid):
         print(f"::error::no reviewSubmission obtainable")
         return False
     # 子路径 items 405;改用扁平资源同时挂 reviewSubmission + appStoreVersion 两关系
-    s, r = call("POST", "/v1/reviewSubmissionItems",
+    s, r = call_retry("POST", "/v1/reviewSubmissionItems",
                 {"data": {"type": "reviewSubmissionItems",
                           "relationships": {
                               "reviewSubmission": {"data": {"type": "reviewSubmissions",
@@ -312,7 +327,7 @@ def submit(vid):
                               "appStoreVersion": {"data": {"type": "appStoreVersions",
                                                            "id": vid}}}}})
     print(f"attach item: {s} {json.dumps(r)[:250]}")
-    s, r = call("PATCH", f"/v1/reviewSubmissions/{rsid}",
+    s, r = call_retry("PATCH", f"/v1/reviewSubmissions/{rsid}",
                 {"data": {"type": "reviewSubmissions", "id": rsid,
                           "attributes": {"submitted": True}}})
     st = r.get("data", {}).get("attributes", {}).get("state") if isinstance(r, dict) else None
